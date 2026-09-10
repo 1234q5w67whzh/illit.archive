@@ -3825,53 +3825,284 @@ function changeMode(m,b){
 
     updateTracker();
 
+/* =========================
+   UPDATE STREAM DATA
+   ========================= */
+
+function animateNumber(element, newValue){
+
+    const oldValue =
+        Number(
+            element.dataset.value || 0
+        );
+
+    element.dataset.value =
+        newValue;
+
+    if(oldValue === newValue){
+
+        element.innerText =
+            newValue.toLocaleString('en-US');
+
+        return;
+
+    }
+
+    const duration = 1000;
+    const start = performance.now();
+
+    function animate(time){
+
+        const progress =
+            Math.min(
+                (time - start) / duration,
+                1
+            );
+
+        const eased =
+            1 - Math.pow(1 - progress, 3);
+
+        const value =
+            Math.floor(
+                oldValue +
+                (newValue - oldValue) * eased
+            );
+
+        element.innerText =
+            value.toLocaleString('en-US');
+
+        if(progress < 1){
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+    }
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+async function updateTracker(){
+
+    try{
+
+        const r =
+            await fetch(
+                'streams.json',
+                {
+                    cache:'no-store'
+                }
+            );
+
+
+        if(!r.ok){
+
+            throw Error(
+                'streams.json not found'
+            );
+
+        }
+
+
+        const data =
+            await r.json();
+
+
+        let total = 0;
+
+        let daily = 0;
+
+
+        document
+            .querySelectorAll('.track')
+            .forEach(t => {
+
+                const s =
+                    t.dataset.song;
+
+
+                const v =
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        currentMode,
+                        s
+                    );
+
+
+                if(
+                    v !== null &&
+                    Number.isFinite(v)
+                ){
+
+                    animateNumber(
+                        t.querySelector(
+                            '.track-number'
+                        ),
+                        v
+                    );
+
+                }else{
+
+                    t.querySelector(
+                        '.track-number'
+                    ).innerText =
+                        '—';
+
+                }
+
+
+                t.querySelector(
+                    '.track-platform'
+                ).innerText =
+                    currentPlatform;
+
+
+                const tv =
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        'total',
+                        s
+                    );
+
+
+                const dv =
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        'daily',
+                        s
+                    );
+
+
+                if(
+                    tv !== null &&
+                    Number.isFinite(tv)
+                ){
+
+                    total += tv;
+
+                }
+
+
+                if(
+                    dv !== null &&
+                    Number.isFinite(dv)
+                ){
+
+                    daily += dv;
+
+                }
+
+            });
+
+
+        document.getElementById(
+            'totalLabel'
+        ).innerText =
+
+            currentPlatform === 'spotify'
+                ? 'spotify total'
+                : 'melon total';
+
+
+        document.getElementById(
+            'dailyLabel'
+        ).innerText =
+            'daily streams';
+
+
+        document.getElementById(
+            'spotifyTotal'
+        ).innerText =
+
+            total > 0
+                ? total.toLocaleString('en-US')
+                : '—';
+
+
+        document.getElementById(
+            'dailyTotal'
+        ).innerText =
+
+            daily > 0
+                ? '+' +
+                  daily.toLocaleString('en-US')
+                : '—';
+
+
+    }catch(e){
+
+        console.error(
+            'Tracker error:',
+            e
+        );
+
+    }
+
+                        }
+    /* =========================
+   PLATFORM
+   ========================= */
+
+function changePlatform(p,b){
+
+    currentPlatform =
+        p;
+
+    document
+        .querySelectorAll(
+            '.platform-tab'
+        )
+        .forEach(x =>
+            x.classList.remove(
+                'active'
+            )
+        );
+
+    b.classList.add(
+        'active'
+    );
+
+    updateTracker();
+
 }
 
 
 /* =========================
-   OTHER TABS
+   TOTAL / DAILY
    ========================= */
 
-document
-    .querySelectorAll('.tabs')
-    .forEach(g => {
+function changeMode(m,b){
 
-        const bs =
-            g.querySelectorAll(
-                '.tab'
-            );
+    currentMode =
+        m;
 
+    document
+        .querySelectorAll(
+            '.mode-tab'
+        )
+        .forEach(x =>
+            x.classList.remove(
+                'active'
+            )
+        );
 
-        bs.forEach(b => {
+    b.classList.add(
+        'active'
+    );
 
-            b.addEventListener(
-                'click',
-                () => {
+    updateTracker();
 
-                    bs.forEach(x =>
-                        x.classList.remove(
-                            'selected'
-                        )
-                    );
-
-
-                    b.classList.add(
-                        'selected'
-                    );
-
-                }
-            );
-
-        });
-
-    });
-
-
-/* =========================
-   START
-   ========================= */
-
-renderTracks();
+}
+    renderTracks();
 
 updateTracker();
 
