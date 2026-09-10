@@ -30,50 +30,62 @@ body{
   background:#111;
 }
 
+
+/* =================================
+   PHONE
+================================= */
+
 .phone-screen{
   position:relative;
   width:100vw;
   height:100vh;
   overflow:hidden;
   background:#111;
-  color:white;
 }
 
 
-/* =========================
+/* =================================
    WALLPAPER
-========================= */
+================================= */
 
 .summer-wallpaper{
   position:absolute;
   inset:0;
+
   width:100%;
   height:100%;
+
   object-fit:cover;
   object-position:center;
+
   display:block;
+
   z-index:0;
 }
 
 .wallpaper-overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.04);
-  pointer-events:none;
+
+  background:rgba(0,0,0,.05);
+
   z-index:1;
 }
 
 
-/* =========================
+/* =================================
    STATUS BAR
-========================= */
+================================= */
 
 .status-bar{
   position:absolute;
+
   top:0;
   left:0;
+
   width:100%;
   height:48px;
+
   padding:0 24px;
 
   display:flex;
@@ -83,16 +95,18 @@ body{
   z-index:20;
 
   color:white;
+
   font-size:14px;
   font-weight:600;
 
-  text-shadow:0 1px 5px rgba(0,0,0,.4);
+  text-shadow:0 1px 6px rgba(0,0,0,.45);
 }
 
 .status-right{
   display:flex;
   align-items:center;
   gap:7px;
+
   font-size:12px;
 }
 
@@ -102,237 +116,243 @@ body{
 
 .battery{
   position:relative;
+
   width:22px;
   height:11px;
+
   border:1.5px solid white;
   border-radius:3px;
 }
 
 .battery::before{
   content:"";
+
   position:absolute;
+
   left:2px;
   top:2px;
+
   width:15px;
   height:5px;
+
   background:white;
+
   border-radius:1px;
 }
 
 .battery::after{
   content:"";
+
   position:absolute;
+
   right:-3px;
   top:3px;
+
   width:2px;
   height:4px;
+
   background:white;
+
   border-radius:1px;
 }
 
 
-/* =========================
+/* =================================
    LOCK SCREEN
-========================= */
+================================= */
 
 .lock-screen{
   position:absolute;
+
   inset:0;
+
   z-index:10;
 
   display:flex;
   flex-direction:column;
   align-items:center;
 
-  padding-top:78px;
+  padding-top:80px;
 
   transition:
-    opacity .7s ease,
-    transform .7s ease;
+    opacity .6s ease,
+    transform .6s ease;
 }
 
 .lock-screen.hide{
   opacity:0;
-  transform:scale(1.04);
+
+  transform:scale(1.03);
+
   pointer-events:none;
 }
 
 .date{
   font-size:17px;
   font-weight:500;
-  text-shadow:0 1px 7px rgba(0,0,0,.4);
+
+  text-shadow:
+    0 1px 7px rgba(0,0,0,.5);
 }
 
 .time{
-  margin-top:2px;
+  margin-top:3px;
 
   font-size:76px;
   line-height:.95;
 
   font-weight:300;
+
   letter-spacing:-4px;
 
-  text-shadow:0 2px 12px rgba(0,0,0,.35);
+  text-shadow:
+    0 2px 12px rgba(0,0,0,.45);
 }
 
 
-/* =========================
+/* =================================
    NOTIFICATION
-========================= */
+   IGUAL AO MODELO ENVIADO
+================================= */
 
 .notification{
+
   position:absolute;
 
-  top:104px;
-  left:16px;
-  right:16px;
+  /*
+     centralização igual à referência
+  */
 
-  z-index:30;
+  left:50%;
 
-  min-height:82px;
-
-  padding:12px 15px;
-
-  display:flex;
-  align-items:center;
-
-  gap:11px;
-
-  border-radius:22px;
-
-  background:rgba(248,247,252,.94);
-
-  backdrop-filter:blur(28px);
-  -webkit-backdrop-filter:blur(28px);
-
-  color:#222;
-
-  box-shadow:
-    0 8px 30px rgba(0,0,0,.25);
-
-  opacity:0;
+  top:29%;
 
   transform:
-    translateY(-150px)
-    scale(.97);
+    translate(-50%,-180px);
+
+  width:calc(100% - 42px);
+
+  max-width:1050px;
+
+  min-height:150px;
+
+  padding:20px 34px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:28px;
+
+  /*
+     fundo branco da referência
+  */
+
+  background:#f8f7fc;
+
+  border-radius:52px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.22);
+
+  z-index:40;
+
+  opacity:0;
 
   cursor:pointer;
 
   transition:
-    opacity .5s ease,
+    opacity .45s ease,
     transform .75s cubic-bezier(.22,1,.36,1);
 }
 
+
+/* aparece */
+
 .notification.show{
+
   opacity:1;
 
   transform:
-    translateY(0)
-    scale(1);
+    translate(-50%,0);
 }
+
+
+/* clique */
 
 .notification:active{
-  transform:scale(.97);
+
+  transform:
+    translate(-50%,0)
+    scale(.98);
 }
 
 
-/* =========================
-   NOTIFICATION AVATAR
-========================= */
+/* =================================
+   FOTO DA NOTIFICAÇÃO
+================================= */
 
 .notification-icon{
+
   flex-shrink:0;
 
-  width:52px;
-  height:52px;
-
-  border-radius:15px;
+  width:150px;
+  height:150px;
 
   object-fit:cover;
+
+  border-radius:32px;
 
   display:block;
 }
 
 
-/* =========================
-   NOTIFICATION CONTENT
-========================= */
+/* =================================
+   TEXTO
+================================= */
 
-.notification-content{
-  min-width:0;
+.notification-message{
+
   flex:1;
 
-  display:flex;
-  flex-direction:column;
+  min-width:0;
 
-  justify-content:center;
-}
+  color:#171717;
 
-.notification-header{
-  display:flex;
-  align-items:center;
+  font-size:34px;
 
-  gap:6px;
+  line-height:1.15;
 
-  margin-bottom:3px;
-}
+  font-weight:500;
 
-.notification-name{
-  font-size:13px;
-  font-weight:600;
-
-  color:#777;
-}
-
-.notification-time{
-  font-size:11px;
-  font-weight:400;
-
-  color:#999;
-}
-
-.notification-title{
-  font-size:15px;
-  font-weight:700;
-
-  color:#222;
-
-  margin-bottom:2px;
-}
-
-.notification-text{
-  font-size:13px;
-  line-height:1.25;
-
-  color:#555;
+  text-align:left;
 
   white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 
 
-/* =========================
+/* =================================
    HINT
-========================= */
+================================= */
 
 .swipe-hint{
+
   position:absolute;
 
-  bottom:34px;
+  bottom:35px;
+
   left:50%;
 
   transform:translateX(-50%);
 
   z-index:20;
 
-  width:max-content;
+  color:white;
 
   font-size:12px;
 
-  color:white;
-
-  text-shadow:0 1px 6px rgba(0,0,0,.5);
+  text-shadow:
+    0 1px 7px rgba(0,0,0,.5);
 
   animation:pulse 2s infinite;
 }
@@ -350,12 +370,14 @@ body{
 }
 
 
-/* =========================
+/* =================================
    SUMMER MOON PAGE
-========================= */
+================================= */
 
 .summer-page{
+
   position:absolute;
+
   inset:0;
 
   z-index:50;
@@ -385,41 +407,52 @@ body{
 }
 
 .summer-page.open{
+
   opacity:1;
+
   transform:translateY(0);
+
   pointer-events:auto;
 }
 
 
-/* =========================
+/* =================================
    HEADER
-========================= */
+================================= */
 
 .page-header{
+
   text-align:center;
+
   margin-bottom:25px;
 }
 
 .small-label{
+
   margin-bottom:8px;
 
   font-size:11px;
+
   text-transform:uppercase;
+
   letter-spacing:2px;
 
   color:#a4779e;
 }
 
 .page-header h1{
+
   font-family:Georgia,serif;
 
   font-size:42px;
+
   font-weight:400;
 
   letter-spacing:-1px;
 }
 
 .page-header p{
+
   margin-top:7px;
 
   font-size:13px;
@@ -428,40 +461,49 @@ body{
 }
 
 
-/* =========================
+/* =================================
    INTRO
-========================= */
+================================= */
 
 .intro{
+
   padding:20px;
+
   margin-bottom:20px;
 
   border-radius:27px;
 
   background:rgba(255,255,255,.63);
 
-  box-shadow:0 8px 30px rgba(95,52,91,.08);
+  box-shadow:
+    0 8px 30px rgba(95,52,91,.08);
 }
 
 .intro-title{
+
   margin-bottom:8px;
 
   font-family:Georgia,serif;
+
   font-size:21px;
 }
 
 .intro-text{
+
   font-size:13px;
+
   line-height:1.65;
+
   color:#765d72;
 }
 
 
-/* =========================
+/* =================================
    CHARACTERS
-========================= */
+================================= */
 
 .characters-title{
+
   display:flex;
 
   align-items:center;
@@ -471,18 +513,23 @@ body{
 }
 
 .characters-title h2{
+
   font-family:Georgia,serif;
 
   font-size:23px;
+
   font-weight:400;
 }
 
 .characters-title span{
+
   font-size:11px;
+
   color:#a27d9c;
 }
 
 .character-list{
+
   display:grid;
 
   grid-template-columns:1fr 1fr;
@@ -491,6 +538,7 @@ body{
 }
 
 .character-card{
+
   position:relative;
 
   min-height:135px;
@@ -505,7 +553,8 @@ body{
 
   border:1px solid rgba(255,255,255,.75);
 
-  box-shadow:0 7px 20px rgba(92,49,87,.07);
+  box-shadow:
+    0 7px 20px rgba(92,49,87,.07);
 
   cursor:pointer;
 
@@ -513,14 +562,17 @@ body{
 }
 
 .character-card:active{
+
   transform:scale(.96);
 }
 
 .character-symbol{
+
   width:36px;
   height:36px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -534,6 +586,7 @@ body{
 }
 
 .character-name{
+
   font-family:Georgia,serif;
 
   font-size:19px;
@@ -542,6 +595,7 @@ body{
 }
 
 .character-role{
+
   margin-top:4px;
 
   font-size:10px;
@@ -554,6 +608,7 @@ body{
 }
 
 .character-arrow{
+
   position:absolute;
 
   right:14px;
@@ -565,11 +620,12 @@ body{
 }
 
 
-/* =========================
+/* =================================
    CHARACTER DETAIL
-========================= */
+================================= */
 
 .character-detail{
+
   position:absolute;
 
   inset:0;
@@ -594,10 +650,12 @@ body{
 }
 
 .character-detail.open{
+
   transform:translateX(0);
 }
 
 .back-button{
+
   border:0;
 
   background:rgba(255,255,255,.7);
@@ -616,10 +674,12 @@ body{
 }
 
 .detail-symbol{
+
   width:64px;
   height:64px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -633,9 +693,11 @@ body{
 }
 
 .detail-name{
+
   font-family:Georgia,serif;
 
   font-size:40px;
+
   font-weight:400;
 
   color:#4c2c47;
@@ -644,6 +706,7 @@ body{
 }
 
 .detail-role{
+
   margin-bottom:25px;
 
   font-size:11px;
@@ -656,6 +719,7 @@ body{
 }
 
 .detail-card{
+
   padding:20px;
 
   margin-bottom:12px;
@@ -666,15 +730,18 @@ body{
 }
 
 .detail-card h3{
+
   margin-bottom:8px;
 
   font-family:Georgia,serif;
 
   font-size:19px;
+
   font-weight:400;
 }
 
 .detail-card p{
+
   font-size:13px;
 
   line-height:1.7;
@@ -683,19 +750,62 @@ body{
 }
 
 
-/* =========================
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:600px){
+
+  .notification{
+
+    width:calc(100% - 28px);
+
+    min-height:105px;
+
+    padding:13px 18px;
+
+    gap:18px;
+
+    border-radius:32px;
+  }
+
+  .notification-icon{
+
+    width:82px;
+    height:82px;
+
+    border-radius:22px;
+  }
+
+  .notification-message{
+
+    font-size:20px;
+
+    line-height:1.18;
+
+    white-space:normal;
+  }
+
+}
+
+
+/* =================================
    DESKTOP
-========================= */
+================================= */
 
 @media(min-width:700px){
 
   body{
+
     background:#ded5df;
+
     overflow:auto;
   }
 
   .phone-screen{
+
     width:390px;
+
     height:844px;
 
     margin:30px auto;
@@ -703,15 +813,47 @@ body{
     border-radius:42px;
 
     box-shadow:
-      0 20px 70px
-      rgba(0,0,0,.35);
+      0 20px 70px rgba(0,0,0,.35);
+  }
+
+  /*
+     dentro do telefone a notificação
+     volta para proporção de iPhone
+  */
+
+  .notification{
+
+    width:calc(100% - 28px);
+
+    min-height:82px;
+
+    padding:10px 13px;
+
+    gap:12px;
+
+    border-radius:25px;
+  }
+
+  .notification-icon{
+
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+  }
+
+  .notification-message{
+
+    font-size:15px;
   }
 
   .status-bar{
+
     border-radius:42px 42px 0 0;
   }
 
   .summer-page{
+
     border-radius:42px;
   }
 
@@ -726,9 +868,9 @@ body{
 <div class="phone-screen">
 
 
-  <!-- =========================
+  <!-- =================================
        WALLPAPER
-  ========================== -->
+  ================================== -->
 
   <img
     class="summer-wallpaper"
@@ -739,9 +881,9 @@ body{
   <div class="wallpaper-overlay"></div>
 
 
-  <!-- =========================
+  <!-- =================================
        STATUS BAR
-  ========================== -->
+  ================================== -->
 
   <div class="status-bar">
 
@@ -766,9 +908,9 @@ body{
   </div>
 
 
-  <!-- =========================
+  <!-- =================================
        LOCK SCREEN
-  ========================== -->
+  ================================== -->
 
   <div
     class="lock-screen"
@@ -792,9 +934,10 @@ body{
   </div>
 
 
-  <!-- =========================
-       NOTIFICATION
-  ========================== -->
+  <!-- =================================
+       NOTIFICAÇÃO
+       FORMATO DA IMAGEM
+  ================================== -->
 
   <div
     class="notification"
@@ -808,45 +951,25 @@ body{
       alt=""
     >
 
-    <div class="notification-content">
-
-      <div class="notification-header">
-
-        <span class="notification-name">
-          summer moon
-        </span>
-
-        <span class="notification-time">
-          now
-        </span>
-
-      </div>
-
-      <div class="notification-title">
-        Summer Moon
-      </div>
-
-      <div class="notification-text">
-        a new story is waiting for you ♡
-      </div>
-
+    <div class="notification-message">
+      A secret message has arrived
     </div>
 
   </div>
 
 
-  <!-- =========================
+  <!-- =================================
        HINT
-  ========================== -->
+  ================================== -->
 
   <div class="swipe-hint">
     tap the notification to open
   </div>
 
 
-  <!-- =========================
+  <!-- =================================
        SUMMER MOON
-  ========================== -->
+  ================================== -->
 
   <main
     class="summer-page"
@@ -1122,9 +1245,9 @@ body{
   </main>
 
 
-  <!-- =========================
+  <!-- =================================
        CHARACTER DETAIL
-  ========================== -->
+  ================================== -->
 
   <div
     class="character-detail"
@@ -1193,15 +1316,16 @@ body{
 
   </div>
 
+
 </div>
 
 
 <script>
 
 
-/* =========================
-   NOTIFICATION
-========================= */
+/* =================================
+   NOTIFICAÇÃO
+================================= */
 
 window.addEventListener(
   "load",
@@ -1223,9 +1347,9 @@ window.addEventListener(
 );
 
 
-/* =========================
-   OPEN SUMMER MOON
-========================= */
+/* =================================
+   ABRIR SUMMER MOON
+================================= */
 
 function openSummerMoon(){
 
@@ -1262,9 +1386,9 @@ function openSummerMoon(){
 }
 
 
-/* =========================
-   CHARACTERS
-========================= */
+/* =================================
+   PERSONAGENS
+================================= */
 
 const characters = {
 
@@ -1272,116 +1396,80 @@ const characters = {
     name:"Yeoreum",
     role:"summer moon",
     symbol:"☾",
-
-    about:
-      "Yeoreum is at the center of the Summer Moon story, where ordinary life begins to connect with a mysterious world of imagination.",
-
-    story:
-      "Her journey begins when a mysterious Fragment appears and changes the way she sees the world around her."
+    about:"Yeoreum is at the center of the Summer Moon story, where ordinary life begins to connect with a mysterious world of imagination.",
+    story:"Her journey begins when a mysterious Fragment appears and changes the way she sees the world around her."
   },
 
   miso:{
     name:"Miso",
     role:"character",
     symbol:"✿",
-
-    about:
-      "Miso is one of the characters connected to the Summer Moon story.",
-
-    story:
-      "Her story and relationships can be explored through the Summer Moon archive."
+    about:"Miso is one of the characters connected to the Summer Moon story.",
+    story:"Her story and relationships can be explored through the Summer Moon archive."
   },
 
   ayeong:{
     name:"Ayeong",
     role:"character",
     symbol:"✦",
-
-    about:
-      "Ayeong is part of the world surrounding Yeoreum and the Summer Moon universe.",
-
-    story:
-      "Her presence adds another perspective to the story and its mysterious events."
+    about:"Ayeong is part of the world surrounding Yeoreum and the Summer Moon universe.",
+    story:"Her presence adds another perspective to the story and its mysterious events."
   },
 
   gayun:{
     name:"Gayun",
     role:"character",
     symbol:"♡",
-
-    about:
-      "Gayun is one of the characters appearing within the Summer Moon universe.",
-
-    story:
-      "Her story will be connected to the larger archive of Summer Moon."
+    about:"Gayun is one of the characters appearing within the Summer Moon universe.",
+    story:"Her story will be connected to the larger archive of Summer Moon."
   },
 
   unha:{
     name:"Unha",
     role:"character",
     symbol:"★",
-
-    about:
-      "Unha belongs to the world of Summer Moon and its collection of characters.",
-
-    story:
-      "More story information can be added here as the archive grows."
+    about:"Unha belongs to the world of Summer Moon and its collection of characters.",
+    story:"More story information can be added here as the archive grows."
   },
 
   fern:{
     name:"Fern",
     role:"guardian",
     symbol:"◇",
-
-    about:
-      "Fern is a mysterious guardian-like character connected to the events surrounding the Fragment.",
-
-    story:
-      "His appearance brings another layer of mystery to Yeoreum's journey."
+    about:"Fern is a mysterious guardian-like character connected to the events surrounding the Fragment.",
+    story:"His appearance brings another layer of mystery to Yeoreum's journey."
   },
 
   doyun:{
     name:"Doyun",
     role:"character",
     symbol:"⟡",
-
-    about:
-      "Doyun is one of the characters connected to Yeoreum's everyday world.",
-
-    story:
-      "His interactions with the characters become part of the Summer Moon story."
+    about:"Doyun is one of the characters connected to Yeoreum's everyday world.",
+    story:"His interactions with the characters become part of the Summer Moon story."
   },
 
   gowon:{
     name:"Gowon",
     role:"character",
     symbol:"♢",
-
-    about:
-      "Gowon is a character within the Summer Moon universe with her own role and relationships.",
-
-    story:
-      "Her story can be expanded as new chapters and details are added to the archive."
+    about:"Gowon is a character within the Summer Moon universe with her own role and relationships.",
+    story:"Her story can be expanded as new chapters and details are added to the archive."
   },
 
   mirae:{
     name:"Mirae",
     role:"character",
     symbol:"✧",
-
-    about:
-      "Mirae is one of the characters belonging to the Summer Moon universe.",
-
-    story:
-      "Her place within the story will be documented here as the archive develops."
+    about:"Mirae is one of the characters belonging to the Summer Moon universe.",
+    story:"Her place within the story will be documented here as the archive develops."
   }
 
 };
 
 
-/* =========================
-   OPEN CHARACTER
-========================= */
+/* =================================
+   ABRIR PERSONAGEM
+================================= */
 
 function openCharacter(id){
 
@@ -1425,9 +1513,9 @@ function openCharacter(id){
 }
 
 
-/* =========================
-   CLOSE CHARACTER
-========================= */
+/* =================================
+   FECHAR PERSONAGEM
+================================= */
 
 function closeCharacter(){
 
@@ -1439,9 +1527,9 @@ function closeCharacter(){
 }
 
 
-/* =========================
-   TIME
-========================= */
+/* =================================
+   HORA
+================================= */
 
 function updateTime(){
 
@@ -1487,9 +1575,9 @@ setInterval(
 );
 
 
-/* =========================
-   DATE
-========================= */
+/* =================================
+   DATA
+================================= */
 
 function updateDate(){
 
