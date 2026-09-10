@@ -346,29 +346,34 @@ body{
 }
 
 
-/*
-   ESTE É O MESMO QUADRO DO SEU SITE.
-
-   Agora ele mostra aproximadamente 6 músicas
-   e o restante pode ser rolado dentro dele.
-*/
+/* =========================
+   STREAMING TRACK LIST
+   ========================= */
 
 .track-list{
     background:#fff;
     border-radius:17px;
+
+    /*
+       O QUADRO FICA COM ALTURA FIXA.
+       6 músicas ficam visíveis.
+       TODAS as outras ficam dentro dele
+       e podem ser roladas.
+    */
+
+    height:348px;
+    max-height:348px;
+
     overflow-y:auto;
     overflow-x:hidden;
-
-    max-height:348px;
 
     scroll-behavior:smooth;
 
     scrollbar-width:thin;
-    scrollbar-color:#d0d0d5 transparent
+    scrollbar-color:#d0d0d5 transparent;
+
+    -webkit-overflow-scrolling:touch;
 }
-
-
-/* barra de rolagem no Android/Chrome */
 
 .track-list::-webkit-scrollbar{
     width:4px
@@ -383,20 +388,19 @@ body{
     border-radius:20px
 }
 
-
-/*
-   Cada música continua com o mesmo visual
-   do quadro original.
-*/
-
 .track{
+    height:58px;
     min-height:58px;
     padding:9px 12px;
+
     display:flex;
     align-items:center;
     gap:10px;
+
     border-bottom:1px solid #eeeeef;
-    background:#fff
+    background:#fff;
+
+    flex-shrink:0;
 }
 
 .track:last-child{
@@ -417,9 +421,11 @@ body{
     height:34px;
     border-radius:10px;
     background:linear-gradient(135deg,#f8e1ef,#e5e9fb);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:13px;
     flex-shrink:0
 }
@@ -432,6 +438,7 @@ body{
 .track-name{
     font-size:11px;
     font-weight:600;
+
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis
@@ -446,18 +453,10 @@ body{
 .track-number{
     font-size:11px;
     font-weight:600;
-    white-space:nowrap
+    white-space:nowrap;
+    min-width:65px;
+    text-align:right
 }
-
-
-/* pequeno indicador visual de que existe mais conteúdo */
-
-.track-list::after{
-    content:"";
-    display:block;
-    height:1px
-}
-
 
 .tracker-footer{
     display:grid;
@@ -683,9 +682,11 @@ body{
     position:relative;
     overflow:hidden;
     color:#fff;
+
     background-image:
         linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.20)),
         url("90 Sem Título_20260910051532.png");
+
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat
@@ -721,22 +722,30 @@ body{
     top:178px;
     left:14px;
     right:14px;
+
     transform:translateY(-35px);
     opacity:0;
+
     background:rgba(245,245,245,.88);
     color:#111;
+
     backdrop-filter:blur(25px);
     -webkit-backdrop-filter:blur(25px);
+
     border-radius:21px;
     padding:12px;
+
     display:flex;
     align-items:center;
     gap:11px;
+
     box-shadow:
         0 7px 30px rgba(0,0,0,.22),
         inset 0 1px 0 rgba(255,255,255,.55);
+
     cursor:pointer;
     pointer-events:none;
+
     transition:
         opacity .55s ease,
         transform .55s cubic-bezier(.22,1,.36,1)
@@ -766,6 +775,7 @@ body{
     font-weight:500;
     letter-spacing:-.15px;
     color:#171717;
+
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis
@@ -776,9 +786,11 @@ body{
     left:0;
     right:0;
     bottom:28px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
+
     text-shadow:0 1px 7px rgba(0,0,0,.35)
 }
 
@@ -837,57 +849,81 @@ body{
 <body>
 
 <div class="summer-lockscreen" id="summerLockscreen">
+
     <div class="summer-lock-phone">
 
         <div class="summer-lock-content">
 
-            <div class="summer-lock-date" id="summerLockDate"></div>
+            <div
+                class="summer-lock-date"
+                id="summerLockDate"
+            ></div>
 
-            <div class="summer-lock-time" id="summerLockTime"></div>
+            <div
+                class="summer-lock-time"
+                id="summerLockTime"
+            ></div>
 
             <div
                 class="summer-notification"
                 id="summerNotification"
                 onclick="openSummerMoon()"
             >
-                <img src="91 Sem Título_20260910053652.png">
+
+                <img
+                    src="91 Sem Título_20260910053652.png"
+                >
 
                 <div class="summer-notification-text">
+
                     <div class="summer-notification-message">
                         A secret message has arrived
                     </div>
+
                 </div>
+
             </div>
 
             <div class="summer-lock-bottom">
+
                 <div class="summer-lock-hint">
                     swipe up to open
                 </div>
 
                 <div class="summer-lock-line"></div>
+
             </div>
 
         </div>
+
     </div>
+
 </div>
 
 
 <div class="phone">
 
     <div class="status">
-        <span id="time">9:41</span>
+
+        <span id="time">
+            9:41
+        </span>
 
         <div class="status-icons">
             <span>●●●</span>
             <span>⌁</span>
             <span>▰</span>
         </div>
+
     </div>
 
 
     <header class="app-header">
 
-        <div class="app-title" id="headerTitle">
+        <div
+            class="app-title"
+            id="headerTitle"
+        >
             Home
         </div>
 
@@ -903,7 +939,10 @@ body{
 
         <!-- HOME -->
 
-        <section class="page active" id="home">
+        <section
+            class="page active"
+            id="home"
+        >
 
             <div class="hero">
 
@@ -938,9 +977,19 @@ body{
                     class="widget square"
                     onclick="openPage('profile')"
                 >
-                    <div class="icon">👤</div>
-                    <h3>Profile</h3>
-                    <p>members & group</p>
+
+                    <div class="icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Profile
+                    </h3>
+
+                    <p>
+                        members & group
+                    </p>
+
                 </div>
 
 
@@ -948,9 +997,19 @@ body{
                     class="widget square"
                     onclick="openPage('discography')"
                 >
-                    <div class="icon">♫</div>
-                    <h3>Music</h3>
-                    <p>discography</p>
+
+                    <div class="icon">
+                        ♫
+                    </div>
+
+                    <h3>
+                        Music
+                    </h3>
+
+                    <p>
+                        discography
+                    </p>
+
                 </div>
 
 
@@ -958,9 +1017,19 @@ body{
                     class="widget square"
                     onclick="openSummerMoonExperience()"
                 >
-                    <div class="icon">✧</div>
-                    <h3>Summer Moon</h3>
-                    <p>the universe</p>
+
+                    <div class="icon">
+                        ✧
+                    </div>
+
+                    <h3>
+                        Summer Moon
+                    </h3>
+
+                    <p>
+                        the universe
+                    </p>
+
                 </div>
 
 
@@ -968,9 +1037,19 @@ body{
                     class="widget square"
                     onclick="openPage('tour')"
                 >
-                    <div class="icon">♧</div>
-                    <h3>Press Start</h3>
-                    <p>tour archive</p>
+
+                    <div class="icon">
+                        ♧
+                    </div>
+
+                    <h3>
+                        Press Start
+                    </h3>
+
+                    <p>
+                        tour archive
+                    </p>
+
                 </div>
 
             </div>
@@ -993,7 +1072,7 @@ body{
             </div>
 
 
-            <!-- STREAMING ORIGINAL CARD -->
+            <!-- STREAMING -->
 
             <div class="streaming-card">
 
@@ -1044,10 +1123,13 @@ body{
 
 
                 <!--
-                    AQUI ESTÁ O QUADRO.
+                    MESMO QUADRO.
 
-                    Apenas 6 músicas ficam visíveis.
-                    O restante fica dentro dele para rolar.
+                    6 músicas ficam visíveis.
+                    O restante fica dentro dele.
+
+                    É SÓ ROLAR PARA BAIXO
+                    DENTRO DESTE QUADRO.
                 -->
 
                 <div
@@ -1118,8 +1200,13 @@ body{
                         class="member"
                         onclick="member('Yunah','윤아')"
                     >
-                        <div class="member-avatar">Y</div>
-                        <div class="member-name">yunah</div>
+                        <div class="member-avatar">
+                            Y
+                        </div>
+
+                        <div class="member-name">
+                            yunah
+                        </div>
                     </div>
 
 
@@ -1127,8 +1214,13 @@ body{
                         class="member"
                         onclick="member('Minju','민주')"
                     >
-                        <div class="member-avatar">M</div>
-                        <div class="member-name">minju</div>
+                        <div class="member-avatar">
+                            M
+                        </div>
+
+                        <div class="member-name">
+                            minju
+                        </div>
                     </div>
 
 
@@ -1136,8 +1228,13 @@ body{
                         class="member"
                         onclick="member('Moka','モカ')"
                     >
-                        <div class="member-avatar">M</div>
-                        <div class="member-name">moka</div>
+                        <div class="member-avatar">
+                            M
+                        </div>
+
+                        <div class="member-name">
+                            moka
+                        </div>
                     </div>
 
 
@@ -1145,8 +1242,13 @@ body{
                         class="member"
                         onclick="member('Wonhee','원희')"
                     >
-                        <div class="member-avatar">W</div>
-                        <div class="member-name">wonhee</div>
+                        <div class="member-avatar">
+                            W
+                        </div>
+
+                        <div class="member-name">
+                            wonhee
+                        </div>
                     </div>
 
 
@@ -1154,8 +1256,13 @@ body{
                         class="member"
                         onclick="member('Iroha','いろは')"
                     >
-                        <div class="member-avatar">I</div>
-                        <div class="member-name">iroha</div>
+                        <div class="member-avatar">
+                            I
+                        </div>
+
+                        <div class="member-name">
+                            iroha
+                        </div>
                     </div>
 
                 </div>
@@ -1167,12 +1274,23 @@ body{
 
         <!-- PROFILE -->
 
-        <section class="page" id="profile">
+        <section
+            class="page"
+            id="profile"
+        >
 
             <div class="page-heading">
-                <h1>Profile</h1>
-                <p>ILLIT members</p>
+
+                <h1>
+                    Profile
+                </h1>
+
+                <p>
+                    ILLIT members
+                </p>
+
             </div>
+
 
             <div class="list">
 
@@ -1185,14 +1303,27 @@ body{
                     class="item"
                     onclick="member('Yunah','윤아')"
                 >
-                    <div class="item-icon">🐆</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Yunah</div>
-                        <div class="item-sub">윤아</div>
+                    <div class="item-icon">
+                        🐆
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Yunah
+                        </div>
+
+                        <div class="item-sub">
+                            윤아
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1200,14 +1331,27 @@ body{
                     class="item"
                     onclick="member('Minju','민주')"
                 >
-                    <div class="item-icon">🐰</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Minju</div>
-                        <div class="item-sub">민주</div>
+                    <div class="item-icon">
+                        🐰
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Minju
+                        </div>
+
+                        <div class="item-sub">
+                            민주
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1215,14 +1359,27 @@ body{
                     class="item"
                     onclick="member('Moka','モカ')"
                 >
-                    <div class="item-icon">☕</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Moka</div>
-                        <div class="item-sub">モカ</div>
+                    <div class="item-icon">
+                        ☕
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Moka
+                        </div>
+
+                        <div class="item-sub">
+                            モカ
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1230,14 +1387,27 @@ body{
                     class="item"
                     onclick="member('Wonhee','원희')"
                 >
-                    <div class="item-icon">🐿</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Wonhee</div>
-                        <div class="item-sub">원희</div>
+                    <div class="item-icon">
+                        🐿
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Wonhee
+                        </div>
+
+                        <div class="item-sub">
+                            원희
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1245,14 +1415,27 @@ body{
                     class="item"
                     onclick="member('Iroha','いろは')"
                 >
-                    <div class="item-icon">🐢</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Iroha</div>
-                        <div class="item-sub">いろは</div>
+                    <div class="item-icon">
+                        🐢
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Iroha
+                        </div>
+
+                        <div class="item-sub">
+                            いろは
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
             </div>
@@ -1262,19 +1445,42 @@ body{
 
         <!-- DISCOGRAPHY -->
 
-        <section class="page" id="discography">
+        <section
+            class="page"
+            id="discography"
+        >
 
             <div class="page-heading">
-                <h1>Music</h1>
-                <p>discography</p>
+
+                <h1>
+                    Music
+                </h1>
+
+                <p>
+                    discography
+                </p>
+
             </div>
 
 
             <div class="tabs">
-                <button class="tab selected">ALL</button>
-                <button class="tab">KOREAN</button>
-                <button class="tab">JAPANESE</button>
-                <button class="tab">SINGLES</button>
+
+                <button class="tab selected">
+                    ALL
+                </button>
+
+                <button class="tab">
+                    KOREAN
+                </button>
+
+                <button class="tab">
+                    JAPANESE
+                </button>
+
+                <button class="tab">
+                    SINGLES
+                </button>
+
             </div>
 
 
@@ -1287,7 +1493,9 @@ body{
 
                 <div class="album-info">
 
-                    <h3>SUPER REAL ME</h3>
+                    <h3>
+                        SUPER REAL ME
+                    </h3>
 
                     <p>
                         2024 · mini album
@@ -1315,7 +1523,9 @@ body{
 
                 <div class="album-info">
 
-                    <h3>I'LL LIKE YOU</h3>
+                    <h3>
+                        I'LL LIKE YOU
+                    </h3>
 
                     <p>
                         2024 · mini album
@@ -1342,7 +1552,9 @@ body{
 
                 <div class="album-info">
 
-                    <h3>BOMB</h3>
+                    <h3>
+                        BOMB
+                    </h3>
 
                     <p>
                         release archive
@@ -1365,11 +1577,21 @@ body{
 
         <!-- SUMMER MOON -->
 
-        <section class="page" id="summer">
+        <section
+            class="page"
+            id="summer"
+        >
 
             <div class="page-heading">
-                <h1>Summer Moon</h1>
-                <p>the ILLIT universe</p>
+
+                <h1>
+                    Summer Moon
+                </h1>
+
+                <p>
+                    the ILLIT universe
+                </p>
+
             </div>
 
 
@@ -1409,6 +1631,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Story
                         </div>
@@ -1416,6 +1639,7 @@ body{
                         <div class="item-sub">
                             chapter archive
                         </div>
+
                     </div>
 
                     <div class="chevron">
@@ -1432,6 +1656,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Characters
                         </div>
@@ -1439,6 +1664,7 @@ body{
                         <div class="item-sub">
                             meet the characters
                         </div>
+
                     </div>
 
                     <div class="chevron">
@@ -1455,6 +1681,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Fragments
                         </div>
@@ -1462,6 +1689,7 @@ body{
                         <div class="item-sub">
                             magic & technology
                         </div>
+
                     </div>
 
                     <div class="chevron">
@@ -1477,11 +1705,21 @@ body{
 
         <!-- TOUR -->
 
-        <section class="page" id="tour">
+        <section
+            class="page"
+            id="tour"
+        >
 
             <div class="page-heading">
-                <h1>Tour</h1>
-                <p>ILLIT PRESS START</p>
+
+                <h1>
+                    Tour
+                </h1>
+
+                <p>
+                    ILLIT PRESS START
+                </p>
+
             </div>
 
 
@@ -1517,6 +1755,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Dates
                         </div>
@@ -1524,9 +1763,12 @@ body{
                         <div class="item-sub">
                             tour schedule
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1538,6 +1780,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Cities & Venues
                         </div>
@@ -1545,9 +1788,12 @@ body{
                         <div class="item-sub">
                             concert locations
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1559,6 +1805,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Tickets
                         </div>
@@ -1566,9 +1813,12 @@ body{
                         <div class="item-sub">
                             ticket information
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1580,6 +1830,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Setlist
                         </div>
@@ -1587,9 +1838,12 @@ body{
                         <div class="item-sub">
                             concert songs
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1600,11 +1854,21 @@ body{
 
         <!-- MV -->
 
-        <section class="page" id="mv">
+        <section
+            class="page"
+            id="mv"
+        >
 
             <div class="page-heading">
-                <h1>MV</h1>
-                <p>music videos</p>
+
+                <h1>
+                    MV
+                </h1>
+
+                <p>
+                    music videos
+                </p>
+
             </div>
 
 
@@ -1617,6 +1881,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Magnetic
                         </div>
@@ -1624,9 +1889,12 @@ body{
                         <div class="item-sub">
                             official music video
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1638,6 +1906,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Lucky Girl Syndrome
                         </div>
@@ -1645,9 +1914,12 @@ body{
                         <div class="item-sub">
                             official music video
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1659,6 +1931,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Cherish (My Love)
                         </div>
@@ -1666,9 +1939,12 @@ body{
                         <div class="item-sub">
                             official music video
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1680,6 +1956,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Do the Dance
                         </div>
@@ -1687,9 +1964,12 @@ body{
                         <div class="item-sub">
                             official music video
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1709,11 +1989,21 @@ body{
 
         <!-- NEWS -->
 
-        <section class="page" id="news">
+        <section
+            class="page"
+            id="news"
+        >
 
             <div class="page-heading">
-                <h1>News</h1>
-                <p>latest updates</p>
+
+                <h1>
+                    News
+                </h1>
+
+                <p>
+                    latest updates
+                </p>
+
             </div>
 
 
@@ -1726,6 +2016,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Latest ILLIT updates
                         </div>
@@ -1733,9 +2024,12 @@ body{
                         <div class="item-sub">
                             news archive
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1747,6 +2041,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Official SNS
                         </div>
@@ -1754,9 +2049,12 @@ body{
                         <div class="item-sub">
                             social updates
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -1767,11 +2065,21 @@ body{
 
         <!-- SCHEDULE -->
 
-        <section class="page" id="schedule">
+        <section
+            class="page"
+            id="schedule"
+        >
 
             <div class="page-heading">
-                <h1>Schedule</h1>
-                <p>ILLIT activities</p>
+
+                <h1>
+                    Schedule
+                </h1>
+
+                <p>
+                    ILLIT activities
+                </p>
+
             </div>
 
 
@@ -1813,11 +2121,21 @@ body{
 
         <!-- ACTIVITIES -->
 
-        <section class="page" id="activities">
+        <section
+            class="page"
+            id="activities"
+        >
 
             <div class="page-heading">
-                <h1>Activities</h1>
-                <p>individual members</p>
+
+                <h1>
+                    Activities
+                </h1>
+
+                <p>
+                    individual members
+                </p>
+
             </div>
 
 
@@ -1827,14 +2145,27 @@ body{
                     class="item"
                     onclick="member('Yunah','윤아')"
                 >
-                    <div class="item-icon">🐆</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Yunah</div>
-                        <div class="item-sub">individual activities</div>
+                    <div class="item-icon">
+                        🐆
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Yunah
+                        </div>
+
+                        <div class="item-sub">
+                            individual activities
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1842,14 +2173,27 @@ body{
                     class="item"
                     onclick="member('Minju','민주')"
                 >
-                    <div class="item-icon">🐰</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Minju</div>
-                        <div class="item-sub">individual activities</div>
+                    <div class="item-icon">
+                        🐰
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Minju
+                        </div>
+
+                        <div class="item-sub">
+                            individual activities
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1857,14 +2201,27 @@ body{
                     class="item"
                     onclick="member('Moka','モカ')"
                 >
-                    <div class="item-icon">☕</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Moka</div>
-                        <div class="item-sub">individual activities</div>
+                    <div class="item-icon">
+                        ☕
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Moka
+                        </div>
+
+                        <div class="item-sub">
+                            individual activities
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1872,14 +2229,27 @@ body{
                     class="item"
                     onclick="member('Wonhee','원희')"
                 >
-                    <div class="item-icon">🐿</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Wonhee</div>
-                        <div class="item-sub">individual activities</div>
+                    <div class="item-icon">
+                        🐿
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Wonhee
+                        </div>
+
+                        <div class="item-sub">
+                            individual activities
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1887,14 +2257,27 @@ body{
                     class="item"
                     onclick="member('Iroha','いろは')"
                 >
-                    <div class="item-icon">🐢</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Iroha</div>
-                        <div class="item-sub">individual activities</div>
+                    <div class="item-icon">
+                        🐢
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Iroha
+                        </div>
+
+                        <div class="item-sub">
+                            individual activities
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
             </div>
@@ -1904,11 +2287,21 @@ body{
 
         <!-- GALLERY -->
 
-        <section class="page" id="gallery">
+        <section
+            class="page"
+            id="gallery"
+        >
 
             <div class="page-heading">
-                <h1>Photos</h1>
-                <p>ILLIT gallery</p>
+
+                <h1>
+                    Photos
+                </h1>
+
+                <p>
+                    ILLIT gallery
+                </p>
+
             </div>
 
 
@@ -1931,15 +2324,41 @@ body{
 
             <div class="photo-grid">
 
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
-                <div class="photo">photo</div>
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
+
+                <div class="photo">
+                    photo
+                </div>
 
             </div>
 
@@ -1948,11 +2367,21 @@ body{
 
         <!-- OFFICIAL -->
 
-        <section class="page" id="official">
+        <section
+            class="page"
+            id="official"
+        >
 
             <div class="page-heading">
-                <h1>Official</h1>
-                <p>ILLIT links</p>
+
+                <h1>
+                    Official
+                </h1>
+
+                <p>
+                    ILLIT links
+                </p>
+
             </div>
 
 
@@ -1962,14 +2391,27 @@ body{
                     class="item"
                     onclick="window.open('https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/','_blank')"
                 >
-                    <div class="item-icon">♫</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Spotify</div>
-                        <div class="item-sub">official artist</div>
+                    <div class="item-icon">
+                        ♫
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Spotify
+                        </div>
+
+                        <div class="item-sub">
+                            official artist
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1977,14 +2419,27 @@ body{
                     class="item"
                     onclick="window.open('https://www.melon.com/artist/detail.htm?artistId=3743525','_blank')"
                 >
-                    <div class="item-icon">♪</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Melon</div>
-                        <div class="item-sub">official artist</div>
+                    <div class="item-icon">
+                        ♪
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Melon
+                        </div>
+
+                        <div class="item-sub">
+                            official artist
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -1992,14 +2447,27 @@ body{
                     class="item"
                     onclick="window.open('https://www.youtube.com/@ILLIT_official','_blank')"
                 >
-                    <div class="item-icon">▶</div>
 
-                    <div class="item-text">
-                        <div class="item-name">YouTube</div>
-                        <div class="item-sub">official channel</div>
+                    <div class="item-icon">
+                        ▶
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            YouTube
+                        </div>
+
+                        <div class="item-sub">
+                            official channel
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -2007,14 +2475,27 @@ body{
                     class="item"
                     onclick="window.open('https://www.instagram.com/ILLIT_official/','_blank')"
                 >
-                    <div class="item-icon">◎</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Instagram</div>
-                        <div class="item-sub">official account</div>
+                    <div class="item-icon">
+                        ◎
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Instagram
+                        </div>
+
+                        <div class="item-sub">
+                            official account
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
 
@@ -2022,14 +2503,27 @@ body{
                     class="item"
                     onclick="window.open('https://weverse.io/illit/','_blank')"
                 >
-                    <div class="item-icon">W</div>
 
-                    <div class="item-text">
-                        <div class="item-name">Weverse</div>
-                        <div class="item-sub">official community</div>
+                    <div class="item-icon">
+                        W
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="item-text">
+
+                        <div class="item-name">
+                            Weverse
+                        </div>
+
+                        <div class="item-sub">
+                            official community
+                        </div>
+
+                    </div>
+
+                    <div class="chevron">
+                        ›
+                    </div>
+
                 </div>
 
             </div>
@@ -2039,7 +2533,10 @@ body{
 
         <!-- MEMBER DETAIL -->
 
-        <section class="page" id="memberDetail">
+        <section
+            class="page"
+            id="memberDetail"
+        >
 
             <button
                 class="back"
@@ -2086,6 +2583,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Schedule
                         </div>
@@ -2093,9 +2591,12 @@ body{
                         <div class="item-sub">
                             individual activities
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -2107,6 +2608,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Photos
                         </div>
@@ -2114,9 +2616,12 @@ body{
                         <div class="item-sub">
                             individual gallery
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -2128,6 +2633,7 @@ body{
                     </div>
 
                     <div class="item-text">
+
                         <div class="item-name">
                             Appearances
                         </div>
@@ -2135,9 +2641,12 @@ body{
                         <div class="item-sub">
                             shows & events
                         </div>
+
                     </div>
 
-                    <div class="chevron">›</div>
+                    <div class="chevron">
+                        ›
+                    </div>
 
                 </div>
 
@@ -2156,8 +2665,13 @@ body{
             class="nav-button active"
             onclick="openPage('home',this)"
         >
-            <span>⌂</span>
+
+            <span>
+                ⌂
+            </span>
+
             Home
+
         </button>
 
 
@@ -2165,8 +2679,13 @@ body{
             class="nav-button"
             onclick="openPage('profile',this)"
         >
-            <span>♙</span>
+
+            <span>
+                ♙
+            </span>
+
             Profile
+
         </button>
 
 
@@ -2174,8 +2693,13 @@ body{
             class="nav-button"
             onclick="openPage('discography',this)"
         >
-            <span>♫</span>
+
+            <span>
+                ♫
+            </span>
+
             Music
+
         </button>
 
 
@@ -2183,8 +2707,13 @@ body{
             class="nav-button"
             onclick="openPage('gallery',this)"
         >
-            <span>▦</span>
+
+            <span>
+                ▦
+            </span>
+
             Photos
+
         </button>
 
 
@@ -2192,8 +2721,13 @@ body{
             class="nav-button"
             onclick="openPage('official',this)"
         >
-            <span>⚙</span>
+
+            <span>
+                ⚙
+            </span>
+
             More
+
         </button>
 
     </nav>
@@ -2356,13 +2890,85 @@ const trackGroups = [
    HELPERS
    ========================= */
 
-const key = s =>
-    s.trim().toLowerCase();
+/*
+   Normaliza os nomes para que pequenas
+   diferenças não façam o stream desaparecer.
+*/
 
+function key(s){
+
+    return String(s)
+        .trim()
+        .toLowerCase()
+        .replace(/[’]/g,"'")
+        .replace(/[–—]/g,"-")
+        .replace(/\s+/g," ")
+        .replace(/\s*-\s*/g," - ")
+        .replace(/\s*\(\s*/g,"(")
+        .replace(/\s*\)\s*/g,")");
+
+}
+
+
+/*
+   Alguns nomes do index.html e do
+   streams.json são diferentes.
+
+   Aqui fazemos a ligação entre eles.
+*/
+
+const streamAliases = {
+
+    "my world - speed up":
+        "my world - sped up",
+
+    "magnetic - speed up":
+        "magnetic - sped up",
+
+    "midnight fiction - speed up":
+        "midnight fiction - sped up",
+
+    "lucky girl syndrome - speed up":
+        "lucky girl syndrome - sped up",
+
+    "cherish (my love) - speed up":
+        "cherish (my love) - sped up",
+
+    "not cute anymore - speed up ver.":
+        "not cute anymore - sped up ver.",
+
+    "not cute anymore - holiday party":
+        "not cute anymore - holiday party",
+
+    "not cute anymore - holiday night":
+        "not cute anymore - holiday night",
+
+    "not cute anymore - holiday night speed up ver.":
+        "not cute anymore - holiday night sped up ver.",
+
+    "all for you 2027":
+        "all for you 2027",
+
+    "bublee":
+        "bubee",
+
+    "bublee (korean ver.)":
+        "bubee (korean ver.)",
+
+    "iconic by mistake":
+        "iconic by mistake"
+
+};
+
+
+/*
+   Escapa texto antes de colocar
+   dentro do HTML.
+*/
 
 function esc(s){
 
-    return s.replace(
+    return String(s).replace(
         /[&<>"']/g,
         c => ({
             '&':'&amp;',
@@ -2372,6 +2978,48 @@ function esc(s){
             "'":'&#039;'
         }[c])
     );
+
+}
+
+
+/*
+   Procura o valor no streams.json
+   usando o nome normal e os aliases.
+*/
+
+function getStreamValue(data,platform,mode,song){
+
+    const originalKey =
+        key(song);
+
+    const possibleKeys = [
+
+        originalKey,
+
+        streamAliases[originalKey]
+
+    ].filter(Boolean);
+
+
+    for(const k of possibleKeys){
+
+        const value =
+            data?.[platform]?.[mode]?.[k];
+
+        if(
+            value !== undefined &&
+            value !== null &&
+            value !== ""
+        ){
+
+            return Number(value);
+
+        }
+
+    }
+
+
+    return null;
 
 }
 
@@ -2401,35 +3049,25 @@ function openPage(id,button){
     const titles = {
 
         home:'Home',
-
         profile:'',
-
         discography:'',
-
         summer:'',
-
         tour:'',
-
         mv:'',
-
         news:'',
-
         schedule:'',
-
         activities:'',
-
         gallery:'',
-
         official:'',
-
         memberDetail:''
 
     };
 
 
-    document.getElementById('headerTitle')
-        .innerText =
-            titles[id] || '';
+    document.getElementById(
+        'headerTitle'
+    ).innerText =
+        titles[id] || '';
 
 
     document
@@ -2719,9 +3357,11 @@ const firstSixTracks = [
 
 
 /*
-   Cria uma lista com todas as músicas.
-   As 6 escolhidas ficam primeiro.
-   O restante vem depois e pode ser rolado.
+   Cria a lista completa.
+
+   As 6 primeiras ficam no topo.
+   TODAS as outras continuam
+   dentro do mesmo quadro.
 */
 
 function getOrderedTracks(){
@@ -2733,7 +3373,20 @@ function getOrderedTracks(){
 
         group[1].forEach(song => {
 
-            allTracks.push(song);
+            /*
+               Evita duplicatas.
+            */
+
+            if(
+                !allTracks.some(
+                    existing =>
+                        key(existing) === key(song)
+                )
+            ){
+
+                allTracks.push(song);
+
+            }
 
         });
 
@@ -2771,8 +3424,11 @@ function getOrderedTracks(){
 
 
 /*
-   Renderiza as músicas dentro
-   do MESMO quadro original.
+   Renderiza TODAS as músicas.
+
+   O CSS limita o quadro a 348px,
+   então somente aproximadamente 6
+   ficam visíveis de cada vez.
 */
 
 function renderTracks(){
@@ -2859,7 +3515,10 @@ async function updateTracker(){
 
         const r =
             await fetch(
-                'streams.json'
+                'streams.json',
+                {
+                    cache:'no-store'
+                }
             );
 
 
@@ -2894,28 +3553,41 @@ async function updateTracker(){
                     t.dataset.song;
 
 
+                /*
+                   Pega o valor correspondente
+                   mesmo quando o nome tem uma
+                   pequena diferença.
+                */
+
                 const v =
-                    data[
-                        currentPlatform
-                    ]?.[
-                        currentMode
-                    ]?.[
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        currentMode,
                         s
-                    ];
+                    );
 
 
-                t.querySelector(
-                    '.track-number'
-                ).innerText =
+                if(
+                    v !== null &&
+                    Number.isFinite(v)
+                ){
 
-                    v !== undefined
+                    t.querySelector(
+                        '.track-number'
+                    ).innerText =
+                        v.toLocaleString(
+                            'en-US'
+                        );
 
-                        ? Number(v)
-                            .toLocaleString(
-                                'en-US'
-                            )
+                }else{
 
-                        : '—';
+                    t.querySelector(
+                        '.track-number'
+                    ).innerText =
+                        '—';
+
+                }
 
 
                 t.querySelector(
@@ -2924,30 +3596,50 @@ async function updateTracker(){
                     currentPlatform;
 
 
-                const tv =
-                    data[
-                        currentPlatform
-                    ]?.total?.[s];
+                /*
+                   TOTAL sempre vem da seção
+                   total do streams.json.
+                */
 
+                const tv =
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        'total',
+                        s
+                    );
+
+
+                /*
+                   DAILY sempre vem da seção
+                   daily do streams.json.
+                */
 
                 const dv =
-                    data[
-                        currentPlatform
-                    ]?.daily?.[s];
+                    getStreamValue(
+                        data,
+                        currentPlatform,
+                        'daily',
+                        s
+                    );
 
 
-                if(tv !== undefined){
+                if(
+                    tv !== null &&
+                    Number.isFinite(tv)
+                ){
 
-                    total +=
-                        Number(tv);
+                    total += tv;
 
                 }
 
 
-                if(dv !== undefined){
+                if(
+                    dv !== null &&
+                    Number.isFinite(dv)
+                ){
 
-                    daily +=
-                        Number(dv);
+                    daily += dv;
 
                 }
 
@@ -2980,7 +3672,7 @@ async function updateTracker(){
             'spotifyTotal'
         ).innerText =
 
-            total
+            total > 0
 
                 ? total.toLocaleString(
                     'en-US'
@@ -2993,7 +3685,7 @@ async function updateTracker(){
             'dailyTotal'
         ).innerText =
 
-            daily
+            daily > 0
 
                 ? '+' +
                   daily.toLocaleString(
@@ -3127,4 +3819,4 @@ updateTracker();
 </script>
 
 </body>
-                           </html>
+    </html>
