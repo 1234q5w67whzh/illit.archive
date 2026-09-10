@@ -4,415 +4,513 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>summer moon — illit</title>
+<title>Summer Moon — ILLIT</title>
 
 <style>
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #eee7ff 0%,
-    #fff4f7 50%,
-    #e8f5ff 100%
-  );
-  color: #6f6479;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.9), transparent 22%),
+    radial-gradient(circle at 80% 25%, rgba(255,210,230,.5), transparent 28%),
+    linear-gradient(135deg, #fff8fb, #f7efff, #eef7ff);
+  color: #514b59;
   overflow-x: hidden;
 }
 
-/* estrelas do fundo */
+/* =========================
+   STARS
+========================= */
 
 .star {
   position: fixed;
   color: white;
-  opacity: 0.8;
+  opacity: .8;
   pointer-events: none;
+  z-index: 0;
 }
 
-.star1 {
+.star:nth-child(1) {
   top: 12%;
-  left: 8%;
-  font-size: 18px;
+  left: 12%;
+  font-size: 14px;
 }
 
-.star2 {
-  top: 25%;
-  right: 10%;
-  font-size: 13px;
-}
-
-.star3 {
-  bottom: 20%;
-  left: 7%;
-  font-size: 15px;
-}
-
-.star4 {
-  bottom: 12%;
-  right: 12%;
+.star:nth-child(2) {
+  top: 22%;
+  right: 15%;
   font-size: 20px;
 }
 
-/* topo */
+.star:nth-child(3) {
+  top: 48%;
+  left: 7%;
+  font-size: 11px;
+}
+
+.star:nth-child(4) {
+  top: 65%;
+  right: 10%;
+  font-size: 15px;
+}
+
+.star:nth-child(5) {
+  top: 82%;
+  left: 20%;
+  font-size: 18px;
+}
+
+/* =========================
+   TOP
+========================= */
 
 .top {
-  width: 100%;
-  padding: 18px;
+  position: relative;
+  z-index: 10;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 22px 20px 10px;
 }
 
 .back {
+  color: #6f6578;
   text-decoration: none;
-  color: #75697e;
-  background: rgba(255,255,255,0.7);
-  padding: 8px 14px;
+  font-size: 14px;
+  background: rgba(255,255,255,.65);
+  padding: 9px 13px;
   border-radius: 20px;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
+  backdrop-filter: blur(10px);
 }
 
 .title {
-  font-size: 12px;
-  letter-spacing: 3px;
+  font-size: 13px;
+  letter-spacing: 2px;
   text-transform: lowercase;
+  color: #8b7d91;
 }
 
-/* área do livro */
+/* =========================
+   HEADING
+========================= */
+
+.heading {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 18px 20px 8px;
+}
+
+.heading h1 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: #64566d;
+}
+
+.heading p {
+  margin: 7px 0 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #9a8ca1;
+}
+
+/* =========================
+   BOOK AREA
+========================= */
 
 .book-area {
+  position: relative;
+  z-index: 3;
   width: 100%;
-  min-height: calc(100vh - 65px);
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  padding: 30px 20px 50px;
 }
-
-/* livro */
 
 .book {
-  width: 310px;
-  height: 430px;
   position: relative;
-  perspective: 1500px;
-  cursor: pointer;
+  width: min(88vw, 390px);
+  height: min(125vw, 540px);
+  max-height: 540px;
+  perspective: 1200px;
 }
 
-/* páginas internas */
+/* =========================
+   PAGES
+========================= */
 
 .pages {
   position: absolute;
-  inset: 5px;
-  background: #fffaf1;
-  border-radius: 6px 15px 15px 6px;
+  inset: 0;
+  border-radius: 18px;
+  background: #fffdfd;
+  box-shadow:
+    0 20px 45px rgba(113, 91, 126, .15),
+    0 4px 12px rgba(113, 91, 126, .08);
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(90,70,100,0.15);
+  z-index: 1;
 }
 
-/* páginas */
-
 .page {
-  display: none;
-  width: 100%;
-  height: 100%;
-  padding: 32px 27px;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  padding: 42px 30px 70px;
   background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(225,210,240,0.35),
-      transparent 25%
-    ),
-    #fffaf1;
+    linear-gradient(
+      rgba(255,255,255,.96),
+      rgba(255,249,253,.96)
+    );
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
 }
 
 .page.active {
-  display: block;
-  animation: pageAppear 0.45s ease;
-}
-
-@keyframes pageAppear {
-  from {
-    opacity: 0;
-    transform: translateX(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 .page-number {
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  letter-spacing: 3px;
-  opacity: 0.5;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #b29fb8;
+  margin-bottom: 22px;
 }
 
 .page h2 {
-  margin: 18px 0 10px;
-  font-size: 27px;
-  font-weight: normal;
-  color: #706278;
-}
-
-.line {
-  width: 45px;
-  height: 1px;
-  background: #d7bfdc;
-  margin: 15px 0;
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 29px;
+  color: #62556c;
+  margin: 0 0 16px;
 }
 
 .page p {
-  font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
-  color: #817687;
+  color: #776c7e;
 }
 
-/* decoração */
-
-.note {
-  margin-top: 25px;
-  padding: 17px;
-  background: #f7e9f2;
-  border-radius: 14px;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.7;
-  transform: rotate(-1deg);
-}
-
-.photo {
-  width: 155px;
-  margin: 25px auto;
-  padding: 9px 9px 25px;
-  background: white;
-  box-shadow: 0 8px 18px rgba(80,70,90,0.13);
-  transform: rotate(-3deg);
-}
-
-.photo-box {
-  height: 125px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    135deg,
-    #e8dcfa,
-    #f8dce9,
-    #e0f1f5
-  );
-  font-size: 28px;
-}
-
-.photo small {
-  display: block;
+.page-decoration {
+  margin: 25px 0;
   text-align: center;
-  margin-top: 8px;
-  font-family: Arial, sans-serif;
-  color: #897b90;
+  color: #d5a8c4;
+  font-size: 25px;
 }
 
-/* navegação */
-
-.navigation {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navigation button {
-  border: none;
-  background: rgba(225,211,232,0.65);
-  color: #75667d;
-  width: 34px;
-  height: 30px;
-  border-radius: 18px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.page-count {
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  opacity: 0.5;
-}
-
-/* capa */
+/* =========================
+   COVER
+========================= */
 
 .cover {
   position: absolute;
   inset: 0;
-  z-index: 5;
-  background: linear-gradient(
-    135deg,
-    #fff9ed,
-    #f9e9f4 55%,
-    #eee5ff
-  );
-  border-radius: 8px 18px 18px 8px;
+  z-index: 10;
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(255,255,255,.8),
+      transparent 20%
+    ),
+    linear-gradient(
+      145deg,
+      #f8dce9,
+      #e8d9f7 55%,
+      #d9eaf8
+    );
+
   box-shadow:
-    0 25px 50px rgba(100,80,120,0.22),
-    inset 0 0 0 1px rgba(255,255,255,0.9);
-  transform-origin: left center;
+    0 20px 45px rgba(113, 91, 126, .2),
+    0 5px 15px rgba(113, 91, 126, .12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transform: translateX(0);
+  opacity: 1;
+
   transition:
-    transform 1.2s cubic-bezier(.7,0,.2,1);
-  backface-visibility: hidden;
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    opacity .7s ease,
+    box-shadow .7s ease;
+
+  overflow: hidden;
 }
+
+/*
+  IMPORTANT:
+  Instead of relying only on rotateY,
+  the cover now physically slides away.
+  This works much better on mobile.
+*/
 
 .book.open .cover {
-  transform: rotateY(-155deg);
+  transform: translateX(-104%);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: none;
 }
 
-.cover-inner {
-  position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(170,145,180,0.18);
-  border-radius: 5px 14px 14px 5px;
+/* =========================
+   COVER CONTENT
+========================= */
+
+.cover-content {
   text-align: center;
-  padding-top: 35px;
+  padding: 35px;
 }
 
-/* fita */
-
-.ribbon {
-  position: absolute;
-  top: 0;
-  right: 28px;
-  width: 29px;
-  height: 90px;
-  background: #f1b8ce;
-  opacity: 0.75;
-}
-
-.ribbon:after {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  border-left: 14.5px solid transparent;
-  border-right: 14.5px solid transparent;
-  border-top: 12px solid #f1b8ce;
-}
-
-/* lua */
-
-.moon {
-  width: 76px;
-  height: 76px;
-  margin: 45px auto 25px;
-  border-radius: 50%;
-  background: white;
-  position: relative;
-  box-shadow: 0 0 28px rgba(255,255,255,0.95);
-}
-
-.moon:after {
-  content: "";
-  position: absolute;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: #f3eafa;
-  left: 22px;
-  top: -9px;
-}
-
-/* título */
-
-.cover h1 {
-  margin: 10px 0;
-  font-size: 29px;
-  line-height: 1.1;
-  font-weight: normal;
-  letter-spacing: 3px;
-  color: #71627b;
-}
-
-.cover p {
-  font-family: Arial, sans-serif;
+.cover-small {
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: 0.6;
+  color: #927d98;
+  margin-bottom: 18px;
 }
 
-/* estrelinhas da capa */
+.cover-title {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  line-height: .9;
+  font-weight: 400;
+  color: #63566d;
+}
+
+.cover-subtitle {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #8e7d96;
+}
+
+/* =========================
+   MOON
+========================= */
+
+.moon {
+  width: 95px;
+  height: 95px;
+  margin: 0 auto 25px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #ffffff,
+      #f7e8f5 45%,
+      #e7d4ed
+    );
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,.9),
+    0 0 55px rgba(210,174,220,.45);
+
+  position: relative;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+
+  background: #eadcf2;
+
+  left: 27px;
+  top: -9px;
+}
+
+/* =========================
+   RIBBON
+========================= */
+
+.ribbon {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border: 2px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+  bottom: 35px;
+  right: 35px;
+}
+
+.ribbon::before,
+.ribbon::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,.7);
+  border-radius: 50%;
+}
+
+.ribbon::before {
+  left: -22px;
+  top: 18px;
+  transform: rotate(-25deg);
+}
+
+.ribbon::after {
+  right: -22px;
+  top: 18px;
+  transform: rotate(25deg);
+}
+
+/* =========================
+   COVER STARS
+========================= */
 
 .cover-star {
   position: absolute;
-  font-size: 20px;
+  color: rgba(255,255,255,.85);
 }
 
-.cs1 {
-  top: 40px;
-  left: 30px;
-}
-
-.cs2 {
-  top: 145px;
-  right: 28px;
-}
-
-.cs3 {
-  bottom: 50px;
+.cover-star.one {
+  top: 30px;
   left: 35px;
+  font-size: 19px;
 }
 
-.cs4 {
-  bottom: 80px;
-  right: 35px;
-  font-size: 13px;
+.cover-star.two {
+  top: 80px;
+  right: 40px;
+  font-size: 12px;
 }
 
-/* texto para abrir */
+.cover-star.three {
+  bottom: 115px;
+  left: 40px;
+  font-size: 14px;
+}
+
+/* =========================
+   OPEN TEXT
+========================= */
 
 .open-text {
-  position: absolute;
-  bottom: 40px;
-  width: 100%;
-  text-align: center;
-  font-family: Arial, sans-serif;
+  margin-top: 28px;
   font-size: 11px;
-  letter-spacing: 1px;
-  opacity: 0.55;
-  transition: opacity 0.5s;
+  letter-spacing: 1.5px;
+  color: #8b7b91;
+  animation: pulse 1.8s infinite;
 }
 
-/* brilhos */
+@keyframes pulse {
+  0%, 100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.book.open .open-text {
+  display: none;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+
+  z-index: 20;
+}
+
+.nav-button {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(246,232,243,.9);
+  color: #796b80;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(100,80,110,.1);
+}
+
+.nav-button:active {
+  transform: scale(.9);
+}
+
+.page-count {
+  min-width: 45px;
+  text-align: center;
+  font-size: 11px;
+  color: #9b8c9f;
+}
+
+/* =========================
+   SPARKLES
+========================= */
 
 .sparkle {
   position: fixed;
   z-index: 100;
+
+  width: 8px;
+  height: 8px;
+
   pointer-events: none;
+
   color: white;
   font-size: 18px;
-  animation: sparkle 1.3s ease forwards;
+
+  animation: sparkleAnimation 1s ease-out forwards;
 }
 
-@keyframes sparkle {
+@keyframes sparkleAnimation {
 
   0% {
     opacity: 0;
-    transform:
-      scale(0.2)
-      translate(0,0);
+    transform: scale(.2) translate(0,0);
   }
 
-  30% {
+  20% {
     opacity: 1;
   }
 
@@ -420,461 +518,533 @@ body {
     opacity: 0;
     transform:
       scale(1.5)
-      translate(var(--x),var(--y));
+      translate(var(--x), var(--y));
   }
+
 }
 
-/* celular */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
 
   .book {
-    width: 280px;
-    height: 400px;
+    height: 500px;
   }
 
-  .cover h1 {
-    font-size: 26px;
+  .heading h1 {
+    font-size: 36px;
   }
 
-  .page h2 {
-    font-size: 24px;
+  .cover-title {
+    font-size: 43px;
+  }
+
+  .page {
+    padding: 35px 25px 70px;
   }
 
 }
+
+/* =========================
+   REDUCE MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cover,
+  .page,
+  .sparkle {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- estrelas -->
+<!-- background stars -->
 
-<div class="star star1">✦</div>
-<div class="star star2">⋆</div>
-<div class="star star3">✧</div>
-<div class="star star4">☆</div>
+<div class="star">✦</div>
+<div class="star">✧</div>
+<div class="star">⋆</div>
+<div class="star">✦</div>
+<div class="star">✧</div>
 
-<!-- topo -->
+
+<!-- top -->
 
 <div class="top">
 
   <a href="index.html" class="back">
-    ← home
+    ← back
   </a>
 
   <div class="title">
-    summer moon
+    illit archive
   </div>
 
 </div>
 
-<!-- livro -->
+
+<!-- heading -->
+
+<div class="heading">
+
+  <h1>Summer Moon</h1>
+
+  <p>
+    the quprids
+  </p>
+
+</div>
+
+
+<!-- book -->
 
 <div class="book-area">
 
-  <div class="book" id="book" onclick="openBook()">
+  <div class="book" id="book">
 
-    <!-- páginas -->
+
+    <!-- PAGES -->
 
     <div class="pages">
 
-      <!-- página 1 -->
 
-      <section class="page active">
+      <!-- PAGE 1 -->
+
+      <div class="page active">
 
         <div class="page-number">
-          01 / SUMMER MOON
+          summer moon · 01
         </div>
 
         <h2>
-          summer moon
+          The Quprids
         </h2>
 
-        <div class="line"></div>
+        <div class="page-decoration">
+          ✦ ⟢ ✦
+        </div>
 
         <p>
-          welcome to the world of summer moon.
-          a story where ordinary moments,
-          imagination and hidden feelings
-          begin to meet.
+          Summer Moon is the universe connected to ILLIT's story,
+          where ordinary moments and imagination begin to overlap.
         </p>
-
-        <div class="photo">
-
-          <div class="photo-box">
-            ☾ ✦
-          </div>
-
-          <small>
-            summer memories
-          </small>
-
-        </div>
-
-      </section>
-
-      <!-- página 2 -->
-
-      <section class="page">
-
-        <div class="page-number">
-          02 / THE STORY
-        </div>
-
-        <h2>
-          the story
-        </h2>
-
-        <div class="line"></div>
 
         <p>
-          summer moon explores a world where
-          imagination and reality can overlap.
-          feelings, dreams and possibilities
-          become part of a mysterious summer story.
+          The story follows mysterious fragments, emotions,
+          dreams and the people who encounter them.
         </p>
-
-        <div class="note">
-          ✧ reality × imagination ✧
-          <br><br>
-          sometimes the things we imagine
-          can reveal something real about us.
-        </div>
-
-      </section>
-
-      <!-- página 3 -->
-
-      <section class="page">
-
-        <div class="page-number">
-          03 / CHARACTERS
-        </div>
-
-        <h2>
-          characters
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          discover the characters of summer moon
-          and follow their relationships,
-          personalities and individual stories.
-        </p>
-
-        <div class="note">
-
-          🐿 yeoreum
-          <br><br>
-
-          🐆 ayeong
-          <br><br>
-
-          ✦ summer moon world
-
-        </div>
-
-      </section>
-
-      <!-- página 4 -->
-
-      <section class="page">
-
-        <div class="page-number">
-          04 / FRAGMENTS
-        </div>
-
-        <h2>
-          fragments
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          fragments are connected to the hidden
-          possibilities within someone.
-          they can reveal emotions, dreams,
-          talents and potential.
-        </p>
-
-        <div class="note">
-
-          ✦ fragment archive ✦
-          <br><br>
-
-          dreams · emotions · potential
-
-        </div>
-
-      </section>
-
-      <!-- página 5 -->
-
-      <section class="page">
-
-        <div class="page-number">
-          05 / ARCHIVE
-        </div>
-
-        <h2>
-          summer archive
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          keep track of the little details
-          hidden throughout the story.
-        </p>
-
-        <div class="note">
-
-          ☆ chapters
-          <br>
-
-          ☆ characters
-          <br>
-
-          ☆ symbols
-          <br>
-
-          ☆ fragments
-
-        </div>
-
-      </section>
-
-      <!-- página 6 -->
-
-      <section class="page">
-
-        <div class="page-number">
-          06 / END
-        </div>
-
-        <h2>
-          see you in summer
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          the story doesn't really end here.
-          return whenever you want
-          and discover summer moon again.
-        </p>
-
-        <div class="photo">
-
-          <div class="photo-box">
-            ✦ ☾ ✧
-          </div>
-
-          <small>
-            until the next chapter
-          </small>
-
-        </div>
-
-      </section>
-
-      <!-- botões -->
-
-      <div class="navigation" onclick="event.stopPropagation()">
-
-        <button onclick="previousPage()">
-          ‹
-        </button>
-
-        <span class="page-count" id="pageCount">
-          1 / 6
-        </span>
-
-        <button onclick="nextPage()">
-          ›
-        </button>
 
       </div>
 
+
+      <!-- PAGE 2 -->
+
+      <div class="page">
+
+        <div class="page-number">
+          summer moon · 02
+        </div>
+
+        <h2>
+          The World
+        </h2>
+
+        <div class="page-decoration">
+          ☾
+        </div>
+
+        <p>
+          Between reality and imagination exists a strange space
+          where feelings can become something more.
+        </p>
+
+        <p>
+          Summer Moon explores youth, dreams, friendship,
+          self-discovery and the possibility of becoming
+          who you truly want to be.
+        </p>
+
+      </div>
+
+
+      <!-- PAGE 3 -->
+
+      <div class="page">
+
+        <div class="page-number">
+          summer moon · 03
+        </div>
+
+        <h2>
+          Fragments
+        </h2>
+
+        <div class="page-decoration">
+          ◇ ✦ ◇
+        </div>
+
+        <p>
+          Fragments are mysterious pieces connected to
+          potential, emotions, dreams and abilities.
+        </p>
+
+        <p>
+          They can amplify something that already exists
+          inside a person rather than creating something
+          completely new.
+        </p>
+
+      </div>
+
+
+      <!-- PAGE 4 -->
+
+      <div class="page">
+
+        <div class="page-number">
+          summer moon · 04
+        </div>
+
+        <h2>
+          Yeoreum
+        </h2>
+
+        <div class="page-decoration">
+          ♡
+        </div>
+
+        <p>
+          Yeoreum discovers that something unusual has
+          entered her ordinary life.
+        </p>
+
+        <p>
+          Her encounter with a Fragment begins to connect
+          the everyday world with the mysterious universe
+          of Summer Moon.
+        </p>
+
+      </div>
+
+
+      <!-- PAGE 5 -->
+
+      <div class="page">
+
+        <div class="page-number">
+          summer moon · 05
+        </div>
+
+        <h2>
+          Magic & Technology
+        </h2>
+
+        <div class="page-decoration">
+          ✧ ◇ ✧
+        </div>
+
+        <p>
+          The world of Summer Moon combines magical imagery
+          with strange technological elements.
+        </p>
+
+        <p>
+          The Fragments are part of a much larger story,
+          connected to forces beyond the ordinary world.
+        </p>
+
+      </div>
+
+
+      <!-- PAGE 6 -->
+
+      <div class="page">
+
+        <div class="page-number">
+          summer moon · 06
+        </div>
+
+        <h2>
+          To be continued
+        </h2>
+
+        <div class="page-decoration">
+          ☾ ✦ ♡
+        </div>
+
+        <p>
+          The story continues to unfold through ILLIT's
+          music, characters and universe.
+        </p>
+
+        <p>
+          Every new chapter reveals another piece
+          of the Summer Moon.
+        </p>
+
+      </div>
+
+
     </div>
 
-    <!-- capa -->
 
-    <div class="cover">
+    <!-- COVER -->
 
-      <div class="cover-inner">
+    <div
+      class="cover"
+      id="cover"
+      onclick="openBook()"
+    >
 
-        <div class="ribbon"></div>
+      <div class="cover-star one">
+        ✦
+      </div>
 
-        <div class="cover-star cs1">
-          ✦
-        </div>
+      <div class="cover-star two">
+        ✧
+      </div>
 
-        <div class="cover-star cs2">
-          ✧
-        </div>
+      <div class="cover-star three">
+        ⋆
+      </div>
 
-        <div class="cover-star cs3">
-          ☆
-        </div>
 
-        <div class="cover-star cs4">
-          ⋆
-        </div>
+      <div class="cover-content">
 
         <div class="moon"></div>
 
-        <h1>
-          summer<br>
-          moon
-        </h1>
+        <div class="cover-small">
+          illit universe
+        </div>
 
-        <p>
+        <div class="cover-title">
+          Summer<br>
+          Moon
+        </div>
+
+        <div class="cover-subtitle">
           the quprids
-        </p>
+        </div>
+
+        <div class="open-text">
+          tap to open ✦
+        </div>
 
       </div>
 
+
+      <div class="ribbon"></div>
+
     </div>
 
-  </div>
 
-  <div class="open-text" id="openText">
-    tap the book to open ✦
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+
+      <button
+        class="nav-button"
+        onclick="previousPage(event)"
+        aria-label="previous page"
+      >
+        ‹
+      </button>
+
+      <div
+        class="page-count"
+        id="pageCount"
+      >
+        1 / 6
+      </div>
+
+      <button
+        class="nav-button"
+        onclick="nextPage(event)"
+        aria-label="next page"
+      >
+        ›
+      </button>
+
+    </div>
+
+
   </div>
 
 </div>
 
+
 <script>
 
-let opened = false;
-let currentPage = 0;
+/* =========================
+   BOOK
+========================= */
 
 const book = document.getElementById("book");
-const openText = document.getElementById("openText");
+
 const pages = document.querySelectorAll(".page");
+
 const pageCount = document.getElementById("pageCount");
 
+let currentPage = 0;
+
+let opened = false;
+
+
+/* =========================
+   OPEN BOOK
+========================= */
 
 function openBook() {
 
-  if (opened) {
-    return;
-  }
+  if (opened) return;
 
   opened = true;
 
   book.classList.add("open");
-
-  openText.style.opacity = "0";
 
   createSparkles();
 
 }
 
 
+/* =========================
+   SPARKLES
+========================= */
+
 function createSparkles() {
 
-  const symbols = [
-    "✦",
-    "✧",
-    "⋆",
-    "☆",
-    "·"
-  ];
+  const symbols = ["✦", "✧", "⋆", "✦", "✧"];
 
-  for (let i = 0; i < 28; i++) {
+  for (let i = 0; i < 35; i++) {
 
-    const sparkle =
-      document.createElement("div");
+    const sparkle = document.createElement("div");
 
     sparkle.className = "sparkle";
 
-    sparkle.innerText =
-      symbols[
-        Math.floor(
-          Math.random() * symbols.length
-        )
-      ];
+    sparkle.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    const distance =
+      80 + Math.random() * 180;
 
     sparkle.style.left =
-      (35 + Math.random() * 30) + "%";
+      window.innerWidth / 2 + "px";
 
     sparkle.style.top =
-      (35 + Math.random() * 30) + "%";
+      window.innerHeight / 2 + "px";
 
     sparkle.style.setProperty(
       "--x",
-      ((Math.random() - 0.5) * 300) + "px"
+      Math.cos(angle) * distance + "px"
     );
 
     sparkle.style.setProperty(
       "--y",
-      ((Math.random() - 0.5) * 300) + "px"
+      Math.sin(angle) * distance + "px"
     );
 
     document.body.appendChild(sparkle);
 
-    setTimeout(function() {
-
+    setTimeout(() => {
       sparkle.remove();
-
-    }, 1300);
+    }, 1100);
 
   }
 
 }
 
 
-function showPage(number) {
+/* =========================
+   UPDATE PAGE
+========================= */
 
-  pages.forEach(function(page) {
+function updatePage() {
 
-    page.classList.remove("active");
+  pages.forEach((page, index) => {
+
+    page.classList.toggle(
+      "active",
+      index === currentPage
+    );
 
   });
 
-  pages[number].classList.add("active");
-
-  currentPage = number;
-
-  pageCount.innerText =
-    (currentPage + 1) +
-    " / " +
-    pages.length;
+  pageCount.textContent =
+    `${currentPage + 1} / ${pages.length}`;
 
 }
 
 
-function nextPage() {
+/* =========================
+   NEXT PAGE
+========================= */
+
+function nextPage(event) {
+
+  event.stopPropagation();
 
   if (!opened) {
+
+    openBook();
+
     return;
+
   }
 
   if (currentPage < pages.length - 1) {
 
-    showPage(currentPage + 1);
+    currentPage++;
+
+    updatePage();
 
   }
 
 }
 
 
-function previousPage() {
+/* =========================
+   PREVIOUS PAGE
+========================= */
+
+function previousPage(event) {
+
+  event.stopPropagation();
 
   if (!opened) {
+
+    openBook();
+
     return;
+
   }
 
   if (currentPage > 0) {
 
-    showPage(currentPage - 1);
+    currentPage--;
+
+    updatePage();
 
   }
 
 }
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+updatePage();
 
 </script>
 
