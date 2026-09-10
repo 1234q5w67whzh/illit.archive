@@ -13,64 +13,71 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
   min-height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  color: #655b68;
+
   background:
-    radial-gradient(circle at 20% 15%, rgba(255,255,255,.9), transparent 22%),
-    radial-gradient(circle at 80% 25%, rgba(255,210,230,.5), transparent 28%),
-    linear-gradient(135deg, #fff8fb, #f7efff, #eef7ff);
-  color: #514b59;
+    radial-gradient(circle at 15% 10%, #ffffff 0, transparent 22%),
+    radial-gradient(circle at 90% 20%, #f8dce9 0, transparent 25%),
+    radial-gradient(circle at 10% 80%, #e4eaff 0, transparent 27%),
+    linear-gradient(135deg, #fffafd, #f8f0fb, #eef5ff);
+
   overflow-x: hidden;
 }
 
 /* =========================
-   STARS
+   BACKGROUND
 ========================= */
 
-.star {
+.bg-star {
   position: fixed;
-  color: white;
-  opacity: .8;
   pointer-events: none;
+  color: rgba(255,255,255,.95);
+  text-shadow: 0 0 10px rgba(255,255,255,.8);
   z-index: 0;
 }
 
-.star:nth-child(1) {
+.s1 {
   top: 12%;
-  left: 12%;
-  font-size: 14px;
+  left: 9%;
+  font-size: 16px;
 }
 
-.star:nth-child(2) {
-  top: 22%;
-  right: 15%;
-  font-size: 20px;
+.s2 {
+  top: 25%;
+  right: 9%;
+  font-size: 12px;
 }
 
-.star:nth-child(3) {
-  top: 48%;
-  left: 7%;
-  font-size: 11px;
+.s3 {
+  top: 52%;
+  left: 5%;
+  font-size: 10px;
 }
 
-.star:nth-child(4) {
-  top: 65%;
-  right: 10%;
-  font-size: 15px;
-}
-
-.star:nth-child(5) {
-  top: 82%;
-  left: 20%;
+.s4 {
+  top: 73%;
+  right: 12%;
   font-size: 18px;
+}
+
+.s5 {
+  top: 88%;
+  left: 20%;
+  font-size: 12px;
 }
 
 /* =========================
@@ -80,141 +87,567 @@ body {
 .top {
   position: relative;
   z-index: 10;
+
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 22px 20px 10px;
+  align-items: center;
+
+  padding: 20px 18px 5px;
 }
 
 .back {
-  color: #6f6578;
   text-decoration: none;
-  font-size: 14px;
-  background: rgba(255,255,255,.65);
-  padding: 9px 13px;
-  border-radius: 20px;
+  color: #786c7c;
+
+  font-size: 13px;
+
+  padding: 9px 14px;
+
+  border-radius: 30px;
+
+  background: rgba(255,255,255,.72);
+
+  box-shadow:
+    0 5px 18px rgba(150,120,150,.08);
+
   backdrop-filter: blur(10px);
 }
 
-.title {
-  font-size: 13px;
+.archive {
+  font-size: 10px;
   letter-spacing: 2px;
   text-transform: lowercase;
-  color: #8b7d91;
+  color: #a090a5;
 }
 
 /* =========================
-   HEADING
+   TITLE
 ========================= */
 
 .heading {
   position: relative;
   z-index: 2;
+
   text-align: center;
-  padding: 18px 20px 8px;
+
+  padding: 18px 20px 20px;
 }
 
 .heading h1 {
   margin: 0;
+
   font-family: Georgia, serif;
-  font-size: 40px;
+
+  font-size: 38px;
   font-weight: 400;
-  color: #64566d;
+
+  color: #695c70;
 }
 
 .heading p {
   margin: 7px 0 0;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #9a8ca1;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  color: #aa9aaa;
 }
 
 /* =========================
-   BOOK AREA
+   INVITATION AREA
 ========================= */
 
-.book-area {
+.invitation-area {
   position: relative;
   z-index: 3;
+
   width: 100%;
+
   display: flex;
   justify-content: center;
-  padding: 30px 20px 50px;
+
+  padding: 10px 20px 60px;
 }
 
-.book {
+/* =========================
+   LETTER
+========================= */
+
+.letter {
   position: relative;
-  width: min(88vw, 390px);
-  height: min(125vw, 540px);
-  max-height: 540px;
+
+  width: min(89vw, 390px);
+  height: min(132vw, 560px);
+
+  max-height: 560px;
+
   perspective: 1200px;
+}
+
+/* =========================
+   INSIDE
+========================= */
+
+.inside {
+  position: absolute;
+  inset: 0;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.98),
+      rgba(255,247,252,.98)
+    );
+
+  box-shadow:
+    0 25px 55px rgba(125,95,130,.16),
+    0 5px 18px rgba(125,95,130,.08);
+
+  overflow: hidden;
+
+  z-index: 1;
 }
 
 /* =========================
    PAGES
 ========================= */
 
-.pages {
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  background: #fffdfd;
-  box-shadow:
-    0 20px 45px rgba(113, 91, 126, .15),
-    0 4px 12px rgba(113, 91, 126, .08);
-  overflow: hidden;
-  z-index: 1;
-}
-
 .page {
   position: absolute;
   inset: 0;
-  padding: 42px 30px 70px;
-  background:
-    linear-gradient(
-      rgba(255,255,255,.96),
-      rgba(255,249,253,.96)
-    );
+
+  padding: 34px 27px 70px;
+
   opacity: 0;
   visibility: hidden;
-  transform: translateX(20px);
+
+  transform: translateX(25px);
+
   transition:
-    opacity .35s ease,
-    transform .35s ease;
+    opacity .4s ease,
+    transform .4s ease;
 }
 
 .page.active {
   opacity: 1;
   visibility: visible;
+
   transform: translateX(0);
 }
 
+/* decorative border */
+
+.page::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 13px;
+
+  border: 1px solid rgba(215,177,201,.45);
+
+  border-radius: 15px;
+
+  pointer-events: none;
+}
+
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.page-inner {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
 .page-number {
-  font-size: 11px;
+  text-align: center;
+
+  font-size: 9px;
+
   letter-spacing: 2px;
-  color: #b29fb8;
-  margin-bottom: 22px;
+
+  color: #b59eaf;
+
+  margin-bottom: 25px;
 }
 
 .page h2 {
-  font-family: Georgia, serif;
-  font-weight: 400;
-  font-size: 29px;
-  color: #62556c;
-  margin: 0 0 16px;
-}
+  margin: 0;
 
-.page p {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #776c7e;
-}
-
-.page-decoration {
-  margin: 25px 0;
   text-align: center;
-  color: #d5a8c4;
-  font-size: 25px;
+
+  font-family: Georgia, serif;
+
+  font-size: 29px;
+
+  font-weight: 400;
+
+  color: #705e70;
+}
+
+.page-subtitle {
+  text-align: center;
+
+  margin-top: 8px;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  color: #ad98a9;
+}
+
+.page-text {
+  margin-top: 25px;
+
+  font-size: 13px;
+
+  line-height: 1.85;
+
+  color: #786e7c;
+
+  text-align: center;
+}
+
+.ornament {
+  text-align: center;
+
+  color: #d59dbd;
+
+  font-size: 21px;
+
+  margin: 20px 0;
+}
+
+/* =========================
+   COQUETTE DECORATIONS
+========================= */
+
+.bow {
+  position: absolute;
+
+  top: 27px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 45px;
+  height: 25px;
+
+  z-index: 3;
+}
+
+.bow::before,
+.bow::after {
+  content: "";
+
+  position: absolute;
+
+  top: 2px;
+
+  width: 23px;
+  height: 20px;
+
+  border: 2px solid #dfa9c2;
+
+  background: #f8dce9;
+
+  border-radius: 70% 40% 60% 45%;
+}
+
+.bow::before {
+  right: 21px;
+  transform: rotate(18deg);
+}
+
+.bow::after {
+  left: 21px;
+  transform: rotate(-18deg);
+}
+
+.bow-dot {
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+
+  background: #e2a9c1;
+
+  border-radius: 50%;
+
+  left: 18px;
+  top: 8px;
+
+  z-index: 4;
+}
+
+/* =========================
+   PHOTO PLACEHOLDER
+========================= */
+
+.photo-frame {
+  width: 78%;
+
+  height: 175px;
+
+  margin: 22px auto 0;
+
+  border-radius: 13px;
+
+  border: 1px solid #ead4df;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #f8edf5
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c2aebb;
+
+  font-family: Georgia, serif;
+
+  font-size: 13px;
+
+  box-shadow:
+    0 8px 20px rgba(150,120,150,.08);
+}
+
+/* =========================
+   CHARACTER CARDS
+========================= */
+
+.character-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.character {
+  padding: 13px 8px;
+
+  text-align: center;
+
+  border-radius: 14px;
+
+  background: rgba(255,247,252,.8);
+
+  border: 1px solid rgba(225,198,216,.6);
+}
+
+.character-symbol {
+  font-size: 22px;
+
+  margin-bottom: 6px;
+}
+
+.character-name {
+  font-family: Georgia, serif;
+
+  font-size: 14px;
+
+  color: #756276;
+}
+
+.character-role {
+  margin-top: 4px;
+
+  font-size: 9px;
+
+  color: #ad9cae;
+}
+
+/* =========================
+   FRAGMENT
+========================= */
+
+.fragment {
+  width: 115px;
+  height: 115px;
+
+  margin: 25px auto;
+
+  transform: rotate(45deg);
+
+  border-radius: 19px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7d8ea,
+      #e1ddf8,
+      #d6ecfa
+    );
+
+  box-shadow:
+    0 0 30px rgba(220,190,230,.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fragment span {
+  transform: rotate(-45deg);
+
+  font-size: 32px;
+
+  color: white;
+
+  text-shadow:
+    0 0 15px rgba(255,255,255,.9);
+}
+
+/* =========================
+   CHAPTER LIST
+========================= */
+
+.chapter-list {
+  margin-top: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.chapter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px 13px;
+
+  border-radius: 13px;
+
+  background: rgba(252,244,249,.8);
+
+  border: 1px solid rgba(227,202,218,.6);
+}
+
+.chapter-number {
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f4dbe8;
+
+  color: #9e7e91;
+
+  font-size: 10px;
+}
+
+.chapter-name {
+  font-family: Georgia, serif;
+
+  font-size: 13px;
+
+  color: #776579;
+}
+
+.chapter-small {
+  margin-top: 2px;
+
+  font-size: 9px;
+
+  color: #b09eae;
+}
+
+/* =========================
+   FINAL PAGE
+========================= */
+
+.final-symbol {
+  text-align: center;
+
+  font-size: 42px;
+
+  margin: 45px 0 20px;
+
+  color: #d8a4c0;
+
+  text-shadow:
+    0 0 20px rgba(255,255,255,.9);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation {
+  position: absolute;
+
+  bottom: 15px;
+
+  left: 0;
+  right: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 17px;
+
+  z-index: 30;
+}
+
+.nav-button {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(248,229,240,.95);
+
+  color: #806d7e;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 5px 14px rgba(120,90,120,.1);
+
+  cursor: pointer;
+}
+
+.nav-button:active {
+  transform: scale(.88);
+}
+
+.page-count {
+  min-width: 45px;
+
+  text-align: center;
+
+  font-size: 10px;
+
+  color: #a391a1;
 }
 
 /* =========================
@@ -223,36 +656,37 @@ body {
 
 .cover {
   position: absolute;
+
   inset: 0;
+
   z-index: 10;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   background:
     radial-gradient(
-      circle at 50% 25%,
-      rgba(255,255,255,.8),
-      transparent 20%
+      circle at 50% 18%,
+      rgba(255,255,255,.9),
+      transparent 18%
     ),
     linear-gradient(
       145deg,
-      #f8dce9,
-      #e8d9f7 55%,
-      #d9eaf8
+      #fff5fa,
+      #f7ddeb 45%,
+      #e8ddf7 78%,
+      #dfeefa
     );
 
   box-shadow:
-    0 20px 45px rgba(113, 91, 126, .2),
-    0 5px 15px rgba(113, 91, 126, .12);
+    0 25px 55px rgba(125,95,130,.18),
+    0 5px 18px rgba(125,95,130,.1);
 
   display: flex;
-  align-items: center;
+
   justify-content: center;
+  align-items: center;
 
   cursor: pointer;
-
-  transform: translateX(0);
-  opacity: 1;
 
   transition:
     transform .9s cubic-bezier(.2,.8,.2,1),
@@ -262,127 +696,175 @@ body {
   overflow: hidden;
 }
 
-/*
-  IMPORTANT:
-  Instead of relying only on rotateY,
-  the cover now physically slides away.
-  This works much better on mobile.
-*/
-
-.book.open .cover {
+.letter.open .cover {
   transform: translateX(-104%);
+
   opacity: 0;
+
   pointer-events: none;
+
   box-shadow: none;
 }
 
 /* =========================
-   COVER CONTENT
+   COVER DECOR
 ========================= */
 
-.cover-content {
-  text-align: center;
-  padding: 35px;
+.cover-ribbon {
+  position: absolute;
+
+  width: 100%;
+
+  height: 28px;
+
+  top: 48%;
+
+  background: rgba(255,255,255,.28);
+
+  transform: rotate(-8deg);
 }
 
-.cover-small {
-  font-size: 10px;
+.cover-content {
+  position: relative;
+
+  z-index: 5;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+.cover-mini {
+  font-size: 9px;
+
   letter-spacing: 3px;
+
   text-transform: uppercase;
-  color: #927d98;
-  margin-bottom: 18px;
+
+  color: #a18396;
+
+  margin-bottom: 16px;
 }
 
 .cover-title {
   font-family: Georgia, serif;
-  font-size: 48px;
-  line-height: .9;
+
+  font-size: 43px;
+
+  line-height: .95;
+
   font-weight: 400;
-  color: #63566d;
+
+  color: #705c6d;
 }
 
-.cover-subtitle {
-  margin-top: 22px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #8e7d96;
+.cover-sub {
+  margin-top: 16px;
+
+  font-size: 11px;
+
+  letter-spacing: 1.5px;
+
+  color: #a18d9e;
 }
 
 /* =========================
-   MOON
+   COVER MOON
 ========================= */
 
-.moon {
-  width: 95px;
-  height: 95px;
-  margin: 0 auto 25px;
+.cover-moon {
+  width: 100px;
+  height: 100px;
+
+  margin: 0 auto 22px;
 
   border-radius: 50%;
 
   background:
     radial-gradient(
       circle at 35% 30%,
-      #ffffff,
-      #f7e8f5 45%,
-      #e7d4ed
+      white,
+      #f8e9f5 45%,
+      #e6d8ef
     );
 
   box-shadow:
-    0 0 25px rgba(255,255,255,.9),
-    0 0 55px rgba(210,174,220,.45);
+    0 0 25px rgba(255,255,255,.95),
+    0 0 55px rgba(212,174,225,.5);
 
   position: relative;
 }
 
-.moon::after {
+.cover-moon::after {
   content: "";
+
   position: absolute;
 
-  width: 95px;
-  height: 95px;
+  width: 100px;
+  height: 100px;
 
   border-radius: 50%;
 
   background: #eadcf2;
 
-  left: 27px;
+  left: 28px;
   top: -9px;
 }
 
 /* =========================
-   RIBBON
+   COVER BOW
 ========================= */
 
-.ribbon {
+.cover-bow {
   position: absolute;
-  width: 65px;
-  height: 65px;
-  border: 2px solid rgba(255,255,255,.7);
-  border-radius: 50%;
+
   bottom: 35px;
   right: 35px;
+
+  width: 62px;
+  height: 42px;
 }
 
-.ribbon::before,
-.ribbon::after {
+.cover-bow::before,
+.cover-bow::after {
   content: "";
+
   position: absolute;
+
   width: 30px;
-  height: 15px;
-  border: 2px solid rgba(255,255,255,.7);
+  height: 27px;
+
+  background: rgba(255,225,238,.85);
+
+  border: 2px solid rgba(216,160,187,.7);
+
+  border-radius: 70% 40% 60% 45%;
+}
+
+.cover-bow::before {
+  right: 27px;
+  transform: rotate(18deg);
+}
+
+.cover-bow::after {
+  left: 27px;
+  transform: rotate(-18deg);
+}
+
+.cover-bow-center {
+  position: absolute;
+
+  width: 11px;
+  height: 11px;
+
+  left: 25px;
+  top: 12px;
+
   border-radius: 50%;
-}
 
-.ribbon::before {
-  left: -22px;
-  top: 18px;
-  transform: rotate(-25deg);
-}
+  background: #dda1bc;
 
-.ribbon::after {
-  right: -22px;
-  top: 18px;
-  transform: rotate(25deg);
+  z-index: 2;
 }
 
 /* =========================
@@ -391,40 +873,54 @@ body {
 
 .cover-star {
   position: absolute;
-  color: rgba(255,255,255,.85);
+
+  color: white;
+
+  text-shadow:
+    0 0 12px rgba(255,255,255,1);
 }
 
-.cover-star.one {
+.cs1 {
   top: 30px;
-  left: 35px;
-  font-size: 19px;
+  left: 30px;
+  font-size: 18px;
 }
 
-.cover-star.two {
-  top: 80px;
-  right: 40px;
+.cs2 {
+  top: 75px;
+  right: 30px;
   font-size: 12px;
 }
 
-.cover-star.three {
-  bottom: 115px;
-  left: 40px;
-  font-size: 14px;
+.cs3 {
+  bottom: 105px;
+  left: 32px;
+  font-size: 15px;
+}
+
+.cs4 {
+  bottom: 60px;
+  right: 115px;
+  font-size: 10px;
 }
 
 /* =========================
-   OPEN TEXT
+   TAP
 ========================= */
 
-.open-text {
-  margin-top: 28px;
-  font-size: 11px;
+.tap {
+  margin-top: 25px;
+
+  font-size: 10px;
+
   letter-spacing: 1.5px;
-  color: #8b7b91;
-  animation: pulse 1.8s infinite;
+
+  color: #927c90;
+
+  animation: tapPulse 1.8s infinite;
 }
 
-@keyframes pulse {
+@keyframes tapPulse {
   0%, 100% {
     opacity: .45;
   }
@@ -434,93 +930,55 @@ body {
   }
 }
 
-.book.open .open-text {
-  display: none;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navigation {
-  position: absolute;
-  bottom: 18px;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-
-  z-index: 20;
-}
-
-.nav-button {
-  width: 38px;
-  height: 38px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(246,232,243,.9);
-  color: #796b80;
-
-  font-size: 20px;
-
-  cursor: pointer;
-
-  box-shadow: 0 4px 12px rgba(100,80,110,.1);
-}
-
-.nav-button:active {
-  transform: scale(.9);
-}
-
-.page-count {
-  min-width: 45px;
-  text-align: center;
-  font-size: 11px;
-  color: #9b8c9f;
-}
-
 /* =========================
    SPARKLES
 ========================= */
 
 .sparkle {
   position: fixed;
-  z-index: 100;
 
-  width: 8px;
-  height: 8px;
+  z-index: 9999;
 
   pointer-events: none;
 
   color: white;
-  font-size: 18px;
 
-  animation: sparkleAnimation 1s ease-out forwards;
+  font-size: 17px;
+
+  text-shadow:
+    0 0 8px white,
+    0 0 16px rgba(220,190,235,.9);
+
+  animation:
+    sparkleOut .95s ease-out forwards;
 }
 
-@keyframes sparkleAnimation {
+@keyframes sparkleOut {
 
   0% {
     opacity: 0;
-    transform: scale(.2) translate(0,0);
+    transform:
+      translate(0,0)
+      scale(.2)
+      rotate(0deg);
   }
 
   20% {
     opacity: 1;
+    transform:
+      translate(0,0)
+      scale(1.1)
+      rotate(30deg);
   }
 
   100% {
     opacity: 0;
-    transform:
-      scale(1.5)
-      translate(var(--x), var(--y));
-  }
 
+    transform:
+      translate(var(--x),var(--y))
+      scale(.35)
+      rotate(180deg);
+  }
 }
 
 /* =========================
@@ -529,35 +987,21 @@ body {
 
 @media (max-width: 420px) {
 
-  .book {
+  .letter {
     height: 500px;
   }
 
   .heading h1 {
-    font-size: 36px;
+    font-size: 35px;
   }
 
   .cover-title {
-    font-size: 43px;
+    font-size: 40px;
   }
 
   .page {
-    padding: 35px 25px 70px;
-  }
-
-}
-
-/* =========================
-   REDUCE MOTION
-========================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .cover,
-  .page,
-  .sparkle {
-    transition: none !important;
-    animation: none !important;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
 }
@@ -567,13 +1011,13 @@ body {
 
 <body>
 
-<!-- background stars -->
+<!-- background -->
 
-<div class="star">✦</div>
-<div class="star">✧</div>
-<div class="star">⋆</div>
-<div class="star">✦</div>
-<div class="star">✧</div>
+<div class="bg-star s1">✦</div>
+<div class="bg-star s2">✧</div>
+<div class="bg-star s3">⋆</div>
+<div class="bg-star s4">✦</div>
+<div class="bg-star s5">✧</div>
 
 
 <!-- top -->
@@ -584,7 +1028,7 @@ body {
     ← back
   </a>
 
-  <div class="title">
+  <div class="archive">
     illit archive
   </div>
 
@@ -598,231 +1042,600 @@ body {
   <h1>Summer Moon</h1>
 
   <p>
-    the quprids
+    a little invitation to the quprids
   </p>
 
 </div>
 
 
-<!-- book -->
+<!-- invitation -->
 
-<div class="book-area">
+<div class="invitation-area">
 
-  <div class="book" id="book">
+  <div class="letter" id="letter">
 
 
-    <!-- PAGES -->
+    <!-- =====================
+         INSIDE
+    ====================== -->
 
-    <div class="pages">
+    <div class="inside">
 
 
       <!-- PAGE 1 -->
 
-      <div class="page active">
+      <section class="page active">
 
-        <div class="page-number">
-          summer moon · 01
+        <div class="page-inner">
+
+          <div class="bow">
+            <div class="bow-dot"></div>
+          </div>
+
+          <div class="page-number">
+            summer moon · 01
+          </div>
+
+          <h2>
+            you're invited
+          </h2>
+
+          <div class="page-subtitle">
+            welcome to summer moon
+          </div>
+
+          <div class="ornament">
+            ✦ ୨୧ ✦
+          </div>
+
+          <div class="page-text">
+
+            step softly into a world where
+            dreams, feelings and imagination
+            begin to overlap.
+
+            <br><br>
+
+            this little archive is your invitation
+            to discover the universe of
+            the quprids.
+
+          </div>
+
+          <div class="photo-frame">
+            ☾ ✦ summer moon ✦ ☽
+          </div>
+
         </div>
 
-        <h2>
-          The Quprids
-        </h2>
-
-        <div class="page-decoration">
-          ✦ ⟢ ✦
-        </div>
-
-        <p>
-          Summer Moon is the universe connected to ILLIT's story,
-          where ordinary moments and imagination begin to overlap.
-        </p>
-
-        <p>
-          The story follows mysterious fragments, emotions,
-          dreams and the people who encounter them.
-        </p>
-
-      </div>
+      </section>
 
 
       <!-- PAGE 2 -->
 
-      <div class="page">
+      <section class="page">
 
-        <div class="page-number">
-          summer moon · 02
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 02
+          </div>
+
+          <h2>
+            the quprids
+          </h2>
+
+          <div class="page-subtitle">
+            beyond the ordinary
+          </div>
+
+          <div class="ornament">
+            ♡ ✧ ♡
+          </div>
+
+          <div class="page-text">
+
+            summer moon follows a mysterious
+            world connected to ILLIT.
+
+            <br><br>
+
+            it blends everyday youth with
+            magical imagery, strange discoveries
+            and a world hidden just beyond
+            what we can see.
+
+          </div>
+
+          <div class="fragment">
+            <span>✦</span>
+          </div>
+
+          <div class="page-text">
+            every fragment reveals a little
+            more of the story.
+          </div>
+
         </div>
 
-        <h2>
-          The World
-        </h2>
-
-        <div class="page-decoration">
-          ☾
-        </div>
-
-        <p>
-          Between reality and imagination exists a strange space
-          where feelings can become something more.
-        </p>
-
-        <p>
-          Summer Moon explores youth, dreams, friendship,
-          self-discovery and the possibility of becoming
-          who you truly want to be.
-        </p>
-
-      </div>
+      </section>
 
 
       <!-- PAGE 3 -->
 
-      <div class="page">
+      <section class="page">
 
-        <div class="page-number">
-          summer moon · 03
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 03
+          </div>
+
+          <h2>
+            the story
+          </h2>
+
+          <div class="page-subtitle">
+            reality × imagination
+          </div>
+
+          <div class="ornament">
+            ☾ ⋆ ✦ ⋆ ☽
+          </div>
+
+          <div class="page-text">
+
+            what begins as an ordinary
+            summer slowly becomes something
+            much stranger.
+
+            <br><br>
+
+            mysterious fragments, unexpected
+            encounters and hidden possibilities
+            connect the characters to a larger
+            universe.
+
+          </div>
+
+          <div class="page-text">
+
+            youth is not simply about growing up.
+            it is also about discovering
+            who you can become.
+
+          </div>
+
         </div>
 
-        <h2>
-          Fragments
-        </h2>
-
-        <div class="page-decoration">
-          ◇ ✦ ◇
-        </div>
-
-        <p>
-          Fragments are mysterious pieces connected to
-          potential, emotions, dreams and abilities.
-        </p>
-
-        <p>
-          They can amplify something that already exists
-          inside a person rather than creating something
-          completely new.
-        </p>
-
-      </div>
+      </section>
 
 
       <!-- PAGE 4 -->
 
-      <div class="page">
+      <section class="page">
 
-        <div class="page-number">
-          summer moon · 04
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 04
+          </div>
+
+          <h2>
+            characters
+          </h2>
+
+          <div class="page-subtitle">
+            meet the girls
+          </div>
+
+          <div class="character-grid">
+
+            <div class="character">
+
+              <div class="character-symbol">
+                🐿
+              </div>
+
+              <div class="character-name">
+                Yeoreum
+              </div>
+
+              <div class="character-role">
+                the beginning
+              </div>
+
+            </div>
+
+
+            <div class="character">
+
+              <div class="character-symbol">
+                🐆
+              </div>
+
+              <div class="character-name">
+                Ayeong
+              </div>
+
+              <div class="character-role">
+                the unknown
+              </div>
+
+            </div>
+
+
+            <div class="character">
+
+              <div class="character-symbol">
+                🎾
+              </div>
+
+              <div class="character-name">
+                Gowon
+              </div>
+
+              <div class="character-role">
+                the captain
+              </div>
+
+            </div>
+
+
+            <div class="character">
+
+              <div class="character-symbol">
+                ✧
+              </div>
+
+              <div class="character-name">
+                Doyun
+              </div>
+
+              <div class="character-role">
+                the encounter
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="page-text">
+
+            every character has her own feelings,
+            dreams and potential.
+
+          </div>
+
         </div>
 
-        <h2>
-          Yeoreum
-        </h2>
-
-        <div class="page-decoration">
-          ♡
-        </div>
-
-        <p>
-          Yeoreum discovers that something unusual has
-          entered her ordinary life.
-        </p>
-
-        <p>
-          Her encounter with a Fragment begins to connect
-          the everyday world with the mysterious universe
-          of Summer Moon.
-        </p>
-
-      </div>
+      </section>
 
 
       <!-- PAGE 5 -->
 
-      <div class="page">
+      <section class="page">
 
-        <div class="page-number">
-          summer moon · 05
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 05
+          </div>
+
+          <h2>
+            fragments
+          </h2>
+
+          <div class="page-subtitle">
+            magic meets technology
+          </div>
+
+          <div class="fragment">
+            <span>◇</span>
+          </div>
+
+          <div class="page-text">
+
+            fragments are mysterious pieces
+            connected to a person's true potential.
+
+            <br><br>
+
+            they can amplify feelings, talents,
+            dreams and abilities already existing
+            within someone.
+
+          </div>
+
+          <div class="ornament">
+            ✦ ◇ ✦
+          </div>
+
+          <div class="page-text">
+
+            but every fragment has a story
+            of its own.
+
+          </div>
+
         </div>
 
-        <h2>
-          Magic & Technology
-        </h2>
-
-        <div class="page-decoration">
-          ✧ ◇ ✧
-        </div>
-
-        <p>
-          The world of Summer Moon combines magical imagery
-          with strange technological elements.
-        </p>
-
-        <p>
-          The Fragments are part of a much larger story,
-          connected to forces beyond the ordinary world.
-        </p>
-
-      </div>
+      </section>
 
 
       <!-- PAGE 6 -->
 
-      <div class="page">
+      <section class="page">
 
-        <div class="page-number">
-          summer moon · 06
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 06
+          </div>
+
+          <h2>
+            the world
+          </h2>
+
+          <div class="page-subtitle">
+            somewhere between dreams
+          </div>
+
+          <div class="ornament">
+            ☁︎ ✦ ☾ ✦ ☁︎
+          </div>
+
+          <div class="page-text">
+
+            there is a space between dreams
+            and nightmares.
+
+            <br><br>
+
+            a place where imagination can take
+            shape and emotions can feel almost
+            real.
+
+          </div>
+
+          <div class="photo-frame">
+            ✧ reality ↔ imagination ✧
+          </div>
+
         </div>
 
-        <h2>
-          To be continued
-        </h2>
+      </section>
 
-        <div class="page-decoration">
-          ☾ ✦ ♡
+
+      <!-- PAGE 7 -->
+
+      <section class="page">
+
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 07
+          </div>
+
+          <h2>
+            chapters
+          </h2>
+
+          <div class="page-subtitle">
+            follow the story
+          </div>
+
+          <div class="chapter-list">
+
+            <div class="chapter">
+
+              <div class="chapter-number">
+                01
+              </div>
+
+              <div>
+                <div class="chapter-name">
+                  the beginning
+                </div>
+
+                <div class="chapter-small">
+                  first signs of something unusual
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="chapter">
+
+              <div class="chapter-number">
+                02
+              </div>
+
+              <div>
+                <div class="chapter-name">
+                  the fragment
+                </div>
+
+                <div class="chapter-small">
+                  a mysterious discovery
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="chapter">
+
+              <div class="chapter-number">
+                03
+              </div>
+
+              <div>
+                <div class="chapter-name">
+                  transformation
+                </div>
+
+                <div class="chapter-small">
+                  reality begins to change
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="chapter">
+
+              <div class="chapter-number">
+                ♡
+              </div>
+
+              <div>
+                <div class="chapter-name">
+                  more to come
+                </div>
+
+                <div class="chapter-small">
+                  the archive will grow
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <p>
-          The story continues to unfold through ILLIT's
-          music, characters and universe.
-        </p>
+      </section>
 
-        <p>
-          Every new chapter reveals another piece
-          of the Summer Moon.
-        </p>
 
-      </div>
+      <!-- PAGE 8 -->
+
+      <section class="page">
+
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 08
+          </div>
+
+          <h2>
+            archive
+          </h2>
+
+          <div class="page-subtitle">
+            little pieces of summer moon
+          </div>
+
+          <div class="ornament">
+            ୨୧ ✦ ୨୧
+          </div>
+
+          <div class="photo-frame">
+            ✧ images ✧
+          </div>
+
+          <div class="photo-frame" style="margin-top:12px;">
+            ✦ references ✦
+          </div>
+
+          <div class="page-text">
+            photos, details, symbols and
+            discoveries can be collected here.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PAGE 9 -->
+
+      <section class="page">
+
+        <div class="page-inner">
+
+          <div class="page-number">
+            summer moon · 09
+          </div>
+
+          <h2>
+            see you again
+          </h2>
+
+          <div class="final-symbol">
+            ☾
+          </div>
+
+          <div class="ornament">
+            ✦ ୨୧ ✦
+          </div>
+
+          <div class="page-text">
+
+            the invitation may end here,
+
+            <br><br>
+
+            but the story doesn't.
+
+            <br><br>
+
+            there are still fragments
+            waiting to be discovered.
+
+          </div>
+
+          <div class="page-text">
+
+            <i>until the next chapter ♡</i>
+
+          </div>
+
+        </div>
+
+      </section>
 
 
     </div>
 
 
-    <!-- COVER -->
+    <!-- =====================
+         COVER
+    ====================== -->
 
     <div
       class="cover"
       id="cover"
-      onclick="openBook()"
+      onclick="openLetter()"
     >
 
-      <div class="cover-star one">
+      <div class="cover-star cs1">
         ✦
       </div>
 
-      <div class="cover-star two">
+      <div class="cover-star cs2">
         ✧
       </div>
 
-      <div class="cover-star three">
+      <div class="cover-star cs3">
         ⋆
       </div>
+
+      <div class="cover-star cs4">
+        ✦
+      </div>
+
+
+      <div class="cover-ribbon"></div>
 
 
       <div class="cover-content">
 
-        <div class="moon"></div>
+        <div class="cover-moon"></div>
 
-        <div class="cover-small">
-          illit universe
+        <div class="cover-mini">
+          a little invitation
         </div>
 
         <div class="cover-title">
@@ -830,30 +1643,33 @@ body {
           Moon
         </div>
 
-        <div class="cover-subtitle">
+        <div class="cover-sub">
           the quprids
         </div>
 
-        <div class="open-text">
+        <div class="tap">
           tap to open ✦
         </div>
 
       </div>
 
 
-      <div class="ribbon"></div>
+      <div class="cover-bow">
+        <div class="cover-bow-center"></div>
+      </div>
 
     </div>
 
 
-    <!-- NAVIGATION -->
+    <!-- =====================
+         NAVIGATION
+    ====================== -->
 
     <div class="navigation">
 
       <button
         class="nav-button"
         onclick="previousPage(event)"
-        aria-label="previous page"
       >
         ‹
       </button>
@@ -862,13 +1678,12 @@ body {
         class="page-count"
         id="pageCount"
       >
-        1 / 6
+        1 / 9
       </div>
 
       <button
         class="nav-button"
         onclick="nextPage(event)"
-        aria-label="next page"
       >
         ›
       </button>
@@ -883,11 +1698,7 @@ body {
 
 <script>
 
-/* =========================
-   BOOK
-========================= */
-
-const book = document.getElementById("book");
+const letter = document.getElementById("letter");
 
 const pages = document.querySelectorAll(".page");
 
@@ -899,18 +1710,18 @@ let opened = false;
 
 
 /* =========================
-   OPEN BOOK
+   OPEN LETTER
 ========================= */
 
-function openBook() {
+function openLetter() {
 
   if (opened) return;
 
   opened = true;
 
-  book.classList.add("open");
+  letter.classList.add("open");
 
-  createSparkles();
+  createSparkles(38);
 
 }
 
@@ -919,30 +1730,45 @@ function openBook() {
    SPARKLES
 ========================= */
 
-function createSparkles() {
+function createSparkles(amount = 25) {
 
-  const symbols = ["✦", "✧", "⋆", "✦", "✧"];
+  const symbols = [
+    "✦",
+    "✧",
+    "⋆",
+    "◇",
+    "✦"
+  ];
 
-  for (let i = 0; i < 35; i++) {
+  const centerX = window.innerWidth / 2;
 
-    const sparkle = document.createElement("div");
+  const centerY = window.innerHeight / 2;
+
+  for (let i = 0; i < amount; i++) {
+
+    const sparkle =
+      document.createElement("div");
 
     sparkle.className = "sparkle";
 
     sparkle.textContent =
-      symbols[Math.floor(Math.random() * symbols.length)];
+      symbols[
+        Math.floor(
+          Math.random() * symbols.length
+        )
+      ];
 
     const angle =
       Math.random() * Math.PI * 2;
 
     const distance =
-      80 + Math.random() * 180;
+      45 + Math.random() * 170;
 
     sparkle.style.left =
-      window.innerWidth / 2 + "px";
+      centerX + "px";
 
     sparkle.style.top =
-      window.innerHeight / 2 + "px";
+      centerY + "px";
 
     sparkle.style.setProperty(
       "--x",
@@ -958,7 +1784,7 @@ function createSparkles() {
 
     setTimeout(() => {
       sparkle.remove();
-    }, 1100);
+    }, 1000);
 
   }
 
@@ -987,7 +1813,7 @@ function updatePage() {
 
 
 /* =========================
-   NEXT PAGE
+   NEXT
 ========================= */
 
 function nextPage(event) {
@@ -996,7 +1822,7 @@ function nextPage(event) {
 
   if (!opened) {
 
-    openBook();
+    openLetter();
 
     return;
 
@@ -1008,13 +1834,15 @@ function nextPage(event) {
 
     updatePage();
 
+    createSparkles(24);
+
   }
 
 }
 
 
 /* =========================
-   PREVIOUS PAGE
+   PREVIOUS
 ========================= */
 
 function previousPage(event) {
@@ -1023,7 +1851,7 @@ function previousPage(event) {
 
   if (!opened) {
 
-    openBook();
+    openLetter();
 
     return;
 
@@ -1035,13 +1863,15 @@ function previousPage(event) {
 
     updatePage();
 
+    createSparkles(24);
+
   }
 
 }
 
 
 /* =========================
-   INITIALIZE
+   START
 ========================= */
 
 updatePage();
