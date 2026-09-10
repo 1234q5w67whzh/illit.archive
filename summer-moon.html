@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>summer moon — illit archive</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.9), transparent 25%),
+    linear-gradient(145deg, #eee6ff, #fff3f7, #e8f4ff);
+  font-family: Georgia, "Times New Roman", serif;
+  color: #665b73;
+  overflow-x: hidden;
+}
+
+/* top */
+
+.top {
+  padding: 18px 18px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back {
+  text-decoration: none;
+  color: #786b86;
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(255,255,255,.9);
+  padding: 8px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.title {
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* stars */
+
+.star {
+  position: fixed;
+  color: white;
+  font-size: 18px;
+  opacity: .8;
+  pointer-events: none;
+}
+
+.s1 { top: 15%; left: 8%; }
+.s2 { top: 28%; right: 9%; font-size: 13px; }
+.s3 { top: 72%; left: 7%; font-size: 12px; }
+.s4 { top: 82%; right: 12%; }
+.s5 { top: 45%; right: 4%; font-size: 10px; }
+
+/* main */
+
+.container {
+  width: min(92%, 430px);
+  margin: 20px auto 50px;
+}
+
+/* closed book */
+
+.book-area {
+  min-height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.book {
+  width: 310px;
+  height: 430px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+}
+
+.book.open {
+  transform: rotateY(-8deg) scale(.94);
+}
+
+/* cover */
+
+.cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 9px 18px 18px 9px;
+  background:
+    linear-gradient(135deg, #fff9ed, #f9e9f4 55%, #eee5ff);
+  box-shadow:
+    0 25px 50px rgba(110,90,130,.22),
+    inset 0 0 0 1px rgba(255,255,255,.9);
+  z-index: 10;
+  transform-origin: left center;
+  transition: transform 1.2s cubic-bezier(.7,0,.2,1);
+  backface-visibility: hidden;
+}
+
+.book.open .cover {
+  transform: rotateY(-155deg);
+}
+
+/* cover decoration */
+
+.cover-inner {
+  height: 100%;
+  padding: 35px 25px;
+  border: 1px solid rgba(170,145,180,.18);
+  margin: 9px;
+  border-radius: 5px 14px 14px 5px;
+  text-align: center;
+  position: relative;
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 28px;
+  width: 30px;
+  height: 90px;
+  background: #f2b9cf;
+  opacity: .75;
+}
+
+.ribbon:after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 12px solid #f2b9cf;
+}
+
+.moon {
+  margin: 55px auto 25px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 25px rgba(255,255,255,.9);
+  position: relative;
+}
+
+.moon:after {
+  content: "";
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #f7eafa;
+  left: 23px;
+  top: -10px;
+}
+
+.cover h1 {
+  font-size: 29px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin: 10px 0;
+}
+
+.cover p {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.small-star {
+  position: absolute;
+  font-size: 22px;
+}
+
+.a { top: 40px; left: 30px; }
+.b { top: 145px; right: 28px; }
+.c { bottom: 45px; left: 35px; }
+.d { bottom: 80px; right: 35px; font-size: 13px; }
+
+/* pages */
+
+.pages {
+  position: absolute;
+  inset: 8px;
+  border-radius: 5px 15px 15px 5px;
+  background: #fffaf1;
+  box-shadow: 0 20px 40px rgba(100,80,120,.15);
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  height: 100%;
+  padding: 35px 28px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(225,207,240,.3), transparent 25%),
+    #fffaf1;
+  position: relative;
+}
+
+.page.active {
+  display: block;
+  animation: pageIn .5s ease;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: rotateY(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+}
+
+.page-number {
+  font-size: 10px;
+  letter-spacing: 3px;
+  opacity: .5;
+}
+
+.page h2 {
+  font-size: 27px;
+  font-weight: normal;
+  margin: 18px 0 12px;
+  color: #71617c;
+}
+
+.page p {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #817487;
+}
+
+.page-line {
+  width: 45px;
+  height: 1px;
+  background: #d7bfdc;
+  margin: 18px 0;
+}
+
+/* little scrapbook elements */
+
+.sticker {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #f7e9f2;
+  transform: rotate(-1deg);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.polaroid {
+  margin: 22px auto;
+  width: 155px;
+  padding: 10px 10px 28px;
+  background: white;
+  box-shadow: 0 8px 18px rgba(80,70,90,.13);
+  transform: rotate(-3deg);
+}
+
+.polaroid-box {
+  height: 125px;
+  background: linear-gradient(135deg,#e8dcfa,#f9dce8,#e0f1f5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.polaroid small {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  color: #8b7b91;
+}
+
+/* navigation */
+
+.book-nav {
+  position: absolute;
+  bottom: 17px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-btn {
+  border: 0;
+  background: rgba(225,211,232,.55);
+  color: #75667d;
+  padding: 8px 13px;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.page-count {
+  font-size: 10px;
+  opacity: .5;
+}
+
+/* instruction */
+
+.open-text {
+  position: absolute;
+  bottom: 65px;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: .55;
+}
+
+/* sparkles */
+
+.sparkle {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  color: white;
+  font-size: 18px;
+  animation: sparkle 1.2s ease forwards;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(.2) translate(0,0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5) translate(var(--x), var(--y));
+  }
+}
+
+/* mobile */
+
+@media(max-width: 380px) {
+  .book {
+    width: 280px;
+    height: 400px;
+  }
+
+  .page h2 {
+    font-size: 24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="star s1">✦</div>
+<div class="star s2">⋆</div>
+<div class="star s3">✧</div>
+<div class="star s4">☆</div>
+<div class="star s5">✦</div>
+
+<div class="top">
+  <a class="back" href="index.html">← home</a>
+  <div class="title">summer moon</div>
+</div>
+
+<div class="container">
+
+  <div class="book-area">
+
+    <div class="book" id="book" onclick="openBook()">
+
+      <!-- páginas -->
+      <div class="pages">
+
+        <!-- página 1 -->
+        <section class="page active">
+          <div class="page-number">01 / SUMMER MOON</div>
+
+          <h2>summer moon</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            enter the world behind the moon.
+            a story where imagination, feelings
+            and dreams begin to overlap.
+          </p>
+
+          <div class="polaroid">
+            <div class="polaroid-box">☾ ✦</div>
+            <small>summer memories</small>
+          </div>
+        </section>
+
+        <!-- página 2 -->
+        <section class="page">
+          <div class="page-number">02 / THE STORY</div>
+
+          <h2>the story</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            summer moon follows a mysterious
+            world connected to the feelings,
+            dreams and possibilities hidden
+            inside ordinary moments.
+          </p>
+
+          <div class="sticker">
+            ✧ reality × imagination ✧
+            <br><br>
+            sometimes the world we imagine
+            can reveal something real about us.
+          </div>
+        </section>
+
+        <!-- página 3 -->
+        <section class="page">
+          <div class="page-number">03 / CHARACTERS</div>
+
+          <h2>characters</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            meet the characters and discover
+            their personalities, relationships
+            and stories throughout summer moon.
+          </p>
+
+          <div class="sticker">
+            🐿 yeoreum
+            <br>
+            🐆 ayeong
+            <br>
+            🐰 &nbsp;the summer moon world
+          </div>
+        </section>
+
+        <!-- página 4 -->
+        <section class="page">
+          <div class="page-number">04 / FRAGMENTS</div>
+
+          <h2>fragments</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            fragments are connected to the
+            hidden possibilities within a person.
+            they can reveal emotions, talents,
+            dreams and the potential waiting
+            to be discovered.
+          </p>
+
+          <div class="sticker">
+            ✦ fragment archive ✦
+            <br><br>
+            dreams · emotions · potential
+          </div>
+        </section>
+
+        <!-- página 5 -->
+        <section class="page">
+          <div class="page-number">05 / ARCHIVE</div>
+
+          <h2>summer archive</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            collect the moments, characters,
+            symbols and details hidden throughout
+            the story.
+          </p>
+
+          <div class="sticker">
+            ☆ chapters
+            <br>
+            ☆ symbols
+            <br>
+            ☆ characters
+            <br>
+            ☆ fragments
+          </div>
+        </section>
+
+        <!-- página 6 -->
+        <section class="page">
+          <div class="page-number">06 / END</div>
+
+          <h2>see you in summer</h2>
+
+          <div class="page-line"></div>
+
+          <p>
+            the story doesn't really end here.
+            turn the page again whenever
+            you want to return to summer moon.
+          </p>
+
+          <div class="polaroid">
+            <div class="polaroid-box">✦ ☾ ✧</div>
+            <small>until the next chapter</small>
+          </div>
+        </section>
+
+        <div class="book-nav" onclick="event.stopPropagation()">
+          <button class="nav-btn" onclick="previousPage()">‹</button>
+          <span class="page-count" id="pageCount">1 / 6</span>
+          <button class="nav-btn" onclick="nextPage()">›</button>
+        </div>
+
+      </div>
+
+      <!-- capa -->
+      <div class="cover">
+
+        <div class="cover-inner">
+
+          <div class="ribbon"></div>
+
+          <div class="small-star a">✦</div>
+          <div class="small-star b">✧</div>
+          <div class="small-star c">☆</div>
+          <div class="small-star d">⋆</div>
+
+          <div class="moon"></div>
+
+          <h1>summer<br>moon</h1>
+
+          <p>the quprids</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="open-text" id="openText">
+      tap the book to open ✦
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let opened = false;
+let currentPage = 0;
+
+const pages = document.querySelectorAll(".page");
+const pageCount = document.getElementById("pageCount");
+const book = document.getElementById("book");
+const openText = document.getElementById("openText");
+
+function openBook() {
+
+  if (opened) return;
+
+  opened = true;
+
+  book.classList.add("open");
+
+  openText.style.opacity = "0";
+
+  createSparkles();
+
+}
+
+function createSparkles() {
+
+  const symbols = ["✦","✧","⋆","☆","✦","·"];
+
+  for (let i = 0; i < 25; i++) {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    sparkle.innerText =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    sparkle.style.left =
+      (35 + Math.random() * 30) + "%";
+
+    sparkle.style.top =
+      (35 + Math.random() * 30) + "%";
+
+    sparkle.style.setProperty(
+      "--x",
+      ((Math.random() - .5) * 280) + "px"
+    );
+
+    sparkle.style.setProperty(
+      "--y",
+      ((Math.random() - .5) * 280) + "px"
+    );
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1300);
+  }
+}
+
+function showPage(number) {
+
+  pages.forEach(page => {
+    page.classList.remove("active");
+  });
+
+  pages[number].classList.add("active");
+
+  currentPage = number;
+
+  pageCount.innerText =
+    (currentPage + 1) + " / " + pages.length;
+}
+
+function nextPage() {
+
+  if (!opened) return;
+
+  if (currentPage < pages.length - 1) {
+    showPage(currentPage + 1);
+  }
+
+}
+
+function previousPage() {
+
+  if (!opened) return;
+
+  if (currentPage > 0) {
+    showPage(currentPage - 1);
+  }
+
+}
+
+</script>
+
+</body>
+                         </html>
