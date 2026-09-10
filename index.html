@@ -3573,11 +3573,10 @@ async function updateTracker(){
                     Number.isFinite(v)
                 ){
 
-                    t.querySelector(
-                        '.track-number'
-                    ).innerText =
-                        v.toLocaleString(
-                            'en-US'
+                    animateNumber(
+    t.querySelector('.track-number'),
+    v
+);
                         );
 
                 }else{
@@ -3818,7 +3817,7 @@ updateTracker();
 
 setInterval(() => {
     updateTracker();
-}, 5 * 60 * 1000);
+}, 2 * 60 * 1000);
 
 </script>
 
