@@ -304,9 +304,7 @@ body {
   margin-top: 8px;
 }
 
-/* =========================
-   STREAMING TRACKER
-========================= */
+/* STREAMING TRACKER */
 
 .streaming-card {
   background: var(--card);
@@ -656,7 +654,6 @@ body {
 
 <div class="phone">
 
-  <!-- STATUS BAR -->
   <div class="status">
     <span id="time">9:41</span>
 
@@ -667,8 +664,6 @@ body {
     </div>
   </div>
 
-
-  <!-- HEADER -->
   <header class="app-header">
     <div class="app-title" id="headerTitle">Home</div>
 
@@ -677,11 +672,9 @@ body {
     </div>
   </header>
 
-
   <main class="content">
 
-
-    <!-- ================= HOME ================= -->
+    <!-- HOME -->
 
     <section class="page active" id="home">
 
@@ -701,41 +694,53 @@ body {
           their music, activities and universe.
         </p>
 
-        <a class="button" href="https://weverse.io/illit/" target="_blank">
+        <a class="button"
+           href="https://weverse.io/illit/"
+           target="_blank">
           open weverse
         </a>
 
       </div>
 
-
       <div class="grid">
 
-        <div class="widget square" onclick="openPage('profile')">
+        <div class="widget square"
+             onclick="openPage('profile')">
+
           <div class="icon">👤</div>
           <h3>Profile</h3>
           <p>members & group</p>
+
         </div>
 
-        <div class="widget square" onclick="openPage('discography')">
+        <div class="widget square"
+             onclick="openPage('discography')">
+
           <div class="icon">♫</div>
           <h3>Music</h3>
           <p>discography</p>
+
         </div>
 
-        <div class="widget square" onclick="openPage('summer')">
+        <div class="widget square"
+             onclick="openPage('summer')">
+
           <div class="icon">✧</div>
           <h3>Summer Moon</h3>
           <p>the universe</p>
+
         </div>
 
-        <div class="widget square" onclick="openPage('tour')">
+        <div class="widget square"
+             onclick="openPage('tour')">
+
           <div class="icon">♧</div>
           <h3>Press Start</h3>
           <p>tour archive</p>
+
         </div>
 
       </div>
-
 
       <div class="widget">
 
@@ -751,8 +756,7 @@ body {
 
       </div>
 
-
-      <!-- ================= STREAMING TRACKER ================= -->
+      <!-- STREAMING TRACKER -->
 
       <div class="streaming-card">
 
@@ -766,14 +770,12 @@ body {
 
             <button
               class="platform-tab active"
-              data-platform="spotify"
               onclick="changePlatform('spotify', this)">
               spotify
             </button>
 
             <button
               class="platform-tab"
-              data-platform="melon"
               onclick="changePlatform('melon', this)">
               melon
             </button>
@@ -782,40 +784,30 @@ body {
 
         </div>
 
-
         <div class="mode-tabs">
 
           <button
             class="mode-tab active"
-            data-mode="total"
             onclick="changeMode('total', this)">
             total
           </button>
 
           <button
             class="mode-tab"
-            data-mode="daily"
             onclick="changeMode('daily', this)">
             daily
           </button>
 
         </div>
 
-
         <div class="track-list">
 
+          <div class="track"
+               data-song="iconic by mistake">
 
-          <!-- 1 -->
+            <div class="track-rank">1</div>
 
-          <div class="track">
-
-            <div class="track-rank">
-              1
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -829,29 +821,17 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
 
-          <!-- 2 -->
+          <div class="track"
+               data-song="it's me">
 
-          <div class="track">
+            <div class="track-rank">2</div>
 
-            <div class="track-rank">
-              2
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -865,29 +845,17 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
 
-          <!-- 3 -->
+          <div class="track"
+               data-song="magnetic">
 
-          <div class="track">
+            <div class="track-rank">3</div>
 
-            <div class="track-rank">
-              3
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -901,29 +869,17 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
 
-          <!-- 4 -->
+          <div class="track"
+               data-song="not cute anymore">
 
-          <div class="track">
+            <div class="track-rank">4</div>
 
-            <div class="track-rank">
-              4
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -937,29 +893,17 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
 
-          <!-- 5 -->
+          <div class="track"
+               data-song="billyeoon goyangi">
 
-          <div class="track">
+            <div class="track-rank">5</div>
 
-            <div class="track-rank">
-              5
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -973,29 +917,17 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
 
-          <!-- 6 -->
+          <div class="track"
+               data-song="jellyous">
 
-          <div class="track">
+            <div class="track-rank">6</div>
 
-            <div class="track-rank">
-              6
-            </div>
-
-            <div class="track-icon">
-              ♫
-            </div>
+            <div class="track-icon">♫</div>
 
             <div class="track-info">
 
@@ -1009,19 +941,11 @@ body {
 
             </div>
 
-            <div
-              class="track-number"
-              data-spotify-total="—"
-              data-spotify-daily="—"
-              data-melon-total="—"
-              data-melon-daily="—">
-              —
-            </div>
+            <div class="track-number">—</div>
 
           </div>
 
         </div>
-
 
         <div class="tracker-footer">
 
@@ -1031,12 +955,12 @@ body {
               spotify streams tracker
             </div>
 
-            <div class="tracker-mini-number">
+            <div class="tracker-mini-number"
+                 id="spotifyTotal">
               —
             </div>
 
           </div>
-
 
           <div class="tracker-mini">
 
@@ -1044,7 +968,8 @@ body {
               100 days trend
             </div>
 
-            <div class="tracker-mini-number">
+            <div class="tracker-mini-number"
+                 id="dailyTotal">
               —
             </div>
 
@@ -1052,13 +977,14 @@ body {
 
         </div>
 
-
         <div class="tracker-note">
-          streaming data will be updated when a verified data source is connected.
+          data from public third-party streaming trackers.
         </div>
 
       </div>
 
+
+      <!-- MEMBERS -->
 
       <div class="widget">
 
@@ -1068,27 +994,32 @@ body {
 
         <div class="members">
 
-          <div class="member" onclick="member('Yunah','윤아')">
+          <div class="member"
+               onclick="member('Yunah','윤아')">
             <div class="member-avatar">Y</div>
             <div class="member-name">yunah</div>
           </div>
 
-          <div class="member" onclick="member('Minju','민주')">
+          <div class="member"
+               onclick="member('Minju','민주')">
             <div class="member-avatar">M</div>
             <div class="member-name">minju</div>
           </div>
 
-          <div class="member" onclick="member('Moka','モカ')">
+          <div class="member"
+               onclick="member('Moka','モカ')">
             <div class="member-avatar">M</div>
             <div class="member-name">moka</div>
           </div>
 
-          <div class="member" onclick="member('Wonhee','원희')">
+          <div class="member"
+               onclick="member('Wonhee','원희')">
             <div class="member-avatar">W</div>
             <div class="member-name">wonhee</div>
           </div>
 
-          <div class="member" onclick="member('Iroha','いろは')">
+          <div class="member"
+               onclick="member('Iroha','いろは')">
             <div class="member-avatar">I</div>
             <div class="member-name">iroha</div>
           </div>
@@ -1100,7 +1031,7 @@ body {
     </section>
 
 
-    <!-- ================= PROFILE ================= -->
+    <!-- PROFILE -->
 
     <section class="page" id="profile">
 
@@ -1113,49 +1044,78 @@ body {
 
         <div class="list-title">members</div>
 
-        <div class="item" onclick="member('Yunah','윤아')">
+        <div class="item"
+             onclick="member('Yunah','윤아')">
+
           <div class="item-icon">🐆</div>
+
           <div class="item-text">
             <div class="item-name">Yunah</div>
             <div class="item-sub">윤아</div>
           </div>
+
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Minju','민주')">
+
+        <div class="item"
+             onclick="member('Minju','민주')">
+
           <div class="item-icon">🐰</div>
+
           <div class="item-text">
             <div class="item-name">Minju</div>
             <div class="item-sub">민주</div>
           </div>
+
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Moka','モカ')">
+
+        <div class="item"
+             onclick="member('Moka','モカ')">
+
           <div class="item-icon">☕</div>
+
           <div class="item-text">
             <div class="item-name">Moka</div>
             <div class="item-sub">モカ</div>
           </div>
+
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Wonhee','원희')">
+
+        <div class="item"
+             onclick="member('Wonhee','원희')">
+
           <div class="item-icon">🐿</div>
+
           <div class="item-text">
             <div class="item-name">Wonhee</div>
             <div class="item-sub">원희</div>
           </div>
+
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Iroha','いろは')">
+
+        <div class="item"
+             onclick="member('Iroha','いろは')">
+
           <div class="item-icon">🐢</div>
+
           <div class="item-text">
             <div class="item-name">Iroha</div>
             <div class="item-sub">いろは</div>
           </div>
+
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1163,7 +1123,7 @@ body {
     </section>
 
 
-    <!-- ================= DISCOGRAPHY ================= -->
+    <!-- DISCOGRAPHY -->
 
     <section class="page" id="discography">
 
@@ -1173,10 +1133,12 @@ body {
       </div>
 
       <div class="tabs">
+
         <button class="tab selected">ALL</button>
         <button class="tab">KOREAN</button>
         <button class="tab">JAPANESE</button>
         <button class="tab">SINGLES</button>
+
       </div>
 
       <div class="album">
@@ -1186,6 +1148,7 @@ body {
         </div>
 
         <div class="album-info">
+
           <h3>SUPER REAL ME</h3>
           <p>2024 · mini album</p>
 
@@ -1194,9 +1157,11 @@ body {
              target="_blank">
             spotify ›
           </a>
+
         </div>
 
       </div>
+
 
       <div class="album">
 
@@ -1205,6 +1170,7 @@ body {
         </div>
 
         <div class="album-info">
+
           <h3>I'LL LIKE YOU</h3>
           <p>2024 · mini album</p>
 
@@ -1213,9 +1179,11 @@ body {
              target="_blank">
             spotify ›
           </a>
+
         </div>
 
       </div>
+
 
       <div class="album">
 
@@ -1224,6 +1192,7 @@ body {
         </div>
 
         <div class="album-info">
+
           <h3>BOMB</h3>
           <p>release archive</p>
 
@@ -1232,6 +1201,7 @@ body {
              target="_blank">
             melon ›
           </a>
+
         </div>
 
       </div>
@@ -1239,7 +1209,7 @@ body {
     </section>
 
 
-    <!-- ================= SUMMER MOON ================= -->
+    <!-- SUMMER MOON -->
 
     <section class="page" id="summer">
 
@@ -1275,6 +1245,7 @@ body {
       <div class="list">
 
         <div class="item">
+
           <div class="item-icon">📖</div>
 
           <div class="item-text">
@@ -1283,9 +1254,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">✦</div>
 
           <div class="item-text">
@@ -1294,9 +1268,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">◇</div>
 
           <div class="item-text">
@@ -1305,6 +1282,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1312,7 +1290,7 @@ body {
     </section>
 
 
-    <!-- ================= TOUR ================= -->
+    <!-- TOUR -->
 
     <section class="page" id="tour">
 
@@ -1340,9 +1318,12 @@ body {
 
       <div class="list">
 
-        <div class="list-title">tour archive</div>
+        <div class="list-title">
+          tour archive
+        </div>
 
         <div class="item">
+
           <div class="item-icon">📅</div>
 
           <div class="item-text">
@@ -1351,9 +1332,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">📍</div>
 
           <div class="item-text">
@@ -1362,9 +1346,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">🎟</div>
 
           <div class="item-text">
@@ -1373,9 +1360,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">♫</div>
 
           <div class="item-text">
@@ -1384,6 +1374,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1391,7 +1382,7 @@ body {
     </section>
 
 
-    <!-- ================= MV ================= -->
+    <!-- MV -->
 
     <section class="page" id="mv">
 
@@ -1403,6 +1394,7 @@ body {
       <div class="list">
 
         <div class="item">
+
           <div class="item-icon">▶</div>
 
           <div class="item-text">
@@ -1411,9 +1403,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">▶</div>
 
           <div class="item-text">
@@ -1422,9 +1417,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">▶</div>
 
           <div class="item-text">
@@ -1433,9 +1431,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">▶</div>
 
           <div class="item-text">
@@ -1444,6 +1445,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1457,7 +1459,7 @@ body {
     </section>
 
 
-    <!-- ================= NEWS ================= -->
+    <!-- NEWS -->
 
     <section class="page" id="news">
 
@@ -1469,6 +1471,7 @@ body {
       <div class="list">
 
         <div class="item">
+
           <div class="item-icon">✦</div>
 
           <div class="item-text">
@@ -1477,9 +1480,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">◎</div>
 
           <div class="item-text">
@@ -1488,6 +1494,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1495,7 +1502,7 @@ body {
     </section>
 
 
-    <!-- ================= SCHEDULE ================= -->
+    <!-- SCHEDULE -->
 
     <section class="page" id="schedule">
 
@@ -1506,9 +1513,12 @@ body {
 
       <div class="list">
 
-        <div class="list-title">upcoming</div>
+        <div class="list-title">
+          upcoming
+        </div>
 
         <div class="item">
+
           <div class="item-icon">📅</div>
 
           <div class="item-text">
@@ -1517,6 +1527,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1524,7 +1535,7 @@ body {
     </section>
 
 
-    <!-- ================= ACTIVITIES ================= -->
+    <!-- ACTIVITIES -->
 
     <section class="page" id="activities">
 
@@ -1535,7 +1546,9 @@ body {
 
       <div class="list">
 
-        <div class="item" onclick="member('Yunah','윤아')">
+        <div class="item"
+             onclick="member('Yunah','윤아')">
+
           <div class="item-icon">🐆</div>
 
           <div class="item-text">
@@ -1544,9 +1557,13 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Minju','민주')">
+
+        <div class="item"
+             onclick="member('Minju','민주')">
+
           <div class="item-icon">🐰</div>
 
           <div class="item-text">
@@ -1555,9 +1572,13 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Moka','モカ')">
+
+        <div class="item"
+             onclick="member('Moka','モカ')">
+
           <div class="item-icon">☕</div>
 
           <div class="item-text">
@@ -1566,9 +1587,13 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Wonhee','원희')">
+
+        <div class="item"
+             onclick="member('Wonhee','원희')">
+
           <div class="item-icon">🐿</div>
 
           <div class="item-text">
@@ -1577,9 +1602,13 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
-        <div class="item" onclick="member('Iroha','いろは')">
+
+        <div class="item"
+             onclick="member('Iroha','いろは')">
+
           <div class="item-icon">🐢</div>
 
           <div class="item-text">
@@ -1588,6 +1617,7 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
@@ -1595,7 +1625,7 @@ body {
     </section>
 
 
-    <!-- ================= GALLERY ================= -->
+    <!-- GALLERY -->
 
     <section class="page" id="gallery">
 
@@ -1639,7 +1669,7 @@ body {
     </section>
 
 
-    <!-- ================= OFFICIAL ================= -->
+    <!-- OFFICIAL -->
 
     <section class="page" id="official">
 
@@ -1729,21 +1759,24 @@ body {
     </section>
 
 
-    <!-- ================= MEMBER DETAIL ================= -->
+    <!-- MEMBER DETAIL -->
 
     <section class="page" id="memberDetail">
 
-      <button class="back" onclick="goBack()">
+      <button class="back"
+              onclick="goBack()">
         ‹ back
       </button>
 
       <div class="detail-card">
 
-        <div class="member-avatar" id="detailAvatar">
+        <div class="member-avatar"
+             id="detailAvatar">
           W
         </div>
 
-        <h2 id="detailName" style="margin-top:15px;">
+        <h2 id="detailName"
+            style="margin-top:15px;">
           Wonhee
         </h2>
 
@@ -1753,7 +1786,6 @@ body {
 
       </div>
 
-
       <div class="list">
 
         <div class="list-title">
@@ -1761,6 +1793,7 @@ body {
         </div>
 
         <div class="item">
+
           <div class="item-icon">📅</div>
 
           <div class="item-text">
@@ -1769,9 +1802,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">◎</div>
 
           <div class="item-text">
@@ -1780,9 +1816,12 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
+
         <div class="item">
+
           <div class="item-icon">✦</div>
 
           <div class="item-text">
@@ -1791,17 +1830,17 @@ body {
           </div>
 
           <div class="chevron">›</div>
+
         </div>
 
       </div>
 
     </section>
 
-
   </main>
 
 
-  <!-- ================= BOTTOM NAV ================= -->
+  <!-- BOTTOM NAV -->
 
   <nav class="bottom-nav">
 
@@ -1940,38 +1979,224 @@ function goBack() {
 
 function updateTime() {
 
+  const now = new Date();
+
+  document.getElementById("time").innerText =
+    now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+}
+
+updateTime();
+
+setInterval(updateTime, 1000);
+
+
+/* =========================
+   STREAMING TRACKER
+========================= */
+
+let currentPlatform = "spotify";
+let currentMode = "total";
+
+
+async function updateTracker() {
+
+  try {
+
+    const response =
+      await fetch("streams.json");
+
+    if (!response.ok) {
+      throw new Error("streams.json not found");
+    }
+
+    const data =
+      await response.json();
+
+    document.querySelectorAll(".track")
+      .forEach(track => {
+
+        const number =
+          track.querySelector(".track-number");
+
+        const platformText =
+          track.querySelector(".track-platform");
+
+        const song =
+          track.dataset.song;
+
+        const value =
+          data[currentPlatform]?.[currentMode]?.[song];
+
+        if (value !== undefined) {
+
+          number.innerText =
+            Number(value).toLocaleString("en-US");
+
+        } else {
+
+          number.innerText = "—";
+
+        }
+
+        platformText.innerText =
+          currentPlatform;
+
+      });
+
+
+    /* TOTAL OF THE SIX SONGS */
+
+    let total = 0;
+
+    document.querySelectorAll(".track")
+      .forEach(track => {
+
+        const song =
+          track.dataset.song;
+
+        const value =
+          data[currentPlatform]?.total?.[song];
+
+        if (value) {
+          total += Number(value);
+        }
+
+      });
+
+    const spotifyTotal =
+      document.getElementById("spotifyTotal");
+
+    if (spotifyTotal) {
+
+      spotifyTotal.innerText =
+        total
+          ? total.toLocaleString("en-US")
+          : "—";
+
+    }
+
+
+    /* DAILY TOTAL */
+
+    let daily = 0;
+
+    document.querySelectorAll(".track")
+      .forEach(track => {
+
+        const song =
+          track.dataset.song;
+
+        const value =
+          data[currentPlatform]?.daily?.[song];
+
+        if (value) {
+          daily += Number(value);
+        }
+
+      });
+
+    const dailyTotal =
+      document.getElementById("dailyTotal");
+
+    if (dailyTotal) {
+
+      dailyTotal.innerText =
+        daily
+          ? "+" + daily.toLocaleString("en-US")
+          : "—";
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Tracker error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   PLATFORM
+========================= */
+
+function changePlatform(platform, button) {
+
+  currentPlatform =
+    platform;
+
+  document.querySelectorAll(".platform-tab")
+    .forEach(tab =>
+      tab.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  updateTracker();
+}
+
+
+/* =========================
+   MODE
+========================= */
+
+function changeMode(mode, button) {
+
+  currentMode =
+    mode;
+
+  document.querySelectorAll(".mode-tab")
+    .forEach(tab =>
+      tab.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  updateTracker();
+}
+
+
+/* =========================
+   GENERAL TABS
+========================= */
+
+document.querySelectorAll('.tabs')
+  .forEach(tabGroup => {
+
+    const buttons =
+      tabGroup.querySelectorAll('.tab');
+
+    buttons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        buttons.forEach(b =>
+          b.classList.remove('selected')
+        );
+
+        button.classList.add('selected');
+
+      });
+
+    });
+
+  });
+
 
 /* =========================
    START TRACKER
 ========================= */
-
-async function updateTracker() {
-  try {
-    const response = await fetch("streams.json");
-    const data = await response.json();
-
-    document.querySelectorAll(".track").forEach(track => {
-      const number = track.querySelector(".track-number");
-      const platformText = track.querySelector(".track-platform");
-      const song = track.dataset.song;
-
-      const value = data[currentPlatform]?.[currentMode]?.[song];
-
-      number.innerText = value
-        ? Number(value).toLocaleString("en-US")
-        : "—";
-
-      platformText.innerText = currentPlatform;
-    });
-
-  } catch (error) {
-    console.error("Could not load streams:", error);
-  }
-}
 
 updateTracker();
 
 </script>
 
 </body>
-  </html>
+      </html>
