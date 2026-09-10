@@ -4,18 +4,11 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Summer Moon — ILLIT</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
   box-sizing:border-box;
@@ -32,51 +25,51 @@ body{
 }
 
 body{
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
   background:#111;
 }
 
 
 /* =========================
-   MAIN PHONE SCREEN
+   PHONE
 ========================= */
 
 .phone-screen{
   position:relative;
-
   width:100vw;
   height:100vh;
-
   overflow:hidden;
-
-  /*
-    SUA IMAGEM
-    O nome foi colocado exatamente como você enviou.
-  */
-
-  background-image:url("./90%20Sem%20T%C3%ADtulo_20260910051532.png");
-
-  background-size:cover;
-  background-position:center center;
-  background-repeat:no-repeat;
-
+  background:#111;
   color:white;
 }
 
 
 /* =========================
-   SOFT OVERLAY
+   WALLPAPER
+========================= */
+
+.summer-wallpaper{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+  object-position:center;
+
+  display:block;
+
+  z-index:0;
+}
+
+
+/* =========================
+   OVERLAY
 ========================= */
 
 .wallpaper-overlay{
   position:absolute;
-
   inset:0;
 
   background:rgba(0,0,0,.04);
@@ -113,15 +106,12 @@ body{
   font-size:14px;
   font-weight:600;
 
-  text-shadow:
-    0 1px 5px rgba(0,0,0,.3);
+  text-shadow:0 1px 5px rgba(0,0,0,.35);
 }
 
 .status-right{
   display:flex;
-
   align-items:center;
-
   gap:7px;
 
   font-size:12px;
@@ -138,7 +128,6 @@ body{
   height:11px;
 
   border:1.5px solid white;
-
   border-radius:3px;
 }
 
@@ -154,7 +143,6 @@ body{
   height:5px;
 
   background:white;
-
   border-radius:1px;
 }
 
@@ -170,7 +158,6 @@ body{
   height:4px;
 
   background:white;
-
   border-radius:1px;
 }
 
@@ -181,15 +168,12 @@ body{
 
 .lock-screen{
   position:absolute;
-
   inset:0;
 
   z-index:10;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
   padding-top:78px;
@@ -201,34 +185,27 @@ body{
 
 .lock-screen.hide{
   opacity:0;
-
   transform:scale(1.04);
-
   pointer-events:none;
 }
 
 .date{
   font-size:17px;
-
   font-weight:500;
 
-  text-shadow:
-    0 1px 7px rgba(0,0,0,.35);
+  text-shadow:0 1px 7px rgba(0,0,0,.35);
 }
 
 .time{
   margin-top:2px;
 
   font-size:76px;
-
   line-height:.95;
 
   font-weight:300;
-
   letter-spacing:-4px;
 
-  text-shadow:
-    0 2px 12px rgba(0,0,0,.3);
+  text-shadow:0 2px 12px rgba(0,0,0,.3);
 }
 
 
@@ -240,7 +217,6 @@ body{
   position:absolute;
 
   top:100px;
-
   left:17px;
   right:17px;
 
@@ -250,15 +226,14 @@ body{
 
   border-radius:23px;
 
-  background:rgba(248,244,249,.91);
+  background:rgba(248,244,249,.92);
 
   backdrop-filter:blur(25px);
   -webkit-backdrop-filter:blur(25px);
 
   color:#282128;
 
-  box-shadow:
-    0 10px 35px rgba(0,0,0,.22);
+  box-shadow:0 10px 35px rgba(0,0,0,.22);
 
   opacity:0;
 
@@ -287,9 +262,7 @@ body{
 
 .notification-top{
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   margin-bottom:7px;
@@ -297,13 +270,11 @@ body{
 
 .notification-app{
   display:flex;
-
   align-items:center;
 
   gap:8px;
 
   font-size:12px;
-
   font-weight:600;
 
   color:#777;
@@ -314,7 +285,6 @@ body{
   height:25px;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
@@ -329,13 +299,11 @@ body{
 
 .notification-time{
   font-size:11px;
-
   color:#888;
 }
 
 .notification-title{
   font-size:15px;
-
   font-weight:700;
 
   margin-bottom:3px;
@@ -343,7 +311,6 @@ body{
 
 .notification-text{
   font-size:14px;
-
   line-height:1.3;
 
   color:#444;
@@ -351,14 +318,13 @@ body{
 
 
 /* =========================
-   BOTTOM TEXT
+   HINT
 ========================= */
 
 .swipe-hint{
   position:absolute;
 
   bottom:34px;
-
   left:50%;
 
   transform:translateX(-50%);
@@ -371,16 +337,14 @@ body{
 
   color:white;
 
-  text-shadow:
-    0 1px 6px rgba(0,0,0,.5);
+  text-shadow:0 1px 6px rgba(0,0,0,.5);
 
   animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
 
-  0%,
-  100%{
+  0%,100%{
     opacity:.45;
   }
 
@@ -397,17 +361,13 @@ body{
 
 .summer-page{
   position:absolute;
-
   inset:0;
 
   z-index:50;
 
   overflow-y:auto;
 
-  padding:
-    62px
-    18px
-    80px;
+  padding:62px 18px 80px;
 
   background:
     linear-gradient(
@@ -444,7 +404,6 @@ body{
 
 .page-header{
   text-align:center;
-
   margin-bottom:25px;
 }
 
@@ -452,9 +411,7 @@ body{
   margin-bottom:8px;
 
   font-size:11px;
-
   text-transform:uppercase;
-
   letter-spacing:2px;
 
   color:#a4779e;
@@ -464,7 +421,6 @@ body{
   font-family:Georgia,serif;
 
   font-size:42px;
-
   font-weight:400;
 
   letter-spacing:-1px;
@@ -485,15 +441,13 @@ body{
 
 .intro{
   padding:20px;
-
   margin-bottom:20px;
 
   border-radius:27px;
 
   background:rgba(255,255,255,.63);
 
-  box-shadow:
-    0 8px 30px rgba(95,52,91,.08);
+  box-shadow:0 8px 30px rgba(95,52,91,.08);
 }
 
 .intro-title{
@@ -506,7 +460,6 @@ body{
 
 .intro-text{
   font-size:13px;
-
   line-height:1.65;
 
   color:#765d72;
@@ -514,54 +467,37 @@ body{
 
 
 /* =========================
-   CHARACTER TITLE
+   CHARACTERS
 ========================= */
 
 .characters-title{
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
-  margin:
-    25px
-    4px
-    12px;
+  margin:25px 4px 12px;
 }
 
 .characters-title h2{
   font-family:Georgia,serif;
 
   font-size:23px;
-
   font-weight:400;
 }
 
 .characters-title span{
   font-size:11px;
-
   color:#a27d9c;
 }
-
-
-/* =========================
-   CHARACTER GRID
-========================= */
 
 .character-list{
   display:grid;
 
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:12px;
 }
-
-
-/* =========================
-   CHARACTER CARD
-========================= */
 
 .character-card{
   position:relative;
@@ -576,18 +512,13 @@ body{
 
   background:rgba(255,255,255,.68);
 
-  border:
-    1px solid
-    rgba(255,255,255,.75);
+  border:1px solid rgba(255,255,255,.75);
 
-  box-shadow:
-    0 7px 20px
-    rgba(92,49,87,.07);
+  box-shadow:0 7px 20px rgba(92,49,87,.07);
 
   cursor:pointer;
 
-  transition:
-    transform .2s ease;
+  transition:transform .2s ease;
 }
 
 .character-card:active{
@@ -599,7 +530,6 @@ body{
   height:36px;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
@@ -625,11 +555,11 @@ body{
 
   font-size:10px;
 
+  color:#9a7b95;
+
   text-transform:uppercase;
 
   letter-spacing:.8px;
-
-  color:#9a7b95;
 }
 
 .character-arrow{
@@ -655,10 +585,7 @@ body{
 
   z-index:100;
 
-  padding:
-    65px
-    20px
-    35px;
+  padding:65px 20px 35px;
 
   overflow-y:auto;
 
@@ -672,8 +599,7 @@ body{
   transform:translateX(100%);
 
   transition:
-    transform .55s
-    cubic-bezier(.22,1,.36,1);
+    transform .55s cubic-bezier(.22,1,.36,1);
 }
 
 .character-detail.open{
@@ -687,9 +613,7 @@ body{
 
   color:#694866;
 
-  padding:
-    10px
-    15px;
+  padding:10px 15px;
 
   border-radius:18px;
 
@@ -705,7 +629,6 @@ body{
   height:64px;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
@@ -722,7 +645,6 @@ body{
   font-family:Georgia,serif;
 
   font-size:40px;
-
   font-weight:400;
 
   color:#4c2c47;
@@ -758,7 +680,6 @@ body{
   font-family:Georgia,serif;
 
   font-size:19px;
-
   font-weight:400;
 }
 
@@ -779,13 +700,11 @@ body{
 
   body{
     background:#ded5df;
-
     overflow:auto;
   }
 
   .phone-screen{
     width:390px;
-
     height:844px;
 
     margin:30px auto;
@@ -798,11 +717,7 @@ body{
   }
 
   .status-bar{
-    border-radius:
-      42px
-      42px
-      0
-      0;
+    border-radius:42px 42px 0 0;
   }
 
   .summer-page{
@@ -817,22 +732,26 @@ body{
 
 <body>
 
-
-<!-- =================================
-     PHONE
-================================= -->
-
 <div class="phone-screen">
 
 
-  <!-- wallpaper -->
+  <!-- =========================
+       SUA IMAGEM
+  ========================== -->
+
+  <img
+    class="summer-wallpaper"
+    src="90 Sem Título_20260910051532.png"
+    alt=""
+  >
+
 
   <div class="wallpaper-overlay"></div>
 
 
-  <!-- =================================
+  <!-- =========================
        STATUS BAR
-  ================================= -->
+  ========================== -->
 
   <div class="status-bar">
 
@@ -857,9 +776,9 @@ body{
   </div>
 
 
-  <!-- =================================
+  <!-- =========================
        LOCK SCREEN
-  ================================= -->
+  ========================== -->
 
   <div
     class="lock-screen"
@@ -883,9 +802,9 @@ body{
   </div>
 
 
-  <!-- =================================
+  <!-- =========================
        NOTIFICATION
-  ================================= -->
+  ========================== -->
 
   <div
     class="notification"
@@ -924,24 +843,19 @@ body{
   </div>
 
 
-  <!-- =================================
-       BOTTOM HINT
-  ================================= -->
-
   <div class="swipe-hint">
     tap the notification to open
   </div>
 
 
-  <!-- =================================
+  <!-- =========================
        SUMMER MOON
-  ================================= -->
+  ========================== -->
 
   <main
     class="summer-page"
     id="summerPage"
   >
-
 
     <div class="page-header">
 
@@ -960,8 +874,6 @@ body{
     </div>
 
 
-    <!-- INTRO -->
-
     <div class="intro">
 
       <div class="intro-title">
@@ -976,8 +888,6 @@ body{
 
     </div>
 
-
-    <!-- CHARACTERS -->
 
     <div class="characters-title">
 
@@ -994,8 +904,6 @@ body{
 
     <div class="character-list">
 
-
-      <!-- YEOREUM -->
 
       <div
         class="character-card"
@@ -1021,8 +929,6 @@ body{
       </div>
 
 
-      <!-- MISO -->
-
       <div
         class="character-card"
         onclick="openCharacter('miso')"
@@ -1046,8 +952,6 @@ body{
 
       </div>
 
-
-      <!-- AYEONG -->
 
       <div
         class="character-card"
@@ -1073,8 +977,6 @@ body{
       </div>
 
 
-      <!-- GAYUN -->
-
       <div
         class="character-card"
         onclick="openCharacter('gayun')"
@@ -1098,8 +1000,6 @@ body{
 
       </div>
 
-
-      <!-- UNHA -->
 
       <div
         class="character-card"
@@ -1125,8 +1025,6 @@ body{
       </div>
 
 
-      <!-- FERN -->
-
       <div
         class="character-card"
         onclick="openCharacter('fern')"
@@ -1150,8 +1048,6 @@ body{
 
       </div>
 
-
-      <!-- DOYUN -->
 
       <div
         class="character-card"
@@ -1177,8 +1073,6 @@ body{
       </div>
 
 
-      <!-- GOWON -->
-
       <div
         class="character-card"
         onclick="openCharacter('gowon')"
@@ -1202,8 +1096,6 @@ body{
 
       </div>
 
-
-      <!-- MIRAE -->
 
       <div
         class="character-card"
@@ -1234,9 +1126,9 @@ body{
   </main>
 
 
-  <!-- =================================
+  <!-- =========================
        CHARACTER DETAIL
-  ================================= -->
+  ========================== -->
 
   <div
     class="character-detail"
@@ -1305,15 +1197,14 @@ body{
 
   </div>
 
-
 </div>
 
 
 <script>
 
-/* =================================
+/* =========================
    NOTIFICATION
-================================= */
+========================= */
 
 window.addEventListener(
   "load",
@@ -1335,9 +1226,9 @@ window.addEventListener(
 );
 
 
-/* =================================
+/* =========================
    OPEN SUMMER MOON
-================================= */
+========================= */
 
 function openSummerMoon(){
 
@@ -1356,7 +1247,7 @@ function openSummerMoon(){
   document
     .querySelector(".swipe-hint")
     .style
-    .opacity = "0";
+    .opacity="0";
 
 
   setTimeout(
@@ -1374,9 +1265,9 @@ function openSummerMoon(){
 }
 
 
-/* =================================
+/* =========================
    CHARACTERS
-================================= */
+========================= */
 
 const characters = {
 
@@ -1392,7 +1283,6 @@ const characters = {
       "Her journey begins when a mysterious Fragment appears and changes the way she sees the world around her."
   },
 
-
   miso:{
     name:"Miso",
     role:"character",
@@ -1404,7 +1294,6 @@ const characters = {
     story:
       "Her story and relationships can be explored through the Summer Moon archive."
   },
-
 
   ayeong:{
     name:"Ayeong",
@@ -1418,7 +1307,6 @@ const characters = {
       "Her presence adds another perspective to the story and its mysterious events."
   },
 
-
   gayun:{
     name:"Gayun",
     role:"character",
@@ -1430,7 +1318,6 @@ const characters = {
     story:
       "Her story will be connected to the larger archive of Summer Moon."
   },
-
 
   unha:{
     name:"Unha",
@@ -1444,7 +1331,6 @@ const characters = {
       "More story information can be added here as the archive grows."
   },
 
-
   fern:{
     name:"Fern",
     role:"guardian",
@@ -1456,7 +1342,6 @@ const characters = {
     story:
       "His appearance brings another layer of mystery to Yeoreum's journey."
   },
-
 
   doyun:{
     name:"Doyun",
@@ -1470,7 +1355,6 @@ const characters = {
       "His interactions with the characters become part of the Summer Moon story."
   },
 
-
   gowon:{
     name:"Gowon",
     role:"character",
@@ -1482,7 +1366,6 @@ const characters = {
     story:
       "Her story can be expanded as new chapters and details are added to the archive."
   },
-
 
   mirae:{
     name:"Mirae",
@@ -1499,9 +1382,9 @@ const characters = {
 };
 
 
-/* =================================
+/* =========================
    OPEN CHARACTER
-================================= */
+========================= */
 
 function openCharacter(id){
 
@@ -1512,36 +1395,30 @@ function openCharacter(id){
     return;
   }
 
-
   document
     .getElementById("detailName")
     .textContent =
     character.name;
-
 
   document
     .getElementById("detailRole")
     .textContent =
     character.role;
 
-
   document
     .getElementById("detailSymbol")
     .textContent =
     character.symbol;
-
 
   document
     .getElementById("detailAbout")
     .textContent =
     character.about;
 
-
   document
     .getElementById("detailStory")
     .textContent =
     character.story;
-
 
   document
     .getElementById("characterDetail")
@@ -1551,9 +1428,9 @@ function openCharacter(id){
 }
 
 
-/* =================================
+/* =========================
    CLOSE CHARACTER
-================================= */
+========================= */
 
 function closeCharacter(){
 
@@ -1565,45 +1442,38 @@ function closeCharacter(){
 }
 
 
-/* =================================
+/* =========================
    TIME
-================================= */
+========================= */
 
 function updateTime(){
 
   const now =
     new Date();
 
-
   let hours =
     now.getHours();
 
-
   let minutes =
     now.getMinutes();
-
 
   hours =
     hours < 10
       ? "0" + hours
       : hours;
 
-
   minutes =
     minutes < 10
       ? "0" + minutes
       : minutes;
 
-
   const time =
     hours + ":" + minutes;
-
 
   document
     .getElementById("bigTime")
     .textContent =
     time;
-
 
   document
     .getElementById("statusTime")
@@ -1611,7 +1481,6 @@ function updateTime(){
     time;
 
 }
-
 
 updateTime();
 
@@ -1621,18 +1490,16 @@ setInterval(
 );
 
 
-/* =================================
+/* =========================
    DATE
-================================= */
+========================= */
 
 function updateDate(){
 
   const now =
     new Date();
 
-
   const days = [
-
     "Sunday",
     "Monday",
     "Tuesday",
@@ -1640,12 +1507,9 @@ function updateDate(){
     "Thursday",
     "Friday",
     "Saturday"
-
   ];
 
-
   const months = [
-
     "January",
     "February",
     "March",
@@ -1658,18 +1522,14 @@ function updateDate(){
     "October",
     "November",
     "December"
-
   ];
 
-
   const text =
-
     days[now.getDay()]
     + ", "
     + months[now.getMonth()]
     + " "
     + now.getDate();
-
 
   document
     .getElementById("dateText")
@@ -1677,7 +1537,6 @@ function updateDate(){
     text;
 
 }
-
 
 updateDate();
 
