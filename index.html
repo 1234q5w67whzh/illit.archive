@@ -2757,6 +2757,34 @@ shows & events
 
 </section>
 
+   <!-- MEMBER PHOTOS -->
+
+<section
+class="page"
+id="memberPhotos"
+>
+
+<button
+class="back"
+onclick="closeMemberPhotos()"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1 id="photosMemberName">
+Wonhee
+</h1>
+
+<p>
+individual gallery
+</p>
+
+</div>
+
+</section>
+
 <!-- MEMBER CALENDAR -->
 
 <section
@@ -4214,7 +4242,35 @@ function saveCalendarEvents(events){
     JSON.stringify(events)
   );
 }
+function openMemberPhotos(){
 
+  const name =
+    document.getElementById('detailName')?.innerText
+    || 'Wonhee';
+
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
+
+  const photos =
+    document.getElementById('memberPhotos');
+
+  if(photos){
+    photos.classList.add('active');
+  }
+
+  const nameElement =
+    document.getElementById('photosMemberName');
+
+  if(nameElement){
+    nameElement.innerText = name;
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+   }
 function openMemberSchedule(){
 
   const name =
