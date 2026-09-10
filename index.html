@@ -629,6 +629,76 @@ body {
   margin-top: 10px;
 }
 
+
+/* =========================
+   SUMMER MOON NOTIFICATION
+========================= */
+
+.summer-notification {
+  position: fixed;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-35px);
+  width: calc(100% - 28px);
+  max-width: 400px;
+  background: rgba(245,245,245,.94);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 5px 25px rgba(0,0,0,.15);
+}
+
+.summer-notification.show {
+  animation: summerNotificationIn .55s ease forwards;
+  pointer-events: auto;
+}
+
+@keyframes summerNotificationIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.summer-notification img {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.summer-notification-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.summer-notification-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.summer-notification-message {
+  font-size: 11px;
+  color: #666;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 /* RESPONSIVE */
 
 @media (min-width: 600px) {
@@ -651,6 +721,27 @@ body {
 </head>
 
 <body>
+
+<div class="summer-notification"
+     id="summerNotification"
+     onclick="openSummerMoon()">
+
+  <img src="91 Sem Título_20260910053652.png">
+
+  <div class="summer-notification-text">
+
+    <div class="summer-notification-title">
+      Summer Moon
+    </div>
+
+    <div class="summer-notification-message">
+      a new story is waiting for you ✦
+    </div>
+
+  </div>
+
+</div>
+
 
 <div class="phone">
 
@@ -723,7 +814,7 @@ body {
         </div>
 
         <div class="widget square"
-             onclick="openPage('summer')">
+             onclick="openSummerMoonExperience()">
 
           <div class="icon">✧</div>
           <h3>Summer Moon</h3>
@@ -1176,7 +1267,7 @@ body {
 
         <a class="button"
            href="#"
-           onclick="alert('Summer Moon archive coming soon ♡'); return false;">
+           onclick="showSummerNotification(); return false;">
           open archive
         </a>
 
@@ -1817,12 +1908,6 @@ function openPage(pageId, button) {
     page.classList.add('active');
   }
 
-  /*
-   * HOME keeps "Home" in the top header.
-   * Internal pages use their large page-heading title,
-   * so the title is not duplicated.
-   */
-
   const titles = {
     home: "Home",
     profile: "",
@@ -1856,6 +1941,51 @@ function openPage(pageId, button) {
 
 
 /* =========================
+   SUMMER MOON
+========================= */
+
+function openSummerMoonExperience() {
+
+  openPage("summer");
+
+  setTimeout(() => {
+    showSummerNotification();
+  }, 700);
+
+}
+
+
+function showSummerNotification() {
+
+  const notification =
+    document.getElementById("summerNotification");
+
+  if (!notification) return;
+
+  notification.classList.remove("show");
+
+  void notification.offsetWidth;
+
+  notification.classList.add("show");
+
+}
+
+
+function openSummerMoon() {
+
+  const notification =
+    document.getElementById("summerNotification");
+
+  if (notification) {
+    notification.classList.remove("show");
+  }
+
+  openPage("summer");
+
+}
+
+
+/* =========================
    MEMBER
 ========================= */
 
@@ -1880,11 +2010,6 @@ function member(name, korean) {
 
   document.getElementById("detailAvatar")
     .innerText = name.charAt(0);
-
-  /*
-   * Do not show the member name in the top header.
-   * The member detail page already displays the name.
-   */
 
   document.getElementById("headerTitle")
     .innerText = "";
@@ -2131,4 +2256,4 @@ updateTracker();
 </script>
 
 </body>
-  </html>
+            </html>
