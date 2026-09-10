@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      maximum-scale=1.0, user-scalable=no">
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
 <title>Summer Moon — ILLIT</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
   box-sizing:border-box;
@@ -22,79 +29,102 @@ body{
   width:100%;
   height:100%;
   overflow:hidden;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+
+body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
   background:#111;
 }
 
-button{
-  font-family:inherit;
-}
 
 /* =========================
-   iphone screen
+   MAIN PHONE SCREEN
 ========================= */
 
 .phone-screen{
   position:relative;
+
   width:100vw;
   height:100vh;
-  min-height:600px;
+
   overflow:hidden;
 
-  background-image:url("summer-moon-wallpaper.png");
+  /*
+    SUA IMAGEM
+    O nome foi colocado exatamente como você enviou.
+  */
+
+  background-image:url("./90%20Sem%20T%C3%ADtulo_20260910051532.png");
+
   background-size:cover;
-  background-position:center;
+  background-position:center center;
   background-repeat:no-repeat;
 
   color:white;
 }
 
+
 /* =========================
-   dark overlay
+   SOFT OVERLAY
 ========================= */
 
 .wallpaper-overlay{
   position:absolute;
+
   inset:0;
 
-  background:rgba(0,0,0,.08);
+  background:rgba(0,0,0,.04);
 
   pointer-events:none;
+
+  z-index:1;
 }
 
+
 /* =========================
-   iphone top area
+   STATUS BAR
 ========================= */
 
 .status-bar{
   position:absolute;
+
   top:0;
   left:0;
+
   width:100%;
   height:48px;
+
+  padding:0 24px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  padding:0 25px;
-
   z-index:20;
+
+  color:white;
 
   font-size:14px;
   font-weight:600;
 
-  color:white;
-
   text-shadow:
-    0 1px 4px rgba(0,0,0,.25);
+    0 1px 5px rgba(0,0,0,.3);
 }
 
 .status-right{
   display:flex;
+
   align-items:center;
+
   gap:7px;
-  font-size:13px;
+
+  font-size:12px;
 }
 
 .signal{
@@ -102,50 +132,67 @@ button{
 }
 
 .battery{
+  position:relative;
+
   width:22px;
   height:11px;
+
   border:1.5px solid white;
+
   border-radius:3px;
-  position:relative;
 }
 
-.battery:after{
+.battery::before{
   content:"";
-  position:absolute;
-  right:-3px;
-  top:3px;
-  width:2px;
-  height:4px;
-  background:white;
-  border-radius:1px;
-}
 
-.battery:before{
-  content:"";
   position:absolute;
+
   left:2px;
   top:2px;
+
   width:15px;
   height:5px;
+
   background:white;
+
   border-radius:1px;
 }
 
+.battery::after{
+  content:"";
+
+  position:absolute;
+
+  right:-3px;
+  top:3px;
+
+  width:2px;
+  height:4px;
+
+  background:white;
+
+  border-radius:1px;
+}
+
+
 /* =========================
-   lock screen
+   LOCK SCREEN
 ========================= */
 
 .lock-screen{
   position:absolute;
+
   inset:0;
 
   z-index:10;
 
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
 
-  padding-top:82px;
+  padding-top:78px;
 
   transition:
     opacity .7s ease,
@@ -154,40 +201,48 @@ button{
 
 .lock-screen.hide{
   opacity:0;
-  transform:scale(1.05);
+
+  transform:scale(1.04);
+
   pointer-events:none;
 }
 
 .date{
   font-size:17px;
+
   font-weight:500;
-  margin-bottom:2px;
 
   text-shadow:
-    0 1px 6px rgba(0,0,0,.3);
+    0 1px 7px rgba(0,0,0,.35);
 }
 
 .time{
-  font-size:74px;
+  margin-top:2px;
+
+  font-size:76px;
+
   line-height:.95;
+
   font-weight:300;
+
   letter-spacing:-4px;
 
   text-shadow:
-    0 2px 10px rgba(0,0,0,.25);
+    0 2px 12px rgba(0,0,0,.3);
 }
 
+
 /* =========================
-   notification
+   NOTIFICATION
 ========================= */
 
 .notification{
   position:absolute;
 
-  left:18px;
-  right:18px;
+  top:100px;
 
-  top:95px;
+  left:17px;
+  right:17px;
 
   z-index:30;
 
@@ -195,35 +250,35 @@ button{
 
   border-radius:23px;
 
-  background:rgba(245,240,247,.88);
+  background:rgba(248,244,249,.91);
 
   backdrop-filter:blur(25px);
   -webkit-backdrop-filter:blur(25px);
 
-  color:#222;
+  color:#282128;
 
   box-shadow:
     0 10px 35px rgba(0,0,0,.22);
 
-  transform:
-    translateY(-160px)
-    scale(.96);
-
   opacity:0;
+
+  transform:
+    translateY(-170px)
+    scale(.96);
 
   cursor:pointer;
 
   transition:
-    transform .8s cubic-bezier(.22,1,.36,1),
-    opacity .5s ease;
+    opacity .5s ease,
+    transform .8s cubic-bezier(.22,1,.36,1);
 }
 
 .notification.show{
+  opacity:1;
+
   transform:
     translateY(0)
     scale(1);
-
-  opacity:1;
 }
 
 .notification:active{
@@ -232,7 +287,9 @@ button{
 
 .notification-top{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   margin-bottom:7px;
@@ -240,10 +297,13 @@ button{
 
 .notification-app{
   display:flex;
+
   align-items:center;
+
   gap:8px;
 
   font-size:12px;
+
   font-weight:600;
 
   color:#777;
@@ -253,13 +313,14 @@ button{
   width:25px;
   height:25px;
 
-  border-radius:7px;
-
   display:flex;
+
   align-items:center;
   justify-content:center;
 
-  background:#d99bc7;
+  border-radius:7px;
+
+  background:#d994c5;
 
   color:white;
 
@@ -268,11 +329,13 @@ button{
 
 .notification-time{
   font-size:11px;
+
   color:#888;
 }
 
 .notification-title{
   font-size:15px;
+
   font-weight:700;
 
   margin-bottom:3px;
@@ -280,40 +343,44 @@ button{
 
 .notification-text{
   font-size:14px;
+
   line-height:1.3;
 
   color:#444;
 }
 
+
 /* =========================
-   swipe hint
+   BOTTOM TEXT
 ========================= */
 
 .swipe-hint{
   position:absolute;
+
   bottom:34px;
 
   left:50%;
+
   transform:translateX(-50%);
 
   z-index:20;
 
+  width:max-content;
+
   font-size:12px;
-  letter-spacing:.3px;
 
   color:white;
 
-  opacity:.9;
-
   text-shadow:
-    0 1px 6px rgba(0,0,0,.4);
+    0 1px 6px rgba(0,0,0,.5);
 
   animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
 
-  0%,100%{
+  0%,
+  100%{
     opacity:.45;
   }
 
@@ -323,30 +390,36 @@ button{
 
 }
 
+
 /* =========================
-   summer moon page
+   SUMMER MOON PAGE
 ========================= */
 
 .summer-page{
   position:absolute;
+
   inset:0;
 
   z-index:50;
 
   overflow-y:auto;
 
-  padding:60px 18px 80px;
+  padding:
+    62px
+    18px
+    80px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(252,235,248,.97),
-      rgba(239,220,243,.98)
+      rgba(252,235,248,.98),
+      rgba(239,220,243,.99)
     );
 
   color:#4d2746;
 
   opacity:0;
+
   transform:translateY(35px);
 
   pointer-events:none;
@@ -358,33 +431,40 @@ button{
 
 .summer-page.open{
   opacity:1;
+
   transform:translateY(0);
+
   pointer-events:auto;
 }
 
+
 /* =========================
-   header
+   HEADER
 ========================= */
 
 .page-header{
   text-align:center;
+
   margin-bottom:25px;
 }
 
 .small-label{
+  margin-bottom:8px;
+
   font-size:11px;
+
   text-transform:uppercase;
+
   letter-spacing:2px;
 
   color:#a4779e;
-
-  margin-bottom:8px;
 }
 
 .page-header h1{
   font-family:Georgia,serif;
 
   font-size:42px;
+
   font-weight:400;
 
   letter-spacing:-1px;
@@ -398,72 +478,90 @@ button{
   color:#8d6d88;
 }
 
+
 /* =========================
-   intro
+   INTRO
 ========================= */
 
 .intro{
   padding:20px;
 
+  margin-bottom:20px;
+
   border-radius:27px;
 
-  background:rgba(255,255,255,.62);
+  background:rgba(255,255,255,.63);
 
   box-shadow:
     0 8px 30px rgba(95,52,91,.08);
-
-  margin-bottom:20px;
 }
 
 .intro-title{
+  margin-bottom:8px;
+
   font-family:Georgia,serif;
 
   font-size:21px;
-
-  margin-bottom:8px;
 }
 
 .intro-text{
   font-size:13px;
+
   line-height:1.65;
 
   color:#765d72;
 }
 
+
 /* =========================
-   characters
+   CHARACTER TITLE
 ========================= */
 
 .characters-title{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  margin:25px 4px 12px;
+  margin:
+    25px
+    4px
+    12px;
 }
 
 .characters-title h2{
   font-family:Georgia,serif;
 
   font-size:23px;
+
   font-weight:400;
 }
 
 .characters-title span{
   font-size:11px;
+
   color:#a27d9c;
 }
 
+
 /* =========================
-   character cards
+   CHARACTER GRID
 ========================= */
 
 .character-list{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
 
   gap:12px;
 }
+
+
+/* =========================
+   CHARACTER CARD
+========================= */
 
 .character-card{
   position:relative;
@@ -472,22 +570,24 @@ button{
 
   padding:17px;
 
+  overflow:hidden;
+
   border-radius:24px;
 
   background:rgba(255,255,255,.68);
 
-  border:1px solid rgba(255,255,255,.75);
+  border:
+    1px solid
+    rgba(255,255,255,.75);
 
   box-shadow:
-    0 7px 20px rgba(92,49,87,.07);
+    0 7px 20px
+    rgba(92,49,87,.07);
 
   cursor:pointer;
 
-  overflow:hidden;
-
   transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+    transform .2s ease;
 }
 
 .character-card:active{
@@ -499,14 +599,15 @@ button{
   height:36px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
+
+  margin-bottom:20px;
 
   border-radius:13px;
 
   background:#efd4e9;
-
-  margin-bottom:20px;
 
   font-size:18px;
 }
@@ -524,10 +625,11 @@ button{
 
   font-size:10px;
 
-  color:#9a7b95;
-
   text-transform:uppercase;
+
   letter-spacing:.8px;
+
+  color:#9a7b95;
 }
 
 .character-arrow{
@@ -541,18 +643,22 @@ button{
   color:#b08aa9;
 }
 
+
 /* =========================
-   character detail
+   CHARACTER DETAIL
 ========================= */
 
 .character-detail{
-  position:fixed;
+  position:absolute;
 
   inset:0;
 
   z-index:100;
 
-  padding:65px 20px 35px;
+  padding:
+    65px
+    20px
+    35px;
 
   overflow-y:auto;
 
@@ -566,7 +672,8 @@ button{
   transform:translateX(100%);
 
   transition:
-    transform .55s cubic-bezier(.22,1,.36,1);
+    transform .55s
+    cubic-bezier(.22,1,.36,1);
 }
 
 .character-detail.open{
@@ -580,7 +687,9 @@ button{
 
   color:#694866;
 
-  padding:10px 15px;
+  padding:
+    10px
+    15px;
 
   border-radius:18px;
 
@@ -596,22 +705,24 @@ button{
   height:64px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
+
+  margin-bottom:18px;
 
   border-radius:22px;
 
   background:#e9c6df;
 
   font-size:29px;
-
-  margin-bottom:18px;
 }
 
 .detail-name{
   font-family:Georgia,serif;
 
   font-size:40px;
+
   font-weight:400;
 
   color:#4c2c47;
@@ -620,33 +731,35 @@ button{
 }
 
 .detail-role{
+  margin-bottom:25px;
+
   font-size:11px;
 
   text-transform:uppercase;
+
   letter-spacing:1.5px;
 
   color:#a07999;
-
-  margin-bottom:25px;
 }
 
 .detail-card{
   padding:20px;
 
-  background:rgba(255,255,255,.67);
+  margin-bottom:12px;
 
   border-radius:26px;
 
-  margin-bottom:12px;
+  background:rgba(255,255,255,.67);
 }
 
 .detail-card h3{
+  margin-bottom:8px;
+
   font-family:Georgia,serif;
 
   font-size:19px;
-  font-weight:400;
 
-  margin-bottom:8px;
+  font-weight:400;
 }
 
 .detail-card p{
@@ -657,14 +770,22 @@ button{
   color:#735b70;
 }
 
+
 /* =========================
-   desktop
+   DESKTOP
 ========================= */
 
 @media(min-width:700px){
 
+  body{
+    background:#ded5df;
+
+    overflow:auto;
+  }
+
   .phone-screen{
     width:390px;
+
     height:844px;
 
     margin:30px auto;
@@ -672,24 +793,19 @@ button{
     border-radius:42px;
 
     box-shadow:
-      0 20px 70px rgba(0,0,0,.35);
-  }
-
-  body{
-    background:#ded5df;
-    overflow:auto;
+      0 20px 70px
+      rgba(0,0,0,.35);
   }
 
   .status-bar{
-    border-radius:42px 42px 0 0;
+    border-radius:
+      42px
+      42px
+      0
+      0;
   }
 
   .summer-page{
-    border-radius:42px;
-  }
-
-  .character-detail{
-    position:absolute;
     border-radius:42px;
   }
 
@@ -698,13 +814,25 @@ button{
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =================================
+     PHONE
+================================= -->
 
 <div class="phone-screen">
 
+
+  <!-- wallpaper -->
+
   <div class="wallpaper-overlay"></div>
 
-  <!-- status bar -->
+
+  <!-- =================================
+       STATUS BAR
+  ================================= -->
 
   <div class="status-bar">
 
@@ -714,9 +842,13 @@ button{
 
     <div class="status-right">
 
-      <span class="signal">●●●</span>
+      <span class="signal">
+        ●●●
+      </span>
 
-      <span>⌁</span>
+      <span>
+        ⌁
+      </span>
 
       <div class="battery"></div>
 
@@ -725,22 +857,35 @@ button{
   </div>
 
 
-  <!-- lock screen -->
+  <!-- =================================
+       LOCK SCREEN
+  ================================= -->
 
-  <div class="lock-screen" id="lockScreen">
+  <div
+    class="lock-screen"
+    id="lockScreen"
+  >
 
-    <div class="date" id="dateText">
+    <div
+      class="date"
+      id="dateText"
+    >
       Thursday, September 10
     </div>
 
-    <div class="time" id="bigTime">
+    <div
+      class="time"
+      id="bigTime"
+    >
       9:41
     </div>
 
   </div>
 
 
-  <!-- notification -->
+  <!-- =================================
+       NOTIFICATION
+  ================================= -->
 
   <div
     class="notification"
@@ -779,18 +924,24 @@ button{
   </div>
 
 
-  <!-- bottom hint -->
+  <!-- =================================
+       BOTTOM HINT
+  ================================= -->
 
   <div class="swipe-hint">
     tap the notification to open
   </div>
 
 
-  <!-- =========================
-       summer moon
-  ========================= -->
+  <!-- =================================
+       SUMMER MOON
+  ================================= -->
 
-  <main class="summer-page" id="summerPage">
+  <main
+    class="summer-page"
+    id="summerPage"
+  >
+
 
     <div class="page-header">
 
@@ -809,6 +960,8 @@ button{
     </div>
 
 
+    <!-- INTRO -->
+
     <div class="intro">
 
       <div class="intro-title">
@@ -823,6 +976,8 @@ button{
 
     </div>
 
+
+    <!-- CHARACTERS -->
 
     <div class="characters-title">
 
@@ -839,7 +994,8 @@ button{
 
     <div class="character-list">
 
-      <!-- yeoreum -->
+
+      <!-- YEOREUM -->
 
       <div
         class="character-card"
@@ -865,7 +1021,7 @@ button{
       </div>
 
 
-      <!-- miso -->
+      <!-- MISO -->
 
       <div
         class="character-card"
@@ -891,7 +1047,7 @@ button{
       </div>
 
 
-      <!-- ayeong -->
+      <!-- AYEONG -->
 
       <div
         class="character-card"
@@ -917,7 +1073,7 @@ button{
       </div>
 
 
-      <!-- gayun -->
+      <!-- GAYUN -->
 
       <div
         class="character-card"
@@ -943,7 +1099,7 @@ button{
       </div>
 
 
-      <!-- unha -->
+      <!-- UNHA -->
 
       <div
         class="character-card"
@@ -969,7 +1125,7 @@ button{
       </div>
 
 
-      <!-- fern -->
+      <!-- FERN -->
 
       <div
         class="character-card"
@@ -995,7 +1151,7 @@ button{
       </div>
 
 
-      <!-- doyun -->
+      <!-- DOYUN -->
 
       <div
         class="character-card"
@@ -1021,7 +1177,7 @@ button{
       </div>
 
 
-      <!-- gowon -->
+      <!-- GOWON -->
 
       <div
         class="character-card"
@@ -1047,7 +1203,7 @@ button{
       </div>
 
 
-      <!-- mirae -->
+      <!-- MIRAE -->
 
       <div
         class="character-card"
@@ -1072,14 +1228,15 @@ button{
 
       </div>
 
+
     </div>
 
   </main>
 
 
-  <!-- =========================
-       character detail
-  ========================= -->
+  <!-- =================================
+       CHARACTER DETAIL
+  ================================= -->
 
   <div
     class="character-detail"
@@ -1093,6 +1250,7 @@ button{
       ‹ back
     </button>
 
+
     <div
       class="detail-symbol"
       id="detailSymbol"
@@ -1100,12 +1258,14 @@ button{
       ☾
     </div>
 
+
     <div
       class="detail-name"
       id="detailName"
     >
       Yeoreum
     </div>
+
 
     <div
       class="detail-role"
@@ -1145,32 +1305,39 @@ button{
 
   </div>
 
+
 </div>
 
 
 <script>
 
-/* =========================
-   notification timing
-========================= */
+/* =================================
+   NOTIFICATION
+================================= */
 
-window.addEventListener("load", function(){
+window.addEventListener(
+  "load",
+  function(){
 
-  setTimeout(function(){
+    setTimeout(
+      function(){
 
-    document
-      .getElementById("notification")
-      .classList
-      .add("show");
+        document
+          .getElementById("notification")
+          .classList
+          .add("show");
 
-  }, 1800);
+      },
+      1800
+    );
 
-});
+  }
+);
 
 
-/* =========================
-   open summer moon
-========================= */
+/* =================================
+   OPEN SUMMER MOON
+================================= */
 
 function openSummerMoon(){
 
@@ -1179,31 +1346,37 @@ function openSummerMoon(){
     .classList
     .remove("show");
 
+
   document
     .getElementById("lockScreen")
     .classList
     .add("hide");
+
 
   document
     .querySelector(".swipe-hint")
     .style
     .opacity = "0";
 
-  setTimeout(function(){
 
-    document
-      .getElementById("summerPage")
-      .classList
-      .add("open");
+  setTimeout(
+    function(){
 
-  }, 350);
+      document
+        .getElementById("summerPage")
+        .classList
+        .add("open");
+
+    },
+    350
+  );
 
 }
 
 
-/* =========================
-   character information
-========================= */
+/* =================================
+   CHARACTERS
+================================= */
 
 const characters = {
 
@@ -1211,106 +1384,164 @@ const characters = {
     name:"Yeoreum",
     role:"summer moon",
     symbol:"☾",
-    about:"Yeoreum is at the center of the Summer Moon story, where ordinary life begins to connect with a mysterious world of imagination.",
-    story:"her journey begins when a mysterious Fragment appears and changes the way she sees the world around her."
+
+    about:
+      "Yeoreum is at the center of the Summer Moon story, where ordinary life begins to connect with a mysterious world of imagination.",
+
+    story:
+      "Her journey begins when a mysterious Fragment appears and changes the way she sees the world around her."
   },
+
 
   miso:{
     name:"Miso",
     role:"character",
     symbol:"✿",
-    about:"Miso is one of the characters connected to the Summer Moon story.",
-    story:"her story and relationships can be explored through the Summer Moon archive."
+
+    about:
+      "Miso is one of the characters connected to the Summer Moon story.",
+
+    story:
+      "Her story and relationships can be explored through the Summer Moon archive."
   },
+
 
   ayeong:{
     name:"Ayeong",
     role:"character",
     symbol:"✦",
-    about:"Ayeong is part of the world surrounding Yeoreum and the Summer Moon universe.",
-    story:"her presence adds another perspective to the story and its mysterious events."
+
+    about:
+      "Ayeong is part of the world surrounding Yeoreum and the Summer Moon universe.",
+
+    story:
+      "Her presence adds another perspective to the story and its mysterious events."
   },
+
 
   gayun:{
     name:"Gayun",
     role:"character",
     symbol:"♡",
-    about:"Gayun is one of the characters appearing within the Summer Moon universe.",
-    story:"her story will be connected to the larger archive of Summer Moon."
+
+    about:
+      "Gayun is one of the characters appearing within the Summer Moon universe.",
+
+    story:
+      "Her story will be connected to the larger archive of Summer Moon."
   },
+
 
   unha:{
     name:"Unha",
     role:"character",
     symbol:"★",
-    about:"Unha belongs to the world of Summer Moon and its collection of characters.",
-    story:"more story information can be added here as the archive grows."
+
+    about:
+      "Unha belongs to the world of Summer Moon and its collection of characters.",
+
+    story:
+      "More story information can be added here as the archive grows."
   },
+
 
   fern:{
     name:"Fern",
     role:"guardian",
     symbol:"◇",
-    about:"Fern is a mysterious guardian-like character connected to the events surrounding the Fragment.",
-    story:"his appearance brings another layer of mystery to Yeoreum's journey."
+
+    about:
+      "Fern is a mysterious guardian-like character connected to the events surrounding the Fragment.",
+
+    story:
+      "His appearance brings another layer of mystery to Yeoreum's journey."
   },
+
 
   doyun:{
     name:"Doyun",
     role:"character",
     symbol:"⟡",
-    about:"Doyun is one of the characters connected to Yeoreum's everyday world.",
-    story:"his interactions with the characters become part of the Summer Moon story."
+
+    about:
+      "Doyun is one of the characters connected to Yeoreum's everyday world.",
+
+    story:
+      "His interactions with the characters become part of the Summer Moon story."
   },
+
 
   gowon:{
     name:"Gowon",
     role:"character",
     symbol:"♢",
-    about:"Gowon is a character within the Summer Moon universe with her own role and relationships.",
-    story:"her story can be expanded as new chapters and details are added to the archive."
+
+    about:
+      "Gowon is a character within the Summer Moon universe with her own role and relationships.",
+
+    story:
+      "Her story can be expanded as new chapters and details are added to the archive."
   },
+
 
   mirae:{
     name:"Mirae",
     role:"character",
     symbol:"✧",
-    about:"Mirae is one of the characters belonging to the Summer Moon universe.",
-    story:"her place within the story will be documented here as the archive develops."
+
+    about:
+      "Mirae is one of the characters belonging to the Summer Moon universe.",
+
+    story:
+      "Her place within the story will be documented here as the archive develops."
   }
 
 };
 
 
-/* =========================
-   open character
-========================= */
+/* =================================
+   OPEN CHARACTER
+================================= */
 
 function openCharacter(id){
 
-  const character = characters[id];
+  const character =
+    characters[id];
 
-  if(!character) return;
+  if(!character){
+    return;
+  }
+
 
   document
     .getElementById("detailName")
-    .textContent = character.name;
+    .textContent =
+    character.name;
+
 
   document
     .getElementById("detailRole")
-    .textContent = character.role;
+    .textContent =
+    character.role;
+
 
   document
     .getElementById("detailSymbol")
-    .textContent = character.symbol;
+    .textContent =
+    character.symbol;
+
 
   document
     .getElementById("detailAbout")
-    .textContent = character.about;
+    .textContent =
+    character.about;
+
 
   document
     .getElementById("detailStory")
-    .textContent = character.story;
+    .textContent =
+    character.story;
+
 
   document
     .getElementById("characterDetail")
@@ -1320,9 +1551,9 @@ function openCharacter(id){
 }
 
 
-/* =========================
-   close character
-========================= */
+/* =================================
+   CLOSE CHARACTER
+================================= */
 
 function closeCharacter(){
 
@@ -1334,54 +1565,74 @@ function closeCharacter(){
 }
 
 
-/* =========================
-   real time
-========================= */
+/* =================================
+   TIME
+================================= */
 
 function updateTime(){
 
-  const now = new Date();
+  const now =
+    new Date();
 
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
+
+  let hours =
+    now.getHours();
+
+
+  let minutes =
+    now.getMinutes();
+
 
   hours =
     hours < 10
       ? "0" + hours
       : hours;
 
+
   minutes =
     minutes < 10
       ? "0" + minutes
       : minutes;
 
+
   const time =
     hours + ":" + minutes;
 
+
   document
     .getElementById("bigTime")
-    .textContent = time;
+    .textContent =
+    time;
+
 
   document
     .getElementById("statusTime")
-    .textContent = time;
+    .textContent =
+    time;
 
 }
 
+
 updateTime();
 
-setInterval(updateTime,1000);
+setInterval(
+  updateTime,
+  1000
+);
 
 
-/* =========================
-   date
-========================= */
+/* =================================
+   DATE
+================================= */
 
 function updateDate(){
 
-  const now = new Date();
+  const now =
+    new Date();
+
 
   const days = [
+
     "Sunday",
     "Monday",
     "Tuesday",
@@ -1389,9 +1640,12 @@ function updateDate(){
     "Thursday",
     "Friday",
     "Saturday"
+
   ];
 
+
   const months = [
+
     "January",
     "February",
     "March",
@@ -1404,20 +1658,26 @@ function updateDate(){
     "October",
     "November",
     "December"
+
   ];
 
+
   const text =
+
     days[now.getDay()]
     + ", "
     + months[now.getMonth()]
     + " "
     + now.getDate();
 
+
   document
     .getElementById("dateText")
-    .textContent = text;
+    .textContent =
+    text;
 
 }
+
 
 updateDate();
 
