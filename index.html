@@ -7,656 +7,566 @@
 <title>ILLIT ARCHIVE</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f8f8f8;
-    color: #333;
+  background: #f5f5f5;
+  color: #171717;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 /* HEADER */
 
 header {
-    background: #ffffff;
-    border-bottom: 1px solid #e9e9e9;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #dedede;
+  padding: 18px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.header-inner {
-    max-width: 1150px;
-    margin: auto;
-    padding: 20px;
+.nav {
+  max-width: 1250px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
-.logo span {
-    font-weight: 400;
+.menu {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-nav {
-    display: flex;
-    gap: 22px;
-    overflow-x: auto;
-    white-space: nowrap;
+.menu a {
+  font-size: 10px;
+  color: #777;
+  text-transform: uppercase;
 }
 
-nav a {
-    font-size: 12px;
-    color: #777;
-}
-
-nav a:hover {
-    color: #111;
+.menu a:hover {
+  color: #111;
 }
 
 /* MAIN */
 
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 35px 20px;
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 35px 5% 70px;
 }
 
-/* WELCOME */
+/* HERO */
 
-.welcome {
-    background: white;
-    padding: 35px;
-    border: 1px solid #eee;
-    margin-bottom: 20px;
+.hero {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  padding: 45px;
+  margin-bottom: 18px;
 }
 
-.welcome h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
+.hero-small {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 15px;
 }
 
-.welcome p {
-    color: #888;
-    font-size: 13px;
+.hero h1 {
+  font-size: clamp(38px, 7vw, 76px);
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+}
+
+.hero p {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
 }
 
 /* GRID */
 
 .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-/* BOX */
-
-.box {
-    background: white;
-    border: 1px solid #eee;
-    padding: 25px;
+.card {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  padding: 25px;
+  min-height: 190px;
 }
 
-.box-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 13px;
+  margin-bottom: 20px;
 }
 
-.box-title h2 {
-    font-size: 16px;
+.card-title h2 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.more {
-    font-size: 11px;
-    color: #999;
+.card-title span {
+  font-size: 9px;
+  color: #aaa;
 }
 
 /* SCHEDULE */
 
-.schedule-item {
-    display: flex;
-    gap: 18px;
-    padding: 13px 0;
-    border-bottom: 1px solid #f0f0f0;
+.schedule-date {
+  font-size: 10px;
+  color: #999;
+  margin-bottom: 8px;
 }
 
-.date {
-    min-width: 55px;
-    font-size: 11px;
-    color: #999;
+.schedule-name {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.schedule-item strong {
-    font-size: 13px;
-}
-
-.schedule-item p {
-    font-size: 11px;
-    color: #999;
-    margin-top: 4px;
-}
-
-/* NEWS */
-
-.news-item {
-    padding: 13px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.news-item h3 {
-    font-size: 13px;
-    font-weight: 500;
-}
-
-.news-item span {
-    display: block;
-    margin-top: 5px;
-    font-size: 10px;
-    color: #aaa;
+.schedule-place {
+  font-size: 11px;
+  color: #777;
+  margin-top: 7px;
 }
 
 /* STREAMING */
 
-.streaming {
-    grid-column: span 2;
+.stream-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 13px 0;
 }
 
-.platforms {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+.stream-row:last-child {
+  border-bottom: none;
 }
 
-.platform {
-    border: 1px solid #ddd;
-    padding: 9px 18px;
-    font-size: 11px;
-    cursor: pointer;
+.stream-name {
+  font-size: 11px;
 }
 
-.platform.active {
-    background: #222;
-    color: white;
+.stream-number {
+  font-size: 11px;
+  font-weight: 600;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.stat {
-    background: #fafafa;
-    padding: 20px;
-    text-align: center;
-}
-
-.stat span {
-    display: block;
-    color: #999;
-    font-size: 10px;
-    margin-bottom: 8px;
-}
-
-.stat strong {
-    font-size: 20px;
-}
-
-/* TRACK */
-
-.track {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 12px;
-}
-
-.track span {
-    color: #999;
-}
-
-/* LINKS */
+/* QUICK LINKS */
 
 .links {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
-.link {
-    border: 1px solid #eee;
-    padding: 18px 10px;
-    text-align: center;
-    background: white;
-    font-size: 11px;
+.links a {
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #666;
+  transition: 0.2s;
 }
 
-.link:hover {
-    background: #f5f5f5;
+.links a:hover {
+  background: #f4f4f4;
+  color: #111;
 }
 
 /* MEMBERS */
 
 .members {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
 }
 
 .member {
-    border: 1px solid #eee;
-    padding: 20px 5px;
-    text-align: center;
-    background: #fff;
-}
-
-.member strong {
-    display: block;
-    font-size: 13px;
+  border: 1px solid #ddd;
+  padding: 16px 5px;
+  text-align: center;
+  font-size: 10px;
 }
 
 .member span {
-    font-size: 10px;
-    color: #aaa;
+  display: block;
+  color: #aaa;
+  font-size: 8px;
+  margin-top: 5px;
+}
+
+/* BIG CARD */
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.archive-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.archive-item {
+  border: 1px solid #ddd;
+  padding: 18px;
+}
+
+.archive-item strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.archive-item span {
+  font-size: 9px;
+  color: #999;
 }
 
 /* FOOTER */
 
 footer {
-    margin-top: 50px;
-    padding: 35px;
-    text-align: center;
-    color: #aaa;
-    font-size: 10px;
+  border-top: 1px solid #ddd;
+  padding: 25px 5%;
+  text-align: center;
+  background: #fff;
+}
+
+footer p {
+  font-size: 9px;
+  color: #999;
+  text-transform: uppercase;
 }
 
 /* MOBILE */
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
+  header {
+    padding: 15px;
+  }
 
-    .streaming {
-        grid-column: span 1;
-    }
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-    .stats {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+  .menu {
+    gap: 10px;
+  }
 
-    .links {
-        grid-template-columns: 1fr 1fr;
-    }
+  main {
+    padding: 20px 15px 50px;
+  }
 
-    .members {
-        grid-template-columns: repeat(5, 1fr);
-    }
+  .hero {
+    padding: 28px;
+  }
 
-    .member {
-        padding: 15px 2px;
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-    .member strong {
-        font-size: 10px;
-    }
+  .full {
+    grid-column: auto;
+  }
 
-    .welcome {
-        padding: 25px;
-    }
+  .members {
+    grid-template-columns: repeat(5, 1fr);
+  }
 
+  .archive-list {
+    grid-template-columns: 1fr;
+  }
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+  <div class="nav">
 
-<div class="header-inner">
+    <a href="index.html" class="logo">ILLIT ARCHIVE</a>
 
-<div class="logo">
-ILLIT <span>ARCHIVE</span>
-</div>
+    <nav class="menu">
+      <a href="index.html">home</a>
+      <a href="#">profile</a>
+      <a href="#">discography</a>
+      <a href="#">summer moon</a>
+      <a href="#">tour</a>
+      <a href="#">mv</a>
+      <a href="#">news</a>
+      <a href="#">schedule</a>
+      <a href="#">activities</a>
+      <a href="#">gallery</a>
+    </nav>
 
-<nav>
-
-<a href="index.html">HOME</a>
-<a href="profile.html">PROFILE</a>
-<a href="discography.html">DISCOGRAPHY</a>
-<a href="summer-moon.html">SUMMER MOON</a>
-<a href="mv.html">MV</a>
-<a href="news.html">NEWS</a>
-<a href="schedule.html">SCHEDULE</a>
-<a href="activities.html">ACTIVITIES</a>
-
-</nav>
-
-</div>
-
+  </div>
 </header>
 
 
-<main class="container">
+<main>
 
+  <!-- HERO -->
 
-<section class="welcome">
+  <section class="hero">
 
-<h1>ILLIT</h1>
+    <div class="hero-small">
+      official fan archive
+    </div>
 
-<p>
-archive, schedules, music, activities & more
-</p>
+    <h1>ILLIT<br>ARCHIVE</h1>
 
-</section>
+    <p>
+      an archive dedicated to illit and their activities.
+    </p>
 
+  </section>
 
-<div class="grid">
 
+  <section class="grid">
 
-<!-- SCHEDULE -->
 
-<section class="box">
+    <!-- NEXT SCHEDULE -->
 
-<div class="box-title">
+    <div class="card">
 
-<h2>NEXT SCHEDULE</h2>
+      <div class="card-title">
+        <h2>next schedule</h2>
+        <span>schedule</span>
+      </div>
 
-<a class="more" href="schedule.html">VIEW ALL →</a>
+      <div class="schedule-date">
+        upcoming
+      </div>
 
-</div>
+      <div class="schedule-name">
+        ILLIT
+      </div>
 
-<div class="schedule-item">
+      <div class="schedule-place">
+        check the schedule for upcoming activities
+      </div>
 
-<div class="date">SEP 10</div>
+    </div>
 
-<div>
 
-<strong>ILLIT</strong>
+    <!-- PRESS START -->
 
-<p>Schedule information</p>
+    <div class="card">
 
-</div>
+      <div class="card-title">
+        <h2>tour</h2>
+        <span>press start</span>
+      </div>
 
-</div>
+      <div class="schedule-name">
+        ILLIT PRESS START
+      </div>
 
-<div class="schedule-item">
+      <div class="schedule-place">
+        tour information · dates · venues
+      </div>
 
-<div class="date">SEP 11</div>
+    </div>
 
-<div>
 
-<strong>ILLIT</strong>
+    <!-- STREAMING -->
 
-<p>Upcoming activity</p>
+    <div class="card">
 
-</div>
+      <div class="card-title">
+        <h2>streaming</h2>
+        <span>live tracker</span>
+      </div>
 
-</div>
+      <div class="stream-row">
+        <span class="stream-name">spotify</span>
+        <span class="stream-number">—</span>
+      </div>
 
-</section>
+      <div class="stream-row">
+        <span class="stream-name">melon</span>
+        <span class="stream-number">—</span>
+      </div>
 
+      <div class="stream-row">
+        <span class="stream-name">youtube</span>
+        <span class="stream-number">—</span>
+      </div>
 
-<!-- NEWS -->
+    </div>
 
-<section class="box">
 
-<div class="box-title">
+    <!-- QUICK LINKS -->
 
-<h2>LATEST NEWS</h2>
+    <div class="card">
 
-<a class="more" href="news.html">VIEW ALL →</a>
+      <div class="card-title">
+        <h2>official</h2>
+        <span>links</span>
+      </div>
 
-</div>
+      <div class="links">
 
-<div class="news-item">
+        <a href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/" target="_blank">
+          spotify
+        </a>
 
-<h3>ILLIT latest updates</h3>
+        <a href="https://www.melon.com/artist/detail.htm?artistId=3743525" target="_blank">
+          melon
+        </a>
 
-<span>2026.09.10</span>
+        <a href="https://www.youtube.com/@ILLIT_official" target="_blank">
+          youtube
+        </a>
 
-</div>
+        <a href="https://www.instagram.com/ILLIT_official/" target="_blank">
+          instagram
+        </a>
 
-<div class="news-item">
+        <a href="https://weverse.io/illit/" target="_blank">
+          weverse
+        </a>
 
-<h3>New activities & appearances</h3>
+        <a href="#">
+          webtoon
+        </a>
 
-<span>2026.09.09</span>
+      </div>
 
-</div>
+    </div>
 
-<div class="news-item">
 
-<h3>Official updates</h3>
+    <!-- MEMBERS -->
 
-<span>2026.09.08</span>
+    <div class="card full">
 
-</div>
+      <div class="card-title">
+        <h2>members</h2>
+        <span>illit</span>
+      </div>
 
-</section>
+      <div class="members">
 
+        <div class="member">
+          yunah
+          <span>윤아</span>
+        </div>
 
-<!-- STREAMING -->
+        <div class="member">
+          minju
+          <span>민주</span>
+        </div>
 
-<section class="box streaming">
+        <div class="member">
+          moka
+          <span>모카</span>
+        </div>
 
-<div class="box-title">
+        <div class="member">
+          wonhee
+          <span>원희</span>
+        </div>
 
-<h2>STREAMING</h2>
+        <div class="member">
+          iroha
+          <span>이로하</span>
+        </div>
 
-</div>
+      </div>
 
-<div class="platforms">
+    </div>
 
-<div class="platform active">SPOTIFY</div>
 
-<div class="platform">MELON</div>
+    <!-- ARCHIVE -->
 
-</div>
+    <div class="card full">
 
-<div class="stats">
+      <div class="card-title">
+        <h2>archive</h2>
+        <span>explore</span>
+      </div>
 
-<div class="stat">
+      <div class="archive-list">
 
-<span>TOTAL STREAMS</span>
+        <a href="#" class="archive-item">
+          <strong>profile</strong>
+          <span>members · group information</span>
+        </a>
 
-<strong>3.0B</strong>
+        <a href="#" class="archive-item">
+          <strong>discography</strong>
+          <span>korean · japanese · singles</span>
+        </a>
 
-</div>
+        <a href="#" class="archive-item">
+          <strong>summer moon</strong>
+          <span>webtoon · lore · characters</span>
+        </a>
 
-<div class="stat">
+        <a href="#" class="archive-item">
+          <strong>mv</strong>
+          <span>music videos · appearances</span>
+        </a>
 
-<span>DAILY STREAMS</span>
+        <a href="#" class="archive-item">
+          <strong>news</strong>
+          <span>latest updates</span>
+        </a>
 
-<strong>6.0M</strong>
+        <a href="#" class="archive-item">
+          <strong>individual activities</strong>
+          <span>solo schedules · appearances</span>
+        </a>
 
-</div>
+      </div>
 
-<div class="stat">
+    </div>
 
-<span>RANKING</span>
+  </section>
 
-<strong>#1</strong>
-
-</div>
-
-</div>
-
-<br>
-
-<div class="track">
-
-<strong>MAGNETIC</strong>
-
-<span>877M</span>
-
-</div>
-
-<div class="track">
-
-<strong>NOT CUTE ANYMORE</strong>
-
-<span>230M</span>
-
-</div>
-
-<div class="track">
-
-<strong>TICK-TACK</strong>
-
-<span>213M</span>
-
-</div>
-
-<div class="track">
-
-<strong>CHERISH (MY LOVE)</strong>
-
-<span>207M</span>
-
-</div>
-
-</section>
-
-
-<!-- MEMBERS -->
-
-<section class="box">
-
-<div class="box-title">
-
-<h2>MEMBERS</h2>
-
-<a class="more" href="profile.html">VIEW ALL →</a>
-
-</div>
-
-<div class="members">
-
-<a class="member" href="yunah.html">
-
-<strong>YUNAH</strong>
-
-<span>윤아</span>
-
-</a>
-
-<a class="member" href="minju.html">
-
-<strong>MINJU</strong>
-
-<span>민주</span>
-
-</a>
-
-<a class="member" href="moka.html">
-
-<strong>MOKA</strong>
-
-<span>모카</span>
-
-</a>
-
-<a class="member" href="wonhee.html">
-
-<strong>WONHEE</strong>
-
-<span>원희</span>
-
-</a>
-
-<a class="member" href="iroha.html">
-
-<strong>IROHA</strong>
-
-<span>이로하</span>
-
-</a>
-
-</div>
-
-</section>
-
-
-<!-- OFFICIAL -->
-
-<section class="box streaming">
-
-<div class="box-title">
-
-<h2>OFFICIAL</h2>
-
-</div>
-
-<div class="links">
-
-<a class="link" href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/" target="_blank">
-SPOTIFY
-</a>
-
-<a class="link" href="https://www.melon.com/artist/detail.htm?artistId=3743525" target="_blank">
-MELON
-</a>
-
-<a class="link" href="https://www.youtube.com/@ILLIT_official" target="_blank">
-YOUTUBE
-</a>
-
-<a class="link" href="https://www.instagram.com/ILLIT_official/" target="_blank">
-INSTAGRAM
-</a>
-
-<a class="link" href="https://weverse.io/illit/" target="_blank">
-WEVERSE
-</a>
-
-<a class="link" href="#">
-WEBTOON
-</a>
-
-<a class="link" href="summer-moon.html">
-SUMMER MOON
-</a>
-
-<a class="link" href="discography.html">
-MUSIC
-</a>
-
-</div>
-
-</section>
-
-
-</div>
+</main>
 
 
 <footer>
-
-ILLIT ARCHIVE ♡
-
+  <p>illit archive · fan-made website</p>
 </footer>
-
-
-</main>
 
 </body>
 </html>
