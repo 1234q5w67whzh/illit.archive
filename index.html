@@ -1940,119 +1940,34 @@ function goBack() {
 
 function updateTime() {
 
-  const now = new Date();
-
-  let hour = now.getHours();
-  let minute = now.getMinutes();
-
-  minute = minute.toString().padStart(2,"0");
-
-  document.getElementById("time")
-    .innerText = hour + ":" + minute;
-}
-
-updateTime();
-
-setInterval(updateTime,60000);
-
-
-/* =========================
-   STREAMING PLATFORM
-========================= */
-
-let currentPlatform = "spotify";
-let currentMode = "total";
-
-function changePlatform(platform, button) {
-
-  currentPlatform = platform;
-
-  document.querySelectorAll('.platform-tab')
-    .forEach(btn => {
-      btn.classList.remove('active');
-    });
-
-  button.classList.add('active');
-
-  updateTracker();
-}
-
-
-/* =========================
-   STREAMING MODE
-========================= */
-
-function changeMode(mode, button) {
-
-  currentMode = mode;
-
-  document.querySelectorAll('.mode-tab')
-    .forEach(btn => {
-      btn.classList.remove('active');
-    });
-
-  button.classList.add('active');
-
-  updateTracker();
-}
-
-
-/* =========================
-   UPDATE TRACKER
-========================= */
-
-function updateTracker() {
-
-  document.querySelectorAll('.track').forEach(track => {
-
-    const number = track.querySelector('.track-number');
-    const platformText = track.querySelector('.track-platform');
-
-    const value =
-      number.getAttribute(
-        "data-" +
-        currentPlatform +
-        "-" +
-        currentMode
-      );
-
-    number.innerText = value || "—";
-
-    platformText.innerText = currentPlatform;
-
-  });
-
-}
-
-
-/* =========================
-   GENERAL TABS
-========================= */
-
-document.querySelectorAll('.tabs').forEach(tabGroup => {
-
-  const buttons = tabGroup.querySelectorAll('.tab');
-
-  buttons.forEach(button => {
-
-    button.addEventListener('click', () => {
-
-      buttons.forEach(b =>
-        b.classList.remove('selected')
-      );
-
-      button.classList.add('selected');
-
-    });
-
-  });
-
-});
-
 
 /* =========================
    START TRACKER
 ========================= */
+
+async function updateTracker() {
+  try {
+    const response = await fetch("streams.json");
+    const data = await response.json();
+
+    document.querySelectorAll(".track").forEach(track => {
+      const number = track.querySelector(".track-number");
+      const platformText = track.querySelector(".track-platform");
+      const song = track.dataset.song;
+
+      const value = data[currentPlatform]?.[currentMode]?.[song];
+
+      number.innerText = value
+        ? Number(value).toLocaleString("en-US")
+        : "—";
+
+      platformText.innerText = currentPlatform;
+    });
+
+  } catch (error) {
+    console.error("Could not load streams:", error);
+  }
+}
 
 updateTracker();
 
