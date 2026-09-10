@@ -1,262 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ILLIT Archive</title>
+<title>ILLIT ARCHIVE</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff7fb;
-      color: #333;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    header {
-      background: white;
-      padding: 18px 25px;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8f8f8;
+    color: #333;
+}
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-    nav a {
-      color: #555;
-      text-decoration: none;
-      font-size: 12px;
-    }
+/* HEADER */
 
-    nav a:hover {
-      color: #e58bb1;
-    }
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #e9e9e9;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-    .hero {
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(
-        rgba(255,255,255,0.15),
-        rgba(255,190,220,0.35)
-      );
-    }
+.header-inner {
+    max-width: 1150px;
+    margin: auto;
+    padding: 20px;
+}
 
-    .hero h1 {
-      font-size: clamp(42px, 10vw, 90px);
-      color: white;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
-      margin-bottom: 25px;
-    }
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
 
-    .play-button {
-      display: inline-block;
-      background: white;
-      color: #555;
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 13px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      transition: 0.2s;
-    }
+.logo span {
+    font-weight: 400;
+}
 
-    .play-button:hover {
-      transform: translateY(-3px);
-    }
+nav {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
 
-    .content {
-      max-width: 1000px;
-      margin: auto;
-      padding: 55px 20px;
-    }
+nav a {
+    font-size: 12px;
+    color: #777;
+}
 
-    .intro {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+nav a:hover {
+    color: #111;
+}
 
-    .intro h2 {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
+/* MAIN */
 
-    .intro p {
-      color: #777;
-      font-size: 14px;
-    }
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 20px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+/* WELCOME */
 
-    .card {
-      background: white;
-      border-radius: 22px;
-      padding: 28px;
-      min-height: 170px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.06);
-      text-decoration: none;
-      color: #333;
-      transition: 0.2s;
-    }
+.welcome {
+    background: white;
+    padding: 35px;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+.welcome h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
 
-    .card h3 {
-      color: #e28caf;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
+.welcome p {
+    color: #888;
+    font-size: 13px;
+}
 
-    .card p {
-      color: #777;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+/* GRID */
 
-    .wide {
-      grid-column: span 2;
-    }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
-    footer {
-      background: #29242a;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 30px;
-    }
+/* BOX */
 
-    footer p {
-      font-size: 12px;
-      opacity: 0.7;
-    }
+.box {
+    background: white;
+    border: 1px solid #eee;
+    padding: 25px;
+}
 
-    @media (max-width: 650px) {
-      .cards {
+.box-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.box-title h2 {
+    font-size: 16px;
+}
+
+.more {
+    font-size: 11px;
+    color: #999;
+}
+
+/* SCHEDULE */
+
+.schedule-item {
+    display: flex;
+    gap: 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.date {
+    min-width: 55px;
+    font-size: 11px;
+    color: #999;
+}
+
+.schedule-item strong {
+    font-size: 13px;
+}
+
+.schedule-item p {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+}
+
+/* NEWS */
+
+.news-item {
+    padding: 13px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.news-item h3 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.news-item span {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    color: #aaa;
+}
+
+/* STREAMING */
+
+.streaming {
+    grid-column: span 2;
+}
+
+.platforms {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.platform {
+    border: 1px solid #ddd;
+    padding: 9px 18px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.platform.active {
+    background: #222;
+    color: white;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    background: #fafafa;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat span {
+    display: block;
+    color: #999;
+    font-size: 10px;
+    margin-bottom: 8px;
+}
+
+.stat strong {
+    font-size: 20px;
+}
+
+/* TRACK */
+
+.track {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.track span {
+    color: #999;
+}
+
+/* LINKS */
+
+.links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.link {
+    border: 1px solid #eee;
+    padding: 18px 10px;
+    text-align: center;
+    background: white;
+    font-size: 11px;
+}
+
+.link:hover {
+    background: #f5f5f5;
+}
+
+/* MEMBERS */
+
+.members {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.member {
+    border: 1px solid #eee;
+    padding: 20px 5px;
+    text-align: center;
+    background: #fff;
+}
+
+.member strong {
+    display: block;
+    font-size: 13px;
+}
+
+.member span {
+    font-size: 10px;
+    color: #aaa;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 50px;
+    padding: 35px;
+    text-align: center;
+    color: #aaa;
+    font-size: 10px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .grid {
         grid-template-columns: 1fr;
-      }
-
-      .wide {
-        grid-column: span 1;
-      }
-
-      nav {
-        gap: 10px;
-      }
     }
-  </style>
+
+    .streaming {
+        grid-column: span 1;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .links {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .members {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .member {
+        padding: 15px 2px;
+    }
+
+    .member strong {
+        font-size: 10px;
+    }
+
+    .welcome {
+        padding: 25px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="profile.html">Profile</a>
-    <a href="discography.html">Discography</a>
-    <a href="summer-moon.html">Summer Moon</a>
-    <a href="mv.html">MV</a>
-    <a href="news.html">News</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="activities.html">Individual Activities</a>
-  </nav>
+
+<div class="header-inner">
+
+<div class="logo">
+ILLIT <span>ARCHIVE</span>
+</div>
+
+<nav>
+
+<a href="index.html">HOME</a>
+<a href="profile.html">PROFILE</a>
+<a href="discography.html">DISCOGRAPHY</a>
+<a href="summer-moon.html">SUMMER MOON</a>
+<a href="mv.html">MV</a>
+<a href="news.html">NEWS</a>
+<a href="schedule.html">SCHEDULE</a>
+<a href="activities.html">ACTIVITIES</a>
+
+</nav>
+
+</div>
+
 </header>
 
-<section class="hero">
-  <div>
-    <h1>This is our world<br>(Ah ah)</h1>
 
-    <a class="play-button" href="summer-moon.html">
-      PLAY THE WORLD
-    </a>
-  </div>
+<main class="container">
+
+
+<section class="welcome">
+
+<h1>ILLIT</h1>
+
+<p>
+archive, schedules, music, activities & more
+</p>
+
 </section>
 
-<main class="content">
 
-  <div class="intro">
-    <h2>ILLIT Archive</h2>
-    <p>an archive dedicated to ILLIT and their world ♡</p>
-  </div>
+<div class="grid">
 
-  <div class="cards">
 
-    <a class="card" href="profile.html">
-      <h3>Profile</h3>
-      <p>Meet Yunah, Minju, Moka, Wonhee and Iroha.</p>
-    </a>
+<!-- SCHEDULE -->
 
-    <a class="card" href="discography.html">
-      <h3>Discography</h3>
-      <p>Albums, releases, songs and music information.</p>
-    </a>
+<section class="box">
 
-    <a class="card" href="summer-moon.html">
-      <h3>Summer Moon</h3>
-      <p>Explore the story, characters and lore.</p>
-    </a>
+<div class="box-title">
 
-    <a class="card" href="mv.html">
-      <h3>Music Videos</h3>
-      <p>Explore ILLIT's music videos and eras.</p>
-    </a>
+<h2>NEXT SCHEDULE</h2>
 
-    <a class="card" href="news.html">
-      <h3>News</h3>
-      <p>Updates, announcements and important moments.</p>
-    </a>
+<a class="more" href="schedule.html">VIEW ALL →</a>
 
-    <a class="card" href="schedule.html">
-      <h3>Schedule</h3>
-      <p>Upcoming appearances, performances and events.</p>
-    </a>
+</div>
 
-    <a class="card" href="activities.html">
-      <h3>Individual Activities</h3>
-      <p>Individual schedules and activities of the members.</p>
-    </a>
+<div class="schedule-item">
 
-    <a class="card" href="streaming.html">
-      <h3>Streaming</h3>
-      <p>Spotify, Melon, YouTube and streaming statistics.</p>
-    </a>
+<div class="date">SEP 10</div>
 
-    <a class="card wide" href="socials.html">
-      <h3>Official Platforms</h3>
-      <p>
-        Spotify · Melon · YouTube · Instagram · Weverse · Webtoon
-      </p>
-    </a>
+<div>
 
-  </div>
+<strong>ILLIT</strong>
 
-</main>
+<p>Schedule information</p>
+
+</div>
+
+</div>
+
+<div class="schedule-item">
+
+<div class="date">SEP 11</div>
+
+<div>
+
+<strong>ILLIT</strong>
+
+<p>Upcoming activity</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section class="box">
+
+<div class="box-title">
+
+<h2>LATEST NEWS</h2>
+
+<a class="more" href="news.html">VIEW ALL →</a>
+
+</div>
+
+<div class="news-item">
+
+<h3>ILLIT latest updates</h3>
+
+<span>2026.09.10</span>
+
+</div>
+
+<div class="news-item">
+
+<h3>New activities & appearances</h3>
+
+<span>2026.09.09</span>
+
+</div>
+
+<div class="news-item">
+
+<h3>Official updates</h3>
+
+<span>2026.09.08</span>
+
+</div>
+
+</section>
+
+
+<!-- STREAMING -->
+
+<section class="box streaming">
+
+<div class="box-title">
+
+<h2>STREAMING</h2>
+
+</div>
+
+<div class="platforms">
+
+<div class="platform active">SPOTIFY</div>
+
+<div class="platform">MELON</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<span>TOTAL STREAMS</span>
+
+<strong>3.0B</strong>
+
+</div>
+
+<div class="stat">
+
+<span>DAILY STREAMS</span>
+
+<strong>6.0M</strong>
+
+</div>
+
+<div class="stat">
+
+<span>RANKING</span>
+
+<strong>#1</strong>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="track">
+
+<strong>MAGNETIC</strong>
+
+<span>877M</span>
+
+</div>
+
+<div class="track">
+
+<strong>NOT CUTE ANYMORE</strong>
+
+<span>230M</span>
+
+</div>
+
+<div class="track">
+
+<strong>TICK-TACK</strong>
+
+<span>213M</span>
+
+</div>
+
+<div class="track">
+
+<strong>CHERISH (MY LOVE)</strong>
+
+<span>207M</span>
+
+</div>
+
+</section>
+
+
+<!-- MEMBERS -->
+
+<section class="box">
+
+<div class="box-title">
+
+<h2>MEMBERS</h2>
+
+<a class="more" href="profile.html">VIEW ALL →</a>
+
+</div>
+
+<div class="members">
+
+<a class="member" href="yunah.html">
+
+<strong>YUNAH</strong>
+
+<span>윤아</span>
+
+</a>
+
+<a class="member" href="minju.html">
+
+<strong>MINJU</strong>
+
+<span>민주</span>
+
+</a>
+
+<a class="member" href="moka.html">
+
+<strong>MOKA</strong>
+
+<span>모카</span>
+
+</a>
+
+<a class="member" href="wonhee.html">
+
+<strong>WONHEE</strong>
+
+<span>원희</span>
+
+</a>
+
+<a class="member" href="iroha.html">
+
+<strong>IROHA</strong>
+
+<span>이로하</span>
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- OFFICIAL -->
+
+<section class="box streaming">
+
+<div class="box-title">
+
+<h2>OFFICIAL</h2>
+
+</div>
+
+<div class="links">
+
+<a class="link" href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/" target="_blank">
+SPOTIFY
+</a>
+
+<a class="link" href="https://www.melon.com/artist/detail.htm?artistId=3743525" target="_blank">
+MELON
+</a>
+
+<a class="link" href="https://www.youtube.com/@ILLIT_official" target="_blank">
+YOUTUBE
+</a>
+
+<a class="link" href="https://www.instagram.com/ILLIT_official/" target="_blank">
+INSTAGRAM
+</a>
+
+<a class="link" href="https://weverse.io/illit/" target="_blank">
+WEVERSE
+</a>
+
+<a class="link" href="#">
+WEBTOON
+</a>
+
+<a class="link" href="summer-moon.html">
+SUMMER MOON
+</a>
+
+<a class="link" href="discography.html">
+MUSIC
+</a>
+
+</div>
+
+</section>
+
+
+</div>
+
 
 <footer>
-  <p>illit archive ♡ made for fans</p>
+
+ILLIT ARCHIVE ♡
+
 </footer>
+
+
+</main>
 
 </body>
 </html>
