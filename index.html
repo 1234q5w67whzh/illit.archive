@@ -3,704 +3,555 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f5f7">
-<title>ILLIT ARCHIVE</title>
+
+<title>ILLIT Archive</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
-
-:root{
-    --bg:#f2f2f7;
-    --card:rgba(255,255,255,.72);
-    --card-solid:#ffffff;
-    --text:#1c1c1e;
-    --secondary:#6e6e73;
-    --line:rgba(60,60,67,.12);
-    --accent:#8e8e93;
-    --blue:#007aff;
-}
-
-body{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
-    background:
-        radial-gradient(circle at 10% 0%,#ffffff 0,#f4f4f8 35%,#e9e9ef 100%);
-    color:var(--text);
-    min-height:100vh;
-}
-
-/* iPhone shell */
-
-.phone{
-    width:100%;
-    max-width:1180px;
-    min-height:100vh;
-    margin:auto;
-    position:relative;
-    overflow:hidden;
-}
-
-/* top status */
-
-.status{
-    height:42px;
-    padding:13px 22px 0;
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    font-weight:600;
-}
-
-.status-icons{
-    display:flex;
-    gap:7px;
-    align-items:center;
-}
-
-.signal{
-    font-size:12px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-.battery{
-    width:22px;
-    height:10px;
-    border:1.5px solid #1c1c1e;
-    border-radius:3px;
-    position:relative;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.battery:after{
-    content:"";
-    position:absolute;
-    right:-3px;
-    top:2px;
-    width:2px;
-    height:5px;
-    background:#1c1c1e;
-    border-radius:1px;
+:root {
+  --bg: #f2f2f7;
+  --card: rgba(255,255,255,.88);
+  --white: #ffffff;
+  --text: #171717;
+  --gray: #8e8e93;
+  --line: #dedee3;
+  --blue: #007aff;
+  --pink: #ff5fa2;
 }
 
-.battery span{
-    display:block;
-    width:75%;
-    height:100%;
-    background:#1c1c1e;
-    border-radius:1px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", Inter, sans-serif;
+  background: #d9d9de;
+  color: var(--text);
 }
 
-/* header */
+/* =========================
+   PHONE
+========================= */
 
-.header{
-    position:sticky;
-    top:0;
-    z-index:50;
-    padding:10px 18px 14px;
-    background:rgba(242,242,247,.76);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-    border-bottom:1px solid var(--line);
+.phone {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: auto;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
 }
 
-.header-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:-.7px;
-}
+/* =========================
+   STATUS BAR
+========================= */
 
-.subtitle{
-    color:var(--secondary);
-    font-size:11px;
-    margin-top:2px;
+.status {
+  height: 30px;
+  padding: 7px 22px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.menu-button{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.8);
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
-    font-size:19px;
-    cursor:pointer;
+.status-icons {
+  display: flex;
+  gap: 6px;
 }
 
-/* horizontal menu */
+/* =========================
+   APP HEADER
+========================= */
 
-.menu{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding-top:13px;
-    scrollbar-width:none;
+.app-header {
+  padding: 13px 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.menu::-webkit-scrollbar{
-    display:none;
+.app-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1.3px;
 }
 
-.menu button{
-    border:none;
-    white-space:nowrap;
-    padding:8px 14px;
-    border-radius:18px;
-    background:rgba(255,255,255,.72);
-    color:#555;
-    font-size:12px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.2s;
+.header-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
 }
 
-.menu button.active{
-    background:#1c1c1e;
-    color:white;
-}
-
-/* content */
-
-main{
-    padding:20px 17px 105px;
-}
+/* =========================
+   CONTENT
+========================= */
 
-.page{
-    display:none;
-    animation:pageIn .35s ease;
+.content {
+  padding: 0 16px 100px;
 }
 
-.page.active{
-    display:block;
+.page {
+  display: none;
 }
 
-@keyframes pageIn{
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.page.active {
+  display: block;
 }
 
-/* typography */
-
-.page-title{
-    font-size:34px;
-    letter-spacing:-1.5px;
-    font-weight:800;
-}
+/* =========================
+   WIDGET
+========================= */
 
-.page-description{
-    color:var(--secondary);
-    margin-top:5px;
-    font-size:14px;
-    line-height:1.5;
+.widget {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(0,0,0,.04);
+  box-shadow: 0 2px 10px rgba(0,0,0,.035);
 }
 
-/* cards */
-
-.card{
-    background:var(--card);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.8);
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.06),
-        inset 0 1px rgba(255,255,255,.8);
-    border-radius:25px;
-    padding:19px;
+.widget-title {
+  font-size: 12px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:13px;
+.widget h2 {
+  font-size: 22px;
+  letter-spacing: -.6px;
 }
 
-.section-space{
-    margin-top:17px;
+.small {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 5px;
 }
 
-/* hero */
+/* =========================
+   HERO
+========================= */
 
-.hero{
-    min-height:300px;
-    border-radius:30px;
-    padding:25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    position:relative;
-    overflow:hidden;
-    background:
-        linear-gradient(145deg,#ffffff,#dedee5);
-    box-shadow:0 15px 45px rgba(0,0,0,.1);
+.hero {
+  min-height: 205px;
+  border-radius: 25px;
+  padding: 24px;
+  margin-bottom: 14px;
+  background:
+    radial-gradient(circle at 80% 20%, #fff 0, transparent 28%),
+    linear-gradient(135deg,#fce8f2,#eeeafb,#e4efff);
+  position: relative;
+  overflow: hidden;
 }
 
-.hero:before{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    background:rgba(255,255,255,.75);
-    top:-80px;
-    right:-60px;
-    filter:blur(3px);
+.hero-label {
+  font-size: 11px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: .08em;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
+.hero h1 {
+  font-size: 39px;
+  line-height: .95;
+  letter-spacing: -2px;
+  margin-top: 12px;
 }
 
-.eyebrow{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    color:#6e6e73;
-    font-weight:700;
+.hero p {
+  font-size: 12px;
+  color: #777;
+  margin-top: 12px;
+  max-width: 220px;
 }
 
-.hero h1{
-    font-size:48px;
-    letter-spacing:-3px;
-    line-height:.95;
-    margin:8px 0;
-}
+/* =========================
+   BUTTONS
+========================= */
 
-.hero p{
-    color:#636366;
-    font-size:14px;
+.button {
+  display: inline-flex;
+  margin-top: 18px;
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(0,0,0,.05);
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
 }
-
-/* widgets */
 
-.widget-title{
-    font-size:13px;
-    font-weight:700;
-    color:var(--secondary);
-    margin-bottom:10px;
-}
+/* =========================
+   GRID
+========================= */
 
-.big-number{
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:-1px;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.small{
-    color:var(--secondary);
-    font-size:12px;
+.square {
+  min-height: 145px;
 }
 
-.link{
-    color:var(--blue);
-    text-decoration:none;
-    font-weight:600;
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
-/* image placeholders */
-
-.photo{
-    width:100%;
-    height:220px;
-    border-radius:19px;
-    background:
-        linear-gradient(135deg,#e9e9ee,#d5d5dc);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#777;
-    font-size:12px;
-    text-align:center;
-    overflow:hidden;
+.square h3 {
+  font-size: 15px;
 }
 
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.square p {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 4px;
 }
 
-/* members */
+/* =========================
+   LIST
+========================= */
 
-.member{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.list {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 14px;
 }
 
-.member-avatar{
-    width:55px;
-    height:55px;
-    border-radius:18px;
-    background:linear-gradient(135deg,#ededf2,#d3d3da);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    color:#777;
-    flex-shrink:0;
+.list-title {
+  padding: 13px 18px 7px;
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.member-name{
-    font-weight:700;
+.item {
+  min-height: 54px;
+  padding: 10px 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-bottom: 1px solid #eeeeef;
+  cursor: pointer;
 }
 
-.member-role{
-    font-size:12px;
-    color:var(--secondary);
-    margin-top:3px;
+.item:last-child {
+  border-bottom: none;
 }
-
-/* lists */
 
-.list{
-    display:flex;
-    flex-direction:column;
+.item-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f0f0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.list-item{
-    padding:14px 0;
-    border-bottom:1px solid var(--line);
+.item-text {
+  flex: 1;
 }
 
-.list-item:last-child{
-    border-bottom:none;
+.item-name {
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.list-item strong{
-    font-size:14px;
+.item-sub {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 2px;
 }
 
-.list-item span{
-    display:block;
-    color:var(--secondary);
-    font-size:12px;
-    margin-top:4px;
+.chevron {
+  color: #b5b5ba;
+  font-size: 18px;
 }
 
-/* bottom iOS tab */
+/* =========================
+   MEMBERS
+========================= */
 
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(1180px,100%);
-    z-index:100;
-    padding:8px 13px calc(8px + env(safe-area-inset-bottom));
-    background:rgba(248,248,250,.82);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-    border-top:1px solid var(--line);
+.members {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 7px;
 }
 
-.bottom-nav{
-    display:flex;
-    justify-content:space-around;
-    gap:4px;
+.member {
+  background: white;
+  border-radius: 15px;
+  padding: 13px 4px;
+  text-align: center;
+  cursor: pointer;
 }
 
-.bottom button{
-    border:0;
-    background:none;
-    color:#777;
-    font-size:10px;
-    font-weight:600;
-    min-width:55px;
-    cursor:pointer;
+.member-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  margin: auto;
+  background: linear-gradient(135deg,#f9dce9,#e3e9ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
 }
 
-.bottom button.active{
-    color:#1c1c1e;
+.member-name {
+  font-size: 9px;
+  margin-top: 8px;
 }
 
-.bottom-icon{
-    display:block;
-    font-size:20px;
-    margin-bottom:3px;
-}
-
-/* summer moon */
-
-.book-area{
-    min-height:650px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:20px 0;
-}
+/* =========================
+   TRACKER
+========================= */
 
-.book{
-    width:min(360px,90vw);
-    height:500px;
-    position:relative;
-    perspective:1800px;
+.tracker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.book-cover,
-.book-page{
-    position:absolute;
-    inset:0;
-    border-radius:8px 17px 17px 8px;
-    box-shadow:0 20px 50px rgba(0,0,0,.18);
+.number {
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: -1px;
 }
 
-.book-cover{
-    z-index:20;
-    transform-origin:left center;
-    transition:transform 1s cubic-bezier(.2,.7,.2,1);
-    background:
-        linear-gradient(135deg,#25252a,#777782);
-    color:white;
-    padding:35px 28px;
-    cursor:pointer;
-    backface-visibility:hidden;
+.stat-label {
+  font-size: 10px;
+  color: var(--gray);
 }
 
-.book-cover.open{
-    transform:rotateY(-145deg);
-}
+/* =========================
+   PAGE TITLE
+========================= */
 
-.cover-small{
-    font-size:10px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    opacity:.7;
+.page-heading {
+  padding: 8px 4px 18px;
 }
 
-.cover-title{
-    font-size:45px;
-    line-height:.9;
-    letter-spacing:-3px;
-    margin-top:90px;
-    font-weight:800;
+.page-heading h1 {
+  font-size: 32px;
+  letter-spacing: -1.5px;
 }
 
-.cover-bottom{
-    position:absolute;
-    bottom:30px;
-    font-size:11px;
-    opacity:.7;
+.page-heading p {
+  color: var(--gray);
+  font-size: 12px;
+  margin-top: 4px;
 }
 
-.book-page{
-    background:#fffdf7;
-    padding:30px 25px;
-    color:#27272a;
-    overflow:auto;
-}
+/* =========================
+   TABS
+========================= */
 
-.book-page h2{
-    font-size:26px;
-    letter-spacing:-1px;
-    margin-bottom:12px;
+.tabs {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  margin-bottom: 14px;
 }
 
-.book-page p{
-    color:#555;
-    line-height:1.7;
-    font-size:13px;
+.tab {
+  white-space: nowrap;
+  border: none;
+  background: #e5e5ea;
+  padding: 8px 14px;
+  border-radius: 15px;
+  font-size: 11px;
 }
 
-.book-page ul{
-    margin:15px 0 0 20px;
-    color:#555;
-    line-height:2;
-    font-size:13px;
+.tab.selected {
+  background: #222;
+  color: white;
 }
 
-.book-number{
-    position:absolute;
-    bottom:15px;
-    right:20px;
-    font-size:10px;
-    color:#999;
-}
+/* =========================
+   ALBUM
+========================= */
 
-.book-controls{
-    display:flex;
-    gap:10px;
-    margin-top:25px;
+.album {
+  background: white;
+  border-radius: 20px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 14px;
 }
 
-.ios-button{
-    border:none;
-    padding:11px 20px;
-    border-radius:20px;
-    background:#1c1c1e;
-    color:white;
-    font-weight:600;
-    cursor:pointer;
+.cover {
+  width: 82px;
+  height: 82px;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#e7dcf8,#dceeff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #777;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.ios-button.secondary{
-    background:white;
-    color:#1c1c1e;
-    border:1px solid var(--line);
+.album-info h3 {
+  font-size: 15px;
 }
 
-/* albums */
-
-.album{
-    overflow:hidden;
-    padding:0;
+.album-info p {
+  color: var(--gray);
+  font-size: 10px;
+  margin-top: 4px;
 }
 
-.album-cover{
-    height:200px;
-    background:linear-gradient(135deg,#e3e3e8,#c5c5cc);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#777;
-    font-size:12px;
+.album-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 10px;
+  color: var(--blue);
 }
 
-.album-info{
-    padding:15px;
-}
+/* =========================
+   GALLERY
+========================= */
 
-.album-info h3{
-    font-size:16px;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 3px;
+  border-radius: 17px;
+  overflow: hidden;
 }
 
-.album-info p{
-    color:var(--secondary);
-    font-size:12px;
-    margin-top:4px;
+.photo {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg,#f2dfe8,#dfe8f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 9px;
 }
 
-/* schedule */
+/* =========================
+   BOTTOM NAV
+========================= */
 
-.schedule-date{
-    width:53px;
-    height:53px;
-    border-radius:16px;
-    background:#f0f0f5;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    flex-shrink:0;
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(430px,100%);
+  height: 76px;
+  background: rgba(250,250,250,.93);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid #d7d7dc;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  z-index: 100;
 }
 
-.schedule-date b{
-    font-size:18px;
+.nav-button {
+  border: none;
+  background: transparent;
+  color: #8e8e93;
+  font-size: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
 }
 
-.schedule-date span{
-    font-size:9px;
-    color:#777;
+.nav-button span {
+  font-size: 20px;
 }
-
-.schedule-row{
-    display:flex;
-    gap:13px;
-    align-items:center;
-}
-
-/* mobile menu modal */
 
-.overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:200;
-    background:rgba(0,0,0,.25);
-    backdrop-filter:blur(10px);
+.nav-button.active {
+  color: #111;
 }
 
-.overlay.show{
-    display:block;
-}
+/* =========================
+   DETAIL PAGE
+========================= */
 
-.sheet{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    background:rgba(248,248,250,.95);
-    border-radius:30px 30px 0 0;
-    padding:25px;
-    max-height:80vh;
-    overflow:auto;
+.back {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--blue);
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.sheet h2{
-    margin-bottom:15px;
+.detail-card {
+  background: white;
+  border-radius: 22px;
+  padding: 20px;
+  margin-bottom: 12px;
 }
 
-.sheet button{
-    display:block;
-    width:100%;
-    border:0;
-    background:white;
-    margin:7px 0;
-    padding:15px;
-    border-radius:17px;
-    text-align:left;
-    font-size:14px;
+.detail-card h2 {
+  font-size: 22px;
 }
-
-/* desktop */
-
-@media(min-width:800px){
-    body{
-        padding:20px;
-    }
 
-    .phone{
-        min-height:calc(100vh - 40px);
-        border-radius:40px;
-        background:rgba(242,242,247,.8);
-        box-shadow:0 20px 80px rgba(0,0,0,.13);
-        border:1px solid rgba(255,255,255,.8);
-    }
-
-    .bottom{
-        width:min(1180px,calc(100% - 40px));
-        bottom:20px;
-        border-radius:25px;
-        border:1px solid var(--line);
-    }
-
-    .grid.three{
-        grid-template-columns:repeat(3,1fr);
-    }
+.detail-card p {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+  margin-top: 10px;
 }
-
-/* small phones */
 
-@media(max-width:420px){
-    .hero h1{
-        font-size:42px;
-    }
+/* =========================
+   RESPONSIVE
+========================= */
 
-    .page-title{
-        font-size:30px;
-    }
+@media (min-width: 600px) {
+  body {
+    padding: 30px 0;
+  }
 
-    .grid{
-        gap:9px;
-    }
+  .phone {
+    min-height: calc(100vh - 60px);
+    border-radius: 35px;
+    box-shadow: 0 10px 50px rgba(0,0,0,.18);
+  }
 
-    .card{
-        padding:15px;
-        border-radius:21px;
-    }
+  .bottom-nav {
+    bottom: 30px;
+    border-radius: 0 0 35px 35px;
+  }
 }
 </style>
 </head>
@@ -709,910 +560,992 @@ main{
 
 <div class="phone">
 
-    <!-- STATUS BAR -->
-    <div class="status">
-        <span id="clock">9:41</span>
+  <!-- STATUS BAR -->
+  <div class="status">
+    <span id="time">9:41</span>
 
-        <div class="status-icons">
-            <span class="signal">●●●</span>
-            <span>Wi-Fi</span>
-            <div class="battery"><span></span></div>
-        </div>
+    <div class="status-icons">
+      <span>●●●</span>
+      <span>⌁</span>
+      <span>▰</span>
     </div>
+  </div>
 
-    <!-- HEADER -->
-    <header class="header">
 
-        <div class="header-row">
-            <div>
-                <div class="logo">ILLIT ARCHIVE</div>
-                <div class="subtitle">your unofficial ILLIT archive</div>
-            </div>
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="app-title" id="headerTitle">Home</div>
 
-            <button class="menu-button" onclick="openMenu()">☰</button>
-        </div>
-
-        <nav class="menu" id="topMenu">
-
-            <button class="active" onclick="showPage('home',this)">Home</button>
-            <button onclick="showPage('profile',this)">Profile</button>
-            <button onclick="showPage('discography',this)">Discography</button>
-            <button onclick="showPage('mv',this)">MV</button>
-            <button onclick="showPage('summer',this)">Summer Moon</button>
-            <button onclick="showPage('news',this)">News</button>
-            <button onclick="showPage('shows',this)">Music Shows</button>
-            <button onclick="showPage('voting',this)">Voting</button>
-            <button onclick="showPage('schedule',this)">Schedule</button>
-            <button onclick="showPage('agenda',this)">Individual Agenda</button>
-
-        </nav>
-    </header>
-
-
-    <main>
-
-        <!-- HOME -->
-        <section id="home" class="page active">
-
-            <div class="hero">
-                <div class="hero-content">
-                    <div class="eyebrow">ILLIT • archive</div>
-                    <h1>ILLIT<br>ARCHIVE</h1>
-                    <p>Everything about ILLIT, collected in one place.</p>
-                </div>
-            </div>
-
-
-            <div class="grid section-space">
-
-                <div class="card">
-                    <div class="widget-title">NEXT SCHEDULE</div>
-                    <div class="big-number">ADD DATE</div>
-                    <div class="small">ADD EVENT</div>
-                </div>
-
-                <div class="card">
-                    <div class="widget-title">LATEST UPDATE</div>
-                    <div class="big-number">ILLIT</div>
-                    <div class="small">Check the News tab</div>
-                </div>
-
-            </div>
-
-
-            <div class="card section-space">
-
-                <div class="widget-title">ILLIT'S PHOTO OF THE DAY</div>
-
-                <div class="photo">
-                    ADD PHOTO HERE
-                </div>
-
-                <div style="margin-top:12px">
-                    <strong>ADD PHOTO DESCRIPTION</strong>
-                    <div class="small">Source: Weverse / Instagram • ADD DATE</div>
-                </div>
-
-            </div>
-
-
-            <div class="grid section-space">
-
-                <div class="card">
-                    <div class="widget-title">YOUTUBE</div>
-                    <div class="big-number">LATEST MV</div>
-                    <div class="small">Add the latest video</div>
-                    <br>
-                    <a class="link" href="https://www.youtube.com/@ILLIT_official" target="_blank">
-                        Open YouTube →
-                    </a>
-                </div>
-
-                <div class="card">
-                    <div class="widget-title">SPOTIFY</div>
-                    <div class="big-number">ILLIT</div>
-                    <div class="small">Official music</div>
-                    <br>
-                    <a class="link" href="https://open.spotify.com/artist/36wE6H0L4b6qL1uQ8Yw4qH" target="_blank">
-                        Open Spotify →
-                    </a>
-                </div>
-
-            </div>
-
-
-            <div class="card section-space">
-
-                <div class="widget-title">OFFICIAL LINKS</div>
-
-                <div class="list">
-
-                    <div class="list-item">
-                        <a class="link" href="https://www.youtube.com/@ILLIT_official" target="_blank">
-                            YouTube
-                        </a>
-                    </div>
-
-                    <div class="list-item">
-                        <a class="link" href="https://www.instagram.com/illit_official/" target="_blank">
-                            Instagram
-                        </a>
-                    </div>
-
-                    <div class="list-item">
-                        <a class="link" href="https://weverse.io/illit/" target="_blank">
-                            Weverse
-                        </a>
-                    </div>
-
-                    <div class="list-item">
-                        <a class="link" href="https://illit-official.jp/" target="_blank">
-                            Japan Official Website
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROFILE -->
-        <section id="profile" class="page">
-
-            <h1 class="page-title">Profile</h1>
-            <p class="page-description">
-                Meet the five members of ILLIT.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="list">
-
-                    <div class="list-item member">
-                        <div class="member-avatar">PHOTO</div>
-                        <div>
-                            <div class="member-name">YUNAH</div>
-                            <div class="member-role">Member</div>
-                        </div>
-                    </div>
-
-                    <div class="list-item member">
-                        <div class="member-avatar">PHOTO</div>
-                        <div>
-                            <div class="member-name">MINJU</div>
-                            <div class="member-role">Member</div>
-                        </div>
-                    </div>
-
-                    <div class="list-item member">
-                        <div class="member-avatar">PHOTO</div>
-                        <div>
-                            <div class="member-name">MOKA</div>
-                            <div class="member-role">Member</div>
-                        </div>
-                    </div>
-
-                    <div class="list-item member">
-                        <div class="member-avatar">PHOTO</div>
-                        <div>
-                            <div class="member-name">WONHEE</div>
-                            <div class="member-role">Member</div>
-                        </div>
-                    </div>
-
-                    <div class="list-item member">
-                        <div class="member-avatar">PHOTO</div>
-                        <div>
-                            <div class="member-name">IROHA</div>
-                            <div class="member-role">Member</div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- DISCOGRAPHY -->
-        <section id="discography" class="page">
-
-            <h1 class="page-title">Discography</h1>
-            <p class="page-description">
-                ILLIT's albums, singles and releases.
-            </p>
-
-            <div class="grid section-space">
-
-                <div class="card album">
-                    <div class="album-cover">ADD ALBUM COVER</div>
-                    <div class="album-info">
-                        <h3>SUPER REAL ME</h3>
-                        <p>1st Mini Album • 2024</p>
-                    </div>
-                </div>
-
-                <div class="card album">
-                    <div class="album-cover">ADD ALBUM COVER</div>
-                    <div class="album-info">
-                        <h3>ILL LIKE YOU</h3>
-                        <p>ADD RELEASE INFO</p>
-                    </div>
-                </div>
-
-                <div class="card album">
-                    <div class="album-cover">ADD ALBUM COVER</div>
-                    <div class="album-info">
-                        <h3>ADD RELEASE</h3>
-                        <p>ADD DATE</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- MV -->
-        <section id="mv" class="page">
-
-            <h1 class="page-title">Music Videos</h1>
-            <p class="page-description">
-                Official ILLIT music videos and visual content.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="photo">
-                    ADD MV THUMBNAIL
-                </div>
-
-                <div style="margin-top:13px">
-                    <strong>ADD MV TITLE</strong>
-                    <div class="small">Released: ADD DATE</div>
-                </div>
-
-                <br>
-
-                <a class="link"
-                   href="https://www.youtube.com/@ILLIT_official"
-                   target="_blank">
-                    Watch on YouTube →
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- SUMMER MOON -->
-        <section id="summer" class="page">
-
-            <h1 class="page-title">Summer Moon</h1>
-            <p class="page-description">
-                Open the archive book and explore the world of Summer Moon.
-            </p>
-
-            <div class="book-area">
-
-                <div class="book">
-
-                    <!-- COVER -->
-                    <div class="book-cover" id="bookCover" onclick="openBook()">
-
-                        <div class="cover-small">
-                            ILLIT • LORE ARCHIVE
-                        </div>
-
-                        <div class="cover-title">
-                            SUMMER<br>MOON
-                        </div>
-
-                        <div class="cover-bottom">
-                            TAP TO OPEN
-                        </div>
-
-                    </div>
-
-
-                    <!-- PAGE -->
-                    <div class="book-page">
-
-                        <div id="bookContent">
-
-                            <h2>Welcome</h2>
-
-                            <p>
-                                Welcome to the Summer Moon archive.
-                                This book is designed so you can add your
-                                own information, summaries, characters,
-                                theories and lore notes.
-                            </p>
-
-                            <br>
-
-                            <p>
-                                Replace the text on these pages with the
-                                information you want to archive.
-                            </p>
-
-                        </div>
-
-                        <div class="book-number" id="bookNumber">
-                            01
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="book-controls">
-
-                    <button class="ios-button secondary"
-                            onclick="previousPage()">
-                        ← Previous
-                    </button>
-
-                    <button class="ios-button"
-                            onclick="nextPage()">
-                        Next →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- NEWS -->
-        <section id="news" class="page">
-
-            <h1 class="page-title">News</h1>
-            <p class="page-description">
-                ILLIT updates and important archive entries.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="list">
-
-                    <div class="list-item">
-                        <strong>ADD NEWS TITLE</strong>
-                        <span>ADD DATE • ADD SUMMARY</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>ADD NEWS TITLE</strong>
-                        <span>ADD DATE • ADD SUMMARY</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>ADD NEWS TITLE</strong>
-                        <span>ADD DATE • ADD SUMMARY</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- MUSIC SHOWS -->
-        <section id="shows" class="page">
-
-            <h1 class="page-title">Music Shows</h1>
-            <p class="page-description">
-                Performances, stages and music show records.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="list">
-
-                    <div class="list-item">
-                        <strong>ADD MUSIC SHOW</strong>
-                        <span>ADD DATE • ADD SONG</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>ADD MUSIC SHOW</strong>
-                        <span>ADD DATE • ADD SONG</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>ADD MUSIC SHOW</strong>
-                        <span>ADD DATE • ADD SONG</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- VOTING -->
-        <section id="voting" class="page">
-
-            <h1 class="page-title">Voting</h1>
-            <p class="page-description">
-                Voting information and official voting links.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="widget-title">CURRENT VOTE</div>
-
-                <h2>ADD VOTING EVENT</h2>
-
-                <p class="small" style="margin-top:7px">
-                    Add the voting period, platform and instructions here.
-                </p>
-
-                <br>
-
-                <a class="link" href="#" target="_blank">
-                    Open Voting Page →
-                </a>
-
-            </div>
-
-            <div class="card section-space">
-
-                <div class="widget-title">IMPORTANT</div>
-
-                <p class="small">
-                    Always use official voting pages and check the voting
-                    rules before participating.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- SCHEDULE -->
-        <section id="schedule" class="page">
-
-            <h1 class="page-title">Schedule</h1>
-            <p class="page-description">
-                Upcoming ILLIT activities.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="list">
-
-                    <div class="list-item schedule-row">
-
-                        <div class="schedule-date">
-                            <b>--</b>
-                            <span>MONTH</span>
-                        </div>
-
-                        <div>
-                            <strong>ADD EVENT</strong>
-                            <span>ADD TIME • ADD LOCATION</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="list-item schedule-row">
-
-                        <div class="schedule-date">
-                            <b>--</b>
-                            <span>MONTH</span>
-                        </div>
-
-                        <div>
-                            <strong>ADD EVENT</strong>
-                            <span>ADD TIME • ADD LOCATION</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="list-item schedule-row">
-
-                        <div class="schedule-date">
-                            <b>--</b>
-                            <span>MONTH</span>
-                        </div>
-
-                        <div>
-                            <strong>ADD EVENT</strong>
-                            <span>ADD TIME • ADD LOCATION</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- INDIVIDUAL AGENDA -->
-        <section id="agenda" class="page">
-
-            <h1 class="page-title">Individual Agenda</h1>
-            <p class="page-description">
-                Individual schedules for each member.
-            </p>
-
-            <div class="card section-space">
-
-                <div class="list">
-
-                    <div class="list-item">
-                        <strong>YUNAH</strong>
-                        <span>ADD INDIVIDUAL SCHEDULE</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>MINJU</strong>
-                        <span>ADD INDIVIDUAL SCHEDULE</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>MOKA</strong>
-                        <span>ADD INDIVIDUAL SCHEDULE</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>WONHEE</strong>
-                        <span>ADD INDIVIDUAL SCHEDULE</span>
-                    </div>
-
-                    <div class="list-item">
-                        <strong>IROHA</strong>
-                        <span>ADD INDIVIDUAL SCHEDULE</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- BOTTOM IOS NAVIGATION -->
-
-    <div class="bottom">
-
-        <div class="bottom-nav">
-
-            <button class="active" onclick="showPage('home')">
-                <span class="bottom-icon">⌂</span>
-                Home
-            </button>
-
-            <button onclick="showPage('profile')">
-                <span class="bottom-icon">●</span>
-                Profile
-            </button>
-
-            <button onclick="showPage('discography')">
-                <span class="bottom-icon">♫</span>
-                Music
-            </button>
-
-            <button onclick="showPage('summer')">
-                <span class="bottom-icon">☾</span>
-                Summer
-            </button>
-
-            <button onclick="openMenu()">
-                <span class="bottom-icon">•••</span>
-                More
-            </button>
-
-        </div>
-
+    <div class="header-button">
+      ✦
     </div>
+  </header>
 
 
-    <!-- IOS ACTION SHEET -->
+  <main class="content">
 
-    <div class="overlay" id="overlay" onclick="closeMenu(event)">
 
-        <div class="sheet" onclick="event.stopPropagation()">
+    <!-- ================= HOME ================= -->
 
-            <h2>ILLIT ARCHIVE</h2>
+    <section class="page active" id="home">
 
-            <button onclick="go('home')">⌂ Home</button>
-            <button onclick="go('profile')">● Profile</button>
-            <button onclick="go('discography')">♫ Discography</button>
-            <button onclick="go('mv')">▶ MV</button>
-            <button onclick="go('summer')">☾ Summer Moon</button>
-            <button onclick="go('news')">📰 News</button>
-            <button onclick="go('shows')">🎤 Music Shows</button>
-            <button onclick="go('voting')">♡ Voting</button>
-            <button onclick="go('schedule')">□ Schedule</button>
-            <button onclick="go('agenda')">● Individual Agenda</button>
+      <div class="hero">
+
+        <div class="hero-label">
+          ILLIT ARCHIVE
+        </div>
+
+        <h1>
+          this is<br>
+          our world.
+        </h1>
+
+        <p>
+          an unofficial archive dedicated to ILLIT,
+          their music, activities and universe.
+        </p>
+
+        <a class="button" href="https://weverse.io/illit/" target="_blank">
+          open weverse
+        </a>
+
+      </div>
+
+
+      <div class="grid">
+
+        <div class="widget square" onclick="openPage('profile')">
+          <div class="icon">👤</div>
+          <h3>Profile</h3>
+          <p>members & group</p>
+        </div>
+
+        <div class="widget square" onclick="openPage('discography')">
+          <div class="icon">♫</div>
+          <h3>Music</h3>
+          <p>discography</p>
+        </div>
+
+        <div class="widget square" onclick="openPage('summer')">
+          <div class="icon">✧</div>
+          <h3>Summer Moon</h3>
+          <p>the universe</p>
+        </div>
+
+        <div class="widget square" onclick="openPage('tour')">
+          <div class="icon">♧</div>
+          <h3>Press Start</h3>
+          <p>tour archive</p>
+        </div>
+
+      </div>
+
+
+      <div class="widget">
+
+        <div class="widget-title">
+          next schedule
+        </div>
+
+        <h2>ILLIT</h2>
+
+        <div class="small">
+          upcoming activities will appear here
+        </div>
+
+      </div>
+
+
+      <div class="widget">
+
+        <div class="widget-title">
+          streaming
+        </div>
+
+        <div class="tracker">
+
+          <div>
+            <div class="number">3.0B+</div>
+            <div class="stat-label">spotify streams</div>
+          </div>
+
+          <div>
+            <div class="number">6M+</div>
+            <div class="stat-label">daily streams</div>
+          </div>
 
         </div>
 
-    </div>
+      </div>
+
+
+      <div class="widget">
+
+        <div class="widget-title">
+          members
+        </div>
+
+        <div class="members">
+
+          <div class="member" onclick="member('Yunah','윤아')">
+            <div class="member-avatar">Y</div>
+            <div class="member-name">yunah</div>
+          </div>
+
+          <div class="member" onclick="member('Minju','민주')">
+            <div class="member-avatar">M</div>
+            <div class="member-name">minju</div>
+          </div>
+
+          <div class="member" onclick="member('Moka','モカ')">
+            <div class="member-avatar">M</div>
+            <div class="member-name">moka</div>
+          </div>
+
+          <div class="member" onclick="member('Wonhee','원희')">
+            <div class="member-avatar">W</div>
+            <div class="member-name">wonhee</div>
+          </div>
+
+          <div class="member" onclick="member('Iroha','いろは')">
+            <div class="member-avatar">I</div>
+            <div class="member-name">iroha</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section class="page" id="profile">
+
+      <div class="page-heading">
+        <h1>Profile</h1>
+        <p>ILLIT members</p>
+      </div>
+
+      <div class="list">
+
+        <div class="list-title">members</div>
+
+        <div class="item" onclick="member('Yunah','윤아')">
+          <div class="item-icon">🐆</div>
+          <div class="item-text">
+            <div class="item-name">Yunah</div>
+            <div class="item-sub">윤아</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Minju','민주')">
+          <div class="item-icon">🐰</div>
+          <div class="item-text">
+            <div class="item-name">Minju</div>
+            <div class="item-sub">민주</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Moka','モカ')">
+          <div class="item-icon">☕</div>
+          <div class="item-text">
+            <div class="item-name">Moka</div>
+            <div class="item-sub">モカ</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Wonhee','원희')">
+          <div class="item-icon">🐿</div>
+          <div class="item-text">
+            <div class="item-name">Wonhee</div>
+            <div class="item-sub">원희</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Iroha','いろは')">
+          <div class="item-icon">🐢</div>
+          <div class="item-text">
+            <div class="item-name">Iroha</div>
+            <div class="item-sub">いろは</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DISCOGRAPHY ================= -->
+
+    <section class="page" id="discography">
+
+      <div class="page-heading">
+        <h1>Music</h1>
+        <p>discography</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab selected">ALL</button>
+        <button class="tab">KOREAN</button>
+        <button class="tab">JAPANESE</button>
+        <button class="tab">SINGLES</button>
+      </div>
+
+
+      <div class="album">
+
+        <div class="cover">
+          SUPER<br>REAL ME
+        </div>
+
+        <div class="album-info">
+          <h3>SUPER REAL ME</h3>
+          <p>2024 · mini album</p>
+          <a class="album-link"
+             href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+             target="_blank">
+            spotify ›
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="album">
+
+        <div class="cover">
+          I'LL<br>LIKE YOU
+        </div>
+
+        <div class="album-info">
+          <h3>I'LL LIKE YOU</h3>
+          <p>2024 · mini album</p>
+          <a class="album-link"
+             href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+             target="_blank">
+            spotify ›
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="album">
+
+        <div class="cover">
+          BOMB
+        </div>
+
+        <div class="album-info">
+          <h3>BOMB</h3>
+          <p>release archive</p>
+          <a class="album-link"
+             href="https://www.melon.com/artist/detail.htm?artistId=3743525"
+             target="_blank">
+            melon ›
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SUMMER MOON ================= -->
+
+    <section class="page" id="summer">
+
+      <div class="page-heading">
+        <h1>Summer Moon</h1>
+        <p>the ILLIT universe</p>
+      </div>
+
+      <div class="hero">
+
+        <div class="hero-label">
+          the quprids
+        </div>
+
+        <h1>
+          Summer<br>
+          Moon
+        </h1>
+
+        <p>
+          explore the story, characters,
+          fragments and world of ILLIT.
+        </p>
+
+        <a class="button" href="#" onclick="alert('Summer Moon archive coming soon ♡'); return false;">
+          open archive
+        </a>
+
+      </div>
+
+
+      <div class="list">
+
+        <div class="item">
+          <div class="item-icon">📖</div>
+          <div class="item-text">
+            <div class="item-name">Story</div>
+            <div class="item-sub">chapter archive</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">✦</div>
+          <div class="item-text">
+            <div class="item-name">Characters</div>
+            <div class="item-sub">meet the characters</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">◇</div>
+          <div class="item-text">
+            <div class="item-name">Fragments</div>
+            <div class="item-sub">magic & technology</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= TOUR ================= -->
+
+    <section class="page" id="tour">
+
+      <div class="page-heading">
+        <h1>Tour</h1>
+        <p>ILLIT PRESS START</p>
+      </div>
+
+      <div class="hero">
+
+        <div class="hero-label">
+          ILLIT
+        </div>
+
+        <h1>
+          PRESS<br>
+          START
+        </h1>
+
+        <p>
+          tour archive · dates · venues · memories
+        </p>
+
+      </div>
+
+
+      <div class="list">
+
+        <div class="list-title">tour archive</div>
+
+        <div class="item">
+          <div class="item-icon">📅</div>
+          <div class="item-text">
+            <div class="item-name">Dates</div>
+            <div class="item-sub">tour schedule</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">📍</div>
+          <div class="item-text">
+            <div class="item-name">Cities & Venues</div>
+            <div class="item-sub">concert locations</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">🎟</div>
+          <div class="item-text">
+            <div class="item-name">Tickets</div>
+            <div class="item-sub">ticket information</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">♫</div>
+          <div class="item-text">
+            <div class="item-name">Setlist</div>
+            <div class="item-sub">concert songs</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MV ================= -->
+
+    <section class="page" id="mv">
+
+      <div class="page-heading">
+        <h1>MV</h1>
+        <p>music videos</p>
+      </div>
+
+      <div class="list">
+
+        <div class="item">
+          <div class="item-icon">▶</div>
+          <div class="item-text">
+            <div class="item-name">Magnetic</div>
+            <div class="item-sub">official music video</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">▶</div>
+          <div class="item-text">
+            <div class="item-name">Lucky Girl Syndrome</div>
+            <div class="item-sub">official music video</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">▶</div>
+          <div class="item-text">
+            <div class="item-name">Cherish (My Love)</div>
+            <div class="item-sub">official music video</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">▶</div>
+          <div class="item-text">
+            <div class="item-name">Do the Dance</div>
+            <div class="item-sub">official music video</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+      <a class="button"
+         href="https://www.youtube.com/@ILLIT_official"
+         target="_blank">
+        open youtube
+      </a>
+
+    </section>
+
+
+    <!-- ================= NEWS ================= -->
+
+    <section class="page" id="news">
+
+      <div class="page-heading">
+        <h1>News</h1>
+        <p>latest updates</p>
+      </div>
+
+      <div class="list">
+
+        <div class="item">
+          <div class="item-icon">✦</div>
+          <div class="item-text">
+            <div class="item-name">Latest ILLIT updates</div>
+            <div class="item-sub">news archive</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">◎</div>
+          <div class="item-text">
+            <div class="item-name">Official SNS</div>
+            <div class="item-sub">social updates</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SCHEDULE ================= -->
+
+    <section class="page" id="schedule">
+
+      <div class="page-heading">
+        <h1>Schedule</h1>
+        <p>ILLIT activities</p>
+      </div>
+
+      <div class="list">
+
+        <div class="list-title">upcoming</div>
+
+        <div class="item">
+          <div class="item-icon">📅</div>
+          <div class="item-text">
+            <div class="item-name">ILLIT</div>
+            <div class="item-sub">schedule will appear here</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ACTIVITIES ================= -->
+
+    <section class="page" id="activities">
+
+      <div class="page-heading">
+        <h1>Activities</h1>
+        <p>individual members</p>
+      </div>
+
+      <div class="list">
+
+        <div class="item" onclick="member('Yunah','윤아')">
+          <div class="item-icon">🐆</div>
+          <div class="item-text">
+            <div class="item-name">Yunah</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Minju','민주')">
+          <div class="item-icon">🐰</div>
+          <div class="item-text">
+            <div class="item-name">Minju</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Moka','モカ')">
+          <div class="item-icon">☕</div>
+          <div class="item-text">
+            <div class="item-name">Moka</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Wonhee','원희')">
+          <div class="item-icon">🐿</div>
+          <div class="item-text">
+            <div class="item-name">Wonhee</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item" onclick="member('Iroha','いろは')">
+          <div class="item-icon">🐢</div>
+          <div class="item-text">
+            <div class="item-name">Iroha</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= GALLERY ================= -->
+
+    <section class="page" id="gallery">
+
+      <div class="page-heading">
+        <h1>Photos</h1>
+        <p>ILLIT gallery</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab selected">LIBRARY</button>
+        <button class="tab">ALBUMS</button>
+        <button class="tab">ERA</button>
+      </div>
+
+      <div class="photo-grid">
+
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+        <div class="photo">photo</div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= OFFICIAL ================= -->
+
+    <section class="page" id="official">
+
+      <div class="page-heading">
+        <h1>Official</h1>
+        <p>ILLIT links</p>
+      </div>
+
+      <div class="list">
+
+        <div class="item"
+             onclick="window.open('https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/','_blank')">
+
+          <div class="item-icon">♫</div>
+
+          <div class="item-text">
+            <div class="item-name">Spotify</div>
+            <div class="item-sub">official artist</div>
+          </div>
+
+          <div class="chevron">›</div>
+
+        </div>
+
+
+        <div class="item"
+             onclick="window.open('https://www.melon.com/artist/detail.htm?artistId=3743525','_blank')">
+
+          <div class="item-icon">♪</div>
+
+          <div class="item-text">
+            <div class="item-name">Melon</div>
+            <div class="item-sub">official artist</div>
+          </div>
+
+          <div class="chevron">›</div>
+
+        </div>
+
+
+        <div class="item"
+             onclick="window.open('https://www.youtube.com/@ILLIT_official','_blank')">
+
+          <div class="item-icon">▶</div>
+
+          <div class="item-text">
+            <div class="item-name">YouTube</div>
+            <div class="item-sub">official channel</div>
+          </div>
+
+          <div class="chevron">›</div>
+
+        </div>
+
+
+        <div class="item"
+             onclick="window.open('https://www.instagram.com/ILLIT_official/','_blank')">
+
+          <div class="item-icon">◎</div>
+
+          <div class="item-text">
+            <div class="item-name">Instagram</div>
+            <div class="item-sub">official account</div>
+          </div>
+
+          <div class="chevron">›</div>
+
+        </div>
+
+
+        <div class="item"
+             onclick="window.open('https://weverse.io/illit/','_blank')">
+
+          <div class="item-icon">W</div>
+
+          <div class="item-text">
+            <div class="item-name">Weverse</div>
+            <div class="item-sub">official community</div>
+          </div>
+
+          <div class="chevron">›</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MEMBER DETAIL ================= -->
+
+    <section class="page" id="memberDetail">
+
+      <button class="back" onclick="goBack()">
+        ‹ back
+      </button>
+
+      <div class="detail-card">
+
+        <div class="member-avatar" id="detailAvatar">
+          W
+        </div>
+
+        <h2 id="detailName" style="margin-top:15px;">
+          Wonhee
+        </h2>
+
+        <p id="detailKorean">
+          원희
+        </p>
+
+      </div>
+
+
+      <div class="list">
+
+        <div class="list-title">
+          archive
+        </div>
+
+        <div class="item">
+          <div class="item-icon">📅</div>
+          <div class="item-text">
+            <div class="item-name">Schedule</div>
+            <div class="item-sub">individual activities</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">◎</div>
+          <div class="item-text">
+            <div class="item-name">Photos</div>
+            <div class="item-sub">individual gallery</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+        <div class="item">
+          <div class="item-icon">✦</div>
+          <div class="item-text">
+            <div class="item-name">Appearances</div>
+            <div class="item-sub">shows & events</div>
+          </div>
+          <div class="chevron">›</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ================= BOTTOM NAV ================= -->
+
+  <nav class="bottom-nav">
+
+    <button class="nav-button active"
+            onclick="openPage('home',this)">
+      <span>⌂</span>
+      Home
+    </button>
+
+    <button class="nav-button"
+            onclick="openPage('profile',this)">
+      <span>♙</span>
+      Profile
+    </button>
+
+    <button class="nav-button"
+            onclick="openPage('discography',this)">
+      <span>♫</span>
+      Music
+    </button>
+
+    <button class="nav-button"
+            onclick="openPage('gallery',this)">
+      <span>▦</span>
+      Photos
+    </button>
+
+    <button class="nav-button"
+            onclick="openPage('official',this)">
+      <span>⚙</span>
+      More
+    </button>
+
+  </nav>
 
 </div>
 
 
 <script>
 
-/* ============================
-   PAGE NAVIGATION
-============================ */
+/* =========================
+   NAVIGATION
+========================= */
 
-function showPage(pageId, button){
+function openPage(pageId, button) {
 
-    document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("active");
+  document.querySelectorAll('.page')
+    .forEach(page => page.classList.remove('active'));
+
+  const page = document.getElementById(pageId);
+
+  if (page) {
+    page.classList.add('active');
+  }
+
+  const titles = {
+    home: "Home",
+    profile: "Profile",
+    discography: "Music",
+    summer: "Summer Moon",
+    tour: "Tour",
+    mv: "MV",
+    news: "News",
+    schedule: "Schedule",
+    activities: "Activities",
+    gallery: "Photos",
+    official: "Official",
+    memberDetail: "Profile"
+  };
+
+  document.getElementById("headerTitle").innerText =
+    titles[pageId] || "ILLIT";
+
+  document.querySelectorAll('.nav-button')
+    .forEach(btn => btn.classList.remove('active'));
+
+  if (button) {
+    button.classList.add('active');
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+/* =========================
+   MEMBER
+========================= */
+
+let previousPage = "profile";
+
+function member(name, korean) {
+
+  previousPage =
+    document.querySelector('.page.active')?.id || "profile";
+
+  document.querySelectorAll('.page')
+    .forEach(page => page.classList.remove('active'));
+
+  document.getElementById("memberDetail")
+    .classList.add('active');
+
+  document.getElementById("detailName")
+    .innerText = name;
+
+  document.getElementById("detailKorean")
+    .innerText = korean;
+
+  document.getElementById("detailAvatar")
+    .innerText = name.charAt(0);
+
+  document.getElementById("headerTitle")
+    .innerText = name;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+function goBack() {
+  openPage(previousPage);
+}
+
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateTime() {
+
+  const now = new Date();
+
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+
+  minute = minute.toString().padStart(2,"0");
+
+  document.getElementById("time")
+    .innerText = hour + ":" + minute;
+}
+
+updateTime();
+
+setInterval(updateTime,60000);
+
+
+/* =========================
+   TABS
+========================= */
+
+document.querySelectorAll('.tabs').forEach(tabGroup => {
+
+  const buttons = tabGroup.querySelectorAll('.tab');
+
+  buttons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+      buttons.forEach(b =>
+        b.classList.remove('selected')
+      );
+
+      button.classList.add('selected');
+
     });
 
-    const page=document.getElementById(pageId);
-
-    if(page){
-        page.classList.add("active");
-    }
-
-    document.querySelectorAll(".menu button").forEach(btn=>{
-        btn.classList.remove("active");
-    });
-
-    if(button){
-        button.classList.add("active");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-
-
-/* ============================
-   MENU
-============================ */
-
-function openMenu(){
-    document.getElementById("overlay").classList.add("show");
-}
-
-function closeMenu(event){
-
-    if(event.target.id==="overlay"){
-        document.getElementById("overlay").classList.remove("show");
-    }
-
-}
-
-function go(page){
-
-    document.getElementById("overlay").classList.remove("show");
-
-    showPage(page);
-
-}
-
-
-/* ============================
-   IOS CLOCK
-============================ */
-
-function updateClock(){
-
-    const now=new Date();
-
-    let hours=now.getHours();
-    let minutes=now.getMinutes();
-
-    minutes=minutes.toString().padStart(2,"0");
-
-    document.getElementById("clock").textContent=
-        hours+":"+minutes;
-}
-
-updateClock();
-
-setInterval(updateClock,1000);
-
-
-/* ============================
-   SUMMER MOON BOOK
-============================ */
-
-let bookOpened=false;
-
-let currentBookPage=0;
-
-
-/*
-   YOU CAN EDIT THESE PAGES.
-   Add or remove pages here.
-*/
-
-const bookPages=[
-
-    {
-        title:"Welcome",
-        text:`
-        Welcome to the Summer Moon archive.
-        This is your personal space to collect information
-        about the webtoon, lore and story.
-        `
-    },
-
-    {
-        title:"Synopsis",
-        text:`
-        ADD THE SUMMER MOON SYNOPSIS HERE.
-
-        You can write the official synopsis,
-        your own summary or important information
-        about the story.
-        `
-    },
-
-    {
-        title:"Characters",
-        text:`
-        ADD CHARACTERS HERE.
-
-        • Character 1 — ADD INFORMATION
-        • Character 2 — ADD INFORMATION
-        • Character 3 — ADD INFORMATION
-        • Character 4 — ADD INFORMATION
-        `
-    },
-
-    {
-        title:"Story Summary",
-        text:`
-        ADD YOUR STORY SUMMARY HERE.
-
-        You can organize the story in chronological
-        order and write important events.
-        `
-    },
-
-    {
-        title:"Chapters",
-        text:`
-        ADD CHAPTER INFORMATION HERE.
-
-        Chapter 01 — ADD SUMMARY
-        Chapter 02 — ADD SUMMARY
-        Chapter 03 — ADD SUMMARY
-        `
-    },
-
-    {
-        title:"Lore Notes",
-        text:`
-        ADD YOUR LORE NOTES HERE.
-
-        The page can contain theories,
-        symbols, connections and details
-        you want to archive.
-        `
-    },
-
-    {
-        title:"Archive Notes",
-        text:`
-        ADD ANY EXTRA INFORMATION HERE.
-
-        This final page can be used for theories,
-        references, dates or personal notes.
-        `
-    }
-
-];
-
-
-function openBook(){
-
-    if(!bookOpened){
-
-        document
-        .getElementById("bookCover")
-        .classList.add("open");
-
-        bookOpened=true;
-
-    }
-
-}
-
-
-function renderBook(){
-
-    const page=bookPages[currentBookPage];
-
-    document.getElementById("bookContent").innerHTML=`
-
-        <h2>${page.title}</h2>
-
-        <p>${page.text}</p>
-
-    `;
-
-    document.getElementById("bookNumber").textContent=
-        String(currentBookPage+1).padStart(2,"0");
-
-}
-
-
-function nextPage(){
-
-    openBook();
-
-    if(currentBookPage < bookPages.length-1){
-
-        currentBookPage++;
-
-        renderBook();
-
-    }
-
-}
-
-
-function previousPage(){
-
-    if(currentBookPage > 0){
-
-        currentBookPage--;
-
-        renderBook();
-
-    }
-
-}
-
-
-/* ============================
-   SWIPE SUPPORT FOR BOOK
-============================ */
-
-let touchStartX=0;
-
-document.querySelector(".book").addEventListener("touchstart",e=>{
-
-    touchStartX=e.changedTouches[0].screenX;
-
-});
-
-document.querySelector(".book").addEventListener("touchend",e=>{
-
-    const touchEndX=e.changedTouches[0].screenX;
-
-    if(touchEndX < touchStartX-50){
-
-        nextPage();
-
-    }
-
-    if(touchEndX > touchStartX+50){
-
-        previousPage();
-
-    }
+  });
 
 });
 
 </script>
 
 </body>
-</html>
+          </html>
