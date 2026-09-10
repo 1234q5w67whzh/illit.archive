@@ -8,1002 +8,546 @@
 
 <style>
 
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
-
-body {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-
-  color: #655b68;
-
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Georgia, "Times New Roman", serif;
   background:
-    radial-gradient(circle at 15% 10%, #ffffff 0, transparent 22%),
-    radial-gradient(circle at 90% 20%, #f8dce9 0, transparent 25%),
-    radial-gradient(circle at 10% 80%, #e4eaff 0, transparent 27%),
-    linear-gradient(135deg, #fffafd, #f8f0fb, #eef5ff);
-
-  overflow-x: hidden;
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.95), transparent 22%),
+    radial-gradient(circle at 80% 80%, rgba(245,210,240,.5), transparent 28%),
+    linear-gradient(145deg,#fffafa,#f9eef7,#eee9f8);
+  color:#655666;
+  overflow-x:hidden;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* ---------- TOP ---------- */
 
-.bg-star {
-  position: fixed;
-  pointer-events: none;
-  color: rgba(255,255,255,.95);
-  text-shadow: 0 0 10px rgba(255,255,255,.8);
-  z-index: 0;
+.top{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  z-index:100;
+  background:rgba(255,250,252,.75);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(190,150,180,.15);
 }
 
-.s1 {
-  top: 12%;
-  left: 9%;
-  font-size: 16px;
+.back{
+  text-decoration:none;
+  color:#8d7187;
+  font-size:14px;
 }
 
-.s2 {
-  top: 25%;
-  right: 9%;
-  font-size: 12px;
+.logo{
+  font-size:14px;
+  letter-spacing:2px;
+  color:#9d7b96;
 }
 
-.s3 {
-  top: 52%;
-  left: 5%;
-  font-size: 10px;
+.moon-small{
+  font-size:20px;
 }
 
-.s4 {
-  top: 73%;
-  right: 12%;
-  font-size: 18px;
+/* ---------- MAIN ---------- */
+
+main{
+  min-height:100vh;
+  padding:95px 20px 50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.s5 {
-  top: 88%;
-  left: 20%;
-  font-size: 12px;
+/* ---------- INTRO ---------- */
+
+.intro{
+  text-align:center;
+  margin-bottom:28px;
 }
 
-/* =========================
-   TOP
-========================= */
-
-.top {
-  position: relative;
-  z-index: 10;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px 18px 5px;
+.intro small{
+  display:block;
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#b58ca9;
+  margin-bottom:8px;
 }
 
-.back {
-  text-decoration: none;
-  color: #786c7c;
-
-  font-size: 13px;
-
-  padding: 9px 14px;
-
-  border-radius: 30px;
-
-  background: rgba(255,255,255,.72);
-
-  box-shadow:
-    0 5px 18px rgba(150,120,150,.08);
-
-  backdrop-filter: blur(10px);
+.intro h1{
+  margin:0;
+  font-size:34px;
+  font-weight:normal;
+  color:#80667b;
 }
 
-.archive {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: lowercase;
-  color: #a090a5;
+.intro p{
+  margin:8px 0 0;
+  font-size:13px;
+  color:#a58e9f;
 }
 
-/* =========================
-   TITLE
-========================= */
+/* ---------- ENVELOPE AREA ---------- */
 
-.heading {
-  position: relative;
-  z-index: 2;
-
-  text-align: center;
-
-  padding: 18px 20px 20px;
+.scene{
+  position:relative;
+  width:min(360px,92vw);
+  height:470px;
+  perspective:1000px;
 }
 
-.heading h1 {
-  margin: 0;
+/* floating decorations */
 
-  font-family: Georgia, serif;
-
-  font-size: 38px;
-  font-weight: 400;
-
-  color: #695c70;
+.decor{
+  position:absolute;
+  color:#d4a9c5;
+  pointer-events:none;
+  animation:float 4s ease-in-out infinite;
 }
 
-.heading p {
-  margin: 7px 0 0;
+.d1{top:25px;left:15px;font-size:22px;}
+.d2{top:95px;right:10px;font-size:14px;animation-delay:1s;}
+.d3{bottom:75px;left:5px;font-size:17px;animation-delay:2s;}
+.d4{bottom:35px;right:25px;font-size:24px;animation-delay:.5s;}
 
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  color: #aa9aaa;
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-8px) rotate(5deg);}
 }
 
-/* =========================
-   INVITATION AREA
-========================= */
+/* envelope */
 
-.invitation-area {
-  position: relative;
-  z-index: 3;
-
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 10px 20px 60px;
-}
-
-/* =========================
-   LETTER
-========================= */
-
-.letter {
-  position: relative;
-
-  width: min(89vw, 390px);
-  height: min(132vw, 560px);
-
-  max-height: 560px;
-
-  perspective: 1200px;
-}
-
-/* =========================
-   INSIDE
-========================= */
-
-.inside {
-  position: absolute;
-  inset: 0;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.98),
-      rgba(255,247,252,.98)
-    );
-
-  box-shadow:
-    0 25px 55px rgba(125,95,130,.16),
-    0 5px 18px rgba(125,95,130,.08);
-
-  overflow: hidden;
-
-  z-index: 1;
-}
-
-/* =========================
-   PAGES
-========================= */
-
-.page {
-  position: absolute;
-  inset: 0;
-
-  padding: 34px 27px 70px;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateX(25px);
-
+.envelope{
+  position:absolute;
+  width:300px;
+  height:205px;
+  left:50%;
+  top:205px;
+  transform:translateX(-50%);
+  cursor:pointer;
+  z-index:20;
   transition:
-    opacity .4s ease,
-    transform .4s ease;
+    transform .8s ease,
+    opacity .7s ease;
 }
 
-.page.active {
-  opacity: 1;
-  visibility: visible;
-
-  transform: translateX(0);
-}
-
-/* decorative border */
-
-.page::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 13px;
-
-  border: 1px solid rgba(215,177,201,.45);
-
-  border-radius: 15px;
-
-  pointer-events: none;
-}
-
-/* =========================
-   PAGE CONTENT
-========================= */
-
-.page-inner {
-  position: relative;
-  z-index: 2;
-
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.page-number {
-  text-align: center;
-
-  font-size: 9px;
-
-  letter-spacing: 2px;
-
-  color: #b59eaf;
-
-  margin-bottom: 25px;
-}
-
-.page h2 {
-  margin: 0;
-
-  text-align: center;
-
-  font-family: Georgia, serif;
-
-  font-size: 29px;
-
-  font-weight: 400;
-
-  color: #705e70;
-}
-
-.page-subtitle {
-  text-align: center;
-
-  margin-top: 8px;
-
-  font-size: 10px;
-
-  letter-spacing: 1.5px;
-
-  color: #ad98a9;
-}
-
-.page-text {
-  margin-top: 25px;
-
-  font-size: 13px;
-
-  line-height: 1.85;
-
-  color: #786e7c;
-
-  text-align: center;
-}
-
-.ornament {
-  text-align: center;
-
-  color: #d59dbd;
-
-  font-size: 21px;
-
-  margin: 20px 0;
-}
-
-/* =========================
-   COQUETTE DECORATIONS
-========================= */
-
-.bow {
-  position: absolute;
-
-  top: 27px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 45px;
-  height: 25px;
-
-  z-index: 3;
-}
-
-.bow::before,
-.bow::after {
-  content: "";
-
-  position: absolute;
-
-  top: 2px;
-
-  width: 23px;
-  height: 20px;
-
-  border: 2px solid #dfa9c2;
-
-  background: #f8dce9;
-
-  border-radius: 70% 40% 60% 45%;
-}
-
-.bow::before {
-  right: 21px;
-  transform: rotate(18deg);
-}
-
-.bow::after {
-  left: 21px;
-  transform: rotate(-18deg);
-}
-
-.bow-dot {
-  position: absolute;
-
-  width: 9px;
-  height: 9px;
-
-  background: #e2a9c1;
-
-  border-radius: 50%;
-
-  left: 18px;
-  top: 8px;
-
-  z-index: 4;
-}
-
-/* =========================
-   PHOTO PLACEHOLDER
-========================= */
-
-.photo-frame {
-  width: 78%;
-
-  height: 175px;
-
-  margin: 22px auto 0;
-
-  border-radius: 13px;
-
-  border: 1px solid #ead4df;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff,
-      #f8edf5
-    );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #c2aebb;
-
-  font-family: Georgia, serif;
-
-  font-size: 13px;
-
+.envelope-back{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(145deg,#f7dbe9,#efd0e2);
+  border-radius:12px;
   box-shadow:
-    0 8px 20px rgba(150,120,150,.08);
+    0 22px 45px rgba(120,80,110,.18),
+    inset 0 0 0 1px rgba(255,255,255,.65);
 }
 
-/* =========================
-   CHARACTER CARDS
-========================= */
+/* triangular flap */
 
-.character-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 10px;
-
-  margin-top: 22px;
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-top:115px solid #f4cfe1;
+  transform-origin:top center;
+  transition:transform .9s ease, opacity .5s ease;
+  z-index:5;
+  filter:drop-shadow(0 3px 3px rgba(130,80,115,.08));
 }
 
-.character {
-  padding: 13px 8px;
+/* envelope front */
 
-  text-align: center;
-
-  border-radius: 14px;
-
-  background: rgba(255,247,252,.8);
-
-  border: 1px solid rgba(225,198,216,.6);
+.front{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:125px;
+  background:linear-gradient(160deg,#f5d2e3,#ecc6dc);
+  clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+  border-radius:0 0 12px 12px;
+  z-index:8;
 }
 
-.character-symbol {
-  font-size: 22px;
+/* bow */
 
-  margin-bottom: 6px;
+.bow{
+  position:absolute;
+  left:50%;
+  top:94px;
+  transform:translateX(-50%);
+  z-index:15;
+  transition:transform .7s ease, opacity .5s ease;
 }
 
-.character-name {
-  font-family: Georgia, serif;
-
-  font-size: 14px;
-
-  color: #756276;
+.bow-left,
+.bow-right{
+  position:absolute;
+  width:47px;
+  height:31px;
+  background:#d99fbd;
+  border:2px solid #ca8fae;
+  border-radius:60% 20% 60% 20%;
 }
 
-.character-role {
-  margin-top: 4px;
-
-  font-size: 9px;
-
-  color: #ad9cae;
+.bow-left{
+  right:4px;
+  transform:rotate(18deg);
 }
 
-/* =========================
-   FRAGMENT
-========================= */
-
-.fragment {
-  width: 115px;
-  height: 115px;
-
-  margin: 25px auto;
-
-  transform: rotate(45deg);
-
-  border-radius: 19px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f7d8ea,
-      #e1ddf8,
-      #d6ecfa
-    );
-
-  box-shadow:
-    0 0 30px rgba(220,190,230,.5);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bow-right{
+  left:4px;
+  transform:scaleX(-1) rotate(18deg);
 }
 
-.fragment span {
-  transform: rotate(-45deg);
-
-  font-size: 32px;
-
-  color: white;
-
-  text-shadow:
-    0 0 15px rgba(255,255,255,.9);
+.bow-center{
+  position:absolute;
+  width:19px;
+  height:19px;
+  background:#d38faf;
+  border-radius:50%;
+  left:50%;
+  top:7px;
+  transform:translateX(-50%);
+  box-shadow:0 0 0 4px rgba(255,255,255,.3);
 }
 
-/* =========================
-   CHAPTER LIST
-========================= */
+/* seal */
 
-.chapter-list {
-  margin-top: 22px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 9px;
+.seal{
+  position:absolute;
+  left:50%;
+  bottom:46px;
+  transform:translateX(-50%);
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  background:#d99ab8;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:19px;
+  z-index:18;
+  box-shadow:0 4px 12px rgba(130,80,110,.15);
+  transition:opacity .5s ease,transform .7s ease;
 }
 
-.chapter {
-  display: flex;
+/* ---------- LETTER ---------- */
 
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 12px 13px;
-
-  border-radius: 13px;
-
-  background: rgba(252,244,249,.8);
-
-  border: 1px solid rgba(227,202,218,.6);
-}
-
-.chapter-number {
-  width: 27px;
-  height: 27px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #f4dbe8;
-
-  color: #9e7e91;
-
-  font-size: 10px;
-}
-
-.chapter-name {
-  font-family: Georgia, serif;
-
-  font-size: 13px;
-
-  color: #776579;
-}
-
-.chapter-small {
-  margin-top: 2px;
-
-  font-size: 9px;
-
-  color: #b09eae;
-}
-
-/* =========================
-   FINAL PAGE
-========================= */
-
-.final-symbol {
-  text-align: center;
-
-  font-size: 42px;
-
-  margin: 45px 0 20px;
-
-  color: #d8a4c0;
-
-  text-shadow:
-    0 0 20px rgba(255,255,255,.9);
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navigation {
-  position: absolute;
-
-  bottom: 15px;
-
-  left: 0;
-  right: 0;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 17px;
-
-  z-index: 30;
-}
-
-.nav-button {
-  width: 38px;
-  height: 38px;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background: rgba(248,229,240,.95);
-
-  color: #806d7e;
-
-  font-size: 21px;
-
-  box-shadow:
-    0 5px 14px rgba(120,90,120,.1);
-
-  cursor: pointer;
-}
-
-.nav-button:active {
-  transform: scale(.88);
-}
-
-.page-count {
-  min-width: 45px;
-
-  text-align: center;
-
-  font-size: 10px;
-
-  color: #a391a1;
-}
-
-/* =========================
-   COVER
-========================= */
-
-.cover {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 10;
-
-  border-radius: 20px;
-
-  background:
-    radial-gradient(
-      circle at 50% 18%,
-      rgba(255,255,255,.9),
-      transparent 18%
-    ),
-    linear-gradient(
-      145deg,
-      #fff5fa,
-      #f7ddeb 45%,
-      #e8ddf7 78%,
-      #dfeefa
-    );
-
-  box-shadow:
-    0 25px 55px rgba(125,95,130,.18),
-    0 5px 18px rgba(125,95,130,.1);
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
+.letter{
+  position:absolute;
+  width:286px;
+  height:385px;
+  left:50%;
+  top:95px;
+  transform:translate(-50%,70px) scale(.88);
+  opacity:0;
+  z-index:10;
+  pointer-events:none;
   transition:
-    transform .9s cubic-bezier(.2,.8,.2,1),
-    opacity .7s ease,
-    box-shadow .7s ease;
-
-  overflow: hidden;
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    opacity .8s ease;
 }
 
-.letter.open .cover {
-  transform: translateX(-104%);
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  box-shadow: none;
-}
-
-/* =========================
-   COVER DECOR
-========================= */
-
-.cover-ribbon {
-  position: absolute;
-
-  width: 100%;
-
-  height: 28px;
-
-  top: 48%;
-
-  background: rgba(255,255,255,.28);
-
-  transform: rotate(-8deg);
-}
-
-.cover-content {
-  position: relative;
-
-  z-index: 5;
-
-  text-align: center;
-
-  padding: 30px;
-}
-
-.cover-mini {
-  font-size: 9px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color: #a18396;
-
-  margin-bottom: 16px;
-}
-
-.cover-title {
-  font-family: Georgia, serif;
-
-  font-size: 43px;
-
-  line-height: .95;
-
-  font-weight: 400;
-
-  color: #705c6d;
-}
-
-.cover-sub {
-  margin-top: 16px;
-
-  font-size: 11px;
-
-  letter-spacing: 1.5px;
-
-  color: #a18d9e;
-}
-
-/* =========================
-   COVER MOON
-========================= */
-
-.cover-moon {
-  width: 100px;
-  height: 100px;
-
-  margin: 0 auto 22px;
-
-  border-radius: 50%;
-
+.paper{
+  width:100%;
+  height:100%;
   background:
-    radial-gradient(
-      circle at 35% 30%,
-      white,
-      #f8e9f5 45%,
-      #e6d8ef
-    );
-
-  box-shadow:
-    0 0 25px rgba(255,255,255,.95),
-    0 0 55px rgba(212,174,225,.5);
-
-  position: relative;
+    radial-gradient(circle at 10% 10%,rgba(255,220,237,.5),transparent 25%),
+    #fffdfc;
+  border:1px solid #efdce7;
+  border-radius:8px;
+  box-shadow:0 20px 50px rgba(100,65,90,.16);
+  padding:30px 25px;
+  position:relative;
 }
 
-.cover-moon::after {
-  content: "";
-
-  position: absolute;
-
-  width: 100px;
-  height: 100px;
-
-  border-radius: 50%;
-
-  background: #eadcf2;
-
-  left: 28px;
-  top: -9px;
+.paper:before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px dashed #e8c9da;
+  border-radius:5px;
+  pointer-events:none;
 }
 
-/* =========================
-   COVER BOW
-========================= */
-
-.cover-bow {
-  position: absolute;
-
-  bottom: 35px;
-  right: 35px;
-
-  width: 62px;
-  height: 42px;
+.paper-top{
+  text-align:center;
+  position:relative;
+  z-index:2;
 }
 
-.cover-bow::before,
-.cover-bow::after {
-  content: "";
-
-  position: absolute;
-
-  width: 30px;
-  height: 27px;
-
-  background: rgba(255,225,238,.85);
-
-  border: 2px solid rgba(216,160,187,.7);
-
-  border-radius: 70% 40% 60% 45%;
+.paper-top small{
+  letter-spacing:3px;
+  font-size:8px;
+  color:#bd8fab;
+  text-transform:uppercase;
 }
 
-.cover-bow::before {
-  right: 27px;
-  transform: rotate(18deg);
+.paper-top h2{
+  margin:12px 0 5px;
+  font-size:27px;
+  font-weight:normal;
+  color:#86687d;
 }
 
-.cover-bow::after {
-  left: 27px;
-  transform: rotate(-18deg);
+.paper-top p{
+  margin:0;
+  font-size:11px;
+  color:#b19ba9;
 }
 
-.cover-bow-center {
-  position: absolute;
-
-  width: 11px;
-  height: 11px;
-
-  left: 25px;
-  top: 12px;
-
-  border-radius: 50%;
-
-  background: #dda1bc;
-
-  z-index: 2;
+.mini-moon{
+  font-size:26px;
+  margin:18px 0 8px;
 }
 
-/* =========================
-   COVER STARS
-========================= */
-
-.cover-star {
-  position: absolute;
-
-  color: white;
-
-  text-shadow:
-    0 0 12px rgba(255,255,255,1);
+.open-text{
+  margin-top:27px;
+  text-align:center;
+  font-size:10px;
+  letter-spacing:2px;
+  color:#b98ca7;
+  text-transform:uppercase;
 }
 
-.cs1 {
-  top: 30px;
-  left: 30px;
-  font-size: 18px;
+/* ---------- OPEN STATE ---------- */
+
+.scene.open .envelope{
+  transform:translateX(-50%) translateY(120px);
+  opacity:.45;
+  pointer-events:none;
 }
 
-.cs2 {
-  top: 75px;
-  right: 30px;
-  font-size: 12px;
+.scene.open .flap{
+  transform:rotateX(105deg);
+  opacity:0;
 }
 
-.cs3 {
-  bottom: 105px;
-  left: 32px;
-  font-size: 15px;
+.scene.open .bow,
+.scene.open .seal{
+  opacity:0;
 }
 
-.cs4 {
-  bottom: 60px;
-  right: 115px;
-  font-size: 10px;
+.scene.open .letter{
+  transform:translate(-50%,0) scale(1);
+  opacity:1;
+  pointer-events:auto;
 }
 
-/* =========================
-   TAP
-========================= */
+/* ---------- LETTER OPEN BUTTON ---------- */
 
-.tap {
-  margin-top: 25px;
-
-  font-size: 10px;
-
-  letter-spacing: 1.5px;
-
-  color: #927c90;
-
-  animation: tapPulse 1.8s infinite;
+.enter{
+  position:absolute;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%);
+  border:0;
+  background:#e2b1ca;
+  color:white;
+  padding:11px 25px;
+  border-radius:30px;
+  font-family:inherit;
+  font-size:11px;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 7px 18px rgba(150,95,125,.18);
 }
 
-@keyframes tapPulse {
-  0%, 100% {
-    opacity: .45;
+.enter:active{
+  transform:translateX(-50%) scale(.95);
+}
+
+/* ---------- CHARACTER PAGES ---------- */
+
+.pages{
+  display:none;
+  width:min(360px,92vw);
+  margin-top:10px;
+}
+
+.scene.finished{
+  height:auto;
+}
+
+.scene.finished .envelope{
+  display:none;
+}
+
+.scene.finished .letter{
+  display:none;
+}
+
+.scene.finished + .pages{
+  display:block;
+}
+
+.page{
+  display:none;
+  position:relative;
+  min-height:420px;
+  background:#fffdfc;
+  border:1px solid #ead7e2;
+  border-radius:12px;
+  padding:34px 27px;
+  box-shadow:0 18px 40px rgba(100,65,90,.13);
+  overflow:hidden;
+}
+
+.page.active{
+  display:block;
+  animation:pageIn .65s ease;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateX(25px) rotate(1deg);
   }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-/* =========================
-   SPARKLES
-========================= */
-
-.sparkle {
-  position: fixed;
-
-  z-index: 9999;
-
-  pointer-events: none;
-
-  color: white;
-
-  font-size: 17px;
-
-  text-shadow:
-    0 0 8px white,
-    0 0 16px rgba(220,190,235,.9);
-
-  animation:
-    sparkleOut .95s ease-out forwards;
-}
-
-@keyframes sparkleOut {
-
-  0% {
-    opacity: 0;
-    transform:
-      translate(0,0)
-      scale(.2)
-      rotate(0deg);
-  }
-
-  20% {
-    opacity: 1;
-    transform:
-      translate(0,0)
-      scale(1.1)
-      rotate(30deg);
-  }
-
-  100% {
-    opacity: 0;
-
-    transform:
-      translate(var(--x),var(--y))
-      scale(.35)
-      rotate(180deg);
+  to{
+    opacity:1;
+    transform:translateX(0) rotate(0);
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+.page:before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px dashed #e9cada;
+  border-radius:7px;
+  pointer-events:none;
+}
 
-@media (max-width: 420px) {
+.page-number{
+  position:relative;
+  text-align:right;
+  font-size:9px;
+  letter-spacing:2px;
+  color:#c59bb2;
+}
 
-  .letter {
-    height: 500px;
+.character-icon{
+  position:relative;
+  text-align:center;
+  font-size:43px;
+  margin:30px 0 15px;
+}
+
+.page h2{
+  position:relative;
+  text-align:center;
+  margin:0;
+  font-size:28px;
+  font-weight:normal;
+  color:#816579;
+}
+
+.korean{
+  position:relative;
+  text-align:center;
+  margin-top:5px;
+  color:#bd98ac;
+  font-size:12px;
+}
+
+.line{
+  width:45px;
+  height:1px;
+  background:#e3bfd2;
+  margin:20px auto;
+}
+
+.description{
+  position:relative;
+  text-align:center;
+  line-height:1.8;
+  font-size:12px;
+  color:#8f7c89;
+}
+
+.corner{
+  position:absolute;
+  font-size:22px;
+  color:#d8afc5;
+}
+
+.c1{top:22px;left:21px;}
+.c2{bottom:20px;right:20px;}
+
+/* ---------- NAVIGATION ---------- */
+
+.navigation{
+  display:none;
+  width:min(360px,92vw);
+  margin:18px auto 40px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.navigation.show{
+  display:flex;
+}
+
+.nav-btn{
+  border:1px solid #e2c7d7;
+  background:rgba(255,255,255,.7);
+  color:#96758b;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.counter{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#b08b9f;
+}
+
+/* ---------- SPARKLES ---------- */
+
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  z-index:999;
+  color:#d99fbe;
+  animation:spark .9s ease forwards;
+}
+
+@keyframes spark{
+  0%{
+    opacity:1;
+    transform:translate(0,0) scale(.5) rotate(0);
   }
-
-  .heading h1 {
-    font-size: 35px;
+  100%{
+    opacity:0;
+    transform:translate(var(--x),var(--y)) scale(1.5) rotate(120deg);
   }
+}
 
-  .cover-title {
-    font-size: 40px;
+@media(max-width:380px){
+  .scene{
+    transform:scale(.94);
+    transform-origin:top center;
+    margin-bottom:-25px;
   }
-
-  .page {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
 }
 
 </style>
@@ -1011,872 +555,471 @@ body {
 
 <body>
 
-<!-- background -->
+<header class="top">
 
-<div class="bg-star s1">✦</div>
-<div class="bg-star s2">✧</div>
-<div class="bg-star s3">⋆</div>
-<div class="bg-star s4">✦</div>
-<div class="bg-star s5">✧</div>
+  <a class="back" href="index.html">‹ back</a>
+
+  <div class="logo">summer moon</div>
+
+  <div class="moon-small">☾</div>
+
+</header>
 
 
-<!-- top -->
+<main>
 
-<div class="top">
+  <div class="intro">
 
-  <a href="index.html" class="back">
-    ← back
-  </a>
+    <small>an invitation</small>
 
-  <div class="archive">
-    illit archive
+    <h1>Summer Moon</h1>
+
+    <p>open the letter to enter the universe</p>
+
   </div>
 
-</div>
 
+  <!-- ENVELOPE -->
 
-<!-- heading -->
+  <div class="scene" id="scene">
 
-<div class="heading">
+    <div class="decor d1">♡</div>
+    <div class="decor d2">✦</div>
+    <div class="decor d3">♡</div>
+    <div class="decor d4">✧</div>
 
-  <h1>Summer Moon</h1>
 
-  <p>
-    a little invitation to the quprids
-  </p>
+    <div class="envelope" id="envelope">
 
-</div>
+      <div class="envelope-back"></div>
 
+      <div class="flap"></div>
 
-<!-- invitation -->
+      <div class="front"></div>
 
-<div class="invitation-area">
 
-  <div class="letter" id="letter">
+      <div class="bow">
 
+        <div class="bow-left"></div>
+        <div class="bow-right"></div>
+        <div class="bow-center"></div>
 
-    <!-- =====================
-         INSIDE
-    ====================== -->
+      </div>
 
-    <div class="inside">
 
-
-      <!-- PAGE 1 -->
-
-      <section class="page active">
-
-        <div class="page-inner">
-
-          <div class="bow">
-            <div class="bow-dot"></div>
-          </div>
-
-          <div class="page-number">
-            summer moon · 01
-          </div>
-
-          <h2>
-            you're invited
-          </h2>
-
-          <div class="page-subtitle">
-            welcome to summer moon
-          </div>
-
-          <div class="ornament">
-            ✦ ୨୧ ✦
-          </div>
-
-          <div class="page-text">
-
-            step softly into a world where
-            dreams, feelings and imagination
-            begin to overlap.
-
-            <br><br>
-
-            this little archive is your invitation
-            to discover the universe of
-            the quprids.
-
-          </div>
-
-          <div class="photo-frame">
-            ☾ ✦ summer moon ✦ ☽
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 2 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 02
-          </div>
-
-          <h2>
-            the quprids
-          </h2>
-
-          <div class="page-subtitle">
-            beyond the ordinary
-          </div>
-
-          <div class="ornament">
-            ♡ ✧ ♡
-          </div>
-
-          <div class="page-text">
-
-            summer moon follows a mysterious
-            world connected to ILLIT.
-
-            <br><br>
-
-            it blends everyday youth with
-            magical imagery, strange discoveries
-            and a world hidden just beyond
-            what we can see.
-
-          </div>
-
-          <div class="fragment">
-            <span>✦</span>
-          </div>
-
-          <div class="page-text">
-            every fragment reveals a little
-            more of the story.
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 3 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 03
-          </div>
-
-          <h2>
-            the story
-          </h2>
-
-          <div class="page-subtitle">
-            reality × imagination
-          </div>
-
-          <div class="ornament">
-            ☾ ⋆ ✦ ⋆ ☽
-          </div>
-
-          <div class="page-text">
-
-            what begins as an ordinary
-            summer slowly becomes something
-            much stranger.
-
-            <br><br>
-
-            mysterious fragments, unexpected
-            encounters and hidden possibilities
-            connect the characters to a larger
-            universe.
-
-          </div>
-
-          <div class="page-text">
-
-            youth is not simply about growing up.
-            it is also about discovering
-            who you can become.
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 4 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 04
-          </div>
-
-          <h2>
-            characters
-          </h2>
-
-          <div class="page-subtitle">
-            meet the girls
-          </div>
-
-          <div class="character-grid">
-
-            <div class="character">
-
-              <div class="character-symbol">
-                🐿
-              </div>
-
-              <div class="character-name">
-                Yeoreum
-              </div>
-
-              <div class="character-role">
-                the beginning
-              </div>
-
-            </div>
-
-
-            <div class="character">
-
-              <div class="character-symbol">
-                🐆
-              </div>
-
-              <div class="character-name">
-                Ayeong
-              </div>
-
-              <div class="character-role">
-                the unknown
-              </div>
-
-            </div>
-
-
-            <div class="character">
-
-              <div class="character-symbol">
-                🎾
-              </div>
-
-              <div class="character-name">
-                Gowon
-              </div>
-
-              <div class="character-role">
-                the captain
-              </div>
-
-            </div>
-
-
-            <div class="character">
-
-              <div class="character-symbol">
-                ✧
-              </div>
-
-              <div class="character-name">
-                Doyun
-              </div>
-
-              <div class="character-role">
-                the encounter
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="page-text">
-
-            every character has her own feelings,
-            dreams and potential.
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 5 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 05
-          </div>
-
-          <h2>
-            fragments
-          </h2>
-
-          <div class="page-subtitle">
-            magic meets technology
-          </div>
-
-          <div class="fragment">
-            <span>◇</span>
-          </div>
-
-          <div class="page-text">
-
-            fragments are mysterious pieces
-            connected to a person's true potential.
-
-            <br><br>
-
-            they can amplify feelings, talents,
-            dreams and abilities already existing
-            within someone.
-
-          </div>
-
-          <div class="ornament">
-            ✦ ◇ ✦
-          </div>
-
-          <div class="page-text">
-
-            but every fragment has a story
-            of its own.
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 6 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 06
-          </div>
-
-          <h2>
-            the world
-          </h2>
-
-          <div class="page-subtitle">
-            somewhere between dreams
-          </div>
-
-          <div class="ornament">
-            ☁︎ ✦ ☾ ✦ ☁︎
-          </div>
-
-          <div class="page-text">
-
-            there is a space between dreams
-            and nightmares.
-
-            <br><br>
-
-            a place where imagination can take
-            shape and emotions can feel almost
-            real.
-
-          </div>
-
-          <div class="photo-frame">
-            ✧ reality ↔ imagination ✧
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 7 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 07
-          </div>
-
-          <h2>
-            chapters
-          </h2>
-
-          <div class="page-subtitle">
-            follow the story
-          </div>
-
-          <div class="chapter-list">
-
-            <div class="chapter">
-
-              <div class="chapter-number">
-                01
-              </div>
-
-              <div>
-                <div class="chapter-name">
-                  the beginning
-                </div>
-
-                <div class="chapter-small">
-                  first signs of something unusual
-                </div>
-              </div>
-
-            </div>
-
-
-            <div class="chapter">
-
-              <div class="chapter-number">
-                02
-              </div>
-
-              <div>
-                <div class="chapter-name">
-                  the fragment
-                </div>
-
-                <div class="chapter-small">
-                  a mysterious discovery
-                </div>
-              </div>
-
-            </div>
-
-
-            <div class="chapter">
-
-              <div class="chapter-number">
-                03
-              </div>
-
-              <div>
-                <div class="chapter-name">
-                  transformation
-                </div>
-
-                <div class="chapter-small">
-                  reality begins to change
-                </div>
-              </div>
-
-            </div>
-
-
-            <div class="chapter">
-
-              <div class="chapter-number">
-                ♡
-              </div>
-
-              <div>
-                <div class="chapter-name">
-                  more to come
-                </div>
-
-                <div class="chapter-small">
-                  the archive will grow
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 8 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 08
-          </div>
-
-          <h2>
-            archive
-          </h2>
-
-          <div class="page-subtitle">
-            little pieces of summer moon
-          </div>
-
-          <div class="ornament">
-            ୨୧ ✦ ୨୧
-          </div>
-
-          <div class="photo-frame">
-            ✧ images ✧
-          </div>
-
-          <div class="photo-frame" style="margin-top:12px;">
-            ✦ references ✦
-          </div>
-
-          <div class="page-text">
-            photos, details, symbols and
-            discoveries can be collected here.
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- PAGE 9 -->
-
-      <section class="page">
-
-        <div class="page-inner">
-
-          <div class="page-number">
-            summer moon · 09
-          </div>
-
-          <h2>
-            see you again
-          </h2>
-
-          <div class="final-symbol">
-            ☾
-          </div>
-
-          <div class="ornament">
-            ✦ ୨୧ ✦
-          </div>
-
-          <div class="page-text">
-
-            the invitation may end here,
-
-            <br><br>
-
-            but the story doesn't.
-
-            <br><br>
-
-            there are still fragments
-            waiting to be discovered.
-
-          </div>
-
-          <div class="page-text">
-
-            <i>until the next chapter ♡</i>
-
-          </div>
-
-        </div>
-
-      </section>
-
+      <div class="seal">☾</div>
 
     </div>
 
 
-    <!-- =====================
-         COVER
-    ====================== -->
+    <!-- LETTER -->
 
-    <div
-      class="cover"
-      id="cover"
-      onclick="openLetter()"
-    >
+    <div class="letter">
 
-      <div class="cover-star cs1">
-        ✦
-      </div>
+      <div class="paper">
 
-      <div class="cover-star cs2">
-        ✧
-      </div>
+        <div class="paper-top">
 
-      <div class="cover-star cs3">
-        ⋆
-      </div>
+          <small>summer moon archive</small>
 
-      <div class="cover-star cs4">
-        ✦
-      </div>
+          <div class="mini-moon">☾</div>
 
+          <h2>you're invited</h2>
 
-      <div class="cover-ribbon"></div>
+          <p>to discover the quprids</p>
 
+          <div class="open-text">
+            a little universe<br>
+            hidden between dreams
+          </div>
 
-      <div class="cover-content">
-
-        <div class="cover-moon"></div>
-
-        <div class="cover-mini">
-          a little invitation
         </div>
 
-        <div class="cover-title">
-          Summer<br>
-          Moon
-        </div>
+        <button class="enter" onclick="openLetter()">
+          open invitation
+        </button>
 
-        <div class="cover-sub">
-          the quprids
-        </div>
-
-        <div class="tap">
-          tap to open ✦
-        </div>
-
-      </div>
-
-
-      <div class="cover-bow">
-        <div class="cover-bow-center"></div>
       </div>
 
     </div>
 
+  </div>
 
-    <!-- =====================
-         NAVIGATION
-    ====================== -->
 
-    <div class="navigation">
+  <!-- CHARACTER PAGES -->
 
-      <button
-        class="nav-button"
-        onclick="previousPage(event)"
-      >
-        ‹
-      </button>
+  <div class="pages" id="pages">
 
-      <div
-        class="page-count"
-        id="pageCount"
-      >
-        1 / 9
-      </div>
 
-      <button
-        class="nav-button"
-        onclick="nextPage(event)"
-      >
-        ›
-      </button>
+    <div class="page active">
+
+      <span class="corner c1">♡</span>
+      <span class="corner c2">✦</span>
+
+      <div class="page-number">01 / 09</div>
+
+      <div class="character-icon">🌙</div>
+
+      <h2>Yeoreum</h2>
+
+      <div class="korean">여름</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        the girl at the center of the story,
+        searching for the person she wants to become
+        while discovering the mysterious world of
+        Summer Moon.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">✧</span>
+      <span class="corner c2">♡</span>
+
+      <div class="page-number">02 / 09</div>
+
+      <div class="character-icon">🎀</div>
+
+      <h2>Miso</h2>
+
+      <div class="korean">미소</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        a familiar presence within the story,
+        connected to Yeoreum and the everyday world
+        surrounding the mysterious events.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">♡</span>
+      <span class="corner c2">✦</span>
+
+      <div class="page-number">03 / 09</div>
+
+      <div class="character-icon">⭐</div>
+
+      <h2>Ayeong</h2>
+
+      <div class="korean">아영</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        one of the girls whose story becomes
+        intertwined with the strange fragments
+        and the hidden universe beyond reality.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">✦</span>
+      <span class="corner c2">♡</span>
+
+      <div class="page-number">04 / 09</div>
+
+      <div class="character-icon">🪽</div>
+
+      <h2>Gayun</h2>
+
+      <div class="korean">가윤</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        a character connected to the growing
+        mystery of Summer Moon and its constellation
+        fragments.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">♡</span>
+      <span class="corner c2">✧</span>
+
+      <div class="page-number">05 / 09</div>
+
+      <div class="character-icon">☁️</div>
+
+      <h2>Unha</h2>
+
+      <div class="korean">은하</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        another piece of the Summer Moon universe,
+        connected to the stories and relationships
+        unfolding around the girls.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">✧</span>
+      <span class="corner c2">♡</span>
+
+      <div class="page-number">06 / 09</div>
+
+      <div class="character-icon">🐉</div>
+
+      <h2>Fern</h2>
+
+      <div class="korean">펀</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        a mysterious guardian-like presence whose
+        connection to the fragments becomes part
+        of Yeoreum's strange journey.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">♡</span>
+      <span class="corner c2">✦</span>
+
+      <div class="page-number">07 / 09</div>
+
+      <div class="character-icon">✎</div>
+
+      <h2>Doyun</h2>
+
+      <div class="korean">도윤</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        a character from Yeoreum's everyday life,
+        becoming involved as the boundary between
+        ordinary life and the strange world begins
+        to blur.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">✦</span>
+      <span class="corner c2">♡</span>
+
+      <div class="page-number">08 / 09</div>
+
+      <div class="character-icon">🎾</div>
+
+      <h2>Gowon</h2>
+
+      <div class="korean">고원</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        a confident presence within the story,
+        connected to the girls and the events
+        surrounding Summer Moon.
+      </p>
+
+    </div>
+
+
+    <div class="page">
+
+      <span class="corner c1">♡</span>
+      <span class="corner c2">✧</span>
+
+      <div class="page-number">09 / 09</div>
+
+      <div class="character-icon">🌌</div>
+
+      <h2>Mirae</h2>
+
+      <div class="korean">미래</div>
+
+      <div class="line"></div>
+
+      <p class="description">
+        one more piece of the universe,
+        waiting to be discovered as the Summer Moon
+        story continues to unfold.
+      </p>
 
     </div>
 
 
   </div>
 
-</div>
+
+  <div class="navigation" id="navigation">
+
+    <button class="nav-btn" onclick="previousPage()">‹</button>
+
+    <div class="counter" id="counter">01 / 09</div>
+
+    <button class="nav-btn" onclick="nextPage()">›</button>
+
+  </div>
+
+</main>
 
 
 <script>
 
-const letter = document.getElementById("letter");
-
+const scene = document.getElementById("scene");
 const pages = document.querySelectorAll(".page");
-
-const pageCount = document.getElementById("pageCount");
+const navigation = document.getElementById("navigation");
+const counter = document.getElementById("counter");
 
 let currentPage = 0;
 
-let opened = false;
+
+/* open envelope */
+
+document.getElementById("envelope").addEventListener("click", function(){
+
+  if(scene.classList.contains("open")) return;
+
+  scene.classList.add("open");
+
+  sparkleBurst();
+
+});
 
 
-/* =========================
-   OPEN LETTER
-========================= */
+/* open letter */
 
-function openLetter() {
+function openLetter(){
 
-  if (opened) return;
+  scene.classList.add("finished");
 
-  opened = true;
+  document.querySelector(".intro").style.opacity = "0";
 
-  letter.classList.add("open");
+  setTimeout(function(){
 
-  createSparkles(38);
+    document.getElementById("pages").style.display = "block";
+    navigation.classList.add("show");
+
+    sparkleBurst();
+
+  },500);
 
 }
 
 
-/* =========================
-   SPARKLES
-========================= */
+/* next */
 
-function createSparkles(amount = 25) {
+function nextPage(){
 
-  const symbols = [
-    "✦",
-    "✧",
-    "⋆",
-    "◇",
-    "✦"
-  ];
+  if(currentPage >= pages.length - 1) return;
 
-  const centerX = window.innerWidth / 2;
+  pages[currentPage].classList.remove("active");
 
-  const centerY = window.innerHeight / 2;
+  currentPage++;
 
-  for (let i = 0; i < amount; i++) {
+  pages[currentPage].classList.add("active");
 
-    const sparkle =
-      document.createElement("div");
+  updateCounter();
+
+  sparkleBurst();
+
+}
+
+
+/* previous */
+
+function previousPage(){
+
+  if(currentPage <= 0) return;
+
+  pages[currentPage].classList.remove("active");
+
+  currentPage--;
+
+  pages[currentPage].classList.add("active");
+
+  updateCounter();
+
+  sparkleBurst();
+
+}
+
+
+/* counter */
+
+function updateCounter(){
+
+  counter.textContent =
+    String(currentPage + 1).padStart(2,"0")
+    + " / "
+    + String(pages.length).padStart(2,"0");
+
+}
+
+
+/* sparkles */
+
+function sparkleBurst(){
+
+  const symbols = ["✦","✧","♡","⋆"];
+
+  for(let i=0;i<12;i++){
+
+    const sparkle = document.createElement("div");
 
     sparkle.className = "sparkle";
 
     sparkle.textContent =
-      symbols[
-        Math.floor(
-          Math.random() * symbols.length
-        )
-      ];
+      symbols[Math.floor(Math.random()*symbols.length)];
 
-    const angle =
-      Math.random() * Math.PI * 2;
-
-    const distance =
-      45 + Math.random() * 170;
-
-    sparkle.style.left =
-      centerX + "px";
-
-    sparkle.style.top =
-      centerY + "px";
+    sparkle.style.left = "50%";
+    sparkle.style.top = "48%";
 
     sparkle.style.setProperty(
       "--x",
-      Math.cos(angle) * distance + "px"
+      (Math.random()*260-130) + "px"
     );
 
     sparkle.style.setProperty(
       "--y",
-      Math.sin(angle) * distance + "px"
+      (Math.random()*300-150) + "px"
     );
+
+    sparkle.style.fontSize =
+      (8 + Math.random()*12) + "px";
 
     document.body.appendChild(sparkle);
 
-    setTimeout(() => {
+    setTimeout(function(){
       sparkle.remove();
-    }, 1000);
+    },900);
 
   }
 
 }
-
-
-/* =========================
-   UPDATE PAGE
-========================= */
-
-function updatePage() {
-
-  pages.forEach((page, index) => {
-
-    page.classList.toggle(
-      "active",
-      index === currentPage
-    );
-
-  });
-
-  pageCount.textContent =
-    `${currentPage + 1} / ${pages.length}`;
-
-}
-
-
-/* =========================
-   NEXT
-========================= */
-
-function nextPage(event) {
-
-  event.stopPropagation();
-
-  if (!opened) {
-
-    openLetter();
-
-    return;
-
-  }
-
-  if (currentPage < pages.length - 1) {
-
-    currentPage++;
-
-    updatePage();
-
-    createSparkles(24);
-
-  }
-
-}
-
-
-/* =========================
-   PREVIOUS
-========================= */
-
-function previousPage(event) {
-
-  event.stopPropagation();
-
-  if (!opened) {
-
-    openLetter();
-
-    return;
-
-  }
-
-  if (currentPage > 0) {
-
-    currentPage--;
-
-    updatePage();
-
-    createSparkles(24);
-
-  }
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-updatePage();
 
 </script>
 
 </body>
-</html>
+        </html>
