@@ -1,3317 +1,3202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ILLIT Archive</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0
+box-sizing:border-box;
+margin:0;
+padding:0
 }
 
 :root{
-    --bg:#f2f2f7;
-    --card:rgba(255,255,255,.88);
-    --white:#fff;
-    --text:#171717;
-    --gray:#8e8e93;
-    --line:#dedee3;
-    --blue:#007aff;
-    --pink:#ff5fa2
+--bg:#f2f2f7;
+--card:rgba(255,255,255,.88);
+--white:#fff;
+--text:#171717;
+--gray:#8e8e93;
+--line:#dedee3;
+--blue:#007aff;
+--pink:#ff5fa2
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,sans-serif;
-    background:#d9d9de;
-    color:var(--text)
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,sans-serif;
+background:#d9d9de;
+color:var(--text)
 }
 
 .phone{
-    width:100%;
-    max-width:430px;
-    min-height:100vh;
-    margin:auto;
-    background:var(--bg);
-    position:relative;
-    overflow:hidden
+width:100%;
+max-width:430px;
+min-height:100vh;
+margin:auto;
+background:var(--bg);
+position:relative;
+overflow:hidden
 }
 
 .status{
-    height:30px;
-    padding:7px 22px 0;
-    display:flex;
-    justify-content:space-between;
-    font-size:12px;
-    font-weight:600
+height:30px;
+padding:7px 22px 0;
+display:flex;
+justify-content:space-between;
+font-size:12px;
+font-weight:600
 }
 
 .status-icons{
-    display:flex;
-    gap:6px
+display:flex;
+gap:6px
 }
 
 .app-header{
-    padding:13px 20px 15px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between
+padding:13px 20px 15px;
+display:flex;
+align-items:center;
+justify-content:space-between
 }
 
 .app-title{
-    font-size:30px;
-    font-weight:700;
-    letter-spacing:-1.3px
+font-size:30px;
+font-weight:700;
+letter-spacing:-1.3px
 }
 
 .header-button{
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:#fff;
-    border:1px solid var(--line);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:15px
+width:34px;
+height:34px;
+border-radius:50%;
+background:#fff;
+border:1px solid var(--line);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px
 }
 
 .content{
-    padding:0 16px 100px
+padding:0 16px 100px
 }
 
 .page{
-    display:none
+display:none
 }
 
 .page.active{
-    display:block
+display:block
 }
 
 .widget,
 .streaming-card{
-    background:var(--card);
-    border-radius:22px;
-    padding:18px;
-    margin-bottom:14px;
-    border:1px solid rgba(0,0,0,.04);
-    box-shadow:0 2px 10px rgba(0,0,0,.035)
+background:var(--card);
+border-radius:22px;
+padding:18px;
+margin-bottom:14px;
+border:1px solid rgba(0,0,0,.04);
+box-shadow:0 2px 10px rgba(0,0,0,.035)
 }
 
 .widget-title{
-    font-size:12px;
-    color:var(--gray);
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:10px;
-    font-weight:600
+font-size:12px;
+color:var(--gray);
+text-transform:uppercase;
+letter-spacing:.04em;
+margin-bottom:10px;
+font-weight:600
 }
 
 .widget h2{
-    font-size:22px;
-    letter-spacing:-.6px
+font-size:22px;
+letter-spacing:-.6px
 }
 
 .small{
-    font-size:12px;
-    color:var(--gray);
-    margin-top:5px
+font-size:12px;
+color:var(--gray);
+margin-top:5px
 }
 
 .hero{
-    min-height:205px;
-    border-radius:25px;
-    padding:24px;
-    margin-bottom:14px;
-    background:
-        radial-gradient(circle at 80% 20%,#fff 0,transparent 28%),
-        linear-gradient(135deg,#fce8f2,#eeeafb,#e4efff);
-    position:relative;
-    overflow:hidden
+min-height:205px;
+border-radius:25px;
+padding:24px;
+margin-bottom:14px;
+background:
+radial-gradient(circle at 80% 20%,#fff 0,transparent 28%),
+linear-gradient(135deg,#fce8f2,#eeeafb,#e4efff);
+position:relative;
+overflow:hidden
 }
 
 .hero-label{
-    font-size:11px;
-    color:#777;
-    text-transform:uppercase;
-    letter-spacing:.08em
+font-size:11px;
+color:#777;
+text-transform:uppercase;
+letter-spacing:.08em
 }
 
 .hero h1{
-    font-size:39px;
-    line-height:.95;
-    letter-spacing:-2px;
-    margin-top:12px
+font-size:39px;
+line-height:.95;
+letter-spacing:-2px;
+margin-top:12px
 }
 
 .hero p{
-    font-size:12px;
-    color:#777;
-    margin-top:12px;
-    max-width:220px
+font-size:12px;
+color:#777;
+margin-top:12px;
+max-width:220px
 }
 
 .button{
-    display:inline-flex;
-    margin-top:18px;
-    background:rgba(255,255,255,.8);
-    border:1px solid rgba(0,0,0,.05);
-    padding:10px 15px;
-    border-radius:15px;
-    font-size:12px;
-    font-weight:600;
-    text-decoration:none;
-    color:var(--text);
-    cursor:pointer
+display:inline-flex;
+margin-top:18px;
+background:rgba(255,255,255,.8);
+border:1px solid rgba(0,0,0,.05);
+padding:10px 15px;
+border-radius:15px;
+font-size:12px;
+font-weight:600;
+text-decoration:none;
+color:var(--text);
+cursor:pointer
 }
 
 .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
 
 .square{
-    min-height:145px
+min-height:145px
 }
 
 .icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    margin-bottom:15px
+width:45px;
+height:45px;
+border-radius:14px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+margin-bottom:15px
 }
 
 .square h3{
-    font-size:15px
+font-size:15px
 }
 
 .square p{
-    font-size:10px;
-    color:var(--gray);
-    margin-top:4px
+font-size:10px;
+color:var(--gray);
+margin-top:4px
 }
 
 .list{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:14px
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:14px
 }
 
 .list-title{
-    padding:13px 18px 7px;
-    font-size:11px;
-    color:var(--gray);
-    text-transform:uppercase;
-    font-weight:600
+padding:13px 18px 7px;
+font-size:11px;
+color:var(--gray);
+text-transform:uppercase;
+font-weight:600
 }
 
 .item{
-    min-height:54px;
-    padding:10px 17px;
-    display:flex;
-    align-items:center;
-    gap:13px;
-    border-bottom:1px solid #eeeeef;
-    cursor:pointer
+min-height:54px;
+padding:10px 17px;
+display:flex;
+align-items:center;
+gap:13px;
+border-bottom:1px solid #eeeeef;
+cursor:pointer
 }
 
 .item:last-child{
-    border-bottom:none
+border-bottom:none
 }
 
 .item-icon{
-    width:34px;
-    height:34px;
-    border-radius:10px;
-    background:#f0f0f5;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0
+width:34px;
+height:34px;
+border-radius:10px;
+background:#f0f0f5;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0
 }
 
 .item-text{
-    flex:1
+flex:1
 }
 
 .item-name{
-    font-size:13px;
-    font-weight:500
+font-size:13px;
+font-weight:500
 }
 
 .item-sub{
-    font-size:10px;
-    color:var(--gray);
-    margin-top:2px
+font-size:10px;
+color:var(--gray);
+margin-top:2px
 }
 
 .chevron{
-    color:#b5b5ba;
-    font-size:18px
+color:#b5b5ba;
+font-size:18px
 }
 
 .members{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:7px
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:7px
 }
 
 .member{
-    background:#fff;
-    border-radius:15px;
-    padding:13px 4px;
-    text-align:center;
-    cursor:pointer
+background:#fff;
+border-radius:15px;
+padding:13px 4px;
+text-align:center;
+cursor:pointer
 }
 
 .member-avatar{
-    width:43px;
-    height:43px;
-    border-radius:50%;
-    margin:auto;
-    background:linear-gradient(135deg,#f9dce9,#e3e9ff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:600;
-    font-size:13px
+width:43px;
+height:43px;
+border-radius:50%;
+margin:auto;
+background:linear-gradient(135deg,#f9dce9,#e3e9ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+font-size:13px
 }
 
 .member-name{
-    font-size:9px;
-    margin-top:8px
+font-size:9px;
+margin-top:8px
 }
 
-
-/* =========================
-   STREAMING
-   ========================= */
-
 .streaming-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:14px
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:14px
 }
 
 .streaming-title{
-    font-size:12px;
-    color:var(--gray);
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    font-weight:600
+font-size:12px;
+color:var(--gray);
+text-transform:uppercase;
+letter-spacing:.04em;
+font-weight:600
 }
 
 .platform-tabs,
 .mode-tabs{
-    display:flex;
-    background:#e8e8ed;
-    border-radius:11px;
-    padding:3px
+display:flex;
+background:#e8e8ed;
+border-radius:11px;
+padding:3px
 }
 
 .platform-tab,
 .mode-tab{
-    border:none;
-    background:transparent;
-    padding:7px 10px;
-    border-radius:9px;
-    font-size:10px;
-    font-weight:600;
-    color:#777;
-    cursor:pointer
+border:none;
+background:transparent;
+padding:7px 10px;
+border-radius:9px;
+font-size:10px;
+font-weight:600;
+color:#777;
+cursor:pointer
 }
 
 .platform-tab.active,
 .mode-tab.active{
-    background:#fff;
-    color:#111;
-    box-shadow:0 1px 3px rgba(0,0,0,.08)
+background:#fff;
+color:#111;
+box-shadow:0 1px 3px rgba(0,0,0,.08)
 }
 
 .mode-tabs{
-    width:fit-content;
-    margin-bottom:14px
+width:fit-content;
+margin-bottom:14px
 }
-
-
-/* =========================
-   STREAMING TRACK LIST
-   ========================= */
 
 .track-list{
-    background:#fff;
-    border-radius:17px;
-
-    /*
-       O QUADRO FICA COM ALTURA FIXA.
-       6 músicas ficam visíveis.
-       TODAS as outras ficam dentro dele
-       e podem ser roladas.
-    */
-
-    height:348px;
-    max-height:348px;
-
-    overflow-y:auto;
-    overflow-x:hidden;
-
-    scroll-behavior:smooth;
-
-    scrollbar-width:thin;
-    scrollbar-color:#d0d0d5 transparent;
-
-    -webkit-overflow-scrolling:touch;
+background:#fff;
+border-radius:17px;
+overflow:hidden;
+max-height:348px;
+overflow-y:auto
 }
 
-.track-list::-webkit-scrollbar{
-    width:4px
-}
-
-.track-list::-webkit-scrollbar-track{
-    background:transparent
-}
-
-.track-list::-webkit-scrollbar-thumb{
-    background:#d0d0d5;
-    border-radius:20px
+.track-group{
+padding:10px 12px 7px;
+background:#fafafd;
+border-bottom:1px solid #eeeeef;
+font-size:9px;
+color:var(--gray);
+font-weight:700;
+text-transform:uppercase
 }
 
 .track{
-    height:58px;
-    min-height:58px;
-    padding:9px 12px;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    border-bottom:1px solid #eeeeef;
-    background:#fff;
-
-    flex-shrink:0;
+min-height:58px;
+padding:9px 12px;
+display:flex;
+align-items:center;
+gap:10px;
+border-bottom:1px solid #eeeeef
 }
 
 .track:last-child{
-    border-bottom:none
+border-bottom:none
 }
 
 .track-rank{
-    width:18px;
-    text-align:center;
-    font-size:10px;
-    color:#aaa;
-    font-weight:600;
-    flex-shrink:0
+width:18px;
+text-align:center;
+font-size:10px;
+color:#aaa;
+font-weight:600
 }
 
 .track-icon{
-    width:34px;
-    height:34px;
-    border-radius:10px;
-    background:linear-gradient(135deg,#f8e1ef,#e5e9fb);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:13px;
-    flex-shrink:0
+width:34px;
+height:34px;
+border-radius:10px;
+background:linear-gradient(135deg,#f8e1ef,#e5e9fb);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
+flex-shrink:0
 }
 
 .track-info{
-    flex:1;
-    min-width:0
+flex:1;
+min-width:0
 }
 
 .track-name{
-    font-size:11px;
-    font-weight:600;
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis
+font-size:11px;
+font-weight:600;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
 
 .track-platform{
-    font-size:9px;
-    color:var(--gray);
-    margin-top:3px
+font-size:9px;
+color:var(--gray);
+margin-top:3px
 }
 
 .track-number{
-    font-size:11px;
-    font-weight:600;
-    white-space:nowrap;
-    min-width:65px;
-    text-align:right
+font-size:11px;
+font-weight:600;
+white-space:nowrap
 }
 
 .tracker-footer{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:12px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:12px
 }
 
 .tracker-mini{
-    background:#fff;
-    border-radius:16px;
-    padding:13px
+background:#fff;
+border-radius:16px;
+padding:13px
 }
 
 .tracker-mini-title{
-    font-size:9px;
-    color:var(--gray);
-    text-transform:uppercase;
-    font-weight:600
+font-size:9px;
+color:var(--gray);
+text-transform:uppercase;
+font-weight:600
 }
 
 .tracker-mini-number{
-    font-size:17px;
-    font-weight:700;
-    margin-top:5px
+font-size:17px;
+font-weight:700;
+margin-top:5px
 }
 
 .tracker-note{
-    font-size:9px;
-    color:var(--gray);
-    margin-top:10px;
-    line-height:1.4
+font-size:9px;
+color:var(--gray);
+margin-top:10px;
+line-height:1.4
 }
 
-
-/* ========================= */
-
 .page-heading{
-    padding:8px 4px 18px
+padding:8px 4px 18px
 }
 
 .page-heading h1{
-    font-size:32px;
-    letter-spacing:-1.5px
+font-size:32px;
+letter-spacing:-1.5px
 }
 
 .page-heading p{
-    color:var(--gray);
-    font-size:12px;
-    margin-top:4px
+color:var(--gray);
+font-size:12px;
+margin-top:4px
 }
 
 .tabs{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    margin-bottom:14px
+display:flex;
+gap:7px;
+overflow-x:auto;
+margin-bottom:14px
 }
 
 .tab{
-    white-space:nowrap;
-    border:none;
-    background:#e5e5ea;
-    padding:8px 14px;
-    border-radius:15px;
-    font-size:11px;
-    cursor:pointer
+white-space:nowrap;
+border:none;
+background:#e5e5ea;
+padding:8px 14px;
+border-radius:15px;
+font-size:11px;
+cursor:pointer
 }
 
 .tab.selected{
-    background:#222;
-    color:#fff
+background:#222;
+color:#fff
 }
 
 .album{
-    background:#fff;
-    border-radius:20px;
-    padding:14px;
-    margin-bottom:12px;
-    display:flex;
-    gap:14px
+background:#fff;
+border-radius:20px;
+padding:14px;
+margin-bottom:12px;
+display:flex;
+gap:14px
 }
 
 .cover{
-    width:82px;
-    height:82px;
-    border-radius:13px;
-    background:linear-gradient(135deg,#e7dcf8,#dceeff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:10px;
-    color:#777;
-    text-align:center;
-    flex-shrink:0
+width:82px;
+height:82px;
+border-radius:13px;
+background:linear-gradient(135deg,#e7dcf8,#dceeff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:10px;
+color:#777;
+text-align:center;
+flex-shrink:0
 }
 
 .album-info h3{
-    font-size:15px
+font-size:15px
 }
 
 .album-info p{
-    color:var(--gray);
-    font-size:10px;
-    margin-top:4px
+color:var(--gray);
+font-size:10px;
+margin-top:4px
 }
 
 .album-link{
-    display:inline-block;
-    margin-top:12px;
-    font-size:10px;
-    color:var(--blue)
+display:inline-block;
+margin-top:12px;
+font-size:10px;
+color:var(--blue)
 }
 
 .photo-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:3px;
-    border-radius:17px;
-    overflow:hidden
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:3px;
+border-radius:17px;
+overflow:hidden
 }
 
 .photo{
-    aspect-ratio:1;
-    background:linear-gradient(135deg,#f2dfe8,#dfe8f4);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#888;
-    font-size:9px
+aspect-ratio:1;
+background:linear-gradient(135deg,#f2dfe8,#dfe8f4);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#888;
+font-size:9px
 }
 
 .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(430px,100%);
-    height:76px;
-    background:rgba(250,250,250,.93);
-    backdrop-filter:blur(20px);
-    border-top:1px solid #d7d7dc;
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    z-index:100
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:min(430px,100%);
+height:76px;
+background:rgba(250,250,250,.93);
+backdrop-filter:blur(20px);
+border-top:1px solid #d7d7dc;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+z-index:100
 }
 
 .nav-button{
-    border:none;
-    background:transparent;
-    color:#8e8e93;
-    font-size:9px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    cursor:pointer
+border:none;
+background:transparent;
+color:#8e8e93;
+font-size:9px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:4px;
+cursor:pointer
 }
 
 .nav-button span{
-    font-size:20px
+font-size:20px
 }
 
 .nav-button.active{
-    color:#111
+color:#111
 }
 
 .back{
-    border:none;
-    background:transparent;
-    font-size:13px;
-    color:var(--blue);
-    margin-bottom:10px;
-    cursor:pointer
+border:none;
+background:transparent;
+font-size:13px;
+color:var(--blue);
+margin-bottom:10px;
+cursor:pointer
 }
 
 .detail-card{
-    background:#fff;
-    border-radius:22px;
-    padding:20px;
-    margin-bottom:12px
+background:#fff;
+border-radius:22px;
+padding:20px;
+margin-bottom:12px
 }
 
 .detail-card h2{
-    font-size:22px
+font-size:22px
 }
 
 .detail-card p{
-    font-size:12px;
-    color:#777;
-    line-height:1.6;
-    margin-top:10px
+font-size:12px;
+color:#777;
+line-height:1.6;
+margin-top:10px
 }
 
-
-/* =========================
-   SUMMER MOON
-   ========================= */
-
 .summer-lockscreen{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:#000
+position:fixed;
+inset:0;
+z-index:99999;
+display:none;
+align-items:center;
+justify-content:center;
+background:#000
 }
 
 .summer-lockscreen.active{
-    display:flex
+display:flex
 }
 
 .summer-lockscreen.closing{
-    animation:lockScreenOut .55s ease forwards
+animation:lockScreenOut .55s ease forwards
 }
 
 .summer-lock-phone{
-    width:min(430px,100vw);
-    height:100dvh;
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    color:#fff;
-
-    background-image:
-        linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.20)),
-        url("90 Sem Título_20260910051532.png");
-
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat
+width:min(430px,100vw);
+height:100dvh;
+min-height:100vh;
+position:relative;
+overflow:hidden;
+color:#fff;
+background-image:
+linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.20)),
+url("90 Sem Título_20260910051532.png");
+background-position:center;
+background-size:cover;
+background-repeat:no-repeat
 }
 
 .summer-lock-content{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+align-items:center
 }
 
 .summer-lock-date{
-    margin-top:78px;
-    font-size:16px;
-    font-weight:500;
-    letter-spacing:-.2px;
-    text-shadow:0 1px 8px rgba(0,0,0,.25)
+margin-top:78px;
+font-size:16px;
+font-weight:500;
+letter-spacing:-.2px;
+text-shadow:0 1px 8px rgba(0,0,0,.25)
 }
 
 .summer-lock-time{
-    margin-top:1px;
-    font-size:78px;
-    line-height:.98;
-    font-weight:300;
-    letter-spacing:-4px;
-    text-shadow:0 2px 12px rgba(0,0,0,.22)
+margin-top:1px;
+font-size:78px;
+line-height:.98;
+font-weight:300;
+letter-spacing:-4px;
+text-shadow:0 2px 12px rgba(0,0,0,.22)
 }
 
 .summer-notification{
-    position:absolute;
-    top:178px;
-    left:14px;
-    right:14px;
-
-    transform:translateY(-35px);
-    opacity:0;
-
-    background:rgba(245,245,245,.88);
-    color:#111;
-
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-
-    border-radius:21px;
-    padding:12px;
-
-    display:flex;
-    align-items:center;
-    gap:11px;
-
-    box-shadow:
-        0 7px 30px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.55);
-
-    cursor:pointer;
-    pointer-events:none;
-
-    transition:
-        opacity .55s ease,
-        transform .55s cubic-bezier(.22,1,.36,1)
+position:absolute;
+top:178px;
+left:14px;
+right:14px;
+transform:translateY(-35px);
+opacity:0;
+background:rgba(245,245,245,.88);
+color:#111;
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+border-radius:21px;
+padding:12px;
+display:flex;
+align-items:center;
+gap:11px;
+box-shadow:
+0 7px 30px rgba(0,0,0,.22),
+inset 0 1px 0 rgba(255,255,255,.55);
+cursor:pointer;
+pointer-events:none;
+transition:
+opacity .55s ease,
+transform .55s cubic-bezier(.22,1,.36,1)
 }
 
 .summer-lockscreen.notification-show .summer-notification{
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto
+opacity:1;
+transform:translateY(0);
+pointer-events:auto
 }
 
 .summer-notification img{
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    object-fit:cover;
-    flex-shrink:0
+width:43px;
+height:43px;
+border-radius:12px;
+object-fit:cover;
+flex-shrink:0
 }
 
 .summer-notification-text{
-    flex:1;
-    min-width:0
+flex:1;
+min-width:0
 }
 
 .summer-notification-message{
-    font-size:14px;
-    font-weight:500;
-    letter-spacing:-.15px;
-    color:#171717;
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis
+font-size:14px;
+font-weight:500;
+letter-spacing:-.15px;
+color:#171717;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
 
 .summer-lock-bottom{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:28px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    text-shadow:0 1px 7px rgba(0,0,0,.35)
+position:absolute;
+left:0;
+right:0;
+bottom:28px;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-shadow:0 1px 7px rgba(0,0,0,.35)
 }
 
 .summer-lock-line{
-    width:135px;
-    height:5px;
-    border-radius:99px;
-    background:rgba(255,255,255,.92);
-    margin-top:13px
+width:135px;
+height:5px;
+border-radius:99px;
+background:rgba(255,255,255,.92);
+margin-top:13px
 }
 
 .summer-lock-hint{
-    font-size:10px;
-    opacity:.8;
-    margin-bottom:1px
+font-size:10px;
+opacity:.8;
+margin-bottom:1px
 }
 
 @keyframes lockScreenOut{
-    0%{
-        opacity:1;
-        transform:scale(1)
-    }
-
-    100%{
-        opacity:0;
-        transform:scale(1.035)
-    }
+0%{
+opacity:1;
+transform:scale(1)
+}
+100%{
+opacity:0;
+transform:scale(1.035)
+}
 }
 
 @media(min-width:600px){
 
-    body{
-        padding:30px 0
-    }
-
-    .phone{
-        min-height:calc(100vh - 60px);
-        border-radius:35px;
-        box-shadow:0 10px 50px rgba(0,0,0,.18)
-    }
-
-    .bottom-nav{
-        bottom:30px;
-        border-radius:0 0 35px 35px
-    }
-
-    .summer-lock-phone{
-        height:calc(100vh - 60px);
-        min-height:0;
-        border-radius:35px
-    }
+body{
+padding:30px 0
 }
+
+.phone{
+min-height:calc(100vh - 60px);
+border-radius:35px;
+box-shadow:0 10px 50px rgba(0,0,0,.18)
+}
+
+.bottom-nav{
+bottom:30px;
+border-radius:0 0 35px 35px
+}
+
+.summer-lock-phone{
+height:calc(100vh - 60px);
+min-height:0;
+border-radius:35px
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+
+<!-- SUMMER MOON LOCKSCREEN -->
+
 <div class="summer-lockscreen" id="summerLockscreen">
 
-    <div class="summer-lock-phone">
+<div class="summer-lock-phone">
 
-        <div class="summer-lock-content">
+<div class="summer-lock-content">
 
-            <div
-                class="summer-lock-date"
-                id="summerLockDate"
-            ></div>
+<div class="summer-lock-date" id="summerLockDate"></div>
 
-            <div
-                class="summer-lock-time"
-                id="summerLockTime"
-            ></div>
+<div class="summer-lock-time" id="summerLockTime"></div>
 
-            <div
-                class="summer-notification"
-                id="summerNotification"
-                onclick="openSummerMoon()"
-            >
+<div
+class="summer-notification"
+id="summerNotification"
+onclick="openSummerMoon()"
+>
 
-                <img
-                    src="91 Sem Título_20260910053652.png"
-                >
+<img src="91 Sem Título_20260910053652.png">
 
-                <div class="summer-notification-text">
+<div class="summer-notification-text">
 
-                    <div class="summer-notification-message">
-                        A secret message has arrived
-                    </div>
+<div class="summer-notification-message">
+A secret message has arrived
+</div>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-            <div class="summer-lock-bottom">
+<div class="summer-lock-bottom">
 
-                <div class="summer-lock-hint">
-                    swipe up to open
-                </div>
+<div class="summer-lock-hint">
+swipe up to open
+</div>
 
-                <div class="summer-lock-line"></div>
+<div class="summer-lock-line"></div>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
+<!-- PHONE -->
+
 <div class="phone">
 
-    <div class="status">
 
-        <span id="time">
-            9:41
-        </span>
+<div class="status">
 
-        <div class="status-icons">
-            <span>●●●</span>
-            <span>⌁</span>
-            <span>▰</span>
-        </div>
+<span id="time">9:41</span>
 
-    </div>
+<div class="status-icons">
 
+<span>●●●</span>
 
-    <header class="app-header">
+<span>⌁</span>
 
-        <div
-            class="app-title"
-            id="headerTitle"
-        >
-            Home
-        </div>
+<span>▰</span>
 
-        <div class="header-button">
-            ✦
-        </div>
+</div>
 
-    </header>
+</div>
 
 
-    <main class="content">
+<header class="app-header">
 
+<div
+class="app-title"
+id="headerTitle"
+>
+Home
+</div>
 
-        <!-- HOME -->
+<div class="header-button">
+✦
+</div>
 
-        <section
-            class="page active"
-            id="home"
-        >
+</header>
 
-            <div class="hero">
 
-                <div class="hero-label">
-                    ILLIT ARCHIVE
-                </div>
+<main class="content">
 
-                <h1>
-                    this is<br>
-                    our world.
-                </h1>
 
-                <p>
-                    an unofficial archive dedicated to ILLIT,
-                    their music, activities and universe.
-                </p>
+<!-- HOME -->
 
-                <a
-                    class="button"
-                    href="https://weverse.io/illit/"
-                    target="_blank"
-                >
-                    open weverse
-                </a>
+<section
+class="page active"
+id="home"
+>
 
-            </div>
+<div class="hero">
 
+<div class="hero-label">
+ILLIT ARCHIVE
+</div>
 
-            <div class="grid">
+<h1>
+this is<br>
+our world.
+</h1>
 
-                <div
-                    class="widget square"
-                    onclick="openPage('profile')"
-                >
+<p>
+an unofficial archive dedicated to ILLIT, their music, activities and universe.
+</p>
 
-                    <div class="icon">
-                        👤
-                    </div>
+<a
+class="button"
+href="https://weverse.io/illit/"
+target="_blank"
+>
+open weverse
+</a>
 
-                    <h3>
-                        Profile
-                    </h3>
+</div>
 
-                    <p>
-                        members & group
-                    </p>
 
-                </div>
+<div class="grid">
 
 
-                <div
-                    class="widget square"
-                    onclick="openPage('discography')"
-                >
+<div
+class="widget square"
+onclick="openPage('profile')"
+>
 
-                    <div class="icon">
-                        ♫
-                    </div>
+<div class="icon">
+👤
+</div>
 
-                    <h3>
-                        Music
-                    </h3>
+<h3>
+Profile
+</h3>
 
-                    <p>
-                        discography
-                    </p>
+<p>
+members & group
+</p>
 
-                </div>
+</div>
 
 
-                <div
-                    class="widget square"
-                    onclick="openSummerMoonExperience()"
-                >
+<div
+class="widget square"
+onclick="openPage('discography')"
+>
 
-                    <div class="icon">
-                        ✧
-                    </div>
+<div class="icon">
+♫
+</div>
 
-                    <h3>
-                        Summer Moon
-                    </h3>
+<h3>
+Music
+</h3>
 
-                    <p>
-                        the universe
-                    </p>
+<p>
+discography
+</p>
 
-                </div>
+</div>
 
 
-                <div
-                    class="widget square"
-                    onclick="openPage('tour')"
-                >
+<div
+class="widget square"
+onclick="openSummerMoonExperience()"
+>
 
-                    <div class="icon">
-                        ♧
-                    </div>
+<div class="icon">
+✧
+</div>
 
-                    <h3>
-                        Press Start
-                    </h3>
+<h3>
+Summer Moon
+</h3>
 
-                    <p>
-                        tour archive
-                    </p>
+<p>
+the universe
+</p>
 
-                </div>
+</div>
 
-            </div>
 
+<div
+class="widget square"
+onclick="openPage('tour')"
+>
 
-            <div class="widget">
+<div class="icon">
+♧
+</div>
 
-                <div class="widget-title">
-                    next schedule
-                </div>
+<h3>
+Press Start
+</h3>
 
-                <h2>
-                    ILLIT
-                </h2>
+<p>
+tour archive
+</p>
 
-                <div class="small">
-                    upcoming activities will appear here
-                </div>
+</div>
 
-            </div>
 
+</div>
 
-            <!-- STREAMING -->
 
-            <div class="streaming-card">
+<div class="widget">
 
-                <div class="streaming-top">
+<div class="widget-title">
+next schedule
+</div>
 
-                    <div class="streaming-title">
-                        streaming
-                    </div>
+<h2>
+ILLIT
+</h2>
 
-                    <div class="platform-tabs">
+<div class="small">
+upcoming activities will appear here
+</div>
 
-                        <button
-                            class="platform-tab active"
-                            onclick="changePlatform('spotify',this)"
-                        >
-                            spotify
-                        </button>
+</div>
 
-                        <button
-                            class="platform-tab"
-                            onclick="changePlatform('melon',this)"
-                        >
-                            melon
-                        </button>
 
-                    </div>
+<!-- STREAMING -->
 
-                </div>
+<div class="streaming-card">
 
 
-                <div class="mode-tabs">
+<div class="streaming-top">
 
-                    <button
-                        class="mode-tab active"
-                        onclick="changeMode('total',this)"
-                    >
-                        total
-                    </button>
+<div class="streaming-title">
+streaming
+</div>
 
-                    <button
-                        class="mode-tab"
-                        onclick="changeMode('daily',this)"
-                    >
-                        daily
-                    </button>
 
-                </div>
+<div class="platform-tabs">
 
+<button
+class="platform-tab active"
+onclick="changePlatform('spotify',this)"
+>
+spotify
+</button>
 
-                <!--
-                    MESMO QUADRO.
+<button
+class="platform-tab"
+onclick="changePlatform('melon',this)"
+>
+melon
+</button>
 
-                    6 músicas ficam visíveis.
-                    O restante fica dentro dele.
+</div>
 
-                    É SÓ ROLAR PARA BAIXO
-                    DENTRO DESTE QUADRO.
-                -->
+</div>
 
-                <div
-                    class="track-list"
-                    id="trackList"
-                ></div>
 
+<div class="mode-tabs">
 
-                <div class="tracker-footer">
+<button
+class="mode-tab active"
+onclick="changeMode('total',this)"
+>
+total
+</button>
 
-                    <div class="tracker-mini">
+<button
+class="mode-tab"
+onclick="changeMode('daily',this)"
+>
+daily
+</button>
 
-                        <div
-                            class="tracker-mini-title"
-                            id="totalLabel"
-                        >
-                            spotify total
-                        </div>
+</div>
 
-                        <div
-                            class="tracker-mini-number"
-                            id="spotifyTotal"
-                        >
-                            —
-                        </div>
 
-                    </div>
+<div
+class="track-list"
+id="trackList"
+></div>
 
 
-                    <div class="tracker-mini">
+<div class="tracker-footer">
 
-                        <div
-                            class="tracker-mini-title"
-                            id="dailyLabel"
-                        >
-                            daily streams
-                        </div>
 
-                        <div
-                            class="tracker-mini-number"
-                            id="dailyTotal"
-                        >
-                            —
-                        </div>
+<div class="tracker-mini">
 
-                    </div>
+<div
+class="tracker-mini-title"
+id="totalLabel"
+>
+spotify total
+</div>
 
-                </div>
+<div
+class="tracker-mini-number"
+id="spotifyTotal"
+>
+—
+</div>
 
+</div>
 
-                <div class="tracker-note">
-                    data from public third-party streaming trackers.
-                    update streams.json with your current values.
-                </div>
 
-            </div>
+<div class="tracker-mini">
 
+<div
+class="tracker-mini-title"
+id="dailyLabel"
+>
+daily streams
+</div>
 
-            <div class="widget">
+<div
+class="tracker-mini-number"
+id="dailyTotal"
+>
+—
+</div>
 
-                <div class="widget-title">
-                    members
-                </div>
+</div>
 
-                <div class="members">
 
-                    <div
-                        class="member"
-                        onclick="member('Yunah','윤아')"
-                    >
-                        <div class="member-avatar">
-                            Y
-                        </div>
+</div>
 
-                        <div class="member-name">
-                            yunah
-                        </div>
-                    </div>
 
+<div class="tracker-note">
 
-                    <div
-                        class="member"
-                        onclick="member('Minju','민주')"
-                    >
-                        <div class="member-avatar">
-                            M
-                        </div>
+data from public third-party streaming trackers.
 
-                        <div class="member-name">
-                            minju
-                        </div>
-                    </div>
+</div>
 
 
-                    <div
-                        class="member"
-                        onclick="member('Moka','モカ')"
-                    >
-                        <div class="member-avatar">
-                            M
-                        </div>
+</div>
 
-                        <div class="member-name">
-                            moka
-                        </div>
-                    </div>
 
+<!-- MEMBERS -->
 
-                    <div
-                        class="member"
-                        onclick="member('Wonhee','원희')"
-                    >
-                        <div class="member-avatar">
-                            W
-                        </div>
+<div class="widget">
 
-                        <div class="member-name">
-                            wonhee
-                        </div>
-                    </div>
+<div class="widget-title">
+members
+</div>
 
+<div class="members">
 
-                    <div
-                        class="member"
-                        onclick="member('Iroha','いろは')"
-                    >
-                        <div class="member-avatar">
-                            I
-                        </div>
 
-                        <div class="member-name">
-                            iroha
-                        </div>
-                    </div>
+<div
+class="member"
+onclick="member('Yunah','윤아')"
+>
 
-                </div>
+<div class="member-avatar">
+Y
+</div>
 
-            </div>
+<div class="member-name">
+yunah
+</div>
 
-        </section>
+</div>
 
 
-        <!-- PROFILE -->
+<div
+class="member"
+onclick="member('Minju','민주')"
+>
 
-        <section
-            class="page"
-            id="profile"
-        >
+<div class="member-avatar">
+M
+</div>
 
-            <div class="page-heading">
+<div class="member-name">
+minju
+</div>
 
-                <h1>
-                    Profile
-                </h1>
+</div>
 
-                <p>
-                    ILLIT members
-                </p>
 
-            </div>
+<div
+class="member"
+onclick="member('Moka','モカ')"
+>
 
+<div class="member-avatar">
+M
+</div>
 
-            <div class="list">
+<div class="member-name">
+moka
+</div>
 
-                <div class="list-title">
-                    members
-                </div>
+</div>
 
 
-                <div
-                    class="item"
-                    onclick="member('Yunah','윤아')"
-                >
+<div
+class="member"
+onclick="member('Wonhee','원희')"
+>
 
-                    <div class="item-icon">
-                        🐆
-                    </div>
+<div class="member-avatar">
+W
+</div>
 
-                    <div class="item-text">
+<div class="member-name">
+wonhee
+</div>
 
-                        <div class="item-name">
-                            Yunah
-                        </div>
+</div>
 
-                        <div class="item-sub">
-                            윤아
-                        </div>
 
-                    </div>
+<div
+class="member"
+onclick="member('Iroha','いろは')"
+>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="member-avatar">
+I
+</div>
 
-                </div>
+<div class="member-name">
+iroha
+</div>
 
+</div>
 
-                <div
-                    class="item"
-                    onclick="member('Minju','민주')"
-                >
 
-                    <div class="item-icon">
-                        🐰
-                    </div>
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Minju
-                        </div>
+</section>
 
-                        <div class="item-sub">
-                            민주
-                        </div>
 
-                    </div>
+<!-- PROFILE -->
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<section
+class="page"
+id="profile"
+>
 
-                </div>
+<div class="page-heading">
 
+<h1>
+Profile
+</h1>
 
-                <div
-                    class="item"
-                    onclick="member('Moka','モカ')"
-                >
+<p>
+ILLIT members
+</p>
 
-                    <div class="item-icon">
-                        ☕
-                    </div>
+</div>
 
-                    <div class="item-text">
 
-                        <div class="item-name">
-                            Moka
-                        </div>
+<div class="list">
 
-                        <div class="item-sub">
-                            モカ
-                        </div>
+<div class="list-title">
+members
+</div>
 
-                    </div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div
+class="item"
+onclick="member('Yunah','윤아')"
+>
 
-                </div>
+<div class="item-icon">
+🐆
+</div>
 
+<div class="item-text">
 
-                <div
-                    class="item"
-                    onclick="member('Wonhee','원희')"
-                >
+<div class="item-name">
+Yunah
+</div>
 
-                    <div class="item-icon">
-                        🐿
-                    </div>
+<div class="item-sub">
+윤아
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Wonhee
-                        </div>
+<div class="chevron">
+›
+</div>
 
-                        <div class="item-sub">
-                            원희
-                        </div>
+</div>
 
-                    </div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div
+class="item"
+onclick="member('Minju','민주')"
+>
 
-                </div>
+<div class="item-icon">
+🐰
+</div>
 
+<div class="item-text">
 
-                <div
-                    class="item"
-                    onclick="member('Iroha','いろは')"
-                >
+<div class="item-name">
+Minju
+</div>
 
-                    <div class="item-icon">
-                        🐢
-                    </div>
+<div class="item-sub">
+민주
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Iroha
-                        </div>
+<div class="chevron">
+›
+</div>
 
-                        <div class="item-sub">
-                            いろは
-                        </div>
+</div>
 
-                    </div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div
+class="item"
+onclick="member('Moka','モカ')"
+>
 
-                </div>
+<div class="item-icon">
+☕
+</div>
 
-            </div>
+<div class="item-text">
 
-        </section>
+<div class="item-name">
+Moka
+</div>
 
+<div class="item-sub">
+モカ
+</div>
 
-        <!-- DISCOGRAPHY -->
+</div>
 
-        <section
-            class="page"
-            id="discography"
-        >
+<div class="chevron">
+›
+</div>
 
-            <div class="page-heading">
+</div>
 
-                <h1>
-                    Music
-                </h1>
 
-                <p>
-                    discography
-                </p>
+<div
+class="item"
+onclick="member('Wonhee','원희')"
+>
 
-            </div>
+<div class="item-icon">
+🐿
+</div>
 
+<div class="item-text">
 
-            <div class="tabs">
+<div class="item-name">
+Wonhee
+</div>
 
-                <button class="tab selected">
-                    ALL
-                </button>
+<div class="item-sub">
+원희
+</div>
 
-                <button class="tab">
-                    KOREAN
-                </button>
+</div>
 
-                <button class="tab">
-                    JAPANESE
-                </button>
+<div class="chevron">
+›
+</div>
 
-                <button class="tab">
-                    SINGLES
-                </button>
+</div>
 
-            </div>
 
+<div
+class="item"
+onclick="member('Iroha','いろは')"
+>
 
-            <div class="album">
+<div class="item-icon">
+🐢
+</div>
 
-                <div class="cover">
-                    SUPER<br>
-                    REAL ME
-                </div>
+<div class="item-text">
 
-                <div class="album-info">
+<div class="item-name">
+Iroha
+</div>
 
-                    <h3>
-                        SUPER REAL ME
-                    </h3>
+<div class="item-sub">
+いろは
+</div>
 
-                    <p>
-                        2024 · mini album
-                    </p>
+</div>
 
-                    <a
-                        class="album-link"
-                        href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
-                        target="_blank"
-                    >
-                        spotify ›
-                    </a>
+<div class="chevron">
+›
+</div>
 
-                </div>
+</div>
 
-            </div>
 
+</div>
 
-            <div class="album">
+</section>
 
-                <div class="cover">
-                    I'LL<br>
-                    LIKE YOU
-                </div>
 
-                <div class="album-info">
+<!-- MUSIC -->
 
-                    <h3>
-                        I'LL LIKE YOU
-                    </h3>
+<section
+class="page"
+id="discography"
+>
 
-                    <p>
-                        2024 · mini album
-                    </p>
+<div class="page-heading">
 
-                    <a
-                        class="album-link"
-                        href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
-                        target="_blank"
-                    >
-                        spotify ›
-                    </a>
+<h1>
+Music
+</h1>
 
-                </div>
+<p>
+discography
+</p>
 
-            </div>
+</div>
 
 
-            <div class="album">
+<div class="tabs">
 
-                <div class="cover">
-                    BOMB
-                </div>
+<button class="tab selected">
+ALL
+</button>
 
-                <div class="album-info">
+<button class="tab">
+KOREAN
+</button>
 
-                    <h3>
-                        BOMB
-                    </h3>
+<button class="tab">
+JAPANESE
+</button>
 
-                    <p>
-                        release archive
-                    </p>
+<button class="tab">
+SINGLES
+</button>
 
-                    <a
-                        class="album-link"
-                        href="https://www.melon.com/artist/detail.htm?artistId=3743525"
-                        target="_blank"
-                    >
-                        melon ›
-                    </a>
+</div>
 
-                </div>
 
-            </div>
+<div class="album">
 
-        </section>
+<div class="cover">
+SUPER<br>
+REAL ME
+</div>
 
+<div class="album-info">
 
-        <!-- SUMMER MOON -->
+<h3>
+SUPER REAL ME
+</h3>
 
-        <section
-            class="page"
-            id="summer"
-        >
+<p>
+2024 · mini album
+</p>
 
-            <div class="page-heading">
+<a
+class="album-link"
+href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+target="_blank"
+>
+spotify ›
+</a>
 
-                <h1>
-                    Summer Moon
-                </h1>
+</div>
 
-                <p>
-                    the ILLIT universe
-                </p>
+</div>
 
-            </div>
 
+<div class="album">
 
-            <div class="hero">
+<div class="cover">
+I'LL<br>
+LIKE YOU
+</div>
 
-                <div class="hero-label">
-                    the quprids
-                </div>
+<div class="album-info">
 
-                <h1>
-                    Summer<br>
-                    Moon
-                </h1>
+<h3>
+I'LL LIKE YOU
+</h3>
 
-                <p>
-                    explore the story, characters,
-                    fragments and world of ILLIT.
-                </p>
+<p>
+2024 · mini album
+</p>
 
-                <a
-                    class="button"
-                    href="#"
-                    onclick="showSummerNotification();return false;"
-                >
-                    open archive
-                </a>
+<a
+class="album-link"
+href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+target="_blank"
+>
+spotify ›
+</a>
 
-            </div>
+</div>
 
+</div>
 
-            <div class="list">
 
-                <div class="item">
+<div class="album">
 
-                    <div class="item-icon">
-                        📖
-                    </div>
+<div class="cover">
+BOMB
+</div>
 
-                    <div class="item-text">
+<div class="album-info">
 
-                        <div class="item-name">
-                            Story
-                        </div>
+<h3>
+BOMB
+</h3>
 
-                        <div class="item-sub">
-                            chapter archive
-                        </div>
+<p>
+release archive
+</p>
 
-                    </div>
+<a
+class="album-link"
+href="https://www.melon.com/artist/detail.htm?artistId=3743525"
+target="_blank"
+>
+melon ›
+</a>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
+</div>
 
+</section>
 
-                <div class="item">
 
-                    <div class="item-icon">
-                        ✦
-                    </div>
+<!-- SUMMER MOON -->
 
-                    <div class="item-text">
+<section
+class="page"
+id="summer"
+>
 
-                        <div class="item-name">
-                            Characters
-                        </div>
+<div class="page-heading">
 
-                        <div class="item-sub">
-                            meet the characters
-                        </div>
+<h1>
+Summer Moon
+</h1>
 
-                    </div>
+<p>
+the ILLIT universe
+</p>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+<div class="hero">
 
-                <div class="item">
+<div class="hero-label">
+the quprids
+</div>
 
-                    <div class="item-icon">
-                        ◇
-                    </div>
+<h1>
+Summer<br>
+Moon
+</h1>
 
-                    <div class="item-text">
+<p>
+explore the story, characters, fragments and world of ILLIT.
+</p>
 
-                        <div class="item-name">
-                            Fragments
-                        </div>
+<a
+class="button"
+href="#"
+onclick="showSummerNotification();return false;"
+>
+open archive
+</a>
 
-                        <div class="item-sub">
-                            magic & technology
-                        </div>
+</div>
 
-                    </div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="list">
 
-                </div>
 
-            </div>
+<div class="item">
 
-        </section>
+<div class="item-icon">
+📖
+</div>
 
+<div class="item-text">
 
-        <!-- TOUR -->
+<div class="item-name">
+Story
+</div>
 
-        <section
-            class="page"
-            id="tour"
-        >
+<div class="item-sub">
+chapter archive
+</div>
 
-            <div class="page-heading">
+</div>
 
-                <h1>
-                    Tour
-                </h1>
+<div class="chevron">
+›
+</div>
 
-                <p>
-                    ILLIT PRESS START
-                </p>
+</div>
 
-            </div>
 
+<div class="item">
 
-            <div class="hero">
+<div class="item-icon">
+✦
+</div>
 
-                <div class="hero-label">
-                    ILLIT
-                </div>
+<div class="item-text">
 
-                <h1>
-                    PRESS<br>
-                    START
-                </h1>
+<div class="item-name">
+Characters
+</div>
 
-                <p>
-                    tour archive · dates · venues · memories
-                </p>
+<div class="item-sub">
+meet the characters
+</div>
 
-            </div>
+</div>
 
+<div class="chevron">
+›
+</div>
 
-            <div class="list">
+</div>
 
-                <div class="list-title">
-                    tour archive
-                </div>
 
+<div class="item">
 
-                <div class="item">
+<div class="item-icon">
+◇
+</div>
 
-                    <div class="item-icon">
-                        📅
-                    </div>
+<div class="item-text">
 
-                    <div class="item-text">
+<div class="item-name">
+Fragments
+</div>
 
-                        <div class="item-name">
-                            Dates
-                        </div>
+<div class="item-sub">
+magic & technology
+</div>
 
-                        <div class="item-sub">
-                            tour schedule
-                        </div>
+</div>
 
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+</div>
 
-                <div class="item">
+</section>
 
-                    <div class="item-icon">
-                        📍
-                    </div>
 
-                    <div class="item-text">
+<!-- TOUR -->
 
-                        <div class="item-name">
-                            Cities & Venues
-                        </div>
+<section
+class="page"
+id="tour"
+>
 
-                        <div class="item-sub">
-                            concert locations
-                        </div>
+<div class="page-heading">
 
-                    </div>
+<h1>
+Tour
+</h1>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<p>
+ILLIT PRESS START
+</p>
 
-                </div>
+</div>
 
 
-                <div class="item">
+<div class="hero">
 
-                    <div class="item-icon">
-                        🎟
-                    </div>
+<div class="hero-label">
+ILLIT
+</div>
 
-                    <div class="item-text">
+<h1>
+PRESS<br>
+START
+</h1>
 
-                        <div class="item-name">
-                            Tickets
-                        </div>
+<p>
+tour archive · dates · venues · memories
+</p>
 
-                        <div class="item-sub">
-                            ticket information
-                        </div>
+</div>
 
-                    </div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="list">
 
-                </div>
+<div class="list-title">
+tour archive
+</div>
 
 
-                <div class="item">
+<div class="item">
 
-                    <div class="item-icon">
-                        ♫
-                    </div>
+<div class="item-icon">
+📅
+</div>
 
-                    <div class="item-text">
+<div class="item-text">
 
-                        <div class="item-name">
-                            Setlist
-                        </div>
+<div class="item-name">
+Dates
+</div>
 
-                        <div class="item-sub">
-                            concert songs
-                        </div>
+<div class="item-sub">
+tour schedule
+</div>
 
-                    </div>
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                </div>
+</div>
 
-            </div>
 
-        </section>
+<div class="item">
 
+<div class="item-icon">
+📍
+</div>
 
-        <!-- MV -->
+<div class="item-text">
 
-        <section
-            class="page"
-            id="mv"
-        >
+<div class="item-name">
+Cities & Venues
+</div>
 
-            <div class="page-heading">
+<div class="item-sub">
+concert locations
+</div>
 
-                <h1>
-                    MV
-                </h1>
+</div>
 
-                <p>
-                    music videos
-                </p>
+<div class="chevron">
+›
+</div>
 
-            </div>
+</div>
 
 
-            <div class="list">
+<div class="item">
 
-                <div class="item">
+<div class="item-icon">
+🎟
+</div>
 
-                    <div class="item-icon">
-                        ▶
-                    </div>
+<div class="item-text">
 
-                    <div class="item-text">
+<div class="item-name">
+Tickets
+</div>
 
-                        <div class="item-name">
-                            Magnetic
-                        </div>
+<div class="item-sub">
+ticket information
+</div>
 
-                        <div class="item-sub">
-                            official music video
-                        </div>
+</div>
 
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+<div class="item">
 
-                <div class="item">
+<div class="item-icon">
+♫
+</div>
 
-                    <div class="item-icon">
-                        ▶
-                    </div>
+<div class="item-text">
 
-                    <div class="item-text">
+<div class="item-name">
+Setlist
+</div>
 
-                        <div class="item-name">
-                            Lucky Girl Syndrome
-                        </div>
+<div class="item-sub">
+concert songs
+</div>
 
-                        <div class="item-sub">
-                            official music video
-                        </div>
+</div>
 
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+</div>
 
-                <div class="item">
+</section>
 
-                    <div class="item-icon">
-                        ▶
-                    </div>
 
-                    <div class="item-text">
+<!-- MV -->
 
-                        <div class="item-name">
-                            Cherish (My Love)
-                        </div>
+<section
+class="page"
+id="mv"
+>
 
-                        <div class="item-sub">
-                            official music video
-                        </div>
+<div class="page-heading">
 
-                    </div>
+<h1>
+MV
+</h1>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<p>
+music videos
+</p>
 
-                </div>
+</div>
 
 
-                <div class="item">
+<div class="list">
 
-                    <div class="item-icon">
-                        ▶
-                    </div>
 
-                    <div class="item-text">
+<div class="item">
 
-                        <div class="item-name">
-                            Do the Dance
-                        </div>
+<div class="item-icon">
+▶
+</div>
 
-                        <div class="item-sub">
-                            official music video
-                        </div>
+<div class="item-text">
 
-                    </div>
+<div class="item-name">
+Magnetic
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="item-sub">
+official music video
+</div>
 
-                </div>
+</div>
 
-            </div>
+<div class="chevron">
+›
+</div>
 
+</div>
 
-            <a
-                class="button"
-                href="https://www.youtube.com/@ILLIT_official"
-                target="_blank"
-            >
-                open youtube
-            </a>
 
-        </section>
+<div class="item">
 
+<div class="item-icon">
+▶
+</div>
 
-        <!-- NEWS -->
+<div class="item-text">
 
-        <section
-            class="page"
-            id="news"
-        >
+<div class="item-name">
+Lucky Girl Syndrome
+</div>
 
-            <div class="page-heading">
+<div class="item-sub">
+official music video
+</div>
 
-                <h1>
-                    News
-                </h1>
+</div>
 
-                <p>
-                    latest updates
-                </p>
+<div class="chevron">
+›
+</div>
 
-            </div>
+</div>
 
 
-            <div class="list">
+<div class="item">
 
-                <div class="item">
+<div class="item-icon">
+▶
+</div>
 
-                    <div class="item-icon">
-                        ✦
-                    </div>
+<div class="item-text">
 
-                    <div class="item-text">
+<div class="item-name">
+Cherish (My Love)
+</div>
 
-                        <div class="item-name">
-                            Latest ILLIT updates
-                        </div>
+<div class="item-sub">
+official music video
+</div>
 
-                        <div class="item-sub">
-                            news archive
-                        </div>
+</div>
 
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+<div class="item">
 
-                <div class="item">
+<div class="item-icon">
+▶
+</div>
 
-                    <div class="item-icon">
-                        ◎
-                    </div>
+<div class="item-text">
 
-                    <div class="item-text">
+<div class="item-name">
+Do the Dance
+</div>
 
-                        <div class="item-name">
-                            Official SNS
-                        </div>
+<div class="item-sub">
+official music video
+</div>
 
-                        <div class="item-sub">
-                            social updates
-                        </div>
+</div>
 
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
-            </div>
+</div>
 
-        </section>
 
+<a
+class="button"
+href="https://www.youtube.com/@ILLIT_official"
+target="_blank"
+>
+open youtube
+</a>
 
-        <!-- SCHEDULE -->
+</section>
 
-        <section
-            class="page"
-            id="schedule"
-        >
 
-            <div class="page-heading">
+<!-- NEWS -->
 
-                <h1>
-                    Schedule
-                </h1>
+<section
+class="page"
+id="news"
+>
 
-                <p>
-                    ILLIT activities
-                </p>
+<div class="page-heading">
 
-            </div>
+<h1>
+News
+</h1>
 
+<p>
+latest updates
+</p>
 
-            <div class="list">
+</div>
 
-                <div class="list-title">
-                    upcoming
-                </div>
 
+<div class="list">
 
-                <div class="item">
 
-                    <div class="item-icon">
-                        📅
-                    </div>
+<div class="item">
 
-                    <div class="item-text">
+<div class="item-icon">
+✦
+</div>
 
-                        <div class="item-name">
-                            ILLIT
-                        </div>
+<div class="item-text">
 
-                        <div class="item-sub">
-                            schedule will appear here
-                        </div>
+<div class="item-name">
+Latest ILLIT updates
+</div>
 
-                    </div>
+<div class="item-sub">
+news archive
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
+<div class="chevron">
+›
+</div>
 
-            </div>
+</div>
 
-        </section>
 
+<div class="item">
 
-        <!-- ACTIVITIES -->
+<div class="item-icon">
+◎
+</div>
 
-        <section
-            class="page"
-            id="activities"
-        >
+<div class="item-text">
 
-            <div class="page-heading">
+<div class="item-name">
+Official SNS
+</div>
 
-                <h1>
-                    Activities
-                </h1>
+<div class="item-sub">
+social updates
+</div>
 
-                <p>
-                    individual members
-                </p>
+</div>
 
-            </div>
+<div class="chevron">
+›
+</div>
 
+</div>
 
-            <div class="list">
 
-                <div
-                    class="item"
-                    onclick="member('Yunah','윤아')"
-                >
+</div>
 
-                    <div class="item-icon">
-                        🐆
-                    </div>
+</section>
 
-                    <div class="item-text">
 
-                        <div class="item-name">
-                            Yunah
-                        </div>
+<!-- SCHEDULE -->
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
+<section
+class="page"
+id="schedule"
+>
 
-                    </div>
+<div class="page-heading">
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<h1>
+Schedule
+</h1>
 
-                </div>
+<p>
+ILLIT activities
+</p>
 
+</div>
 
-                <div
-                    class="item"
-                    onclick="member('Minju','민주')"
-                >
 
-                    <div class="item-icon">
-                        🐰
-                    </div>
+<div class="list">
 
-                    <div class="item-text">
+<div class="list-title">
+upcoming
+</div>
 
-                        <div class="item-name">
-                            Minju
-                        </div>
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
+<div class="item">
 
-                    </div>
+<div class="item-icon">
+📅
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="item-text">
 
-                </div>
+<div class="item-name">
+ILLIT
+</div>
 
+<div class="item-sub">
+schedule will appear here
+</div>
 
-                <div
-                    class="item"
-                    onclick="member('Moka','モカ')"
-                >
+</div>
 
-                    <div class="item-icon">
-                        ☕
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Moka
-                        </div>
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
+</div>
 
-                    </div>
+</section>
 
-                    <div class="chevron">
-                        ›
-                    </div>
 
-                </div>
+<!-- ACTIVITIES -->
 
+<section
+class="page"
+id="activities"
+>
 
-                <div
-                    class="item"
-                    onclick="member('Wonhee','원희')"
-                >
+<div class="page-heading">
 
-                    <div class="item-icon">
-                        🐿
-                    </div>
+<h1>
+Activities
+</h1>
 
-                    <div class="item-text">
+<p>
+individual members
+</p>
 
-                        <div class="item-name">
-                            Wonhee
-                        </div>
+</div>
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
 
-                    </div>
+<div class="list">
 
-                    <div class="chevron">
-                        ›
-                    </div>
 
-                </div>
+<div
+class="item"
+onclick="member('Yunah','윤아')"
+>
 
+<div class="item-icon">
+🐆
+</div>
 
-                <div
-                    class="item"
-                    onclick="member('Iroha','いろは')"
-                >
+<div class="item-text">
 
-                    <div class="item-icon">
-                        🐢
-                    </div>
+<div class="item-name">
+Yunah
+</div>
 
-                    <div class="item-text">
+<div class="item-sub">
+individual activities
+</div>
 
-                        <div class="item-name">
-                            Iroha
-                        </div>
+</div>
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
+<div class="chevron">
+›
+</div>
 
-                    </div>
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
 
-                </div>
+<div
+class="item"
+onclick="member('Minju','민주')"
+>
 
-            </div>
+<div class="item-icon">
+🐰
+</div>
 
-        </section>
+<div class="item-text">
 
+<div class="item-name">
+Minju
+</div>
 
-        <!-- GALLERY -->
+<div class="item-sub">
+individual activities
+</div>
 
-        <section
-            class="page"
-            id="gallery"
-        >
+</div>
 
-            <div class="page-heading">
+<div class="chevron">
+›
+</div>
 
-                <h1>
-                    Photos
-                </h1>
+</div>
 
-                <p>
-                    ILLIT gallery
-                </p>
 
-            </div>
+<div
+class="item"
+onclick="member('Moka','モカ')"
+>
 
+<div class="item-icon">
+☕
+</div>
 
-            <div class="tabs">
+<div class="item-text">
 
-                <button class="tab selected">
-                    LIBRARY
-                </button>
+<div class="item-name">
+Moka
+</div>
 
-                <button class="tab">
-                    ALBUMS
-                </button>
+<div class="item-sub">
+individual activities
+</div>
 
-                <button class="tab">
-                    ERA
-                </button>
+</div>
 
-            </div>
+<div class="chevron">
+›
+</div>
 
+</div>
 
-            <div class="photo-grid">
 
-                <div class="photo">
-                    photo
-                </div>
+<div
+class="item"
+onclick="member('Wonhee','원희')"
+>
 
-                <div class="photo">
-                    photo
-                </div>
+<div class="item-icon">
+🐿
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
+<div class="item-text">
 
-                <div class="photo">
-                    photo
-                </div>
+<div class="item-name">
+Wonhee
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
+<div class="item-sub">
+individual activities
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
+<div class="chevron">
+›
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
+</div>
 
-                <div class="photo">
-                    photo
-                </div>
 
-            </div>
+<div
+class="item"
+onclick="member('Iroha','いろは')"
+>
 
-        </section>
+<div class="item-icon">
+🐢
+</div>
 
+<div class="item-text">
 
-        <!-- OFFICIAL -->
+<div class="item-name">
+Iroha
+</div>
 
-        <section
-            class="page"
-            id="official"
-        >
+<div class="item-sub">
+individual activities
+</div>
 
-            <div class="page-heading">
+</div>
 
-                <h1>
-                    Official
-                </h1>
+<div class="chevron">
+›
+</div>
 
-                <p>
-                    ILLIT links
-                </p>
+</div>
 
-            </div>
 
+</div>
 
-            <div class="list">
+</section>
 
-                <div
-                    class="item"
-                    onclick="window.open('https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/','_blank')"
-                >
 
-                    <div class="item-icon">
-                        ♫
-                    </div>
+<!-- GALLERY -->
 
-                    <div class="item-text">
+<section
+class="page"
+id="gallery"
+>
 
-                        <div class="item-name">
-                            Spotify
-                        </div>
+<div class="page-heading">
 
-                        <div class="item-sub">
-                            official artist
-                        </div>
+<h1>
+Photos
+</h1>
 
-                    </div>
+<p>
+ILLIT gallery
+</p>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+<div class="tabs">
 
-                <div
-                    class="item"
-                    onclick="window.open('https://www.melon.com/artist/detail.htm?artistId=3743525','_blank')"
-                >
+<button class="tab selected">
+LIBRARY
+</button>
 
-                    <div class="item-icon">
-                        ♪
-                    </div>
+<button class="tab">
+ALBUMS
+</button>
 
-                    <div class="item-text">
+<button class="tab">
+ERA
+</button>
 
-                        <div class="item-name">
-                            Melon
-                        </div>
+</div>
 
-                        <div class="item-sub">
-                            official artist
-                        </div>
 
-                    </div>
+<div class="photo-grid">
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
 
-                </div>
+</div>
 
+</section>
 
-                <div
-                    class="item"
-                    onclick="window.open('https://www.youtube.com/@ILLIT_official','_blank')"
-                >
 
-                    <div class="item-icon">
-                        ▶
-                    </div>
+<!-- OFFICIAL -->
 
-                    <div class="item-text">
+<section
+class="page"
+id="official"
+>
 
-                        <div class="item-name">
-                            YouTube
-                        </div>
+<div class="page-heading">
 
-                        <div class="item-sub">
-                            official channel
-                        </div>
+<h1>
+Official
+</h1>
 
-                    </div>
+<p>
+ILLIT links
+</p>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
+<div class="list">
 
-                <div
-                    class="item"
-                    onclick="window.open('https://www.instagram.com/ILLIT_official/','_blank')"
-                >
 
-                    <div class="item-icon">
-                        ◎
-                    </div>
+<div
+class="item"
+onclick="window.open('https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/','_blank')"
+>
 
-                    <div class="item-text">
+<div class="item-icon">
+♫
+</div>
 
-                        <div class="item-name">
-                            Instagram
-                        </div>
+<div class="item-text">
 
-                        <div class="item-sub">
-                            official account
-                        </div>
+<div class="item-name">
+Spotify
+</div>
 
-                    </div>
+<div class="item-sub">
+official artist
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
+<div class="chevron">
+›
+</div>
 
+</div>
 
-                <div
-                    class="item"
-                    onclick="window.open('https://weverse.io/illit/','_blank')"
-                >
 
-                    <div class="item-icon">
-                        W
-                    </div>
+<div
+class="item"
+onclick="window.open('https://www.melon.com/artist/detail.htm?artistId=3743525','_blank')"
+>
 
-                    <div class="item-text">
+<div class="item-icon">
+♪
+</div>
 
-                        <div class="item-name">
-                            Weverse
-                        </div>
+<div class="item-text">
 
-                        <div class="item-sub">
-                            official community
-                        </div>
+<div class="item-name">
+Melon
+</div>
 
-                    </div>
+<div class="item-sub">
+official artist
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
+<div class="chevron">
+›
+</div>
 
-            </div>
+</div>
 
-        </section>
 
+<div
+class="item"
+onclick="window.open('https://www.youtube.com/@ILLIT_official','_blank')"
+>
 
-        <!-- MEMBER DETAIL -->
+<div class="item-icon">
+▶
+</div>
 
-        <section
-            class="page"
-            id="memberDetail"
-        >
+<div class="item-text">
 
-            <button
-                class="back"
-                onclick="goBack()"
-            >
-                ‹ back
-            </button>
+<div class="item-name">
+YouTube
+</div>
 
+<div class="item-sub">
+official channel
+</div>
 
-            <div class="detail-card">
+</div>
 
-                <div
-                    class="member-avatar"
-                    id="detailAvatar"
-                >
-                    W
-                </div>
+<div class="chevron">
+›
+</div>
 
-                <h2
-                    id="detailName"
-                    style="margin-top:15px;"
-                >
-                    Wonhee
-                </h2>
+</div>
 
-                <p id="detailKorean">
-                    원희
-                </p>
 
-            </div>
+<div
+class="item"
+onclick="window.open('https://www.instagram.com/ILLIT_official/','_blank')"
+>
 
+<div class="item-icon">
+◎
+</div>
 
-            <div class="list">
+<div class="item-text">
 
-                <div class="list-title">
-                    archive
-                </div>
+<div class="item-name">
+Instagram
+</div>
 
+<div class="item-sub">
+official account
+</div>
 
-                <div class="item">
+</div>
 
-                    <div class="item-icon">
-                        📅
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Schedule
-                        </div>
 
-                        <div class="item-sub">
-                            individual activities
-                        </div>
+<div
+class="item"
+onclick="window.open('https://weverse.io/illit/','_blank')"
+>
 
-                    </div>
+<div class="item-icon">
+W
+</div>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+<div class="item-text">
 
-                </div>
+<div class="item-name">
+Weverse
+</div>
 
+<div class="item-sub">
+official community
+</div>
 
-                <div class="item">
+</div>
 
-                    <div class="item-icon">
-                        ◎
-                    </div>
+<div class="chevron">
+›
+</div>
 
-                    <div class="item-text">
+</div>
 
-                        <div class="item-name">
-                            Photos
-                        </div>
 
-                        <div class="item-sub">
-                            individual gallery
-                        </div>
+</div>
 
-                    </div>
+</section>
 
-                    <div class="chevron">
-                        ›
-                    </div>
 
-                </div>
+<!-- MEMBER DETAIL -->
 
+<section
+class="page"
+id="memberDetail"
+>
 
-                <div class="item">
+<button
+class="back"
+onclick="goBack()"
+>
+‹ back
+</button>
 
-                    <div class="item-icon">
-                        ✦
-                    </div>
 
-                    <div class="item-text">
+<div class="detail-card">
 
-                        <div class="item-name">
-                            Appearances
-                        </div>
+<div
+class="member-avatar"
+id="detailAvatar"
+>
+W
+</div>
 
-                        <div class="item-sub">
-                            shows & events
-                        </div>
+<h2
+id="detailName"
+style="margin-top:15px;"
+>
+Wonhee
+</h2>
 
-                    </div>
+<p id="detailKorean">
+원희
+</p>
 
-                    <div class="chevron">
-                        ›
-                    </div>
+</div>
 
-                </div>
 
-            </div>
+<div class="list">
 
-        </section>
+<div class="list-title">
+archive
+</div>
 
-    </main>
 
+<div class="item">
 
-    <!-- BOTTOM NAV -->
+<div class="item-icon">
+📅
+</div>
 
-    <nav class="bottom-nav">
+<div class="item-text">
 
-        <button
-            class="nav-button active"
-            onclick="openPage('home',this)"
-        >
+<div class="item-name">
+Schedule
+</div>
 
-            <span>
-                ⌂
-            </span>
+<div class="item-sub">
+individual activities
+</div>
 
-            Home
+</div>
 
-        </button>
+<div class="chevron">
+›
+</div>
 
+</div>
 
-        <button
-            class="nav-button"
-            onclick="openPage('profile',this)"
-        >
 
-            <span>
-                ♙
-            </span>
+<div class="item">
 
-            Profile
+<div class="item-icon">
+◎
+</div>
 
-        </button>
+<div class="item-text">
 
+<div class="item-name">
+Photos
+</div>
 
-        <button
-            class="nav-button"
-            onclick="openPage('discography',this)"
-        >
+<div class="item-sub">
+individual gallery
+</div>
 
-            <span>
-                ♫
-            </span>
+</div>
 
-            Music
+<div class="chevron">
+›
+</div>
 
-        </button>
+</div>
 
 
-        <button
-            class="nav-button"
-            onclick="openPage('gallery',this)"
-        >
+<div class="item">
 
-            <span>
-                ▦
-            </span>
+<div class="item-icon">
+✦
+</div>
 
-            Photos
+<div class="item-text">
 
-        </button>
+<div class="item-name">
+Appearances
+</div>
 
+<div class="item-sub">
+shows & events
+</div>
 
-        <button
-            class="nav-button"
-            onclick="openPage('official',this)"
-        >
+</div>
 
-            <span>
-                ⚙
-            </span>
+<div class="chevron">
+›
+</div>
 
-            More
+</div>
 
-        </button>
 
-    </nav>
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+<button
+class="nav-button active"
+onclick="openPage('home',this)"
+>
+
+<span>
+⌂
+</span>
+
+Home
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('profile',this)"
+>
+
+<span>
+♙
+</span>
+
+Profile
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('discography',this)"
+>
+
+<span>
+♫
+</span>
+
+Music
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('gallery',this)"
+>
+
+<span>
+▦
+</span>
+
+Photos
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('official',this)"
+>
+
+<span>
+⚙
+</span>
+
+More
+
+</button>
+
+
+</nav>
+
 
 </div>
 
 
 <script>
 
+
 /* =========================
    TRACK DATA
-   ========================= */
+========================= */
 
 const trackGroups = [
 
-    [
-        "1st Mini Album - SUPER REAL ME",
-        [
-            "My world",
-            "Magnetic",
-            "Midnight Fiction",
-            "Lucky Girl Syndrome"
-        ]
-    ],
+[
+"1st Mini Album - SUPER REAL ME",
+[
+"My world",
+"Magnetic",
+"Midnight Fiction",
+"Lucky Girl Syndrome"
+]
+],
 
-    [
-        "SUPER REAL ME (Speed up)",
-        [
-            "My World - Speed Up",
-            "Magnetic - Speed Up",
-            "Midnight Fiction - Speed Up",
-            "Lucky Girl Syndrome - Speed Up"
-        ]
-    ],
+[
+"SUPER REAL ME (Speed up)",
+[
+"My World - Speed Up",
+"Magnetic - Speed Up",
+"Midnight Fiction - Speed Up",
+"Lucky Girl Syndrome - Speed Up"
+]
+],
 
-    [
-        "Magnetic (Remix)",
-        [
-            "Magnetic - R&B Remix",
-            "Magnetic - Starlight Remix",
-            "Magnetic - City Night Remix"
-        ]
-    ],
+[
+"Magnetic (Remix)",
+[
+"Magnetic - R&B Remix",
+"Magnetic - Starlight Remix",
+"Magnetic - City Night Remix"
+]
+],
 
-    [
-        "2nd Mini Album - I'LL LIKE YOU",
-        [
-            "I'll Like You",
-            "Cherish (My love)",
-            "IYKYK (If You Know You Know)",
-            "Pimple",
-            "Tick-Tack"
-        ]
-    ],
+[
+"2nd Mini Album - I'LL LIKE YOU",
+[
+"I'll Like You",
+"Cherish (My love)",
+"IYKYK (If You Know You Know)",
+"Pimple",
+"Tick-Tack"
+]
+],
 
-    [
-        "Cherish my love (Remixes)",
-        [
-            "Cherish (My Love) - Deep Dive Remix",
-            "Cherish (My Love) - Moonlight Remix",
-            "Cherish (My Love) - Fever Remix",
-            "Cherish (My Love) - Speed Up",
-            "Cherish (My Love) - Slowed + Reverb",
-            "Cherish (My Love) - Instrumental"
-        ]
-    ],
+[
+"Cherish my love (Remixes)",
+[
+"Cherish (My Love) - Deep Dive Remix",
+"Cherish (My Love) - Moonlight Remix",
+"Cherish (My Love) - Fever Remix",
+"Cherish (My Love) - Speed Up",
+"Cherish (My Love) - Slowed + Reverb",
+"Cherish (My Love) - Instrumental"
+]
+],
 
-    [
-        "3rd Mini Album - Bomb",
-        [
-            "little monster",
-            "Billyeoon Goyangi (Do The Dance)",
-            "jellyous",
-            "oops!",
-            "bamsopoong"
-        ]
-    ],
+[
+"3rd Mini Album - Bomb",
+[
+"little monster",
+"Billyeoon Goyangi (Do The Dance)",
+"jellyous",
+"oops!",
+"bamsopoong"
+]
+],
 
-    [
-        "Billyeoon Goyangi (Do The Dance)(Remixes)",
-        [
-            "Billyeoon Goyangi (Do The Dance) - Snail's House Remix",
-            "Billyeoon Goyangi (Do The Dance) - Sunlight Remix",
-            "Billyeoon Goyangi (Do The Dance) - Remix",
-            "Billyeoon Goyangi (Do The Dance) - Breakbot & Irfane Remix",
-            "Billyeoon Goyangi (Do The Dance) - Slowed + Reverb",
-            "Billyeoon Goyangi (Do The Dance) - Instrumental"
-        ]
-    ],
+[
+"Billyeoon Goyangi (Do The Dance)(Remixes)",
+[
+"Billyeoon Goyangi (Do The Dance) - Snail's House Remix",
+"Billyeoon Goyangi (Do The Dance) - Sunlight Remix",
+"Billyeoon Goyangi (Do The Dance) - Remix",
+"Billyeoon Goyangi (Do The Dance) - Breakbot & Irfane Remix",
+"Billyeoon Goyangi (Do The Dance) - Slowed + Reverb",
+"Billyeoon Goyangi (Do The Dance) - Instrumental"
+]
+],
 
-    [
-        "MAMIHLAPINATAPAI",
-        [
-            "GRWM (Get Ready With Me)",
-            "It's Me",
-            "paw, paw!",
-            "Mamihlapinatapai",
-            "Love, older you"
-        ]
-    ],
+[
+"MAMIHLAPINATAPAI",
+[
+"GRWM (Get Ready With Me)",
+"It's Me",
+"paw, paw!",
+"Mamihlapinatapai",
+"Love, older you"
+]
+],
 
-    [
-        "1st Single Album - NOT CUTE ANYMORE",
-        [
-            "NOT CUTE ANYMORE",
-            "NOT ME"
-        ]
-    ],
+[
+"1st Single Album - NOT CUTE ANYMORE",
+[
+"NOT CUTE ANYMORE",
+"NOT ME"
+]
+],
 
-    [
-        "NOT CUTE ANYMORE - Holiday Remixes",
-        [
-            "NOT CUTE ANYMORE - Holiday Party",
-            "NOT CUTE ANYMORE - Holiday Night",
-            "NOT CUTE ANYMORE - Speed Up ver.",
-            "NOT CUTE ANYMORE - Holiday Night Speed Up ver."
-        ]
-    ],
+[
+"NOT CUTE ANYMORE - Holiday Remixes",
+[
+"NOT CUTE ANYMORE - Holiday Party",
+"NOT CUTE ANYMORE - Holiday Night",
+"NOT CUTE ANYMORE - Speed Up ver.",
+"NOT CUTE ANYMORE - Holiday Night Speed Up ver."
+]
+],
 
-    [
-        "OST",
-        [
-            "Almond Chocolate",
-            "Almond Chocolate (Korean Ver.)",
-            "Secret Quest",
-            "Secret Quest - Instrumental",
-            "All For You 2027",
-            "All For You - Instrumental",
-            "Sunday Morning",
-            "Bublee",
-            "Bublee (Korean Ver.)"
-        ]
-    ],
+[
+"OST",
+[
+"Almond Chocolate",
+"Almond Chocolate (Korean Ver.)",
+"Secret Quest",
+"Secret Quest - Instrumental",
+"All For You 2027",
+"All For You - Instrumental",
+"Sunday Morning",
+"Bublee",
+"Bublee (Korean Ver.)"
+]
+],
 
-    [
-        "Colab",
-        [
-            "See U Tonight",
-            "See U Tonight (Remix)",
-            "jellyous (Feat. Sophie Powers)",
-            "Iconic by mistake"
-        ]
-    ],
+[
+"Colab",
+[
+"See U Tonight",
+"See U Tonight (Remix)",
+"jellyous (Feat. Sophie Powers)",
+"Iconic by mistake"
+]
+],
 
-    [
-        "Japan mini album - TOKI YO TOMARE",
-        [
-            "Topping",
-            "Toki Yo Tomare",
-            "Karitekita Neko (Do The Dance)",
-            "I Got Your Back",
-            "I Got Your Back (Korean Ver.)"
-        ]
-    ]
+[
+"Japan mini album - TOKI YO TOMARE",
+[
+"Topping",
+"Toki Yo Tomare",
+"Karitekita Neko (Do The Dance)",
+"I Got Your Back",
+"I Got Your Back (Korean Ver.)"
+]
+]
 
 ];
 
 
-/* =========================
-   HELPERS
-   ========================= */
-
-/*
-   Normaliza os nomes para que pequenas
-   diferenças não façam o stream desaparecer.
-*/
-
-function key(s){
-
-    return String(s)
-        .trim()
-        .toLowerCase()
-        .replace(/[’]/g,"'")
-        .replace(/[–—]/g,"-")
-        .replace(/\s+/g," ")
-        .replace(/\s*-\s*/g," - ")
-        .replace(/\s*\(\s*/g,"(")
-        .replace(/\s*\)\s*/g,")");
-
-}
-
-
-/*
-   Alguns nomes do index.html e do
-   streams.json são diferentes.
-
-   Aqui fazemos a ligação entre eles.
-*/
-
 const streamAliases = {
 
-    "my world - speed up":
-        "my world - sped up",
+"my world - speed up":
+"my world - sped up",
 
-    "magnetic - speed up":
-        "magnetic - sped up",
+"magnetic - speed up":
+"magnetic - sped up",
 
-    "midnight fiction - speed up":
-        "midnight fiction - sped up",
+"midnight fiction - speed up":
+"midnight fiction - sped up",
 
-    "lucky girl syndrome - speed up":
-        "lucky girl syndrome - sped up",
+"lucky girl syndrome - speed up":
+"lucky girl syndrome - sped up",
 
-    "cherish (my love) - speed up":
-        "cherish (my love) - sped up",
+"cherish (my love) - speed up":
+"cherish (my love) - sped up",
 
-    "not cute anymore - speed up ver.":
-        "not cute anymore - sped up ver.",
+"not cute anymore - speed up ver.":
+"not cute anymore - sped up ver.",
 
-    "not cute anymore - holiday party":
-        "not cute anymore - holiday party",
+"not cute anymore - holiday party":
+"not cute anymore - holiday party",
 
-    "not cute anymore - holiday night":
-        "not cute anymore - holiday night",
+"not cute anymore - holiday night":
+"not cute anymore - holiday night",
 
-    "not cute anymore - holiday night speed up ver.":
-        "not cute anymore - holiday night sped up ver.",
+"not cute anymore - holiday night speed up ver.":
+"not cute anymore - holiday night sped up ver.",
 
-    "all for you 2027":
-        "all for you 2027",
+"all for you 2027":
+"all for you 2027",
 
-    "bublee":
-        "bubee",
+"bublee":
+"bubee",
 
-    "bublee (korean ver.)":
-        "bubee (korean ver.)",
+"bublee (korean ver.)":
+"bubee (korean ver.)",
 
-    "iconic by mistake":
-        "iconic by mistake"
+"iconic by mistake":
+"iconic by mistake"
 
 };
 
 
-/*
-   Escapa texto antes de colocar
-   dentro do HTML.
-*/
+/* =========================
+   HELPERS
+========================= */
 
-function esc(s){
+function key(song){
 
-    return String(s).replace(
-        /[&<>"']/g,
-        c => ({
-            '&':'&amp;',
-            '<':'&lt;',
-            '>':'&gt;',
-            '"':'&quot;',
-            "'":'&#039;'
-        }[c])
-    );
+return song
+.trim()
+.toLowerCase();
 
 }
 
 
-/*
-   Procura o valor no streams.json
-   usando o nome normal e os aliases.
-*/
+function esc(s){
 
-function getStreamValue(data,platform,mode,song){
+return s.replace(
+/[&<>"']/g,
+c => ({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[c])
+);
 
-    const originalKey =
-        key(song);
-
-    const possibleKeys = [
-
-        originalKey,
-
-        streamAliases[originalKey]
-
-    ].filter(Boolean);
+}
 
 
-    for(const k of possibleKeys){
+function getStreamValue(
+data,
+platform,
+mode,
+song
+){
 
-        const value =
-            data?.[platform]?.[mode]?.[k];
+const originalKey =
+key(song);
 
-        if(
-            value !== undefined &&
-            value !== null &&
-            value !== ""
-        ){
+const possibleKeys = [
 
-            return Number(value);
+originalKey,
 
-        }
+streamAliases[
+originalKey
+]
 
-    }
+].filter(Boolean);
 
 
-    return null;
+for(
+const k of possibleKeys
+){
+
+const value =
+data?.[platform]?.[mode]?.[k];
+
+
+if(
+value !== undefined &&
+value !== null &&
+value !== ""
+){
+
+const number =
+Number(value);
+
+
+if(
+Number.isFinite(number)
+){
+
+return number;
+
+}
+
+}
+
+}
+
+
+return null;
 
 }
 
 
 /* =========================
    PAGE NAVIGATION
-   ========================= */
+========================= */
 
-function openPage(id,button){
+function openPage(
+id,
+button
+){
 
-    document
-        .querySelectorAll('.page')
-        .forEach(p =>
-            p.classList.remove('active')
-        );
-
-
-    const p =
-        document.getElementById(id);
-
-
-    if(p){
-        p.classList.add('active');
-    }
+document
+.querySelectorAll('.page')
+.forEach(
+p =>
+p.classList.remove('active')
+);
 
 
-    const titles = {
-
-        home:'Home',
-        profile:'',
-        discography:'',
-        summer:'',
-        tour:'',
-        mv:'',
-        news:'',
-        schedule:'',
-        activities:'',
-        gallery:'',
-        official:'',
-        memberDetail:''
-
-    };
+const page =
+document.getElementById(id);
 
 
-    document.getElementById(
-        'headerTitle'
-    ).innerText =
-        titles[id] || '';
+if(page){
+
+page.classList.add('active');
+
+}
 
 
-    document
-        .querySelectorAll('.nav-button')
-        .forEach(b =>
-            b.classList.remove('active')
-        );
+const titles = {
+
+home:'Home',
+
+profile:'',
+
+discography:'',
+
+summer:'',
+
+tour:'',
+
+mv:'',
+
+news:'',
+
+schedule:'',
+
+activities:'',
+
+gallery:'',
+
+official:'',
+
+memberDetail:''
+
+};
 
 
-    if(button){
-        button.classList.add('active');
-    }
+const header =
+document.getElementById(
+'headerTitle'
+);
 
 
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+if(header){
+
+header.innerText =
+titles[id] || '';
+
+}
+
+
+document
+.querySelectorAll('.nav-button')
+.forEach(
+b =>
+b.classList.remove('active')
+);
+
+
+if(button){
+
+button.classList.add('active');
+
+}
+
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
 
 /* =========================
-   SUMMER MOON
-   ========================= */
-
-let summerMoonTimer;
-
-
-function openSummerMoonExperience(){
-
-    const l =
-        document.getElementById(
-            'summerLockscreen'
-        );
-
-
-    if(!l) return;
-
-
-    clearTimeout(
-        summerMoonTimer
-    );
-
-
-    l.classList.remove(
-        'notification-show',
-        'closing'
-    );
-
-
-    updateSummerLockScreen();
-
-
-    l.classList.add('active');
-
-
-    summerMoonTimer =
-        setTimeout(
-            () =>
-                l.classList.add(
-                    'notification-show'
-                ),
-            1300
-        );
-
-}
-
-
-function updateSummerLockScreen(){
-
-    const n =
-        new Date();
-
-
-    document.getElementById(
-        'summerLockDate'
-    ).innerText =
-        new Intl.DateTimeFormat(
-            'en-US',
-            {
-                timeZone:'Asia/Seoul',
-                weekday:'long',
-                month:'long',
-                day:'numeric'
-            }
-        ).format(n);
-
-
-    document.getElementById(
-        'summerLockTime'
-    ).innerText =
-        new Intl.DateTimeFormat(
-            'en-US',
-            {
-                timeZone:'Asia/Seoul',
-                hour:'2-digit',
-                minute:'2-digit',
-                hour12:false
-            }
-        ).format(n);
-
-}
-
-
-function openSummerMoon(){
-
-    const l =
-        document.getElementById(
-            'summerLockscreen'
-        );
-
-
-    clearTimeout(
-        summerMoonTimer
-    );
-
-
-    if(l){
-
-        l.classList.remove(
-            'notification-show'
-        );
-
-        l.classList.add(
-            'closing'
-        );
-
-    }
-
-
-    setTimeout(() => {
-
-        if(l){
-
-            l.classList.remove(
-                'active',
-                'closing'
-            );
-
-        }
-
-
-        openPage('summer');
-
-    },500);
-
-}
-
-
-function showSummerNotification(){
-
-    openSummerMoonExperience();
-
-}
-
-
-/* =========================
-   MEMBER
-   ========================= */
+   MEMBER PAGES
+========================= */
 
 let previousPage =
-    'profile';
+'profile';
 
 
-function member(name,korean){
+function member(
+name,
+korean
+){
 
-    previousPage =
-        document.querySelector(
-            '.page.active'
-        )?.id || 'profile';
-
-
-    document
-        .querySelectorAll('.page')
-        .forEach(p =>
-            p.classList.remove('active')
-        );
+const activePage =
+document.querySelector(
+'.page.active'
+);
 
 
-    document
-        .getElementById(
-            'memberDetail'
-        )
-        .classList.add('active');
+previousPage =
+activePage?.id ||
+'profile';
 
 
-    document.getElementById(
-        'detailName'
-    ).innerText =
-        name;
+document
+.querySelectorAll('.page')
+.forEach(
+p =>
+p.classList.remove('active')
+);
 
 
-    document.getElementById(
-        'detailKorean'
-    ).innerText =
-        korean;
+const detail =
+document.getElementById(
+'memberDetail'
+);
 
 
-    document.getElementById(
-        'detailAvatar'
-    ).innerText =
-        name.charAt(0);
+if(detail){
+
+detail.classList.add('active');
+
+}
 
 
-    document.getElementById(
-        'headerTitle'
-    ).innerText =
-        '';
+const nameElement =
+document.getElementById(
+'detailName'
+);
 
 
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+if(nameElement){
+
+nameElement.innerText =
+name;
+
+}
+
+
+const koreanElement =
+document.getElementById(
+'detailKorean'
+);
+
+
+if(koreanElement){
+
+koreanElement.innerText =
+korean;
+
+}
+
+
+const avatar =
+document.getElementById(
+'detailAvatar'
+);
+
+
+if(avatar){
+
+avatar.innerText =
+name.charAt(0);
+
+}
+
+
+const header =
+document.getElementById(
+'headerTitle'
+);
+
+
+if(header){
+
+header.innerText =
+'';
+
+}
+
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
 
 function goBack(){
 
-    openPage(
-        previousPage
-    );
+openPage(
+previousPage
+);
 
 }
 
 
 /* =========================
    TIME
-   ========================= */
+========================= */
 
 function updateTime(){
 
-    document.getElementById(
-        'time'
-    ).innerText =
-        new Date().toLocaleTimeString(
-            [],
-            {
-                hour:'2-digit',
-                minute:'2-digit'
-            }
-        );
+const time =
+document.getElementById(
+'time'
+);
+
+
+if(!time) return;
+
+
+time.innerText =
+new Date().toLocaleTimeString(
+[],
+{
+hour:'2-digit',
+minute:'2-digit'
+}
+);
 
 }
 
@@ -3319,798 +3204,778 @@ function updateTime(){
 updateTime();
 
 setInterval(
-    updateTime,
-    1000
+updateTime,
+1000
 );
 
 
 /* =========================
-   STREAMING TRACKER
-   ========================= */
+   STREAMING
+========================= */
 
 let currentPlatform =
-    'spotify';
+'spotify';
 
 let currentMode =
-    'total';
+'total';
 
-
-/*
-   AS 6 MÚSICAS QUE APARECEM PRIMEIRO
-*/
-
-const firstSixTracks = [
-
-    "Iconic by mistake",
-
-    "It's Me",
-
-    "Magnetic",
-
-    "NOT CUTE ANYMORE",
-
-    "Billyeoon Goyangi (Do The Dance)",
-
-    "jellyous"
-
-];
-
-
-/*
-   Cria a lista completa.
-
-   As 6 primeiras ficam no topo.
-   TODAS as outras continuam
-   dentro do mesmo quadro.
-*/
-
-function getOrderedTracks(){
-
-    const allTracks = [];
-
-
-    trackGroups.forEach(group => {
-
-        group[1].forEach(song => {
-
-            /*
-               Evita duplicatas.
-            */
-
-            if(
-                !allTracks.some(
-                    existing =>
-                        key(existing) === key(song)
-                )
-            ){
-
-                allTracks.push(song);
-
-            }
-
-        });
-
-    });
-
-
-    const first =
-        firstSixTracks
-            .map(name =>
-                allTracks.find(
-                    song =>
-                        key(song) === key(name)
-                )
-            )
-            .filter(Boolean);
-
-
-    const remaining =
-        allTracks.filter(song =>
-
-            !firstSixTracks.some(
-                name =>
-                    key(name) === key(song)
-            )
-
-        );
-
-
-    return [
-        ...first,
-        ...remaining
-    ];
-
-}
-
-
-/*
-   Renderiza TODAS as músicas.
-
-   O CSS limita o quadro a 348px,
-   então somente aproximadamente 6
-   ficam visíveis de cada vez.
-*/
 
 function renderTracks(){
 
-    const list =
-        document.getElementById(
-            'trackList'
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML =
-        '';
-
-
-    const songs =
-        getOrderedTracks();
-
-
-    songs.forEach(
-        (song,index) => {
-
-            const t =
-                document.createElement(
-                    'div'
-                );
-
-
-            t.className =
-                'track';
-
-
-            t.dataset.song =
-                key(song);
-
-
-            t.innerHTML =
-
-                '<div class="track-rank">' +
-                    (index + 1) +
-                '</div>' +
-
-                '<div class="track-icon">' +
-                    '♫' +
-                '</div>' +
-
-                '<div class="track-info">' +
-
-                    '<div class="track-name">' +
-                        esc(song) +
-                    '</div>' +
-
-                    '<div class="track-platform">' +
-                        currentPlatform +
-                    '</div>' +
-
-                '</div>' +
-
-                '<div class="track-number">' +
-                    '—' +
-                '</div>';
-
-
-            list.appendChild(
-                t
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================
-   UPDATE STREAM DATA
-   ========================= */
-
-function animateNumber(element, newValue){
-
-    const oldValue =
-        Number(
-            element.dataset.value || 0
-        );
-
-    element.dataset.value =
-        newValue;
-
-    if(oldValue === newValue){
-
-        element.innerText =
-            newValue.toLocaleString('en-US');
-
-        return;
-
-    }
-
-    const duration = 1000;
-    const start = performance.now();
-
-    function animate(time){
-
-        const progress =
-            Math.min(
-                (time - start) / duration,
-                1
-            );
-
-        const eased =
-            1 - Math.pow(1 - progress, 3);
-
-        const value =
-            Math.floor(
-                oldValue +
-                (newValue - oldValue) * eased
-            );
-
-        element.innerText =
-            value.toLocaleString('en-US');
-
-        if(progress < 1){
-
-            requestAnimationFrame(
-                animate
-            );
-
-        }else{
-
-            element.innerText =
-                newValue.toLocaleString('en-US');
-
-        }
-
-    }
-
-    requestAnimationFrame(
-        animate
-    );
-        }
-
-    try{
-
-        const r =
-            await fetch(
-                'streams.json',
-                {
-                    cache:'no-store'
-                }
-            );
-
-
-        if(!r.ok){
-
-            throw Error(
-                'streams.json not found'
-            );
-
-        }
-
-
-        const data =
-            await r.json();
-
-
-        let total =
-            0;
-
-
-        let daily =
-            0;
-
-
-        document
-            .querySelectorAll(
-                '.track'
-            )
-            .forEach(t => {
-
-                const s =
-                    t.dataset.song;
-
-
-                /*
-                   Pega o valor correspondente
-                   mesmo quando o nome tem uma
-                   pequena diferença.
-                */
-
-                const v =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        currentMode,
-                        s
-                    );
-
-
-                if(
-                    v !== null &&
-                    Number.isFinite(v)
-                ){
-
-                    animateNumber(
-    t.querySelector('.track-number'),
-    v
+const list =
+document.getElementById(
+'trackList'
 );
-                        );
-
-                }else{
-
-                    t.querySelector(
-                        '.track-number'
-                    ).innerText =
-                        '—';
-
-                }
 
 
-                t.querySelector(
-                    '.track-platform'
-                ).innerText =
-                    currentPlatform;
+if(!list) return;
 
 
-                /*
-                   TOTAL sempre vem da seção
-                   total do streams.json.
-                */
-
-                const tv =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        'total',
-                        s
-                    );
+list.innerHTML =
+'';
 
 
-                /*
-                   DAILY sempre vem da seção
-                   daily do streams.json.
-                */
-
-                const dv =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        'daily',
-                        s
-                    );
+let rank = 1;
 
 
-                if(
-                    tv !== null &&
-                    Number.isFinite(tv)
-                ){
+trackGroups.forEach(
+group => {
 
-                    total += tv;
+const heading =
+document.createElement(
+'div'
+);
 
-                }
+heading.className =
+'track-group';
 
+heading.innerText =
+group[0];
 
-                if(
-                    dv !== null &&
-                    Number.isFinite(dv)
-                ){
-
-                    daily += dv;
-
-                }
-
-            });
+list.appendChild(
+heading
+);
 
 
-        document.getElementById(
-            'totalLabel'
-        ).innerText =
+group[1].forEach(
+song => {
 
-            currentPlatform === 'spotify'
+const track =
+document.createElement(
+'div'
+);
 
-                ? 'spotify total'
-
-                : 'melon total';
-
-
-        document.getElementById(
-    'dailyLabel'
-).innerText =
-
-    currentPlatform === 'spotify'
-
-        ? 'daily streams'
-
-        : 'daily streams';
+track.className =
+'track';
 
 
-        document.getElementById(
-            'spotifyTotal'
-        ).innerText =
-
-            total > 0
-
-                ? total.toLocaleString(
-                    'en-US'
-                )
-
-                : '—';
+track.dataset.song =
+key(song);
 
 
-        document.getElementById(
-            'dailyTotal'
-        ).innerText =
+track.innerHTML =
 
-            daily > 0
+'<div class="track-rank">'
++
+rank
++
+'</div>'
 
-                ? '+' +
-                  daily.toLocaleString(
-                      'en-US'
-                  )
++
 
-                : '—';
+'<div class="track-icon">'
++
+'♫'
++
+'</div>'
+
++
+
+'<div class="track-info">'
+
++
+
+'<div class="track-name">'
++
+esc(song)
++
+'</div>'
+
++
+
+'<div class="track-platform">'
++
+currentPlatform
++
+'</div>'
+
++
+
+'</div>'
+
++
+
+'<div class="track-number">'
++
+'—'
++
+'</div>';
 
 
-    }catch(e){
+list.appendChild(
+track
+);
 
-        console.error(
-            'Tracker error:',
-            e
-        );
 
-    }
+rank++;
+
+}
+
+);
+
+}
+
+);
 
 }
 
 
 /* =========================
-   PLATFORM
-   ========================= */
+   NUMBER ANIMATION
+========================= */
 
-function changePlatform(p,b){
+function animateNumber(
+element,
+newValue
+){
 
-    currentPlatform =
-        p;
-
-
-    document
-        .querySelectorAll(
-            '.platform-tab'
-        )
-        .forEach(x =>
-            x.classList.remove(
-                'active'
-            )
-        );
+if(!element)
+return;
 
 
-    b.classList.add(
-        'active'
-    );
+const oldValue =
+Number(
+element.dataset.value || 0
+);
 
 
-    updateTracker();
+element.dataset.value =
+String(newValue);
+
+
+if(oldValue === newValue){
+
+element.innerText =
+newValue.toLocaleString(
+'en-US'
+);
+
+return;
 
 }
 
 
-/* =========================
-   TOTAL / DAILY
-   ========================= */
-
-function changeMode(m,b){
-
-    currentMode =
-        m;
+const duration =
+1000;
 
 
-    document
-        .querySelectorAll(
-            '.mode-tab'
-        )
-        .forEach(x =>
-            x.classList.remove(
-                'active'
-            )
-        );
+const start =
+performance.now();
 
 
-    b.classList.add(
-        'active'
-    );
+function animate(time){
+
+const progress =
+Math.min(
+(time - start) /
+duration,
+1
+);
 
 
-    updateTracker();
+const eased =
+1 -
+Math.pow(
+1 - progress,
+3
+);
+
+
+const value =
+Math.floor(
+oldValue +
+(newValue - oldValue) *
+eased
+);
+
+
+element.innerText =
+value.toLocaleString(
+'en-US'
+);
+
+
+if(progress < 1){
+
+requestAnimationFrame(
+animate
+);
+
+}else{
+
+element.innerText =
+newValue.toLocaleString(
+'en-US'
+);
+
+}
+
+}
+
+
+requestAnimationFrame(
+animate
+);
+
+}
+
 
 /* =========================
    UPDATE STREAM DATA
-   ========================= */
-
-function animateNumber(element, newValue){
-
-    const oldValue =
-        Number(
-            element.dataset.value || 0
-        );
-
-    element.dataset.value =
-        newValue;
-
-    if(oldValue === newValue){
-
-        element.innerText =
-            newValue.toLocaleString('en-US');
-
-        return;
-
-    }
-
-    const duration = 1000;
-    const start = performance.now();
-
-    function animate(time){
-
-        const progress =
-            Math.min(
-                (time - start) / duration,
-                1
-            );
-
-        const eased =
-            1 - Math.pow(1 - progress, 3);
-
-        const value =
-            Math.floor(
-                oldValue +
-                (newValue - oldValue) * eased
-            );
-
-        element.innerText =
-            value.toLocaleString('en-US');
-
-        if(progress < 1){
-
-            requestAnimationFrame(
-                animate
-            );
-
-        }
-
-    }
-
-    requestAnimationFrame(
-        animate
-    );
-
-}
-
+========================= */
 
 async function updateTracker(){
 
-    try{
+try{
 
-        const r =
-            await fetch(
-                'streams.json',
-                {
-                    cache:'no-store'
-                }
-            );
-
-
-        if(!r.ok){
-
-            throw Error(
-                'streams.json not found'
-            );
-
-        }
+const response =
+await fetch(
+'streams.json?t=' +
+Date.now(),
+{
+cache:'no-store'
+}
+);
 
 
-        const data =
-            await r.json();
+if(!response.ok){
+
+throw new Error(
+'streams.json not found'
+);
+
+}
 
 
-        let total = 0;
-
-        let daily = 0;
-
-
-        document
-            .querySelectorAll('.track')
-            .forEach(t => {
-
-                const s =
-                    t.dataset.song;
+const data =
+await response.json();
 
 
-                const v =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        currentMode,
-                        s
-                    );
+let total = 0;
+
+let daily = 0;
 
 
-                if(
-                    v !== null &&
-                    Number.isFinite(v)
-                ){
+document
+.querySelectorAll('.track')
+.forEach(
+track => {
 
-                    animateNumber(
-                        t.querySelector(
-                            '.track-number'
-                        ),
-                        v
-                    );
-
-                }else{
-
-                    t.querySelector(
-                        '.track-number'
-                    ).innerText =
-                        '—';
-
-                }
+const song =
+track.dataset.song;
 
 
-                t.querySelector(
-                    '.track-platform'
-                ).innerText =
-                    currentPlatform;
+const value =
+getStreamValue(
+data,
+currentPlatform,
+currentMode,
+song
+);
 
 
-                const tv =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        'total',
-                        s
-                    );
+const numberElement =
+track.querySelector(
+'.track-number'
+);
 
 
-                const dv =
-                    getStreamValue(
-                        data,
-                        currentPlatform,
-                        'daily',
-                        s
-                    );
+if(
+value !== null &&
+Number.isFinite(value)
+){
+
+animateNumber(
+numberElement,
+value
+);
+
+}else{
+
+numberElement.innerText =
+'—';
+
+}
 
 
-                if(
-                    tv !== null &&
-                    Number.isFinite(tv)
-                ){
-
-                    total += tv;
-
-                }
+const platformElement =
+track.querySelector(
+'.track-platform'
+);
 
 
-                if(
-                    dv !== null &&
-                    Number.isFinite(dv)
-                ){
+if(platformElement){
 
-                    daily += dv;
+platformElement.innerText =
+currentPlatform;
 
-                }
-
-            });
+}
 
 
-        document.getElementById(
-            'totalLabel'
-        ).innerText =
-
-            currentPlatform === 'spotify'
-                ? 'spotify total'
-                : 'melon total';
-
-
-        document.getElementById(
-            'dailyLabel'
-        ).innerText =
-            'daily streams';
+const totalValue =
+getStreamValue(
+data,
+currentPlatform,
+'total',
+song
+);
 
 
-        document.getElementById(
-            'spotifyTotal'
-        ).innerText =
-
-            total > 0
-                ? total.toLocaleString('en-US')
-                : '—';
-
-
-        document.getElementById(
-            'dailyTotal'
-        ).innerText =
-
-            daily > 0
-                ? '+' +
-                  daily.toLocaleString('en-US')
-                : '—';
+const dailyValue =
+getStreamValue(
+data,
+currentPlatform,
+'daily',
+song
+);
 
 
-    }catch(e){
+if(
+totalValue !== null &&
+Number.isFinite(totalValue)
+){
 
-        console.error(
-            'Tracker error:',
-            e
-        );
+total += totalValue;
 
-    }
+}
 
-                        }
-    /* =========================
+
+if(
+dailyValue !== null &&
+Number.isFinite(dailyValue)
+){
+
+daily += dailyValue;
+
+}
+
+}
+
+);
+
+
+const totalLabel =
+document.getElementById(
+'totalLabel'
+);
+
+
+if(totalLabel){
+
+totalLabel.innerText =
+currentPlatform === 'spotify'
+?
+'spotify total'
+:
+'melon total';
+
+}
+
+
+const dailyLabel =
+document.getElementById(
+'dailyLabel'
+);
+
+
+if(dailyLabel){
+
+dailyLabel.innerText =
+'daily streams';
+
+}
+
+
+const totalElement =
+document.getElementById(
+'spotifyTotal'
+);
+
+
+if(
+totalElement &&
+total > 0
+){
+
+animateNumber(
+totalElement,
+total
+);
+
+}else if(totalElement){
+
+totalElement.innerText =
+'—';
+
+}
+
+
+const dailyElement =
+document.getElementById(
+'dailyTotal'
+);
+
+
+if(
+dailyElement &&
+daily > 0
+){
+
+dailyElement.innerText =
+'+' +
+daily.toLocaleString(
+'en-US'
+);
+
+}else if(dailyElement){
+
+dailyElement.innerText =
+'—';
+
+}
+
+
+}catch(error){
+
+console.error(
+'Tracker error:',
+error
+);
+
+}
+
+}
+
+
+/* =========================
    PLATFORM
-   ========================= */
+========================= */
 
-function changePlatform(p,b){
+function changePlatform(
+platform,
+button
+){
 
-    currentPlatform =
-        p;
+currentPlatform =
+platform;
 
-    document
-        .querySelectorAll(
-            '.platform-tab'
-        )
-        .forEach(x =>
-            x.classList.remove(
-                'active'
-            )
-        );
 
-    b.classList.add(
-        'active'
-    );
+document
+.querySelectorAll(
+'.platform-tab'
+)
+.forEach(
+tab =>
+tab.classList.remove(
+'active'
+)
+);
 
-    updateTracker();
+
+if(button){
+
+button.classList.add(
+'active'
+);
+
+}
+
+
+updateTracker();
 
 }
 
 
 /* =========================
    TOTAL / DAILY
-   ========================= */
+========================= */
 
-function changeMode(m,b){
+function changeMode(
+mode,
+button
+){
 
-    currentMode =
-        m;
+currentMode =
+mode;
 
-    document
-        .querySelectorAll(
-            '.mode-tab'
-        )
-        .forEach(x =>
-            x.classList.remove(
-                'active'
-            )
-        );
 
-    b.classList.add(
-        'active'
-    );
+document
+.querySelectorAll(
+'.mode-tab'
+)
+.forEach(
+tab =>
+tab.classList.remove(
+'active'
+)
+);
 
-    updateTracker();
+
+if(button){
+
+button.classList.add(
+'active'
+);
 
 }
-    renderTracks();
+
 
 updateTracker();
 
-setInterval(() => {
-    updateTracker();
-}, 2 * 60 * 1000);
+}
+
+
+/* =========================
+   SUMMER MOON
+========================= */
+
+let summerMoonTimer;
+
+
+function openSummerMoonExperience(){
+
+const lockscreen =
+document.getElementById(
+'summerLockscreen'
+);
+
+
+if(!lockscreen)
+return;
+
+
+clearTimeout(
+summerMoonTimer
+);
+
+
+lockscreen.classList.remove(
+'notification-show',
+'closing'
+);
+
+
+updateSummerLockScreen();
+
+
+lockscreen.classList.add(
+'active'
+);
+
+
+summerMoonTimer =
+setTimeout(
+() =>
+lockscreen.classList.add(
+'notification-show'
+),
+1300
+);
+
+}
+
+
+function updateSummerLockScreen(){
+
+const now =
+new Date();
+
+
+const dateElement =
+document.getElementById(
+'summerLockDate'
+);
+
+
+const timeElement =
+document.getElementById(
+'summerLockTime'
+);
+
+
+if(dateElement){
+
+dateElement.innerText =
+new Intl.DateTimeFormat(
+'en-US',
+{
+timeZone:'Asia/Seoul',
+weekday:'long',
+month:'long',
+day:'numeric'
+}
+).format(now);
+
+}
+
+
+if(timeElement){
+
+timeElement.innerText =
+new Intl.DateTimeFormat(
+'en-US',
+{
+timeZone:'Asia/Seoul',
+hour:'2-digit',
+minute:'2-digit',
+hour12:false
+}
+).format(now);
+
+}
+
+}
+
+
+function openSummerMoon(){
+
+const lockscreen =
+document.getElementById(
+'summerLockscreen'
+);
+
+
+clearTimeout(
+summerMoonTimer
+);
+
+
+if(lockscreen){
+
+lockscreen.classList.remove(
+'notification-show'
+);
+
+
+lockscreen.classList.add(
+'closing'
+);
+
+}
+
+
+setTimeout(
+() => {
+
+if(lockscreen){
+
+lockscreen.classList.remove(
+'active',
+'closing'
+);
+
+}
+
+
+openPage(
+'summer'
+);
+
+},
+500
+);
+
+}
+
+
+function showSummerNotification(){
+
+openSummerMoonExperience();
+
+}
+
+
+/* =========================
+   DISCROGRAPHY TABS
+========================= */
+
+document
+.querySelectorAll('.tabs')
+.forEach(
+group => {
+
+const buttons =
+group.querySelectorAll(
+'.tab'
+);
+
+
+buttons.forEach(
+button => {
+
+button.addEventListener(
+'click',
+() => {
+
+buttons.forEach(
+b =>
+b.classList.remove(
+'selected'
+)
+);
+
+
+button.classList.add(
+'selected'
+);
+
+}
+);
+
+}
+
+);
+
+}
+);
+
+
+/* =========================
+   START
+========================= */
+
+renderTracks();
+
+updateTracker();
+
+
+/*
+   Update the displayed data
+   every 2 minutes.
+*/
+
+setInterval(
+() => {
+
+updateTracker();
+
+},
+2 * 60 * 1000
+);
+
 
 </script>
 
 </body>
-</html>
+
+    </html>
