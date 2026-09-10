@@ -33,10 +33,6 @@ body {
   color: var(--text);
 }
 
-/* =========================
-   PHONE
-========================= */
-
 .phone {
   width: 100%;
   max-width: 430px;
@@ -46,10 +42,6 @@ body {
   position: relative;
   overflow: hidden;
 }
-
-/* =========================
-   STATUS BAR
-========================= */
 
 .status {
   height: 30px;
@@ -64,10 +56,6 @@ body {
   display: flex;
   gap: 6px;
 }
-
-/* =========================
-   APP HEADER
-========================= */
 
 .app-header {
   padding: 13px 20px 15px;
@@ -94,10 +82,6 @@ body {
   font-size: 15px;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
 .content {
   padding: 0 16px 100px;
 }
@@ -109,10 +93,6 @@ body {
 .page.active {
   display: block;
 }
-
-/* =========================
-   WIDGET
-========================= */
 
 .widget {
   background: var(--card);
@@ -143,9 +123,7 @@ body {
   margin-top: 5px;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   min-height: 205px;
@@ -180,9 +158,7 @@ body {
   max-width: 220px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 .button {
   display: inline-flex;
@@ -193,11 +169,12 @@ body {
   border-radius: 15px;
   font-size: 12px;
   font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  cursor: pointer;
 }
 
-/* =========================
-   GRID
-========================= */
+/* GRID */
 
 .grid {
   display: grid;
@@ -231,9 +208,7 @@ body {
   margin-top: 4px;
 }
 
-/* =========================
-   LIST
-========================= */
+/* LIST */
 
 .list {
   background: white;
@@ -295,9 +270,7 @@ body {
   font-size: 18px;
 }
 
-/* =========================
-   MEMBERS
-========================= */
+/* MEMBERS */
 
 .members {
   display: grid;
@@ -332,29 +305,163 @@ body {
 }
 
 /* =========================
-   TRACKER
+   STREAMING TRACKER
 ========================= */
 
-.tracker {
+.streaming-card {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(0,0,0,.04);
+  box-shadow: 0 2px 10px rgba(0,0,0,.035);
+}
+
+.streaming-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 14px;
 }
 
-.number {
-  font-size: 29px;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
-.stat-label {
-  font-size: 10px;
+.streaming-title {
+  font-size: 12px;
   color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 600;
 }
 
-/* =========================
-   PAGE TITLE
-========================= */
+.platform-tabs,
+.mode-tabs {
+  display: flex;
+  background: #e8e8ed;
+  border-radius: 11px;
+  padding: 3px;
+}
+
+.platform-tab,
+.mode-tab {
+  border: none;
+  background: transparent;
+  padding: 7px 10px;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+}
+
+.platform-tab.active,
+.mode-tab.active {
+  background: white;
+  color: #111;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.mode-tabs {
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.track-list {
+  background: white;
+  border-radius: 17px;
+  overflow: hidden;
+}
+
+.track {
+  min-height: 58px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #eeeeef;
+}
+
+.track:last-child {
+  border-bottom: none;
+}
+
+.track-rank {
+  width: 18px;
+  text-align: center;
+  font-size: 10px;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.track-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#f8e1ef,#e5e9fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.track-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-name {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-platform {
+  font-size: 9px;
+  color: var(--gray);
+  margin-top: 3px;
+}
+
+.track-number {
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tracker-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.tracker-mini {
+  background: white;
+  border-radius: 16px;
+  padding: 13px;
+}
+
+.tracker-mini-title {
+  font-size: 9px;
+  color: var(--gray);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tracker-mini-number {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.tracker-note {
+  font-size: 9px;
+  color: var(--gray);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* PAGE TITLE */
 
 .page-heading {
   padding: 8px 4px 18px;
@@ -371,9 +478,7 @@ body {
   margin-top: 4px;
 }
 
-/* =========================
-   TABS
-========================= */
+/* TABS */
 
 .tabs {
   display: flex;
@@ -389,6 +494,7 @@ body {
   padding: 8px 14px;
   border-radius: 15px;
   font-size: 11px;
+  cursor: pointer;
 }
 
 .tab.selected {
@@ -396,9 +502,7 @@ body {
   color: white;
 }
 
-/* =========================
-   ALBUM
-========================= */
+/* ALBUM */
 
 .album {
   background: white;
@@ -440,9 +544,7 @@ body {
   color: var(--blue);
 }
 
-/* =========================
-   GALLERY
-========================= */
+/* GALLERY */
 
 .photo-grid {
   display: grid;
@@ -462,9 +564,7 @@ body {
   font-size: 9px;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* BOTTOM NAV */
 
 .bottom-nav {
   position: fixed;
@@ -502,9 +602,7 @@ body {
   color: #111;
 }
 
-/* =========================
-   DETAIL PAGE
-========================= */
+/* DETAIL PAGE */
 
 .back {
   border: none;
@@ -533,9 +631,7 @@ body {
   margin-top: 10px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media (min-width: 600px) {
   body {
@@ -656,24 +752,309 @@ body {
       </div>
 
 
-      <div class="widget">
+      <!-- ================= STREAMING TRACKER ================= -->
 
-        <div class="widget-title">
-          streaming
+      <div class="streaming-card">
+
+        <div class="streaming-top">
+
+          <div class="streaming-title">
+            streaming
+          </div>
+
+          <div class="platform-tabs">
+
+            <button
+              class="platform-tab active"
+              data-platform="spotify"
+              onclick="changePlatform('spotify', this)">
+              spotify
+            </button>
+
+            <button
+              class="platform-tab"
+              data-platform="melon"
+              onclick="changePlatform('melon', this)">
+              melon
+            </button>
+
+          </div>
+
         </div>
 
-        <div class="tracker">
 
-          <div>
-            <div class="number">3.0B+</div>
-            <div class="stat-label">spotify streams</div>
+        <div class="mode-tabs">
+
+          <button
+            class="mode-tab active"
+            data-mode="total"
+            onclick="changeMode('total', this)">
+            total
+          </button>
+
+          <button
+            class="mode-tab"
+            data-mode="daily"
+            onclick="changeMode('daily', this)">
+            daily
+          </button>
+
+        </div>
+
+
+        <div class="track-list">
+
+
+          <!-- 1 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              1
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                Iconic by Mistake
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
           </div>
 
-          <div>
-            <div class="number">6M+</div>
-            <div class="stat-label">daily streams</div>
+
+          <!-- 2 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              2
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                It's Me
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
           </div>
 
+
+          <!-- 3 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              3
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                Magnetic
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
+          </div>
+
+
+          <!-- 4 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              4
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                Not Cute Anymore
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
+          </div>
+
+
+          <!-- 5 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              5
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                Billyeoon Goyangi
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
+          </div>
+
+
+          <!-- 6 -->
+
+          <div class="track">
+
+            <div class="track-rank">
+              6
+            </div>
+
+            <div class="track-icon">
+              ♫
+            </div>
+
+            <div class="track-info">
+
+              <div class="track-name">
+                Jellyous
+              </div>
+
+              <div class="track-platform">
+                spotify
+              </div>
+
+            </div>
+
+            <div
+              class="track-number"
+              data-spotify-total="—"
+              data-spotify-daily="—"
+              data-melon-total="—"
+              data-melon-daily="—">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="tracker-footer">
+
+          <div class="tracker-mini">
+
+            <div class="tracker-mini-title">
+              spotify streams tracker
+            </div>
+
+            <div class="tracker-mini-number">
+              —
+            </div>
+
+          </div>
+
+
+          <div class="tracker-mini">
+
+            <div class="tracker-mini-title">
+              100 days trend
+            </div>
+
+            <div class="tracker-mini-number">
+              —
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="tracker-note">
+          streaming data will be updated when a verified data source is connected.
         </div>
 
       </div>
@@ -798,7 +1179,6 @@ body {
         <button class="tab">SINGLES</button>
       </div>
 
-
       <div class="album">
 
         <div class="cover">
@@ -808,6 +1188,7 @@ body {
         <div class="album-info">
           <h3>SUPER REAL ME</h3>
           <p>2024 · mini album</p>
+
           <a class="album-link"
              href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
              target="_blank">
@@ -816,7 +1197,6 @@ body {
         </div>
 
       </div>
-
 
       <div class="album">
 
@@ -827,6 +1207,7 @@ body {
         <div class="album-info">
           <h3>I'LL LIKE YOU</h3>
           <p>2024 · mini album</p>
+
           <a class="album-link"
              href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
              target="_blank">
@@ -835,7 +1216,6 @@ body {
         </div>
 
       </div>
-
 
       <div class="album">
 
@@ -846,6 +1226,7 @@ body {
         <div class="album-info">
           <h3>BOMB</h3>
           <p>release archive</p>
+
           <a class="album-link"
              href="https://www.melon.com/artist/detail.htm?artistId=3743525"
              target="_blank">
@@ -883,39 +1264,46 @@ body {
           fragments and world of ILLIT.
         </p>
 
-        <a class="button" href="#" onclick="alert('Summer Moon archive coming soon ♡'); return false;">
+        <a class="button"
+           href="#"
+           onclick="alert('Summer Moon archive coming soon ♡'); return false;">
           open archive
         </a>
 
       </div>
 
-
       <div class="list">
 
         <div class="item">
           <div class="item-icon">📖</div>
+
           <div class="item-text">
             <div class="item-name">Story</div>
             <div class="item-sub">chapter archive</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">✦</div>
+
           <div class="item-text">
             <div class="item-name">Characters</div>
             <div class="item-sub">meet the characters</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">◇</div>
+
           <div class="item-text">
             <div class="item-name">Fragments</div>
             <div class="item-sub">magic & technology</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -950,44 +1338,51 @@ body {
 
       </div>
 
-
       <div class="list">
 
         <div class="list-title">tour archive</div>
 
         <div class="item">
           <div class="item-icon">📅</div>
+
           <div class="item-text">
             <div class="item-name">Dates</div>
             <div class="item-sub">tour schedule</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">📍</div>
+
           <div class="item-text">
             <div class="item-name">Cities & Venues</div>
             <div class="item-sub">concert locations</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">🎟</div>
+
           <div class="item-text">
             <div class="item-name">Tickets</div>
             <div class="item-sub">ticket information</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">♫</div>
+
           <div class="item-text">
             <div class="item-name">Setlist</div>
             <div class="item-sub">concert songs</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1009,37 +1404,45 @@ body {
 
         <div class="item">
           <div class="item-icon">▶</div>
+
           <div class="item-text">
             <div class="item-name">Magnetic</div>
             <div class="item-sub">official music video</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">▶</div>
+
           <div class="item-text">
             <div class="item-name">Lucky Girl Syndrome</div>
             <div class="item-sub">official music video</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">▶</div>
+
           <div class="item-text">
             <div class="item-name">Cherish (My Love)</div>
             <div class="item-sub">official music video</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">▶</div>
+
           <div class="item-text">
             <div class="item-name">Do the Dance</div>
             <div class="item-sub">official music video</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1067,19 +1470,23 @@ body {
 
         <div class="item">
           <div class="item-icon">✦</div>
+
           <div class="item-text">
             <div class="item-name">Latest ILLIT updates</div>
             <div class="item-sub">news archive</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">◎</div>
+
           <div class="item-text">
             <div class="item-name">Official SNS</div>
             <div class="item-sub">social updates</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1103,10 +1510,12 @@ body {
 
         <div class="item">
           <div class="item-icon">📅</div>
+
           <div class="item-text">
             <div class="item-name">ILLIT</div>
             <div class="item-sub">schedule will appear here</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1128,46 +1537,56 @@ body {
 
         <div class="item" onclick="member('Yunah','윤아')">
           <div class="item-icon">🐆</div>
+
           <div class="item-text">
             <div class="item-name">Yunah</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item" onclick="member('Minju','민주')">
           <div class="item-icon">🐰</div>
+
           <div class="item-text">
             <div class="item-name">Minju</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item" onclick="member('Moka','モカ')">
           <div class="item-icon">☕</div>
+
           <div class="item-text">
             <div class="item-name">Moka</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item" onclick="member('Wonhee','원희')">
           <div class="item-icon">🐿</div>
+
           <div class="item-text">
             <div class="item-name">Wonhee</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item" onclick="member('Iroha','いろは')">
           <div class="item-icon">🐢</div>
+
           <div class="item-text">
             <div class="item-name">Iroha</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1186,9 +1605,19 @@ body {
       </div>
 
       <div class="tabs">
-        <button class="tab selected">LIBRARY</button>
-        <button class="tab">ALBUMS</button>
-        <button class="tab">ERA</button>
+
+        <button class="tab selected">
+          LIBRARY
+        </button>
+
+        <button class="tab">
+          ALBUMS
+        </button>
+
+        <button class="tab">
+          ERA
+        </button>
+
       </div>
 
       <div class="photo-grid">
@@ -1333,28 +1762,34 @@ body {
 
         <div class="item">
           <div class="item-icon">📅</div>
+
           <div class="item-text">
             <div class="item-name">Schedule</div>
             <div class="item-sub">individual activities</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">◎</div>
+
           <div class="item-text">
             <div class="item-name">Photos</div>
             <div class="item-sub">individual gallery</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
         <div class="item">
           <div class="item-icon">✦</div>
+
           <div class="item-text">
             <div class="item-name">Appearances</div>
             <div class="item-sub">shows & events</div>
           </div>
+
           <div class="chevron">›</div>
         </div>
 
@@ -1522,7 +1957,76 @@ setInterval(updateTime,60000);
 
 
 /* =========================
-   TABS
+   STREAMING PLATFORM
+========================= */
+
+let currentPlatform = "spotify";
+let currentMode = "total";
+
+function changePlatform(platform, button) {
+
+  currentPlatform = platform;
+
+  document.querySelectorAll('.platform-tab')
+    .forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+  button.classList.add('active');
+
+  updateTracker();
+}
+
+
+/* =========================
+   STREAMING MODE
+========================= */
+
+function changeMode(mode, button) {
+
+  currentMode = mode;
+
+  document.querySelectorAll('.mode-tab')
+    .forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+  button.classList.add('active');
+
+  updateTracker();
+}
+
+
+/* =========================
+   UPDATE TRACKER
+========================= */
+
+function updateTracker() {
+
+  document.querySelectorAll('.track').forEach(track => {
+
+    const number = track.querySelector('.track-number');
+    const platformText = track.querySelector('.track-platform');
+
+    const value =
+      number.getAttribute(
+        "data-" +
+        currentPlatform +
+        "-" +
+        currentMode
+      );
+
+    number.innerText = value || "—";
+
+    platformText.innerText = currentPlatform;
+
+  });
+
+}
+
+
+/* =========================
+   GENERAL TABS
 ========================= */
 
 document.querySelectorAll('.tabs').forEach(tabGroup => {
@@ -1545,7 +2049,14 @@ document.querySelectorAll('.tabs').forEach(tabGroup => {
 
 });
 
+
+/* =========================
+   START TRACKER
+========================= */
+
+updateTracker();
+
 </script>
 
 </body>
-          </html>
+  </html>
