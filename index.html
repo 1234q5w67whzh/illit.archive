@@ -4185,7 +4185,339 @@ button.classList.add(
 
 }
 );
+/* =========================
+   MEMBER CALENDAR
+========================= */
 
+let calendarMember = 'Yunah';
+let calendarDate = new Date();
+let selectedCalendarDate = null;
+
+function calendarStorageKey(){
+  return 'illit-calendar-' + calendarMember.toLowerCase();
+}
+
+function getCalendarEvents(){
+  try{
+    return JSON.parse(
+      localStorage.getItem(calendarStorageKey())
+    ) || {};
+  }catch{
+    return {};
+  }
+}
+
+function saveCalendarEvents(events){
+  localStorage.setItem(
+    calendarStorageKey(),
+    JSON.stringify(events)
+  );
+}
+
+function openMemberSchedule(){
+
+  const name =
+    document.getElementById('detailName')?.innerText
+    || 'Yunah';
+
+  calendarMember = name;
+  calendarDate = new Date();
+  selectedCalendarDate = null;
+
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
+
+  const calendar =
+    document.getElementById('memberCalendar');
+
+  if(calendar){
+    calendar.classList.add('active');
+  }
+
+  const nameElement =
+    document.getElementById('calendarMemberName');
+
+  if(nameElement){
+    nameElement.innerText = calendarMember;
+  }
+
+  renderCalendar();
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+}
+
+function closeMemberSchedule(){
+
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
+
+  const detail =
+    document.getElementById('memberDetail');
+
+  if(detail){
+    detail.classList.add('active');
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+}
+
+function changeCalendarMonth(amount){
+
+  calendarDate.setMonth(
+    calendarDate.getMonth() + amount
+  );
+
+  selectedCalendarDate = null;
+
+  renderCalendar();
+}
+
+function dateKey(year,month,day){
+
+  return year +
+    '-' +
+    String(month + 1).padStart(2,'0') +
+    '-' +
+    String(day).padStart(2,'0');
+}
+
+function renderCalendar(){
+
+  const days =
+    document.getElementById('calendarDays');
+
+  const monthTitle =
+    document.getElementById('calendarMonth');
+
+  if(!days || !monthTitle) return;
+
+  const year =
+    calendarDate.getFullYear();
+
+  const month =
+    calendarDate.getMonth();
+
+  monthTitle.innerText =
+    new Intl.DateTimeFormat(
+      'en-US',
+      {
+        month:'long',
+        year:'numeric'
+      }
+    ).format(calendarDate);
+
+  days.innerHTML = '';
+
+  const firstDay =
+    new Date(year,month,1).getDay();
+
+  const daysInMonth =
+    new Date(year,month + 1,0).getDate();
+
+  const events =
+    getCalendarEvents();
+
+  for(let i=0;i<firstDay;i++){
+
+    const empty =
+      document.createElement('div');
+
+    empty.className =
+      'calendar-day empty';
+
+    days.appendChild(empty);
+  }
+
+  const today =
+    new Date();
+
+  for(
+    let day=1;
+    day<=daysInMonth;
+    day++
+  ){
+
+    const button =
+      document.createElement('button');
+
+    button.className =
+      'calendar-day';
+
+    const key =
+      dateKey(year,month,day);
+
+    if(
+      year === today.getFullYear() &&
+      month === today.getMonth() &&
+      day === today.getDate()
+    ){
+      button.classList.add('today');
+    }
+
+    if(selectedCalendarDate === key){
+      button.classList.add('selected');
+    }
+
+    if(
+      events[key] &&
+      events[key].length
+    ){
+      button.classList.add('has-event');
+    }
+
+    button.innerText = day;
+
+    button.onclick = () => {
+
+      selectedCalendarDate = key;
+
+      renderCalendar();
+
+      showCalendarEvents(key);
+    };
+
+    days.appendChild(button);
+  }
+
+  if(selectedCalendarDate){
+    showCalendarEvents(
+      selectedCalendarDate
+    );
+  }else{
+    showCalendarEvents(null);
+  }
+}
+
+function showCalendarEvents(date){
+
+  const container =
+    document.getElementById(
+      'calendarEvents'
+    );
+
+  if(!container) return;
+
+  container.innerHTML = '';
+
+  const events =
+    getCalendarEvents();
+
+  if(
+    date &&
+    events[date] &&
+    events[date].length
+  ){
+
+    events[date].forEach(event => {
+
+      const card =
+        document.createElement('div');
+
+      card.className =
+        'calendar-event';
+
+      card.innerHTML =
+        '<div class="calendar-event-date">' +
+        formatCalendarDate(date) +
+        '</div>' +
+
+        '<div class="calendar-event-name">' +
+        esc(event.name) +
+        '</div>' +
+
+        '<div class="calendar-event-time">' +
+        esc(event.time || '') +
+        '</div>';
+
+      container.appendChild(card);
+
+    });
+  }
+
+  const add =
+    document.createElement('button');
+
+  add.className =
+    'calendar-add';
+
+  add.innerText =
+    '+ add schedule';
+
+  add.onclick =
+    () => addCalendarEvent(date);
+
+  container.appendChild(add);
+}
+
+function formatCalendarDate(date){
+
+  const parts =
+    date.split('-');
+
+  const d =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
+
+  return new Intl.DateTimeFormat(
+    'en-US',
+    {
+      month:'long',
+      day:'numeric',
+      year:'numeric'
+    }
+  ).format(d);
+}
+
+function addCalendarEvent(date){
+
+  if(!date){
+
+    alert(
+      'select a day first.'
+    );
+
+    return;
+  }
+
+  const name =
+    prompt(
+      'what is the schedule?'
+    );
+
+  if(!name) return;
+
+  const time =
+    prompt(
+      'what time?'
+    ) || '';
+
+  const events =
+    getCalendarEvents();
+
+  if(!events[date]){
+    events[date] = [];
+  }
+
+  events[date].push({
+    name:name,
+    time:time
+  });
+
+  saveCalendarEvents(events);
+
+  renderCalendar();
+   }
 
 /* =========================
    START
