@@ -1,0 +1,84 @@
+name: Update ILLIT News
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Open repository
+        uses: actions/checkout@v6
+
+      - name: Get ILLIT news
+        env:
+          NEWSDATA_API_KEY: ${{ secrets.NEWSDATA_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.parse
+          import urllib.request
+
+          api_key = "${NEWSDATA_API_KEY}"
+
+          queries = [
+              "ILLIT",
+              "아일릿",
+              "Yunah ILLIT",
+              "Minju ILLIT",
+              "Moka ILLIT",
+              "Wonhee ILLIT",
+              "Iroha ILLIT"
+          ]
+
+          articles = []
+
+          for query in queries:
+              params = urllib.parse.urlencode({
+                  "apikey": api_key,
+                  "q": query,
+                  "language": "eng,kor",
+                  "size": 10
+              })
+
+              url = "https://newsdata.io/api/1/latest?" + params
+
+              try:
+                  with urllib.request.urlopen(url) as response:
+                      data = json.load(response)
+
+                  for article in data.get("results", []):
+                      articles.append(article)
+
+              except Exception as error:
+                  print("News request failed:", error)
+
+          unique = {}
+          for article in articles:
+              link = article.get("link")
+
+              if link:
+                  unique[link] = article
+
+          with open("news.json", "w", encoding="utf-8") as file:
+              json.dump(
+                  list(unique.values()),
+                  file,
+                  ensure_ascii=False,
+                  indent=2
+              )
+          PY
+
+      - name: Save news
+        run: |
+          git config user.name "ILLIT Archive Bot"
+          git config user.email "actions@github.com"
+          git add news.json
+          git diff --cached --quiet || git commit -m "Update ILLIT news"
+          git push
