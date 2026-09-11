@@ -25,7 +25,8 @@ jobs:
           import urllib.parse
           import urllib.request
 
-          api_key = "${NEWSDATA_API_KEY}"
+          import os
+api_key = os.environ["NEWSDATA_API_KEY"]
 
           queries = [
               "ILLIT",
