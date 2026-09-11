@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ILLIT Archive</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 *{
@@ -63,15 +68,9 @@ justify-content:space-between
 }
 
 .app-title{
-font-size:30px;
-font-weight:700;
+font-size:18px;
+font-weight:18;
 letter-spacing:-1.3px
-}
-
-.app-title img{
-width:115px;
-height:auto;
-display:block
 }
 
 .header-button{
@@ -83,8 +82,7 @@ border:1px solid var(--line);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:15px;
-cursor:pointer
+font-size:15px
 }
 
 .content{
@@ -135,10 +133,14 @@ border-radius:25px;
 padding:24px;
 margin-bottom:14px;
 background:
-radial-gradient(circle at 80% 20%,#fff 0,transparent 28%),
-linear-gradient(135deg,#fce8f2,#eeeafb,#e4efff);
+linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.05)),
+url("weverse_20260909222614.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 position:relative;
-overflow:hidden
+overflow:hidden;
+color:#fff
 }
 
 .hero-label{
@@ -152,12 +154,13 @@ letter-spacing:.08em
 font-size:39px;
 line-height:.95;
 letter-spacing:-2px;
-margin-top:12px
+margin-top:12px;
+color:#e5e5e5
 }
 
 .hero p{
 font-size:12px;
-color:#777;
+color:#e5e5e5;
 margin-top:12px;
 max-width:220px
 }
@@ -350,7 +353,9 @@ margin-bottom:14px
 .track-list{
 background:#fff;
 border-radius:17px;
-overflow:hidden
+overflow:hidden;
+max-height:348px;
+overflow-y:auto
 }
 
 .track-group{
@@ -511,14 +516,7 @@ justify-content:center;
 font-size:10px;
 color:#777;
 text-align:center;
-flex-shrink:0;
-overflow:hidden
-}
-
-.cover img{
-width:100%;
-height:100%;
-object-fit:cover
+flex-shrink:0
 }
 
 .album-info h3{
@@ -553,15 +551,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 color:#888;
-font-size:9px;
-overflow:hidden
-}
-
-.photo img,
-.photo video{
-width:100%;
-height:100%;
-object-fit:cover
+font-size:9px
 }
 
 .bottom-nav{
@@ -626,9 +616,6 @@ color:#777;
 line-height:1.6;
 margin-top:10px
 }
-/* =========================
-   PARTE 2 — SUMMER MOON
-   ========================= */
 
 .summer-lockscreen{
 position:fixed;
@@ -714,8 +701,7 @@ opacity .55s ease,
 transform .55s cubic-bezier(.22,1,.36,1)
 }
 
-.summer-lockscreen.notification-show
-.summer-notification{
+.summer-lockscreen.notification-show .summer-notification{
 opacity:1;
 transform:translateY(0);
 pointer-events:auto
@@ -780,637 +766,6 @@ transform:scale(1.035)
 }
 }
 
-
-/* =========================
-   CALENDÁRIO DOS MEMBROS
-   ========================= */
-
-.calendar{
-background:#fff;
-border-radius:20px;
-padding:14px;
-margin-bottom:14px
-}
-
-.calendar-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:12px
-}
-
-.calendar-month{
-font-size:16px;
-font-weight:700
-}
-
-.calendar-button{
-width:30px;
-height:30px;
-border:none;
-border-radius:10px;
-background:#f1f1f5;
-cursor:pointer;
-font-size:15px
-}
-
-.calendar-week{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:3px;
-margin-bottom:5px
-}
-
-.calendar-week div{
-text-align:center;
-font-size:8px;
-color:#999;
-font-weight:600
-}
-
-.calendar-days{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:3px
-}
-
-.calendar-day{
-min-height:43px;
-border-radius:10px;
-background:#fafafd;
-padding:4px;
-position:relative;
-cursor:pointer
-}
-
-.calendar-day.empty{
-background:transparent;
-cursor:default
-}
-
-.calendar-number{
-font-size:9px;
-color:#777
-}
-
-.calendar-star{
-position:absolute;
-right:4px;
-bottom:3px;
-font-size:13px;
-line-height:1
-}
-
-.calendar-event{
-border:1px solid rgba(0,0,0,.05);
-box-shadow:0 1px 3px rgba(0,0,0,.04)
-}
-
-.calendar-event .calendar-number{
-font-weight:700;
-color:#222
-}
-
-
-/* cores das estrelas por membro */
-
-.star-yunah{
-color:#ff5b63
-}
-
-.star-minju{
-color:#f3c62e
-}
-
-.star-moka{
-color:#9b74df
-}
-
-.star-wonhee{
-color:#ff82b7
-}
-
-.star-iroha{
-color:#61cde5
-}
-
-
-/* =========================
-   FORMULÁRIOS DE EDIÇÃO
-   ========================= */
-
-.editor-panel{
-background:rgba(255,255,255,.94);
-border-radius:22px;
-padding:17px;
-margin-bottom:14px;
-border:1px solid rgba(0,0,0,.04);
-box-shadow:0 2px 10px rgba(0,0,0,.035)
-}
-
-.editor-title{
-font-size:12px;
-color:var(--gray);
-text-transform:uppercase;
-letter-spacing:.04em;
-font-weight:700;
-margin-bottom:12px
-}
-
-.editor-field{
-margin-bottom:11px
-}
-
-.editor-field label{
-display:block;
-font-size:10px;
-color:#777;
-font-weight:600;
-margin-bottom:5px
-}
-
-.editor-field input,
-.editor-field textarea,
-.editor-field select{
-width:100%;
-border:1px solid #dedee3;
-background:#f7f7fa;
-border-radius:12px;
-padding:10px 11px;
-font-family:inherit;
-font-size:12px;
-outline:none
-}
-
-.editor-field textarea{
-min-height:80px;
-resize:vertical
-}
-
-.editor-field input:focus,
-.editor-field textarea:focus,
-.editor-field select:focus{
-border-color:#b9b9c0;
-background:#fff
-}
-
-.editor-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:9px
-}
-
-.editor-actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap
-}
-
-.editor-button{
-border:none;
-background:#222;
-color:#fff;
-padding:10px 13px;
-border-radius:13px;
-font-size:11px;
-font-weight:600;
-cursor:pointer
-}
-
-.editor-button.light{
-background:#eeeeF3;
-color:#222
-}
-
-.editor-button.blue{
-background:var(--blue);
-color:#fff
-}
-
-.editor-button.pink{
-background:var(--pink);
-color:#fff
-}
-
-.editor-button.danger{
-background:#fff0f2;
-color:#e5484d
-}
-
-
-/* =========================
-   MÍDIA
-   ========================= */
-
-.media-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:4px;
-border-radius:18px;
-overflow:hidden
-}
-
-.media-card{
-aspect-ratio:1;
-background:#f0f0f5;
-position:relative;
-overflow:hidden;
-cursor:pointer
-}
-
-.media-card img,
-.media-card video{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block
-}
-
-.media-card video{
-pointer-events:none
-}
-
-.media-delete{
-position:absolute;
-right:6px;
-top:6px;
-width:25px;
-height:25px;
-border:none;
-border-radius:50%;
-background:rgba(255,255,255,.9);
-color:#e5484d;
-font-size:12px;
-cursor:pointer;
-z-index:2
-}
-
-.media-empty{
-padding:25px 15px;
-text-align:center;
-font-size:11px;
-color:var(--gray)
-}
-
-
-/* =========================
-   PASTAS
-   ========================= */
-
-.folder-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-.folder-card{
-background:#fff;
-border-radius:18px;
-padding:15px;
-cursor:pointer;
-border:1px solid rgba(0,0,0,.04);
-position:relative
-}
-
-.folder-icon{
-width:42px;
-height:42px;
-border-radius:13px;
-background:#f0f0f5;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:21px;
-margin-bottom:10px
-}
-
-.folder-card h3{
-font-size:13px
-}
-
-.folder-card p{
-font-size:9px;
-color:var(--gray);
-margin-top:4px
-}
-
-.folder-delete{
-position:absolute;
-right:8px;
-top:8px;
-border:none;
-background:#f7f7fa;
-width:25px;
-height:25px;
-border-radius:50%;
-font-size:11px;
-cursor:pointer
-}
-
-
-/* =========================
-   EVENTOS
-   ========================= */
-
-.event-card{
-background:#fff;
-border-radius:18px;
-padding:14px;
-margin-bottom:10px;
-display:flex;
-gap:12px;
-align-items:center
-}
-
-.event-date{
-width:48px;
-height:52px;
-border-radius:14px;
-background:#f1eefb;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-flex-shrink:0
-}
-
-.event-date-day{
-font-size:18px;
-font-weight:700
-}
-
-.event-date-month{
-font-size:8px;
-color:#888;
-text-transform:uppercase
-}
-
-.event-info{
-flex:1;
-min-width:0
-}
-
-.event-info h3{
-font-size:13px
-}
-
-.event-info p{
-font-size:10px;
-color:var(--gray);
-margin-top:4px
-}
-
-.event-link{
-font-size:10px;
-color:var(--blue);
-margin-top:7px;
-display:inline-block
-}
-
-
-/* =========================
-   DETALHES DE EVENTO
-   ========================= */
-
-.event-detail{
-background:#fff;
-border-radius:22px;
-padding:18px;
-margin-bottom:12px
-}
-
-.event-detail-image{
-width:100%;
-max-height:260px;
-object-fit:cover;
-border-radius:17px;
-margin-bottom:13px
-}
-
-.event-detail h2{
-font-size:21px;
-letter-spacing:-.5px
-}
-
-.event-detail-row{
-padding:10px 0;
-border-bottom:1px solid #eeeeef;
-font-size:11px
-}
-
-.event-detail-row:last-child{
-border-bottom:none
-}
-
-.event-detail-label{
-font-size:9px;
-color:var(--gray);
-text-transform:uppercase;
-font-weight:700;
-margin-bottom:3px
-}
-
-
-/* =========================
-   APPEARANCES
-   ========================= */
-
-.appearance-card{
-background:#fff;
-border-radius:19px;
-padding:10px;
-margin-bottom:10px;
-display:flex;
-gap:11px;
-align-items:center;
-cursor:pointer
-}
-
-.appearance-thumb{
-width:90px;
-height:58px;
-border-radius:12px;
-background:linear-gradient(135deg,#eeeafb,#e4efff);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:20px;
-overflow:hidden;
-flex-shrink:0
-}
-
-.appearance-thumb img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.appearance-info{
-flex:1;
-min-width:0
-}
-
-.appearance-info h3{
-font-size:12px;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis
-}
-
-.appearance-info p{
-font-size:9px;
-color:var(--gray);
-margin-top:4px
-}
-
-
-/* =========================
-   TOUR
-   ========================= */
-
-.tour-card{
-background:#fff;
-border-radius:20px;
-padding:15px;
-margin-bottom:11px
-}
-
-.tour-card h3{
-font-size:15px
-}
-
-.tour-card p{
-font-size:10px;
-color:var(--gray);
-margin-top:5px
-}
-
-.tour-meta{
-display:flex;
-gap:6px;
-flex-wrap:wrap;
-margin-top:10px
-}
-
-.tour-tag{
-background:#f0f0f5;
-border-radius:10px;
-padding:6px 8px;
-font-size:9px;
-color:#666
-}
-
-
-/* =========================
-   MÚSICA
-   ========================= */
-
-.music-filter{
-display:flex;
-gap:6px;
-overflow-x:auto;
-margin-bottom:13px
-}
-
-.music-filter button{
-border:none;
-background:#e5e5ea;
-padding:8px 12px;
-border-radius:14px;
-font-size:10px;
-white-space:nowrap;
-cursor:pointer
-}
-
-.music-filter button.active{
-background:#222;
-color:#fff
-}
-
-.music-item{
-background:#fff;
-border-radius:17px;
-padding:12px;
-display:flex;
-align-items:center;
-gap:11px;
-margin-bottom:8px
-}
-
-.music-cover{
-width:52px;
-height:52px;
-border-radius:11px;
-background:linear-gradient(135deg,#e7dcf8,#dceeff);
-overflow:hidden;
-flex-shrink:0
-}
-
-.music-cover img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.music-info{
-flex:1;
-min-width:0
-}
-
-.music-info h3{
-font-size:12px;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis
-}
-
-.music-info p{
-font-size:9px;
-color:var(--gray);
-margin-top:3px
-}
-
-
-/* =========================
-   SUMMER MOON
-   ========================= */
-
-.lore-card{
-background:#fff;
-border-radius:20px;
-padding:16px;
-margin-bottom:11px;
-cursor:pointer
-}
-
-.lore-icon{
-width:43px;
-height:43px;
-border-radius:13px;
-background:linear-gradient(135deg,#f7dff0,#e1e9ff);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:21px;
-margin-bottom:11px
-}
-
-.lore-card h3{
-font-size:14px
-}
-
-.lore-card p{
-font-size:10px;
-color:var(--gray);
-margin-top:5px;
-line-height:1.5
-}
-
-
-/* =========================
-   RESPONSIVO
-   ========================= */
-
 @media(min-width:600px){
 
 body{
@@ -1434,3972 +789,3816 @@ min-height:0;
 border-radius:35px
 }
 
-   }
+}
+   /* =========================
+   MEMBER CALENDAR
+========================= */
 
-   </style>
+.calendar-card{
+background:#fff;
+border-radius:22px;
+padding:17px;
+margin-bottom:14px;
+box-shadow:0 2px 10px rgba(0,0,0,.035)
+}
+
+.calendar-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:18px
+}
+
+.calendar-month{
+font-size:17px;
+font-weight:600;
+letter-spacing:-.4px
+}
+
+.calendar-arrow{
+width:32px;
+height:32px;
+border:none;
+border-radius:50%;
+background:#f1f1f6;
+font-size:20px;
+color:#555;
+cursor:pointer
+}
+
+.calendar-weekdays{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+text-align:center;
+margin-bottom:8px
+}
+
+.calendar-weekdays div{
+font-size:9px;
+color:#8e8e93;
+text-transform:uppercase;
+font-weight:600
+}
+
+.calendar-days{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px
+}
+
+.calendar-day{
+height:40px;
+border:none;
+background:transparent;
+border-radius:12px;
+font-size:12px;
+cursor:pointer;
+position:relative;
+color:#171717
+}
+
+.calendar-day.today{
+background:#f0f0f5;
+font-weight:700
+}
+
+.calendar-day.selected{
+background:#222;
+color:#fff
+}
+
+.calendar-day.has-event::after{
+content:"";
+position:absolute;
+bottom:4px;
+left:50%;
+transform:translateX(-50%);
+width:4px;
+height:4px;
+border-radius:50%;
+background:var(--pink)
+}
+
+.calendar-day.selected.has-event::after{
+background:#fff
+}
+
+.calendar-day.empty{
+cursor:default
+}
+
+.calendar-events{
+display:flex;
+flex-direction:column;
+gap:9px
+}
+
+.calendar-event{
+background:#fff;
+border-radius:18px;
+padding:13px 15px;
+border:1px solid rgba(0,0,0,.05);
+box-shadow:0 2px 8px rgba(0,0,0,.035)
+}
+
+.calendar-event-date{
+font-size:9px;
+color:var(--gray);
+text-transform:uppercase;
+font-weight:600
+}
+
+.calendar-event-name{
+font-size:13px;
+font-weight:600;
+margin-top:4px
+}
+
+.calendar-event-time{
+font-size:10px;
+color:var(--gray);
+margin-top:3px
+}
+
+.calendar-add{
+width:100%;
+border:none;
+background:#222;
+color:#fff;
+border-radius:15px;
+padding:12px;
+font-size:11px;
+font-weight:600;
+margin-top:12px;
+cursor:pointer
+}
+
+.calendar-empty{
+background:#fff;
+border-radius:18px;
+padding:18px;
+text-align:center;
+font-size:11px;
+color:var(--gray)
+}
+
+</style>
+
 </head>
 
 <body>
 
-<!-- =========================
-     SUMMER MOON LOCKSCREEN
-     ========================= -->
 
-<div class="summer-lockscreen active" id="summerLock">
+<!-- SUMMER MOON LOCKSCREEN -->
 
-    <div class="summer-lock-phone">
+<div class="summer-lockscreen" id="summerLockscreen">
 
-        <div class="summer-lock-content">
+<div class="summer-lock-phone">
 
-            <div class="summer-lock-date" id="lockDate">
-                Thursday, September 10
-            </div>
+<div class="summer-lock-content">
 
-            <div class="summer-lock-time" id="lockTime">
-                00:00
-            </div>
+<div class="summer-lock-date" id="summerLockDate"></div>
 
-            <div class="summer-notification" id="summerNotification"
-                 onclick="closeSummerLock()">
+<div class="summer-lock-time" id="summerLockTime"></div>
 
-                <img
-                    src="90 Sem Título_20260910051532.png"
-                    alt="ILLIT">
+<div
+class="summer-notification"
+id="summerNotification"
+onclick="openSummerMoon()"
+>
 
-                <div class="summer-notification-text">
+<img src="91 Sem Título_20260910053652.png">
 
-                    <div class="summer-notification-message">
-                        ILLIT Archive
-                    </div>
+<div class="summer-notification-text">
 
-                    <div class="small">
-                        Summer Moon
-                    </div>
+<div class="summer-notification-message">
+A secret message has arrived
+</div>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
+<div class="summer-lock-bottom">
 
-        <div class="summer-lock-bottom">
+<div class="summer-lock-hint">
+swipe up to open
+</div>
 
-            <div class="summer-lock-hint">
-                swipe up to open
-            </div>
+<div class="summer-lock-line"></div>
 
-            <div class="summer-lock-line"></div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     MAIN PHONE
-     ========================= -->
+<!-- PHONE -->
 
-<div class="phone" id="app">
+<div class="phone">
 
-    <!-- STATUS BAR -->
 
-    <div class="status">
+<div class="status">
 
-        <span id="statusTime">
-            9:41
-        </span>
+<span id="time">9:41</span>
 
-        <div class="status-icons">
-            <span>⌁</span>
-            <span>⌁</span>
-            <span>▰</span>
-        </div>
+<div class="status-icons">
 
-    </div>
+<span>●●●</span>
 
+<span>⌁</span>
 
-    <!-- HEADER -->
+<span>▰</span>
 
-    <header class="app-header">
-
-        <div class="app-title">
-            ILLIT
-        </div>
-
-        <button
-            class="header-button"
-            onclick="openPage('profile')"
-            aria-label="profile">
-
-            ♡
-
-        </button>
-
-    </header>
-
-
-    <!-- =========================
-         CONTENT
-         ========================= -->
-
-    <main class="content">
-
-
-        <!-- =====================
-             HOME
-             ===================== -->
-
-        <section class="page active" id="home">
-
-            <div class="hero">
-
-                <div class="hero-label">
-                    ILLIT archive
-                </div>
-
-                <h1>
-                    ILLIT
-                </h1>
-
-                <p>
-                    an archive for activities, music, members,
-                    appearances, photos and the world of ILLIT.
-                </p>
-
-                <button
-                    class="button"
-                    onclick="openPage('profile')">
-
-                    explore archive
-
-                </button>
-
-            </div>
-
-
-            <div class="grid">
-
-                <div
-                    class="widget square"
-                    onclick="openPage('schedule')">
-
-                    <div class="icon">
-                        ★
-                    </div>
-
-                    <h3>
-                        Schedule
-                    </h3>
-
-                    <p>
-                        upcoming activities
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="widget square"
-                    onclick="openPage('gallery')">
-
-                    <div class="icon">
-                        ◇
-                    </div>
-
-                    <h3>
-                        Gallery
-                    </h3>
-
-                    <p>
-                        photos & videos
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="widget square"
-                    onclick="openPage('discography')">
-
-                    <div class="icon">
-                        ♪
-                    </div>
-
-                    <h3>
-                        Music
-                    </h3>
-
-                    <p>
-                        albums & songs
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="widget square"
-                    onclick="openPage('summer')">
-
-                    <div class="icon">
-                        ✦
-                    </div>
-
-                    <h3>
-                        Summer Moon
-                    </h3>
-
-                    <p>
-                        story & characters
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMBERS -->
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    members
-                </div>
-
-                <div class="members">
-
-                    <div
-                        class="member"
-                        onclick="openMember('yunah')">
-
-                        <div class="member-avatar">
-                            Y
-                        </div>
-
-                        <div class="member-name">
-                            Yunah
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="member"
-                        onclick="openMember('minju')">
-
-                        <div class="member-avatar">
-                            M
-                        </div>
-
-                        <div class="member-name">
-                            Minju
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="member"
-                        onclick="openMember('moka')">
-
-                        <div class="member-avatar">
-                            M
-                        </div>
-
-                        <div class="member-name">
-                            Moka
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="member"
-                        onclick="openMember('wonhee')">
-
-                        <div class="member-avatar">
-                            W
-                        </div>
-
-                        <div class="member-name">
-                            Wonhee
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="member"
-                        onclick="openMember('iroha')">
-
-                        <div class="member-avatar">
-                            I
-                        </div>
-
-                        <div class="member-name">
-                            Iroha
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- RECENT -->
-
-            <div class="list">
-
-                <div class="list-title">
-                    recent
-                </div>
-
-                <div
-                    class="item"
-                    onclick="openPage('activities')">
-
-                    <div class="item-icon">
-                        ✦
-                    </div>
-
-                    <div class="item-text">
-
-                        <div class="item-name">
-                            Activities
-                        </div>
-
-                        <div class="item-sub">
-                            individual & group activities
-                        </div>
-
-                    </div>
-
-                    <div class="chevron">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="item"
-                    onclick="openPage('mv')">
-
-                    <div class="item-icon">
-                        ▶
-                    </div>
-
-                    <div class="item-text">
-
-                        <div class="item-name">
-                            Music Videos
-                        </div>
-
-                        <div class="item-sub">
-                            official videos
-                        </div>
-
-                    </div>
-
-                    <div class="chevron">
-                        ›
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="item"
-                    onclick="openPage('news')">
-
-                    <div class="item-icon">
-                        ◌
-                    </div>
-
-                    <div class="item-text">
-
-                        <div class="item-name">
-                            News
-                        </div>
-
-                        <div class="item-sub">
-                            latest updates
-                        </div>
-
-                    </div>
-
-                    <div class="chevron">
-                        ›
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================
-             PROFILE
-             ===================== -->
-
-        <section class="page" id="profile">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    ILLIT
-                </h1>
-
-                <p>
-                    five members, one archive.
-                </p>
-
-            </div>
-
-
-            <div class="detail-card">
-
-                <h2>
-                    ILLIT
-                </h2>
-
-                <p>
-                    ILLIT is a South Korean girl group
-                    under BELIFT LAB.
-                </p>
-
-            </div>
-
-
-            <div class="members">
-
-                <div
-                    class="member"
-                    onclick="openMember('yunah')">
-
-                    <div class="member-avatar">
-                        Y
-                    </div>
-
-                    <div class="member-name">
-                        Yunah
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="member"
-                    onclick="openMember('minju')">
-
-                    <div class="member-avatar">
-                        M
-                    </div>
-
-                    <div class="member-name">
-                        Minju
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="member"
-                    onclick="openMember('moka')">
-
-                    <div class="member-avatar">
-                        M
-                    </div>
-
-                    <div class="member-name">
-                        Moka
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="member"
-                    onclick="openMember('wonhee')">
-
-                    <div class="member-avatar">
-                        W
-                    </div>
-
-                    <div class="member-name">
-                        Wonhee
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="member"
-                    onclick="openMember('iroha')">
-
-                    <div class="member-avatar">
-                        I
-                    </div>
-
-                    <div class="member-name">
-                        Iroha
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================
-             DISCOGRAPHY
-             ===================== -->
-
-        <section class="page" id="discography">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Music
-                </h1>
-
-                <p>
-                    discography & songs
-                </p>
-
-            </div>
-
-
-            <div class="music-filter">
-
-                <button
-                    class="active"
-                    onclick="filterMusic('all',this)">
-
-                    ALL
-
-                </button>
-
-                <button
-                    onclick="filterMusic('korean',this)">
-
-                    KOREAN
-
-                </button>
-
-                <button
-                    onclick="filterMusic('japanese',this)">
-
-                    JAPANESE
-
-                </button>
-
-                <button
-                    onclick="filterMusic('singles',this)">
-
-                    SINGLES
-
-                </button>
-
-            </div>
-
-
-            <div id="musicList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             SUMMER MOON
-             ===================== -->
-
-        <section class="page" id="summer">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Summer Moon
-                </h1>
-
-                <p>
-                    the world behind ILLIT
-                </p>
-
-            </div>
-
-
-            <div
-                class="lore-card"
-                onclick="openLore('story')">
-
-                <div class="lore-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    Story
-                </h3>
-
-                <p>
-                    explore the story of Summer Moon
-                    and the world of the Quprids.
-                </p>
-
-            </div>
-
-
-            <div
-                class="lore-card"
-                onclick="openLore('characters')">
-
-                <div class="lore-icon">
-                    ♡
-                </div>
-
-                <h3>
-                    Characters
-                </h3>
-
-                <p>
-                    meet the characters and their stories.
-                </p>
-
-            </div>
-
-
-            <div
-                class="lore-card"
-                onclick="openLore('fragments')">
-
-                <div class="lore-icon">
-                    ◇
-                </div>
-
-                <h3>
-                    Fragments
-                </h3>
-
-                <p>
-                    discover the fragments and their meaning.
-                </p>
-
-            </div>
-
-
-            <div id="loreDetail"></div>
-
-        </section>
-
-
-        <!-- =====================
-             TOUR
-             ===================== -->
-
-        <section class="page" id="tour">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Press Start
-                </h1>
-
-                <p>
-                    tour dates & information
-                </p>
-
-            </div>
-
-
-            <div id="tourList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             MV
-             ===================== -->
-
-        <section class="page" id="mv">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Music Videos
-                </h1>
-
-                <p>
-                    official videos
-                </p>
-
-            </div>
-
-
-            <div id="mvList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             NEWS
-             ===================== -->
-
-        <section class="page" id="news">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    News
-                </h1>
-
-                <p>
-                    latest updates
-                </p>
-
-            </div>
-
-
-            <div id="newsList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             SCHEDULE
-             ===================== -->
-
-        <section class="page" id="schedule">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Schedule
-                </h1>
-
-                <p>
-                    upcoming activities
-                </p>
-
-            </div>
-
-
-            <div id="scheduleList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             ACTIVITIES
-             ===================== -->
-
-        <section class="page" id="activities">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Activities
-                </h1>
-
-                <p>
-                    group & individual appearances
-                </p>
-
-            </div>
-
-
-            <div id="appearanceList"></div>
-
-        </section>
-
-
-        <!-- =====================
-             GALLERY
-             ===================== -->
-
-        <section class="page" id="gallery">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Gallery
-                </h1>
-
-                <p>
-                    photos & videos
-                </p>
-
-            </div>
-
-
-            <div id="galleryFolders"></div>
-
-            <div id="galleryMedia"></div>
-
-        </section>
-
-
-        <!-- =====================
-             OFFICIAL
-             ===================== -->
-
-        <section class="page" id="official">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1>
-                    Official
-                </h1>
-
-                <p>
-                    official links
-                </p>
-
-            </div>
-
-
-            <div class="list">
-
-                <div class="item">
-                    <div class="item-icon">◎</div>
-
-                    <div class="item-text">
-                        <div class="item-name">
-                            ILLIT
-                        </div>
-
-                        <div class="item-sub">
-                            official website
-                        </div>
-                    </div>
-
-                    <div class="chevron">
-                        ›
-                    </div>
-                </div>
-
-
-                <div class="item">
-                    <div class="item-icon">◎</div>
-
-                    <div class="item-text">
-                        <div class="item-name">
-                            BELIFT LAB
-                        </div>
-
-                        <div class="item-sub">
-                            official company
-                        </div>
-                    </div>
-
-                    <div class="chevron">
-                        ›
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================
-             MEMBER DETAIL
-             ===================== -->
-
-        <section class="page" id="memberDetail">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div class="page-heading">
-
-                <h1 id="memberTitle">
-                    Member
-                </h1>
-
-                <p id="memberSubtitle">
-                    ILLIT member archive
-                </p>
-
-            </div>
-
-
-            <div class="detail-card">
-
-                <h2 id="memberDescription">
-                    Member
-                </h2>
-
-                <p id="memberBio">
-                    Member information.
-                </p>
-
-            </div>
-
-
-            <div class="calendar">
-
-                <div class="calendar-head">
-
-                    <button
-                        class="calendar-button"
-                        onclick="changeMemberMonth(-1)">
-
-                        ‹
-
-                    </button>
-
-                    <div
-                        class="calendar-month"
-                        id="memberCalendarMonth">
-
-                    </div>
-
-                    <button
-                        class="calendar-button"
-                        onclick="changeMemberMonth(1)">
-
-                        ›
-
-                    </button>
-
-                </div>
-
-
-                <div class="calendar-week">
-
-                    <div>sun</div>
-                    <div>mon</div>
-                    <div>tue</div>
-                    <div>wed</div>
-                    <div>thu</div>
-                    <div>fri</div>
-                    <div>sat</div>
-
-                </div>
-
-
-                <div
-                    class="calendar-days"
-                    id="memberCalendarDays">
-
-                </div>
-
-            </div>
-
-
-            <div id="memberEvents"></div>
-
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    member gallery
-                </div>
-
-                <div
-                    class="folder-grid"
-                    id="memberFolders">
-
-                </div>
-
-                <div
-                    id="memberMedia">
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================
-             DETAIL PAGE
-             ===================== -->
-
-        <section class="page" id="detailPage">
-
-            <button
-                class="back"
-                onclick="goBack()">
-
-                ‹ back
-
-            </button>
-
-            <div id="detailContent"></div>
-
-        </section>
-
-
-    </main>
+</div>
 
 </div>
 
 
-<!-- =========================
-     BOTTOM NAVIGATION
-     ========================= -->
+<header class="app-header">
+
+<div
+class="app-title"
+id="headerTitle"
+>
+<img src="88 Sem Título_20260910124035.png" alt="Home"
+style="width:70px;height:70px;object-fit:contain;">
+</div>
+
+<div class="header-button">
+✦
+</div>
+
+</header>
+
+<main class="content">
+
+<!-- HOME -->
+
+<section
+class="page active"
+id="home"
+>
+
+<div class="hero">
+
+<div class="hero-label">
+ILLIT ARCHIVE
+</div>
+
+<h1>
+this is<br>
+our world.
+</h1>
+
+<p>
+an unofficial archive dedicated to ILLIT, their music, activities and universe.
+</p>
+
+<a
+class="button"
+href="https://weverse.io/illit/"
+target="_blank"
+>
+open weverse
+</a>
+
+</div>
+
+
+<div class="grid">
+
+
+<div
+class="widget square"
+onclick="openPage('profile')"
+>
+
+<div class="icon">
+👤
+</div>
+
+<h3>
+Profile
+</h3>
+
+<p>
+members & group
+</p>
+
+</div>
+
+
+<div
+class="widget square"
+onclick="openPage('discography')"
+>
+
+<div class="icon">
+♫
+</div>
+
+<h3>
+Music
+</h3>
+
+<p>
+discography
+</p>
+
+</div>
+
+
+<div
+class="widget square"
+onclick="openSummerMoonExperience()"
+>
+
+<div class="icon">
+✧
+</div>
+
+<h3>
+Summer Moon
+</h3>
+
+<p>
+the universe
+</p>
+
+</div>
+
+
+<div
+class="widget square"
+onclick="openPage('tour')"
+>
+
+<div class="icon">
+♧
+</div>
+
+<h3>
+Press Start
+</h3>
+
+<p>
+tour archive
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+next schedule
+</div>
+
+<h2>
+ILLIT
+</h2>
+
+<div class="small">
+upcoming activities will appear here
+</div>
+
+</div>
+
+
+<!-- STREAMING -->
+
+<div class="streaming-card">
+
+
+<div class="streaming-top">
+
+<div class="streaming-title">
+streaming
+</div>
+
+
+<div class="platform-tabs">
+
+<button
+class="platform-tab active"
+onclick="changePlatform('spotify',this)"
+>
+spotify
+</button>
+
+<button
+class="platform-tab"
+onclick="changePlatform('melon',this)"
+>
+melon
+</button>
+
+</div>
+
+</div>
+
+
+<div class="mode-tabs">
+
+<button
+class="mode-tab active"
+onclick="changeMode('total',this)"
+>
+total
+</button>
+
+<button
+class="mode-tab"
+onclick="changeMode('daily',this)"
+>
+daily
+</button>
+
+</div>
+
+
+<div
+class="track-list"
+id="trackList"
+></div>
+
+
+<div class="tracker-footer">
+
+
+<div class="tracker-mini">
+
+<div
+class="tracker-mini-title"
+id="totalLabel"
+>
+spotify total
+</div>
+
+<div
+class="tracker-mini-number"
+id="spotifyTotal"
+>
+—
+</div>
+
+</div>
+
+
+<div class="tracker-mini">
+
+<div
+class="tracker-mini-title"
+id="dailyLabel"
+>
+daily streams
+</div>
+
+<div
+class="tracker-mini-number"
+id="dailyTotal"
+>
+—
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="tracker-note">
+
+data from public third-party streaming trackers.
+
+</div>
+
+
+</div>
+
+
+<!-- MEMBERS -->
+
+<div class="widget">
+
+<div class="widget-title">
+members
+</div>
+
+<div class="members">
+
+
+<div
+class="member"
+onclick="member('Yunah','윤아')"
+>
+
+<div class="member-avatar">
+Y
+</div>
+
+<div class="member-name">
+yunah
+</div>
+
+</div>
+
+
+<div
+class="member"
+onclick="member('Minju','민주')"
+>
+
+<div class="member-avatar">
+M
+</div>
+
+<div class="member-name">
+minju
+</div>
+
+</div>
+
+
+<div
+class="member"
+onclick="member('Moka','モカ')"
+>
+
+<div class="member-avatar">
+M
+</div>
+
+<div class="member-name">
+moka
+</div>
+
+</div>
+
+
+<div
+class="member"
+onclick="member('Wonhee','원희')"
+>
+
+<div class="member-avatar">
+W
+</div>
+
+<div class="member-name">
+wonhee
+</div>
+
+</div>
+
+
+<div
+class="member"
+onclick="member('Iroha','いろは')"
+>
+
+<div class="member-avatar">
+I
+</div>
+
+<div class="member-name">
+iroha
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section
+class="page"
+id="profile"
+>
+
+<div class="page-heading">
+
+<h1>
+Profile
+</h1>
+
+<p>
+ILLIT members
+</p>
+
+</div>
+
+
+<div class="list">
+
+<div class="list-title">
+members
+</div>
+
+
+<div
+class="item"
+onclick="member('Yunah','윤아')"
+>
+
+<div class="item-icon">
+🐆
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Yunah
+</div>
+
+<div class="item-sub">
+윤아
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Minju','민주')"
+>
+
+<div class="item-icon">
+🐰
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Minju
+</div>
+
+<div class="item-sub">
+민주
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Moka','モカ')"
+>
+
+<div class="item-icon">
+☕
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Moka
+</div>
+
+<div class="item-sub">
+モカ
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Wonhee','원희')"
+>
+
+<div class="item-icon">
+🐿
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Wonhee
+</div>
+
+<div class="item-sub">
+원희
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Iroha','いろは')"
+>
+
+<div class="item-icon">
+🐢
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Iroha
+</div>
+
+<div class="item-sub">
+いろは
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- MUSIC -->
+
+<section
+class="page"
+id="discography"
+>
+
+<div class="page-heading">
+
+<h1>
+Music
+</h1>
+
+<p>
+discography
+</p>
+
+</div>
+
+
+<div class="tabs">
+
+<button class="tab selected">
+ALL
+</button>
+
+<button class="tab">
+KOREAN
+</button>
+
+<button class="tab">
+JAPANESE
+</button>
+
+<button class="tab">
+SINGLES
+</button>
+
+</div>
+
+
+<div class="album">
+
+<div class="cover">
+SUPER<br>
+REAL ME
+</div>
+
+<div class="album-info">
+
+<h3>
+SUPER REAL ME
+</h3>
+
+<p>
+2024 · mini album
+</p>
+
+<a
+class="album-link"
+href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+target="_blank"
+>
+spotify ›
+</a>
+
+</div>
+
+</div>
+
+
+<div class="album">
+
+<div class="cover">
+I'LL<br>
+LIKE YOU
+</div>
+
+<div class="album-info">
+
+<h3>
+I'LL LIKE YOU
+</h3>
+
+<p>
+2024 · mini album
+</p>
+
+<a
+class="album-link"
+href="https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/"
+target="_blank"
+>
+spotify ›
+</a>
+
+</div>
+
+</div>
+
+
+<div class="album">
+
+<div class="cover">
+BOMB
+</div>
+
+<div class="album-info">
+
+<h3>
+BOMB
+</h3>
+
+<p>
+release archive
+</p>
+
+<a
+class="album-link"
+href="https://www.melon.com/artist/detail.htm?artistId=3743525"
+target="_blank"
+>
+melon ›
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUMMER MOON -->
+
+<section
+class="page"
+id="summer"
+>
+
+<div class="page-heading">
+
+<h1>
+Summer Moon
+</h1>
+
+<p>
+the ILLIT universe
+</p>
+
+</div>
+
+
+<div class="hero">
+
+<div class="hero-label">
+the quprids
+</div>
+
+<h1>
+Summer<br>
+Moon
+</h1>
+
+<p>
+explore the story, characters, fragments and world of ILLIT.
+</p>
+
+<a
+class="button"
+href="#"
+onclick="showSummerNotification();return false;"
+>
+open archive
+</a>
+
+</div>
+
+
+<div class="list">
+
+
+<div class="item">
+
+<div class="item-icon">
+📖
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Story
+</div>
+
+<div class="item-sub">
+chapter archive
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+✦
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Characters
+</div>
+
+<div class="item-sub">
+meet the characters
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+◇
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Fragments
+</div>
+
+<div class="item-sub">
+magic & technology
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- TOUR -->
+
+<section
+class="page"
+id="tour"
+>
+
+<div class="page-heading">
+
+<h1>
+Tour
+</h1>
+
+<p>
+ILLIT PRESS START
+</p>
+
+</div>
+
+
+<div class="hero">
+
+<div class="hero-label">
+ILLIT
+</div>
+
+<h1>
+PRESS<br>
+START
+</h1>
+
+<p>
+tour archive · dates · venues · memories
+</p>
+
+</div>
+
+
+<div class="list">
+
+<div class="list-title">
+tour archive
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📅
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Dates
+</div>
+
+<div class="item-sub">
+tour schedule
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📍
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Cities & Venues
+</div>
+
+<div class="item-sub">
+concert locations
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+🎟
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Tickets
+</div>
+
+<div class="item-sub">
+ticket information
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+♫
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Setlist
+</div>
+
+<div class="item-sub">
+concert songs
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- MV -->
+
+<section
+class="page"
+id="mv"
+>
+
+<div class="page-heading">
+
+<h1>
+MV
+</h1>
+
+<p>
+music videos
+</p>
+
+</div>
+
+
+<div class="list">
+
+
+<div class="item">
+
+<div class="item-icon">
+▶
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Magnetic
+</div>
+
+<div class="item-sub">
+official music video
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+▶
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Lucky Girl Syndrome
+</div>
+
+<div class="item-sub">
+official music video
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+▶
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Cherish (My Love)
+</div>
+
+<div class="item-sub">
+official music video
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+▶
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Do the Dance
+</div>
+
+<div class="item-sub">
+official music video
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+
+<a
+class="button"
+href="https://www.youtube.com/@ILLIT_official"
+target="_blank"
+>
+open youtube
+</a>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section
+class="page"
+id="news"
+>
+
+<div class="page-heading">
+
+<h1>
+News
+</h1>
+
+<p>
+latest updates
+</p>
+
+</div>
+
+
+<div class="list">
+
+
+<div class="item">
+
+<div class="item-icon">
+✦
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Latest ILLIT updates
+</div>
+
+<div class="item-sub">
+automatic news feed
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+◎
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Official SNS
+</div>
+
+<div class="item-sub">
+social updates
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- SCHEDULE -->
+
+<section
+class="page"
+id="schedule"
+>
+
+<div class="page-heading">
+
+<h1>
+Schedule
+</h1>
+
+<p>
+ILLIT activities
+</p>
+
+</div>
+
+
+<div class="list">
+
+<div class="list-title">
+upcoming
+</div>
+
+
+<div class="item">
+
+<div class="item-icon">
+📅
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+ILLIT
+</div>
+
+<div class="item-sub">
+schedule will appear here
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITIES -->
+
+<section
+class="page"
+id="activities"
+>
+
+<div class="page-heading">
+
+<h1>
+Activities
+</h1>
+
+<p>
+individual members
+</p>
+
+</div>
+
+
+<div class="list">
+
+
+<div
+class="item"
+onclick="member('Yunah','윤아')"
+>
+
+<div class="item-icon">
+🐆
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Yunah
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Minju','민주')"
+>
+
+<div class="item-icon">
+🐰
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Minju
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Moka','モカ')"
+>
+
+<div class="item-icon">
+☕
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Moka
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Wonhee','원희')"
+>
+
+<div class="item-icon">
+🐿
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Wonhee
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="member('Iroha','いろは')"
+>
+
+<div class="item-icon">
+🐢
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Iroha
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section
+class="page"
+id="gallery"
+>
+
+<div class="page-heading">
+
+<h1>
+Photos
+</h1>
+
+<p>
+ILLIT gallery
+</p>
+
+</div>
+
+
+<div class="tabs">
+
+<button class="tab selected">
+LIBRARY
+</button>
+
+<button class="tab">
+ALBUMS
+</button>
+
+<button class="tab">
+ERA
+</button>
+
+</div>
+
+
+<div class="photo-grid">
+
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+<div class="photo">photo</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFICIAL -->
+
+<section
+class="page"
+id="official"
+>
+
+<div class="page-heading">
+
+<h1>
+Official
+</h1>
+
+<p>
+ILLIT links
+</p>
+
+</div>
+
+
+<div class="list">
+
+
+<div
+class="item"
+onclick="window.open('https://open.spotify.com/artist/36cgvBn0aadzOijnjjwqMN/','_blank')"
+>
+
+<div class="item-icon">
+♫
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Spotify
+</div>
+
+<div class="item-sub">
+official artist
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="window.open('https://www.melon.com/artist/detail.htm?artistId=3743525','_blank')"
+>
+
+<div class="item-icon">
+♪
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Melon
+</div>
+
+<div class="item-sub">
+official artist
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="window.open('https://www.youtube.com/@ILLIT_official','_blank')"
+>
+
+<div class="item-icon">
+▶
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+YouTube
+</div>
+
+<div class="item-sub">
+official channel
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="window.open('https://www.instagram.com/ILLIT_official/','_blank')"
+>
+
+<div class="item-icon">
+◎
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Instagram
+</div>
+
+<div class="item-sub">
+official account
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+<div
+class="item"
+onclick="window.open('https://weverse.io/illit/','_blank')"
+>
+
+<div class="item-icon">
+W
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Weverse
+</div>
+
+<div class="item-sub">
+official community
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- MEMBER DETAIL -->
+
+<section
+class="page"
+id="memberDetail"
+>
+
+<button
+class="back"
+onclick="goBack()"
+>
+‹ back
+</button>
+
+
+<div class="detail-card">
+
+<div
+class="member-avatar"
+id="detailAvatar"
+>
+W
+</div>
+
+<h2
+id="detailName"
+style="margin-top:15px;"
+>
+Wonhee
+</h2>
+
+<p id="detailKorean">
+원희
+</p>
+
+</div>
+
+
+<div class="list">
+
+<div class="list-title">
+archive
+</div>
+
+
+<div
+class="item"
+onclick="openMemberSchedule()"
+>
+
+<div class="item-icon">
+📅
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Schedule
+</div>
+
+<div class="item-sub">
+individual activities
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+<div
+class="item"
+onclick="openMemberPhotos()"
+>
+<div class="item-icon">
+◎
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Photos
+</div>
+
+<div class="item-sub">
+individual gallery
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+<div class="item">
+<div class="item-icon">
+✦
+</div>
+
+<div class="item-text">
+
+<div class="item-name">
+Appearances
+</div>
+
+<div class="item-sub">
+shows & events
+</div>
+
+</div>
+
+<div class="chevron">
+›
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+   <!-- MEMBER PHOTOS -->
+
+<section
+class="page"
+id="memberPhotos"
+>
+
+<button
+class="back"
+onclick="closeMemberPhotos()"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1 id="photosMemberName">
+Wonhee
+</h1>
+
+<p>
+individual gallery
+</p>
+
+</div>
+
+</section>
+
+<!-- MEMBER CALENDAR -->
+
+<section
+class="page"
+id="memberCalendar"
+>
+
+<button
+class="back"
+onclick="closeMemberSchedule()"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1 id="calendarMemberName">
+Yunah
+</h1>
+
+<p>
+schedule
+</p>
+
+</div>
+
+<div class="calendar-card">
+
+<div class="calendar-top">
+
+<button
+class="calendar-arrow"
+onclick="changeCalendarMonth(-1)"
+>
+‹
+</button>
+
+<div
+class="calendar-month"
+id="calendarMonth"
+>
+September 2026
+</div>
+
+<button
+class="calendar-arrow"
+onclick="changeCalendarMonth(1)"
+>
+›
+</button>
+
+</div>
+
+<div class="calendar-weekdays">
+
+<div>sun</div>
+<div>mon</div>
+<div>tue</div>
+<div>wed</div>
+<div>thu</div>
+<div>fri</div>
+<div>sat</div>
+
+</div>
+
+<div
+class="calendar-days"
+id="calendarDays"
+></div>
+
+</div>
+
+<div
+class="calendar-events"
+id="calendarEvents"
+></div>
+
+</section>
+</main>
+
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-    <button
-        class="nav-button active"
-        data-page="home"
-        onclick="openPage('home')">
+<button
+class="nav-button active"
+onclick="openPage('home',this)"
+>
 
-        <span>⌂</span>
-        home
+<span>
+⌂
+</span>
 
-    </button>
+Home
 
-
-    <button
-        class="nav-button"
-        data-page="discography"
-        onclick="openPage('discography')">
-
-        <span>♪</span>
-        music
-
-    </button>
+</button>
 
 
-    <button
-        class="nav-button"
-        data-page="schedule"
-        onclick="openPage('schedule')">
+<button
+class="nav-button"
+onclick="openPage('profile',this)"
+>
 
-        <span>★</span>
-        schedule
+<span>
+♙
+</span>
 
-    </button>
+Profile
 
-
-    <button
-        class="nav-button"
-        data-page="gallery"
-        onclick="openPage('gallery')">
-
-        <span>◇</span>
-        gallery
-
-    </button>
+</button>
 
 
-    <button
-        class="nav-button"
-        data-page="profile"
-        onclick="openPage('profile')">
+<button
+class="nav-button"
+onclick="openPage('discography',this)"
+>
 
-        <span>♡</span>
-        profile
+<span>
+♫
+</span>
 
-    </button>
+Music
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('gallery',this)"
+>
+
+<span>
+▦
+</span>
+
+Photos
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="openPage('official',this)"
+>
+
+<span>
+⚙
+</span>
+
+More
+
+</button>
+
 
 </nav>
 
-   <script>
+
+</div>
+
+
+<script>
+
 
 /* =========================
-   ILLIT ARCHIVE
-   MAIN JAVASCRIPT
-   ========================= */
+   TRACK DATA
+========================= */
+
+const trackGroups = [
+
+[
+"1st Mini Album - SUPER REAL ME",
+[
+"My world",
+"Magnetic",
+"Midnight Fiction",
+"Lucky Girl Syndrome"
+]
+],
+
+[
+"SUPER REAL ME (Speed up)",
+[
+"My World - Speed Up",
+"Magnetic - Speed Up",
+"Midnight Fiction - Speed Up",
+"Lucky Girl Syndrome - Speed Up"
+]
+],
+
+[
+"Magnetic (Remix)",
+[
+"Magnetic - R&B Remix",
+"Magnetic - Starlight Remix",
+"Magnetic - City Night Remix"
+]
+],
+
+[
+"2nd Mini Album - I'LL LIKE YOU",
+[
+"I'll Like You",
+"Cherish (My love)",
+"IYKYK (If You Know You Know)",
+"Pimple",
+"Tick-Tack"
+]
+],
+
+[
+"Cherish my love (Remixes)",
+[
+"Cherish (My Love) - Deep Dive Remix",
+"Cherish (My Love) - Moonlight Remix",
+"Cherish (My Love) - Fever Remix",
+"Cherish (My Love) - Speed Up",
+"Cherish (My Love) - Slowed + Reverb",
+"Cherish (My Love) - Instrumental"
+]
+],
+
+[
+"3rd Mini Album - Bomb",
+[
+"little monster",
+"Billyeoon Goyangi (Do The Dance)",
+"jellyous",
+"oops!",
+"bamsopoong"
+]
+],
+
+[
+"Billyeoon Goyangi (Do The Dance)(Remixes)",
+[
+"Billyeoon Goyangi (Do The Dance) - Snail's House Remix",
+"Billyeoon Goyangi (Do The Dance) - Sunlight Remix",
+"Billyeoon Goyangi (Do The Dance) - Remix",
+"Billyeoon Goyangi (Do The Dance) - Breakbot & Irfane Remix",
+"Billyeoon Goyangi (Do The Dance) - Slowed + Reverb",
+"Billyeoon Goyangi (Do The Dance) - Instrumental"
+]
+],
+
+[
+"MAMIHLAPINATAPAI",
+[
+"GRWM (Get Ready With Me)",
+"It's Me",
+"paw, paw!",
+"Mamihlapinatapai",
+"Love, older you"
+]
+],
+
+[
+"1st Single Album - NOT CUTE ANYMORE",
+[
+"NOT CUTE ANYMORE",
+"NOT ME"
+]
+],
+
+[
+"NOT CUTE ANYMORE - Holiday Remixes",
+[
+"NOT CUTE ANYMORE - Holiday Party",
+"NOT CUTE ANYMORE - Holiday Night",
+"NOT CUTE ANYMORE - Speed Up ver.",
+"NOT CUTE ANYMORE - Holiday Night Speed Up ver."
+]
+],
+
+[
+"OST",
+[
+"Almond Chocolate",
+"Almond Chocolate (Korean Ver.)",
+"Secret Quest",
+"Secret Quest - Instrumental",
+"All For You 2027",
+"All For You - Instrumental",
+"Sunday Morning",
+"Bublee",
+"Bublee (Korean Ver.)"
+]
+],
+
+[
+"Colab",
+[
+"See U Tonight",
+"See U Tonight (Remix)",
+"jellyous (Feat. Sophie Powers)",
+"Iconic by mistake"
+]
+],
+
+[
+"Japan mini album - TOKI YO TOMARE",
+[
+"Topping",
+"Toki Yo Tomare",
+"Karitekita Neko (Do The Dance)",
+"I Got Your Back",
+"I Got Your Back (Korean Ver.)"
+]
+]
+
+];
+
+
+const streamAliases = {
+
+"my world - speed up":
+"my world - sped up",
+
+"magnetic - speed up":
+"magnetic - sped up",
+
+"midnight fiction - speed up":
+"midnight fiction - sped up",
+
+"lucky girl syndrome - speed up":
+"lucky girl syndrome - sped up",
+
+"cherish (my love) - speed up":
+"cherish (my love) - sped up",
+
+"not cute anymore - speed up ver.":
+"not cute anymore - sped up ver.",
+
+"not cute anymore - holiday party":
+"not cute anymore - holiday party",
+
+"not cute anymore - holiday night":
+"not cute anymore - holiday night",
+
+"not cute anymore - holiday night speed up ver.":
+"not cute anymore - holiday night sped up ver.",
+
+"all for you 2027":
+"all for you 2027",
+
+"bublee":
+"bubee",
+
+"bublee (korean ver.)":
+"bubee (korean ver.)",
+
+"iconic by mistake":
+"iconic by mistake"
+
+};
 
 
 /* =========================
-   BASIC STORAGE
-   ========================= */
+   HELPERS
+========================= */
 
-const STORAGE_KEY = "illit_archive_data";
+function key(song){
 
-let store = JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || "{}"
+return song
+.trim()
+.toLowerCase();
+
+}
+
+
+function esc(s){
+
+return s.replace(
+/[&<>"']/g,
+c => ({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[c])
 );
 
-if (!store.schedule) store.schedule = [];
-if (!store.gallery) store.gallery = [];
-if (!store.news) store.news = [];
-if (!store.activities) store.activities = [];
-if (!store.tours) store.tours = [];
-if (!store.mv) store.mv = [];
-if (!store.folders) store.folders = {};
-if (!store.memberEvents) store.memberEvents = {};
-if (!store.memberGallery) store.memberGallery = {};
-if (!store.content) store.content = {};
+}
 
 
-function saveStore(){
+function getStreamValue(
+data,
+platform,
+mode,
+song
+){
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(store)
-    );
+const originalKey =
+key(song);
+
+const possibleKeys = [
+
+originalKey,
+
+streamAliases[
+originalKey
+]
+
+].filter(Boolean);
+
+
+for(
+const k of possibleKeys
+){
+
+const value =
+data?.[platform]?.[mode]?.[k];
+
+
+if(
+value !== undefined &&
+value !== null &&
+value !== ""
+){
+
+const number =
+Number(value);
+
+
+if(
+Number.isFinite(number)
+){
+
+return number;
+
+}
+
+}
+
+}
+
+
+return null;
 
 }
 
 
 /* =========================
    PAGE NAVIGATION
-   ========================= */
+========================= */
 
-let pageHistory = [];
+function openPage(
+id,
+button
+){
 
-let currentPage = "home";
-
-
-function openPage(page){
-
-    if(page === currentPage) return;
-
-    pageHistory.push(currentPage);
-
-    document
-        .querySelectorAll(".page")
-        .forEach(function(item){
-
-            item.classList.remove("active");
-
-        });
+document
+.querySelectorAll('.page')
+.forEach(
+p =>
+p.classList.remove('active')
+);
 
 
-    const target = document.getElementById(page);
-
-    if(target){
-        target.classList.add("active");
-    }
+const page =
+document.getElementById(id);
 
 
-    currentPage = page;
+if(page){
+
+page.classList.add('active');
+
+}
 
 
-    document
-        .querySelectorAll(".nav-button")
-        .forEach(function(button){
+const titles = {
 
-            button.classList.remove("active");
+home:'Home',
 
-            if(button.dataset.page === page){
-                button.classList.add("active");
-            }
+profile:'',
 
-        });
+discography:'',
+
+summer:'',
+
+tour:'',
+
+mv:'',
+
+news:'',
+
+schedule:'',
+
+activities:'',
+
+gallery:'',
+
+official:'',
+
+memberDetail:''
+
+};
 
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+const header =
+document.getElementById(
+'headerTitle'
+);
 
 
-    if(page === "schedule") renderSchedule();
+if(header){
 
-    if(page === "gallery") renderGallery();
+header.innerText =
+titles[id] || '';
 
-    if(page === "news") renderNews();
+}
 
-    if(page === "activities") renderActivities();
 
-    if(page === "tour") renderTour();
+document
+.querySelectorAll('.nav-button')
+.forEach(
+b =>
+b.classList.remove('active')
+);
 
-    if(page === "mv") renderMV();
 
-    if(page === "discography") renderMusic();
+if(button){
+
+button.classList.add('active');
+
+}
+
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+}
+
+
+/* =========================
+   MEMBER PAGES
+========================= */
+
+let previousPage =
+'profile';
+
+
+function member(
+name,
+korean
+){
+
+const activePage =
+document.querySelector(
+'.page.active'
+);
+
+
+previousPage =
+activePage?.id ||
+'profile';
+
+
+document
+.querySelectorAll('.page')
+.forEach(
+p =>
+p.classList.remove('active')
+);
+
+
+const detail =
+document.getElementById(
+'memberDetail'
+);
+
+
+if(detail){
+
+detail.classList.add('active');
+
+}
+
+
+const nameElement =
+document.getElementById(
+'detailName'
+);
+
+
+if(nameElement){
+
+nameElement.innerText =
+name;
+
+}
+
+
+const koreanElement =
+document.getElementById(
+'detailKorean'
+);
+
+
+if(koreanElement){
+
+koreanElement.innerText =
+korean;
+
+}
+
+
+const avatar =
+document.getElementById(
+'detailAvatar'
+);
+
+
+if(avatar){
+
+avatar.innerText =
+name.charAt(0);
+
+}
+
+
+const header =
+document.getElementById(
+'headerTitle'
+);
+
+
+if(header){
+
+header.innerText =
+'';
+
+}
+
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
 
 function goBack(){
 
-    if(pageHistory.length){
-
-        const previous =
-            pageHistory.pop();
-
-        document
-            .querySelectorAll(".page")
-            .forEach(function(item){
-
-                item.classList.remove("active");
-
-            });
-
-
-        const target =
-            document.getElementById(previous);
-
-        if(target){
-            target.classList.add("active");
-        }
-
-
-        currentPage = previous;
-
-
-        document
-            .querySelectorAll(".nav-button")
-            .forEach(function(button){
-
-                button.classList.remove("active");
-
-                if(button.dataset.page === previous){
-                    button.classList.add("active");
-                }
-
-            });
-
-    }else{
-
-        openPage("home");
-
-    }
+openPage(
+previousPage
+);
 
 }
 
 
 /* =========================
-   SUMMER MOON LOCKSCREEN
-   ========================= */
+   TIME
+========================= */
 
-function updateLockScreen(){
+function updateTime(){
 
-    const now = new Date();
-
-
-    const date =
-        now.toLocaleDateString(
-            "en-US",
-            {
-                weekday:"long",
-                month:"long",
-                day:"numeric"
-            }
-        );
+const time =
+document.getElementById(
+'time'
+);
 
 
-    const time =
-        now.toLocaleTimeString(
-            "en-US",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                hour12:false
-            }
-        );
+if(!time) return;
 
 
-    const lockDate =
-        document.getElementById("lockDate");
-
-    const lockTime =
-        document.getElementById("lockTime");
-
-    const statusTime =
-        document.getElementById("statusTime");
-
-
-    if(lockDate)
-        lockDate.textContent = date;
-
-    if(lockTime)
-        lockTime.textContent = time;
-
-    if(statusTime)
-        statusTime.textContent = time;
+time.innerText =
+new Date().toLocaleTimeString(
+[],
+{
+hour:'2-digit',
+minute:'2-digit'
+}
+);
 
 }
 
 
-updateLockScreen();
+updateTime();
 
 setInterval(
-    updateLockScreen,
-    1000
+updateTime,
+1000
 );
 
 
-function closeSummerLock(){
+/* =========================
+   STREAMING
+========================= */
 
-    const lock =
-        document.getElementById("summerLock");
+let currentPlatform =
+'spotify';
 
-    if(!lock) return;
+let currentMode =
+'total';
 
-    lock.classList.add("closing");
 
-    setTimeout(function(){
+function renderTracks(){
 
-        lock.classList.remove("active");
-        lock.classList.remove("closing");
+const list =
+document.getElementById(
+'trackList'
+);
 
-    },550);
+
+if(!list) return;
+
+
+list.innerHTML =
+'';
+
+
+let rank = 1;
+
+
+trackGroups.forEach(
+group => {
+
+const heading =
+document.createElement(
+'div'
+);
+
+heading.className =
+'track-group';
+
+heading.innerText =
+group[0];
+
+list.appendChild(
+heading
+);
+
+
+group[1].forEach(
+song => {
+
+const track =
+document.createElement(
+'div'
+);
+
+track.className =
+'track';
+
+
+track.dataset.song =
+key(song);
+
+
+track.innerHTML =
+
+'<div class="track-rank">'
++
+rank
++
+'</div>'
+
++
+
+'<div class="track-icon">'
++
+'♫'
++
+'</div>'
+
++
+
+'<div class="track-info">'
+
++
+
+'<div class="track-name">'
++
+esc(song)
++
+'</div>'
+
++
+
+'<div class="track-platform">'
++
+currentPlatform
++
+'</div>'
+
++
+
+'</div>'
+
++
+
+'<div class="track-number">'
++
+'—'
++
+'</div>';
+
+
+list.appendChild(
+track
+);
+
+
+rank++;
 
 }
 
+);
 
-setTimeout(function(){
+}
 
-    const lock =
-        document.getElementById("summerLock");
+);
 
-    if(lock){
-
-        lock.classList.add(
-            "notification-show"
-        );
-
-    }
-
-},900);
+}
 
 
 /* =========================
-   MEMBER DATA
-   ========================= */
+   NUMBER ANIMATION
+========================= */
 
-const members = {
+function animateNumber(
+element,
+newValue
+){
 
-    yunah:{
-        name:"Yunah",
-        emoji:"🐆",
-        color:"#ff6b8a",
-        description:"YUNAH",
-        bio:"Yunah is a member of ILLIT. Explore her individual activities, schedules, photos and appearances."
-    },
-
-    minju:{
-        name:"Minju",
-        emoji:"🐰",
-        color:"#ffd447",
-        description:"MINJU",
-        bio:"Minju is a member of ILLIT. Explore her individual activities, schedules, photos and appearances."
-    },
-
-    moka:{
-        name:"Moka",
-        emoji:"☕",
-        color:"#9b7cff",
-        description:"MOKA",
-        bio:"Moka is a member of ILLIT. Explore her individual activities, schedules, photos and appearances."
-    },
-
-    wonhee:{
-        name:"Wonhee",
-        emoji:"🐿",
-        color:"#ff8fb8",
-        description:"WONHEE",
-        bio:"Wonhee is a member of ILLIT. Explore her individual activities, schedules, photos and appearances."
-    },
-
-    iroha:{
-        name:"Iroha",
-        emoji:"🐢",
-        color:"#71c9ff",
-        description:"IROHA",
-        bio:"Iroha is a member of ILLIT. Explore her individual activities, schedules, photos and appearances."
-    }
-
-};
+if(!element)
+return;
 
 
-let selectedMember = null;
-
-let memberCalendarDate =
-    new Date();
-
-
-function openMember(member){
-
-    selectedMember = member;
-
-    const data =
-        members[member];
-
-    if(!data) return;
+const oldValue =
+Number(
+element.dataset.value || 0
+);
 
 
-    document
-        .querySelectorAll(".page")
-        .forEach(function(item){
-
-            item.classList.remove("active");
-
-        });
+element.dataset.value =
+String(newValue);
 
 
-    document
-        .getElementById("memberDetail")
-        .classList.add("active");
+if(oldValue === newValue){
 
+element.innerText =
+newValue.toLocaleString(
+'en-US'
+);
 
-    currentPage = "memberDetail";
-
-
-    document
-        .getElementById("memberTitle")
-        .textContent =
-        data.name;
-
-
-    document
-        .getElementById("memberSubtitle")
-        .textContent =
-        data.emoji +
-        " ILLIT member archive";
-
-
-    document
-        .getElementById("memberDescription")
-        .textContent =
-        data.description;
-
-
-    document
-        .getElementById("memberBio")
-        .textContent =
-        data.bio;
-
-
-    renderMemberCalendar();
-
-    renderMemberEvents();
-
-    renderMemberGallery();
+return;
 
 }
 
 
+const duration =
+1000;
+
+
+const start =
+performance.now();
+
+
+function animate(time){
+
+const progress =
+Math.min(
+(time - start) /
+duration,
+1
+);
+
+
+const eased =
+1 -
+Math.pow(
+1 - progress,
+3
+);
+
+
+const value =
+Math.floor(
+oldValue +
+(newValue - oldValue) *
+eased
+);
+
+
+element.innerText =
+value.toLocaleString(
+'en-US'
+);
+
+
+if(progress < 1){
+
+requestAnimationFrame(
+animate
+);
+
+}else{
+
+element.innerText =
+newValue.toLocaleString(
+'en-US'
+);
+
+}
+
+}
+
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+
+/* =========================
+   UPDATE STREAM DATA
+========================= */
+
+async function updateTracker(){
+
+try{
+
+const response =
+await fetch(
+'streams.json?t=' +
+Date.now(),
+{
+cache:'no-store'
+}
+);
+
+
+if(!response.ok){
+
+throw new Error(
+'streams.json not found'
+);
+
+}
+
+
+const data =
+await response.json();
+
+
+let total = 0;
+
+let daily = 0;
+
+
+document
+.querySelectorAll('.track')
+.forEach(
+track => {
+
+const song =
+track.dataset.song;
+
+
+const value =
+getStreamValue(
+data,
+currentPlatform,
+currentMode,
+song
+);
+
+
+const numberElement =
+track.querySelector(
+'.track-number'
+);
+
+
+if(
+value !== null &&
+Number.isFinite(value)
+){
+
+animateNumber(
+numberElement,
+value
+);
+
+}else{
+
+numberElement.innerText =
+'—';
+
+}
+
+
+const platformElement =
+track.querySelector(
+'.track-platform'
+);
+
+
+if(platformElement){
+
+platformElement.innerText =
+currentPlatform;
+
+}
+
+
+const totalValue =
+getStreamValue(
+data,
+currentPlatform,
+'total',
+song
+);
+
+
+const dailyValue =
+getStreamValue(
+data,
+currentPlatform,
+'daily',
+song
+);
+
+
+if(
+totalValue !== null &&
+Number.isFinite(totalValue)
+){
+
+total += totalValue;
+
+}
+
+
+if(
+dailyValue !== null &&
+Number.isFinite(dailyValue)
+){
+
+daily += dailyValue;
+
+}
+
+}
+
+);
+
+const totalLabel =
+document.getElementById(
+'totalLabel'
+);
+
+
+if(totalLabel){
+
+totalLabel.innerText =
+currentPlatform === 'spotify'
+?
+'spotify total'
+:
+'melon total';
+
+}
+
+
+const dailyLabel =
+document.getElementById(
+'dailyLabel'
+);
+
+
+if(dailyLabel){
+
+dailyLabel.innerText =
+'daily streams';
+
+}
+
+
+const totalElement =
+document.getElementById(
+'spotifyTotal'
+);
+
+
+if(
+totalElement &&
+total > 0
+){
+
+animateNumber(
+totalElement,
+total
+);
+
+}else if(totalElement){
+
+totalElement.innerText =
+'—';
+
+}
+
+
+const dailyElement =
+document.getElementById(
+'dailyTotal'
+);
+
+
+if(
+dailyElement &&
+daily > 0
+){
+
+dailyElement.innerText =
+'+' +
+daily.toLocaleString(
+'en-US'
+);
+
+}else if(dailyElement){
+
+dailyElement.innerText =
+'—';
+
+}
+
+
+}catch(error){
+
+console.error(
+'Tracker error:',
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   PLATFORM
+========================= */
+
+function changePlatform(
+platform,
+button
+){
+
+currentPlatform =
+platform;
+
+
+document
+.querySelectorAll(
+'.platform-tab'
+)
+.forEach(
+tab =>
+tab.classList.remove(
+'active'
+)
+);
+
+
+if(button){
+
+button.classList.add(
+'active'
+);
+
+}
+
+
+updateTracker();
+
+}
+
+
+/* =========================
+   TOTAL / DAILY
+========================= */
+
+function changeMode(
+mode,
+button
+){
+
+currentMode =
+mode;
+
+
+document
+.querySelectorAll(
+'.mode-tab'
+)
+.forEach(
+tab =>
+tab.classList.remove(
+'active'
+)
+);
+
+
+if(button){
+
+button.classList.add(
+'active'
+);
+
+}
+
+
+updateTracker();
+
+}
+
+
+/* =========================
+   SUMMER MOON
+========================= */
+
+let summerMoonTimer;
+
+
+function openSummerMoonExperience(){
+
+const lockscreen =
+document.getElementById(
+'summerLockscreen'
+);
+
+
+if(!lockscreen)
+return;
+
+
+clearTimeout(
+summerMoonTimer
+);
+
+
+lockscreen.classList.remove(
+'notification-show',
+'closing'
+);
+
+
+updateSummerLockScreen();
+
+
+lockscreen.classList.add(
+'active'
+);
+
+
+summerMoonTimer =
+setTimeout(
+() =>
+lockscreen.classList.add(
+'notification-show'
+),
+1300
+);
+
+}
+
+
+function updateSummerLockScreen(){
+
+const now =
+new Date();
+
+
+const dateElement =
+document.getElementById(
+'summerLockDate'
+);
+
+
+const timeElement =
+document.getElementById(
+'summerLockTime'
+);
+
+
+if(dateElement){
+
+dateElement.innerText =
+new Intl.DateTimeFormat(
+'en-US',
+{
+timeZone:'Asia/Seoul',
+weekday:'long',
+month:'long',
+day:'numeric'
+}
+).format(now);
+
+}
+
+
+if(timeElement){
+
+timeElement.innerText =
+new Intl.DateTimeFormat(
+'en-US',
+{
+timeZone:'Asia/Seoul',
+hour:'2-digit',
+minute:'2-digit',
+hour12:false
+}
+).format(now);
+
+}
+
+}
+
+
+function openSummerMoon(){
+
+const lockscreen =
+document.getElementById(
+'summerLockscreen'
+);
+
+
+clearTimeout(
+summerMoonTimer
+);
+
+
+if(lockscreen){
+
+lockscreen.classList.remove(
+'notification-show'
+);
+
+
+lockscreen.classList.add(
+'closing'
+);
+
+}
+
+
+setTimeout(
+() => {
+
+if(lockscreen){
+
+lockscreen.classList.remove(
+'active',
+'closing'
+);
+
+}
+
+
+openPage(
+'summer'
+);
+
+},
+500
+);
+
+}
+
+
+function showSummerNotification(){
+
+openSummerMoonExperience();
+
+}
+
+
+/* =========================
+   DISCROGRAPHY TABS
+========================= */
+
+document
+.querySelectorAll('.tabs')
+.forEach(
+group => {
+
+const buttons =
+group.querySelectorAll(
+'.tab'
+);
+
+
+buttons.forEach(
+button => {
+
+button.addEventListener(
+'click',
+() => {
+
+buttons.forEach(
+b =>
+b.classList.remove(
+'selected'
+)
+);
+
+
+button.classList.add(
+'selected'
+);
+
+}
+);
+
+}
+
+);
+
+}
+);
 /* =========================
    MEMBER CALENDAR
-   ========================= */
+========================= */
 
-function changeMemberMonth(amount){
+let calendarMember = 'Yunah';
+let calendarDate = new Date();
+let selectedCalendarDate = null;
 
-    memberCalendarDate.setMonth(
-        memberCalendarDate.getMonth() + amount
-    );
-
-    renderMemberCalendar();
-
+function calendarStorageKey(){
+  return 'illit-calendar-' + calendarMember.toLowerCase();
 }
 
-
-function renderMemberCalendar(){
-
-    const year =
-        memberCalendarDate.getFullYear();
-
-    const month =
-        memberCalendarDate.getMonth();
-
-
-    const title =
-        document.getElementById(
-            "memberCalendarMonth"
-        );
-
-
-    const days =
-        document.getElementById(
-            "memberCalendarDays"
-        );
-
-
-    if(!title || !days) return;
-
-
-    title.textContent =
-        memberCalendarDate.toLocaleDateString(
-            "en-US",
-            {
-                month:"long",
-                year:"numeric"
-            }
-        );
-
-
-    days.innerHTML = "";
-
-
-    const firstDay =
-        new Date(
-            year,
-            month,
-            1
-        ).getDay();
-
-
-    const totalDays =
-        new Date(
-            year,
-            month + 1,
-            0
-        ).getDate();
-
-
-    for(
-        let i = 0;
-        i < firstDay;
-        i++
-    ){
-
-        const empty =
-            document.createElement("div");
-
-        empty.className =
-            "calendar-day empty";
-
-        days.appendChild(empty);
-
-    }
-
-
-    for(
-        let day = 1;
-        day <= totalDays;
-        day++
-    ){
-
-        const cell =
-            document.createElement("div");
-
-        cell.className =
-            "calendar-day";
-
-
-        const number =
-            document.createElement("div");
-
-        number.className =
-            "calendar-number";
-
-        number.textContent =
-            day;
-
-
-        cell.appendChild(number);
-
-
-        const key =
-            selectedMember +
-            "_" +
-            year +
-            "_" +
-            month +
-            "_" +
-            day;
-
-
-        const event =
-            store.memberEvents[key];
-
-
-        if(event){
-
-            const star =
-                document.createElement("span");
-
-            star.className =
-                "calendar-star";
-
-            star.textContent =
-                "★";
-
-
-            star.style.color =
-                members[selectedMember].color;
-
-
-            cell.appendChild(star);
-
-
-            cell.onclick =
-                function(){
-
-                    showEvent(event);
-
-                };
-
-        }
-
-
-        days.appendChild(cell);
-
-    }
-
+function getCalendarEvents(){
+  try{
+    return JSON.parse(
+      localStorage.getItem(calendarStorageKey())
+    ) || {};
+  }catch{
+    return {};
+  }
 }
 
+function saveCalendarEvents(events){
+  localStorage.setItem(
+    calendarStorageKey(),
+    JSON.stringify(events)
+  );
+}
+function openMemberPhotos(){
 
-/* =========================
-   MEMBER EVENTS
-   ========================= */
+  const name =
+    document.getElementById('detailName')?.innerText
+    || 'Wonhee';
 
-function renderMemberEvents(){
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
 
-    const container =
-        document.getElementById(
-            "memberEvents"
-        );
+  const photos =
+    document.getElementById('memberPhotos');
 
+  if(photos){
+    photos.classList.add('active');
+  }
 
-    if(!container) return;
+  const nameElement =
+    document.getElementById('photosMemberName');
 
+  if(nameElement){
+    nameElement.innerText = name;
+  }
 
-    container.innerHTML = "";
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+   }
+function openMemberSchedule(){
 
+  const name =
+    document.getElementById('detailName')?.innerText
+    || 'Yunah';
 
-    const events =
-        Object.keys(store.memberEvents)
-        .filter(function(key){
+  calendarMember = name;
+  calendarDate = new Date();
+  selectedCalendarDate = null;
 
-            return key.startsWith(
-                selectedMember + "_"
-            );
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
 
-        })
-        .map(function(key){
+  const calendar =
+    document.getElementById('memberCalendar');
 
-            return store.memberEvents[key];
+  if(calendar){
+    calendar.classList.add('active');
+  }
 
-        });
+  const nameElement =
+    document.getElementById('calendarMemberName');
 
+  if(nameElement){
+    nameElement.innerText = calendarMember;
+  }
 
-    if(!events.length){
+  renderCalendar();
 
-        container.innerHTML = `
-            <div class="widget">
-                <div class="widget-title">
-                    activities
-                </div>
-
-                <div class="small">
-                    no individual activities added yet.
-                </div>
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    events.forEach(function(event){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(event.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(event.date || "")}
-            </p>
-
-            ${
-                event.time
-                ? `<p>🕐 ${escapeHTML(event.time)}</p>`
-                : ""
-            }
-
-            ${
-                event.location
-                ? `<p>📍 ${escapeHTML(event.location)}</p>`
-                : ""
-            }
-
-            ${
-                event.note
-                ? `<p>${escapeHTML(event.note)}</p>`
-                : ""
-            }
-
-        `;
-
-
-        container.appendChild(card);
-
-    });
-
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
 }
 
+function closeMemberSchedule(){
 
-function showEvent(event){
+  document
+    .querySelectorAll('.page')
+    .forEach(p => p.classList.remove('active'));
 
-    const detail =
-        document.getElementById(
-            "detailContent"
-        );
+  const detail =
+    document.getElementById('memberDetail');
 
+  if(detail){
+    detail.classList.add('active');
+  }
 
-    if(!detail) return;
-
-
-    detail.innerHTML = `
-
-        <div class="detail-card">
-
-            <h2>
-                ${escapeHTML(event.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(event.date || "")}
-            </p>
-
-            ${
-                event.time
-                ? `<p>🕐 ${escapeHTML(event.time)}</p>`
-                : ""
-            }
-
-            ${
-                event.location
-                ? `<p>📍 ${escapeHTML(event.location)}</p>`
-                : ""
-            }
-
-            ${
-                event.address
-                ? `<p>⌂ ${escapeHTML(event.address)}</p>`
-                : ""
-            }
-
-            ${
-                event.note
-                ? `<p>${escapeHTML(event.note)}</p>`
-                : ""
-            }
-
-            ${
-                event.link
-                ? `
-                    <a
-                        class="button"
-                        href="${safeURL(event.link)}"
-                        target="_blank"
-                        rel="noopener">
-                        open link
-                    </a>
-                `
-                : ""
-            }
-
-        </div>
-
-    `;
-
-
-    openPage("detailPage");
-
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
 }
 
+function changeCalendarMonth(amount){
 
-/* =========================
-   MEMBER GALLERY
-   ========================= */
+  calendarDate.setMonth(
+    calendarDate.getMonth() + amount
+  );
 
-function renderMemberGallery(){
+  selectedCalendarDate = null;
 
-    const folders =
-        document.getElementById(
-            "memberFolders"
-        );
-
-
-    const media =
-        document.getElementById(
-            "memberMedia"
-        );
-
-
-    if(!folders || !media) return;
-
-
-    folders.innerHTML = "";
-    media.innerHTML = "";
-
-
-    const memberFolders =
-        store.memberGallery[
-            selectedMember
-        ] || {};
-
-
-    Object.keys(memberFolders)
-        .forEach(function(folder){
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "folder-card";
-
-
-            card.innerHTML = `
-
-                <div class="folder-icon">
-                    📁
-                </div>
-
-                <div class="folder-name">
-                    ${escapeHTML(folder)}
-                </div>
-
-                <div class="folder-count">
-                    ${
-                        memberFolders[folder].length
-                    }
-                    items
-                </div>
-
-            `;
-
-
-            card.onclick =
-                function(){
-
-                    openMemberFolder(
-                        folder
-                    );
-
-                };
-
-
-            folders.appendChild(card);
-
-        });
-
-
-    if(!Object.keys(memberFolders).length){
-
-        media.innerHTML = `
-
-            <div class="small">
-                create folders and add photos or videos here.
-            </div>
-
-        `;
-
-    }
-
+  renderCalendar();
 }
 
+function dateKey(year,month,day){
 
-function openMemberFolder(folder){
-
-    const media =
-        document.getElementById(
-            "memberMedia"
-        );
-
-
-    if(!media) return;
-
-
-    const items =
-        (
-            store.memberGallery[
-                selectedMember
-            ] || {}
-        )[folder] || [];
-
-
-    media.innerHTML = `
-
-        <div class="widget-title">
-            ${escapeHTML(folder)}
-        </div>
-
-        <div class="photo-grid">
-
-            ${
-                items.map(function(item){
-
-                    return mediaHTML(item);
-
-                }).join("")
-            }
-
-        </div>
-
-    `;
-
+  return year +
+    '-' +
+    String(month + 1).padStart(2,'0') +
+    '-' +
+    String(day).padStart(2,'0');
 }
 
+function renderCalendar(){
 
-/* =========================
-   MUSIC
-   ========================= */
+  const days =
+    document.getElementById('calendarDays');
 
-const music = [
+  const monthTitle =
+    document.getElementById('calendarMonth');
 
-    {
-        title:"SUPER REAL ME",
-        type:"korean",
-        year:"2024",
-        songs:[
-            "My World",
-            "Magnetic",
-            "Midnight Fiction",
-            "Lucky Girl Syndrome"
-        ]
-    },
+  if(!days || !monthTitle) return;
 
-    {
-        title:"I'LL LIKE YOU",
-        type:"korean",
-        year:"2024",
-        songs:[
-            "I'll Like You",
-            "Cherish (My Love)",
-            "IYKYK",
-            "Pimple",
-            "Tick-Tack"
-        ]
-    },
+  const year =
+    calendarDate.getFullYear();
 
-    {
-        title:"bomb",
-        type:"korean",
-        year:"2025",
-        songs:[
-            "bomb",
-            "jellyous",
-            "little monster"
-        ]
-    },
+  const month =
+    calendarDate.getMonth();
 
-    {
-        title:"NOT CUTE ANYMORE",
-        type:"korean",
-        year:"2025",
-        songs:[
-            "NOT CUTE ANYMORE"
-        ]
-    },
+  monthTitle.innerText =
+    new Intl.DateTimeFormat(
+      'en-US',
+      {
+        month:'long',
+        year:'numeric'
+      }
+    ).format(calendarDate);
 
-    {
-        title:"MAMIHLAPINATAPAI",
-        type:"korean",
-        year:"2026",
-        songs:[
-            "MAMIHLAPINATAPAI"
-        ]
-    }
+  days.innerHTML = '';
 
-];
+  const firstDay =
+    new Date(year,month,1).getDay();
 
+  const daysInMonth =
+    new Date(year,month + 1,0).getDate();
 
-function renderMusic(filter="all"){
+  const events =
+    getCalendarEvents();
 
-    const list =
-        document.getElementById(
-            "musicList"
-        );
+  for(let i=0;i<firstDay;i++){
 
+    const empty =
+      document.createElement('div');
 
-    if(!list) return;
+    empty.className =
+      'calendar-day empty';
 
+    days.appendChild(empty);
+  }
 
-    list.innerHTML = "";
+  const today =
+    new Date();
 
-
-    let items = music;
-
-
-    if(filter !== "all"){
-
-        items =
-            music.filter(function(album){
-
-                return album.type === filter;
-
-            });
-
-    }
-
-
-    items.forEach(function(album){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "album";
-
-
-        card.innerHTML = `
-
-            <div class="cover">
-
-                ${escapeHTML(album.title)}
-
-            </div>
-
-            <div class="album-info">
-
-                <h3>
-                    ${escapeHTML(album.title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(album.year)}
-                </p>
-
-                <p>
-                    ${album.songs.length}
-                    songs
-                </p>
-
-                <span class="album-link">
-                    view songs ›
-                </span>
-
-            </div>
-
-        `;
-
-
-        card.onclick =
-            function(){
-
-                openAlbum(album);
-
-            };
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-function filterMusic(filter, button){
-
-    document
-        .querySelectorAll(".music-filter button")
-        .forEach(function(item){
-
-            item.classList.remove("active");
-
-        });
-
-
-    if(button)
-        button.classList.add("active");
-
-
-    renderMusic(filter);
-
-}
-
-
-function openAlbum(album){
-
-    const detail =
-        document.getElementById(
-            "detailContent"
-        );
-
-
-    detail.innerHTML = `
-
-        <div class="detail-card">
-
-            <h2>
-                ${escapeHTML(album.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(album.year)}
-            </p>
-
-        </div>
-
-        <div class="list">
-
-            ${
-                album.songs.map(function(song,index){
-
-                    return `
-
-                        <div class="item">
-
-                            <div class="item-icon">
-                                ${index + 1}
-                            </div>
-
-                            <div class="item-text">
-
-                                <div class="item-name">
-                                    ${escapeHTML(song)}
-                                </div>
-
-                            </div>
-
-                            <div class="chevron">
-                                ›
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }).join("")
-            }
-
-        </div>
-
-    `;
-
-
-    openPage("detailPage");
-
-}
-
-
-/* =========================
-   GALLERY
-   ========================= */
-
-function renderGallery(){
-
-    const folders =
-        document.getElementById(
-            "galleryFolders"
-        );
-
-
-    const media =
-        document.getElementById(
-            "galleryMedia"
-        );
-
-
-    if(!folders || !media) return;
-
-
-    folders.innerHTML = "";
-    media.innerHTML = "";
-
-
-    Object.keys(store.folders)
-        .forEach(function(folder){
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "folder-card";
-
-
-            card.innerHTML = `
-
-                <div class="folder-icon">
-                    📁
-                </div>
-
-                <div class="folder-name">
-                    ${escapeHTML(folder)}
-                </div>
-
-                <div class="folder-count">
-                    ${store.folders[folder].length}
-                    items
-                </div>
-
-            `;
-
-
-            card.onclick =
-                function(){
-
-                    openGalleryFolder(
-                        folder
-                    );
-
-                };
-
-
-            folders.appendChild(card);
-
-        });
-
-
-    if(!Object.keys(store.folders).length){
-
-        media.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    gallery
-                </div>
-
-                <div class="small">
-                    no folders created yet.
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-function openGalleryFolder(folder){
-
-    const media =
-        document.getElementById(
-            "galleryMedia"
-        );
-
-
-    const items =
-        store.folders[folder] || [];
-
-
-    media.innerHTML = `
-
-        <div class="widget-title">
-            ${escapeHTML(folder)}
-        </div>
-
-        <div class="photo-grid">
-
-            ${
-                items.map(function(item){
-
-                    return mediaHTML(item);
-
-                }).join("")
-            }
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   MEDIA HTML
-   ========================= */
-
-function mediaHTML(item){
-
-    if(item.type === "video"){
-
-        return `
-
-            <div
-                class="photo media-video"
-                onclick='openMedia(${JSON.stringify(item)})'>
-
-                ▶
-
-            </div>
-
-        `;
-
-    }
-
-
-    return `
-
-        <div
-            class="photo"
-            onclick='openMedia(${JSON.stringify(item)})'>
-
-            ${
-                item.url
-                ? `
-                    <img
-                        src="${safeURL(item.url)}"
-                        alt=""
-                        style="
-                            width:100%;
-                            height:100%;
-                            object-fit:cover;
-                        ">
-                `
-                : "photo"
-            }
-
-        </div>
-
-    `;
-
-}
-
-
-function openMedia(item){
-
-    const detail =
-        document.getElementById(
-            "detailContent"
-        );
-
-
-    detail.innerHTML = `
-
-        <div class="detail-card">
-
-            <h2>
-                ${escapeHTML(item.name || "media")}
-            </h2>
-
-            ${
-                item.type === "video"
-                ? `
-                    <video
-                        controls
-                        style="
-                            width:100%;
-                            border-radius:18px;
-                            margin-top:15px;
-                        "
-                        src="${safeURL(item.url)}">
-                    </video>
-                `
-                : `
-                    <img
-                        src="${safeURL(item.url)}"
-                        alt=""
-                        style="
-                            width:100%;
-                            border-radius:18px;
-                            margin-top:15px;
-                        ">
-                `
-            }
-
-        </div>
-
-    `;
-
-
-    openPage("detailPage");
-
-}
-
-
-/* =========================
-   SCHEDULE
-   ========================= */
-
-function renderSchedule(){
-
-    const list =
-        document.getElementById(
-            "scheduleList"
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML = "";
-
-
-    if(!store.schedule.length){
-
-        list.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    schedule
-                </div>
-
-                <div class="small">
-                    no schedules added yet.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    store.schedule.forEach(function(item){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(item.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(item.date || "")}
-            </p>
-
-            ${
-                item.time
-                ? `<p>🕐 ${escapeHTML(item.time)}</p>`
-                : ""
-            }
-
-            ${
-                item.location
-                ? `<p>📍 ${escapeHTML(item.location)}</p>`
-                : ""
-            }
-
-            ${
-                item.link
-                ? `
-                    <a
-                        class="button"
-                        href="${safeURL(item.link)}"
-                        target="_blank"
-                        rel="noopener">
-                        open link
-                    </a>
-                `
-                : ""
-            }
-
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   NEWS
-   ========================= */
-
-function renderNews(){
-
-    const list =
-        document.getElementById(
-            "newsList"
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML = "";
-
-
-    if(!store.news.length){
-
-        list.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    news
-                </div>
-
-                <div class="small">
-                    no news added yet.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    store.news.forEach(function(item){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(item.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(item.date || "")}
-            </p>
-
-            <p>
-                ${escapeHTML(item.text || "")}
-            </p>
-
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   ACTIVITIES
-   ========================= */
-
-function renderActivities(){
-
-    const list =
-        document.getElementById(
-            "appearanceList"
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML = "";
-
-
-    if(!store.activities.length){
-
-        list.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    appearances
-                </div>
-
-                <div class="small">
-                    no appearances added yet.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    store.activities.forEach(function(item){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(item.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(item.date || "")}
-            </p>
-
-            ${
-                item.description
-                ? `<p>${escapeHTML(item.description)}</p>`
-                : ""
-            }
-
-            ${
-                item.link
-                ? `
-                    <a
-                        class="button"
-                        href="${safeURL(item.link)}"
-                        target="_blank"
-                        rel="noopener">
-                        watch / open
-                    </a>
-                `
-                : ""
-            }
-
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   MUSIC VIDEOS
-   ========================= */
-
-function renderMV(){
-
-    const list =
-        document.getElementById(
-            "mvList"
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML = "";
-
-
-    if(!store.mv.length){
-
-        list.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    music videos
-                </div>
-
-                <div class="small">
-                    no videos added yet.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    store.mv.forEach(function(item){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(item.title)}
-            </h2>
-
-            ${
-                item.date
-                ? `<p>${escapeHTML(item.date)}</p>`
-                : ""
-            }
-
-            ${
-                item.link
-                ? `
-                    <a
-                        class="button"
-                        href="${safeURL(item.link)}"
-                        target="_blank"
-                        rel="noopener">
-                        watch video
-                    </a>
-                `
-                : ""
-            }
-
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   TOUR
-   ========================= */
-
-function renderTour(){
-
-    const list =
-        document.getElementById(
-            "tourList"
-        );
-
-
-    if(!list) return;
-
-
-    list.innerHTML = "";
-
-
-    if(!store.tours.length){
-
-        list.innerHTML = `
-
-            <div class="widget">
-
-                <div class="widget-title">
-                    press start
-                </div>
-
-                <div class="small">
-                    no tour dates added yet.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    store.tours.forEach(function(item){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "detail-card";
-
-
-        card.innerHTML = `
-
-            <h2>
-                ${escapeHTML(item.city || "")}
-            </h2>
-
-            <p>
-                ${escapeHTML(item.date || "")}
-            </p>
-
-            ${
-                item.venue
-                ? `<p>📍 ${escapeHTML(item.venue)}</p>`
-                : ""
-            }
-
-            ${
-                item.tickets
-                ? `
-                    <a
-                        class="button"
-                        href="${safeURL(item.tickets)}"
-                        target="_blank"
-                        rel="noopener">
-                        tickets
-                    </a>
-                `
-                : ""
-            }
-
-        `;
-
-
-        list.appendChild(card);
-
-    });
-
-}
-
-
-/* =========================
-   SUMMER MOON LORE
-   ========================= */
-
-const lore = {
-
-    story:{
-        title:"Story",
-        text:"Summer Moon follows a group of characters whose everyday lives become connected to a magical world of dreams, emotions and fragments."
-    },
-
-    characters:{
-        title:"Characters",
-        text:"Explore the characters of Summer Moon, their relationships, personalities and roles within the story."
-    },
-
-    fragments:{
-        title:"Fragments",
-        text:"Fragments are mysterious pieces connected to potential, emotions and abilities. They connect the ordinary world with the magical world."
-    }
-
-};
-
-
-function openLore(type){
-
-    const data =
-        lore[type];
-
-
-    const detail =
-        document.getElementById(
-            "loreDetail"
-        );
-
-
-    if(!detail || !data) return;
-
-
-    detail.innerHTML = `
-
-        <div class="detail-card">
-
-            <h2>
-                ${escapeHTML(data.title)}
-            </h2>
-
-            <p>
-                ${escapeHTML(data.text)}
-            </p>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   HELPERS
-   ========================= */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-function safeURL(url){
-
-    if(!url) return "";
-
-    try{
-
-        const parsed =
-            new URL(url, window.location.href);
-
-        if(
-            parsed.protocol === "http:" ||
-            parsed.protocol === "https:"
-        ){
-
-            return parsed.href;
-
-        }
-
-    }catch(error){
-
-        return "";
-
-    }
-
-    return "";
-
-}
-
-
-/* =========================
-   INITIAL RENDER
-   ========================= */
-
-renderMusic();
-
-renderSchedule();
-
-renderGallery();
-
-renderNews();
-
-renderActivities();
-
-renderMV();
-
-renderTour();
-
-   
-/* =========================
-   EDITOR — CRIAR CONTEÚDO
-   ========================= */
-
-function openEditor(type){
-
-    const detail =
-        document.getElementById("detailContent");
-
-    if(!detail) return;
-
-    let title = "add content";
-
-    if(type === "schedule") title = "add schedule";
-    if(type === "news") title = "add news";
-    if(type === "activities") title = "add activity";
-    if(type === "mv") title = "add music video";
-    if(type === "tour") title = "add tour date";
-    if(type === "event") title = "add member event";
-
-    detail.innerHTML = `
-
-        <div class="editor-panel">
-
-            <div class="editor-title">
-                ${title}
-            </div>
-
-            <div class="editor-field">
-
-                <label>
-                    title
-                </label>
-
-                <input
-                    id="editTitle"
-                    type="text"
-                    placeholder="title">
-
-            </div>
-
-            <div class="editor-row">
-
-                <div class="editor-field">
-
-                    <label>
-                        date
-                    </label>
-
-                    <input
-                        id="editDate"
-                        type="text"
-                        placeholder="date">
-
-                </div>
-
-                <div class="editor-field">
-
-                    <label>
-                        time
-                    </label>
-
-                    <input
-                        id="editTime"
-                        type="text"
-                        placeholder="time">
-
-                </div>
-
-            </div>
-
-            <div class="editor-field">
-
-                <label>
-                    location
-                </label>
-
-                <input
-                    id="editLocation"
-                    type="text"
-                    placeholder="location">
-
-            </div>
-
-            <div class="editor-field">
-
-                <label>
-                    link
-                </label>
-
-                <input
-                    id="editLink"
-                    type="url"
-                    placeholder="https://...">
-
-            </div>
-
-            <div class="editor-field">
-
-                <label>
-                    description
-                </label>
-
-                <textarea
-                    id="editDescription"
-                    placeholder="description">
-                </textarea>
-
-            </div>
-
-            <div class="editor-actions">
-
-                <button
-                    class="editor-button blue"
-                    onclick="saveEditor('${type}')">
-
-                    save
-
-                </button>
-
-                <button
-                    class="editor-button light"
-                    onclick="goBack()">
-
-                    cancel
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-    openPage("detailPage");
-
-}
-
-
-function saveEditor(type){
-
-    const title =
-        document.getElementById("editTitle")?.value.trim();
-
-    const date =
-        document.getElementById("editDate")?.value.trim();
-
-    const time =
-        document.getElementById("editTime")?.value.trim();
-
-    const location =
-        document.getElementById("editLocation")?.value.trim();
-
-    const link =
-        document.getElementById("editLink")?.value.trim();
-
-    const description =
-        document.getElementById("editDescription")?.value.trim();
-
-
-    if(!title){
-
-        alert("please add a title.");
-
-        return;
-
-    }
-
-
-    const item = {
-
-        title:title,
-        date:date,
-        time:time,
-        location:location,
-        link:link,
-        description:description
-
-    };
-
-
-    if(type === "schedule"){
-
-        store.schedule.push(item);
-
-    }
-
-    if(type === "news"){
-
-        store.news.push({
-
-            title:title,
-            date:date,
-            text:description
-
-        });
-
-    }
-
-    if(type === "activities"){
-
-        store.activities.push({
-
-            title:title,
-            date:date,
-            description:description,
-            link:link
-
-        });
-
-    }
-
-    if(type === "mv"){
-
-        store.mv.push({
-
-            title:title,
-            date:date,
-            link:link
-
-        });
-
-    }
-
-    if(type === "tour"){
-
-        store.tours.push({
-
-            city:title,
-            date:date,
-            venue:location,
-            tickets:link
-
-        });
-
-    }
-
-
-    saveStore();
-
-
-    alert("saved successfully.");
-
-
-    openPage(
-        type === "activities"
-        ? "activities"
-        : type
-    );
-
-}
-
-
-/* =========================
-   ADD BUTTONS
-   ========================= */
-
-function addEditorButton(type){
+  for(
+    let day=1;
+    day<=daysInMonth;
+    day++
+  ){
 
     const button =
-        document.createElement("button");
+      document.createElement('button');
 
     button.className =
-        "editor-button blue";
+      'calendar-day';
 
-    button.textContent =
-        "+ add";
-
-    button.onclick =
-        function(){
-
-            openEditor(type);
-
-        };
-
-    return button;
-
-}
-
-
-function addEditorToPage(pageId,type){
-
-    const page =
-        document.getElementById(pageId);
-
-    if(!page) return;
-
-
-    const heading =
-        page.querySelector(".page-heading");
-
-    if(!heading) return;
-
+    const key =
+      dateKey(year,month,day);
 
     if(
-        heading.querySelector(
-            ".dynamic-editor-button"
-        )
-    ) return;
+      year === today.getFullYear() &&
+      month === today.getMonth() &&
+      day === today.getDate()
+    ){
+      button.classList.add('today');
+    }
 
+    if(selectedCalendarDate === key){
+      button.classList.add('selected');
+    }
 
-    const button =
-        addEditorButton(type);
+    if(
+      events[key] &&
+      events[key].length
+    ){
+      button.classList.add('has-event');
+    }
 
-    button.classList.add(
-        "dynamic-editor-button"
+    button.innerText = day;
+
+    button.onclick = () => {
+
+      selectedCalendarDate = key;
+
+      renderCalendar();
+
+      showCalendarEvents(key);
+    };
+
+    days.appendChild(button);
+  }
+
+  if(selectedCalendarDate){
+    showCalendarEvents(
+      selectedCalendarDate
+    );
+  }else{
+    showCalendarEvents(null);
+  }
+}
+
+function showCalendarEvents(date){
+
+  const container =
+    document.getElementById(
+      'calendarEvents'
     );
 
+  if(!container) return;
 
-    heading.appendChild(button);
+  container.innerHTML = '';
 
-}
+  const events =
+    getCalendarEvents();
 
+  if(
+    date &&
+    events[date] &&
+    events[date].length
+  ){
 
-/* =========================
-   EDITOR INITIALIZATION
-   ========================= */
+    events[date].forEach(event => {
 
-addEditorToPage(
-    "schedule",
-    "schedule"
-);
+      const card =
+        document.createElement('div');
 
-addEditorToPage(
-    "news",
-    "news"
-);
+      card.className =
+        'calendar-event';
 
-addEditorToPage(
-    "activities",
-    "activities"
-);
+      card.innerHTML =
+        '<div class="calendar-event-date">' +
+        formatCalendarDate(date) +
+        '</div>' +
 
-addEditorToPage(
-    "mv",
-    "mv"
-);
+        '<div class="calendar-event-name">' +
+        esc(event.name) +
+        '</div>' +
 
-addEditorToPage(
-    "tour",
-    "tour"
-);
+        '<div class="calendar-event-time">' +
+        esc(event.time || '') +
+        '</div>';
 
-      /* =========================
-   PARTE 7 — GALERIA
-   PASTAS + FOTOS + VÍDEOS
-   ========================= */
-
-
-/* =========================
-   GARANTIR ESTRUTURA
-   ========================= */
-
-if(!store.folders){
-    store.folders = {};
-}
-
-
-/* =========================
-   CRIAR PASTA
-   ========================= */
-
-function createGalleryFolder(){
-
-    const name = prompt("folder name:");
-
-    if(!name || !name.trim()) return;
-
-    const folderName = name.trim();
-
-    if(store.folders[folderName]){
-
-        alert("this folder already exists.");
-
-        return;
-
-    }
-
-    store.folders[folderName] = [];
-
-    saveStore();
-
-    renderGallery();
-
-}
-
-
-/* =========================
-   ABRIR PASTA
-   ========================= */
-
-function openGalleryFolder(folder){
-
-    const media =
-        document.getElementById("galleryMedia");
-
-    if(!media) return;
-
-    const items =
-        store.folders[folder] || [];
-
-
-    media.innerHTML = `
-
-        <button
-            class="back"
-            onclick="renderGallery()">
-
-            ‹ gallery
-
-        </button>
-
-
-        <div class="page-heading">
-
-            <h1>
-                ${escapeHTML(folder)}
-            </h1>
-
-            <p>
-                ${items.length} items
-            </p>
-
-        </div>
-
-
-        <button
-            class="editor-button blue"
-            onclick="
-                addGalleryMedia(
-                    ${JSON.stringify(folder)}
-                )
-            ">
-
-            + add photo or video
-
-        </button>
-
-
-        <div
-            class="photo-grid"
-            style="margin-top:14px;">
-
-            ${
-                items.length
-
-                ? items.map(function(item){
-
-                    return mediaHTML(item);
-
-                }).join("")
-
-                : `
-
-                    <div
-                        class="detail-card"
-                        style="
-                            grid-column:1/-1;
-                            text-align:center;
-                        ">
-
-                        <div
-                            class="icon"
-                            style="
-                                margin:0 auto 12px;
-                            ">
-
-                            ◇
-
-                        </div>
-
-                        <h3>
-                            this folder is empty
-                        </h3>
-
-                        <p>
-                            add your first photo or video.
-                        </p>
-
-                    </div>
-
-                `
-            }
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   ADICIONAR FOTO / VÍDEO
-   ========================= */
-
-function addGalleryMedia(folder){
-
-    if(!store.folders[folder]){
-
-        alert("folder not found.");
-
-        return;
-
-    }
-
-
-    const type =
-        prompt("type: photo or video");
-
-    if(!type) return;
-
-
-    const normalized =
-        type.trim().toLowerCase();
-
-
-    if(
-        normalized !== "photo" &&
-        normalized !== "video"
-    ){
-
-        alert(
-            "please type photo or video."
-        );
-
-        return;
-
-    }
-
-
-    const url =
-        prompt(
-            "paste the image or video URL:"
-        );
-
-    if(!url || !url.trim()) return;
-
-
-    const title =
-        prompt(
-            "title (optional):"
-        ) || "";
-
-
-    store.folders[folder].push({
-
-        id: Date.now(),
-
-        type: normalized,
-
-        url: url.trim(),
-
-        name: title.trim(),
-
-        title: title.trim()
+      container.appendChild(card);
 
     });
+  }
 
+  const add =
+    document.createElement('button');
 
-    saveStore();
+  add.className =
+    'calendar-add';
 
+  add.innerText =
+    '+ add schedule';
 
-    openGalleryFolder(folder);
+  add.onclick =
+    () => addCalendarEvent(date);
 
+  container.appendChild(add);
 }
 
+function formatCalendarDate(date){
 
-/* =========================
-   RENDER GALERIA
-   ========================= */
+  const parts =
+    date.split('-');
 
-function renderGallery(){
+  const d =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
 
-    const folders =
-        document.getElementById(
-            "galleryFolders"
-        );
-
-    const media =
-        document.getElementById(
-            "galleryMedia"
-        );
-
-
-    if(!folders || !media) return;
-
-
-    folders.innerHTML = "";
-
-    media.innerHTML = "";
-
-
-    const folderNames =
-        Object.keys(store.folders);
-
-
-    /* =====================
-       CABEÇALHO
-       ===================== */
-
-    const header =
-        document.createElement("div");
-
-    header.style.display = "flex";
-
-    header.style.justifyContent =
-        "space-between";
-
-    header.style.alignItems =
-        "center";
-
-    header.style.marginBottom =
-        "14px";
-
-
-    header.innerHTML = `
-
-        <div>
-
-            <div class="widget-title">
-                gallery
-            </div>
-
-            <h2>
-                your archive
-            </h2>
-
-        </div>
-
-
-        <button
-            class="editor-button blue"
-            onclick="createGalleryFolder()">
-
-            + folder
-
-        </button>
-
-    `;
-
-
-    folders.appendChild(header);
-
-
-    /* =====================
-       PASTAS
-       ===================== */
-
-    if(!folderNames.length){
-
-        const empty =
-            document.createElement("div");
-
-        empty.className =
-            "detail-card";
-
-        empty.style.textAlign =
-            "center";
-
-
-        empty.innerHTML = `
-
-            <div
-                class="icon"
-                style="margin:0 auto 12px;">
-
-                📁
-
-            </div>
-
-            <h3>
-                no folders yet
-            </h3>
-
-            <p>
-                create your first gallery folder.
-            </p>
-
-        `;
-
-
-        folders.appendChild(empty);
-
-        return;
-
+  return new Intl.DateTimeFormat(
+    'en-US',
+    {
+      month:'long',
+      day:'numeric',
+      year:'numeric'
     }
-
-
-    const grid =
-        document.createElement("div");
-
-    grid.className =
-        "folder-grid";
-
-
-    folderNames.forEach(function(folder){
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "folder-card";
-
-
-        card.innerHTML = `
-
-            <div class="folder-icon">
-                📁
-            </div>
-
-
-            <h3>
-                ${escapeHTML(folder)}
-            </h3>
-
-
-            <p>
-                ${store.folders[folder].length}
-                items
-            </p>
-
-
-            <button
-                class="folder-delete"
-                onclick="
-                    event.stopPropagation();
-                    deleteGalleryFolder(
-                        ${JSON.stringify(folder)}
-                    );
-                ">
-
-                ×
-
-            </button>
-
-        `;
-
-
-        card.onclick =
-            function(){
-
-                openGalleryFolder(folder);
-
-            };
-
-
-        grid.appendChild(card);
-
-    });
-
-
-    folders.appendChild(grid);
-
+  ).format(d);
 }
 
+function addCalendarEvent(date){
+
+  if(!date){
+
+    alert(
+      'select a day first.'
+    );
+
+    return;
+  }
+
+  const name =
+    prompt(
+      'what is the schedule?'
+    );
+
+  if(!name) return;
+
+  const time =
+    prompt(
+      'what time?'
+    ) || '';
+
+  const events =
+    getCalendarEvents();
+
+  if(!events[date]){
+    events[date] = [];
+  }
+
+  events[date].push({
+    name:name,
+    time:time
+  });
+
+  saveCalendarEvents(events);
+
+  renderCalendar();
+   }
 
 /* =========================
-   EXCLUIR PASTA
-   ========================= */
+   START
+========================= */
 
-function deleteGalleryFolder(folder){
+renderTracks();
 
-    const confirmed =
-        confirm(
-            "delete this folder and all its media?"
-        );
+updateTracker();
 
 
-    if(!confirmed) return;
+/*
+   Update the displayed data
+   every 2 minutes.
+*/
 
+setInterval(
+() => {
 
-    delete store.folders[folder];
+updateTracker();
 
+},
+2 * 60 * 1000
+);
 
-    saveStore();
 
-
-    renderGallery();
-
-}
-
-
-/* =========================
-   MEDIA HTML
-   ========================= */
-
-function mediaHTML(item){
-
-    const url =
-        safeURL(item.url);
-
-
-    if(!url){
-
-        return `
-
-            <div class="photo">
-
-                <span>
-                    invalid media
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(item.type === "video"){
-
-        return `
-
-            <div
-                class="photo"
-                onclick='openMedia(${JSON.stringify(item)})'>
-
-                <video
-                    src="${url}"
-                    muted
-                    playsinline
-                    preload="metadata">
-
-                </video>
-
-                <div
-                    style="
-                        position:absolute;
-                        inset:0;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        background:rgba(0,0,0,.12);
-                        color:#fff;
-                        font-size:24px;
-                        pointer-events:none;
-                    ">
-
-                    ▶
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    return `
-
-        <div
-            class="photo"
-            onclick='openMedia(${JSON.stringify(item)})'>
-
-            <img
-                src="${url}"
-                alt="${escapeHTML(
-                    item.title ||
-                    item.name ||
-                    "photo"
-                )}">
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================
-   ABRIR MÍDIA
-   ========================= */
-
-function openMedia(item){
-
-    const detail =
-        document.getElementById(
-            "detailContent"
-        );
-
-
-    if(!detail) return;
-
-
-    const title =
-        item.title ||
-        item.name ||
-        "media";
-
-
-    if(item.type === "video"){
-
-        detail.innerHTML = `
-
-            <div class="detail-card">
-
-                <h2>
-                    ${escapeHTML(title)}
-                </h2>
-
-                <video
-                    controls
-                    playsinline
-                    style="
-                        width:100%;
-                        border-radius:18px;
-                        margin-top:15px;
-                    "
-                    src="${safeURL(item.url)}">
-
-                </video>
-
-            </div>
-
-        `;
-
-    }else{
-
-        detail.innerHTML = `
-
-            <div class="detail-card">
-
-                <h2>
-                    ${escapeHTML(title)}
-                </h2>
-
-                <img
-                    src="${safeURL(item.url)}"
-                    alt="${escapeHTML(title)}"
-                    style="
-                        width:100%;
-                        border-radius:18px;
-                        margin-top:15px;
-                        display:block;
-                    ">
-
-            </div>
-
-        `;
-
-    }
-
-
-    openPage("detailPage");
-
-}
-
-
-/* =========================
-   ATUALIZAR GALERIA
-   ========================= */
-
-setTimeout(function(){
-
-    renderGallery();
-
-},100);
-
-        </script>
+</script>
 
 </body>
-</html>
+
+    </html>
+   
       
