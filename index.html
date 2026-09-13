@@ -4464,8 +4464,1070 @@ button.classList.add(
 
 }
 );
+/* =========================
+   MEMBER CALENDAR
+========================= */
+
+let calendarMember = 'Yunah';
+let calendarDate = new Date();
+let selectedCalendarDate = null;
+
+const memberOrder = [
+  'Yunah',
+  'Minju',
+  'Moka',
+  'Wonhee',
+  'Iroha'
+];
+
+const memberColors = {
+  Yunah:'#ff7f8a',
+  Minju:'#ffd84d',
+  Moka:'#b794d6',
+  Wonhee:'#ff86b7',
+  Iroha:'#7fc8ff'
+};
 
 
+/* =========================
+   MEMBER STORAGE
+========================= */
+
+function calendarStorageKey(member){
+
+  return 'illit-calendar-' +
+    member.toLowerCase();
+
+}
+
+
+function getMemberCalendarEvents(member){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        calendarStorageKey(member)
+      )
+    ) || {};
+
+  }catch{
+
+    return {};
+
+  }
+
+}
+
+
+function saveMemberCalendarEvents(
+  member,
+  events
+){
+
+  localStorage.setItem(
+    calendarStorageKey(member),
+    JSON.stringify(events)
+  );
+
+}
+
+
+/* =========================
+   CURRENT MEMBER CALENDAR
+========================= */
+
+function getCalendarEvents(){
+
+  return getMemberCalendarEvents(
+    calendarMember
+  );
+
+}
+
+
+function saveCalendarEvents(events){
+
+  saveMemberCalendarEvents(
+    calendarMember,
+    events
+  );
+
+}
+
+
+/* =========================
+   MEMBER PHOTOS
+========================= */
+
+function openMemberPhotos(){
+
+  const name =
+    document.getElementById(
+      'detailName'
+    )?.innerText
+    || 'Wonhee';
+
+  document
+    .querySelectorAll('.page')
+    .forEach(
+      p =>
+      p.classList.remove('active')
+    );
+
+  const photos =
+    document.getElementById(
+      'memberPhotos'
+    );
+
+  if(photos){
+
+    photos.classList.add('active');
+
+  }
+
+  const nameElement =
+    document.getElementById(
+      'photosMemberName'
+    );
+
+  if(nameElement){
+
+    nameElement.innerText =
+      name;
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+/* =========================
+   OPEN MEMBER SCHEDULE
+========================= */
+
+function openMemberSchedule(){
+
+  const name =
+    document.getElementById(
+      'detailName'
+    )?.innerText
+    || 'Yunah';
+
+  calendarMember =
+    name;
+
+  calendarDate =
+    new Date();
+
+  selectedCalendarDate =
+    null;
+
+  document
+    .querySelectorAll('.page')
+    .forEach(
+      p =>
+      p.classList.remove('active')
+    );
+
+  const calendar =
+    document.getElementById(
+      'memberCalendar'
+    );
+
+  if(calendar){
+
+    calendar.classList.add('active');
+
+  }
+
+  const nameElement =
+    document.getElementById(
+      'calendarMemberName'
+    );
+
+  if(nameElement){
+
+    nameElement.innerText =
+      calendarMember;
+
+  }
+
+  renderCalendar();
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+/* =========================
+   CLOSE MEMBER SCHEDULE
+========================= */
+
+function closeMemberSchedule(){
+
+  document
+    .querySelectorAll('.page')
+    .forEach(
+      p =>
+      p.classList.remove('active')
+    );
+
+  const detail =
+    document.getElementById(
+      'memberDetail'
+    );
+
+  if(detail){
+
+    detail.classList.add('active');
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+/* =========================
+   MEMBER CALENDAR MONTH
+========================= */
+
+function changeCalendarMonth(
+  amount
+){
+
+  calendarDate.setMonth(
+    calendarDate.getMonth() +
+    amount
+  );
+
+  selectedCalendarDate =
+    null;
+
+  renderCalendar();
+
+}
+
+
+/* =========================
+   DATE KEY
+========================= */
+
+function dateKey(
+  year,
+  month,
+  day
+){
+
+  return year +
+    '-' +
+    String(month + 1)
+      .padStart(2,'0') +
+    '-' +
+    String(day)
+      .padStart(2,'0');
+
+}
+
+
+/* =========================
+   RENDER MEMBER CALENDAR
+========================= */
+
+function renderCalendar(){
+
+  const days =
+    document.getElementById(
+      'calendarDays'
+    );
+
+  const monthTitle =
+    document.getElementById(
+      'calendarMonth'
+    );
+
+  if(
+    !days ||
+    !monthTitle
+  ) return;
+
+  const year =
+    calendarDate.getFullYear();
+
+  const month =
+    calendarDate.getMonth();
+
+  monthTitle.innerText =
+    new Intl.DateTimeFormat(
+      'en-US',
+      {
+        month:'long',
+        year:'numeric'
+      }
+    ).format(calendarDate);
+
+  days.innerHTML = '';
+
+  const firstDay =
+    new Date(
+      year,
+      month,
+      1
+    ).getDay();
+
+  const daysInMonth =
+    new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+  const events =
+    getCalendarEvents();
+
+  for(
+    let i = 0;
+    i < firstDay;
+    i++
+  ){
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+    empty.className =
+      'calendar-day empty';
+
+    days.appendChild(
+      empty
+    );
+
+  }
+
+  const today =
+    new Date();
+
+  for(
+    let day = 1;
+    day <= daysInMonth;
+    day++
+  ){
+
+    const button =
+      document.createElement(
+        'button'
+      );
+
+    button.className =
+      'calendar-day';
+
+    const key =
+      dateKey(
+        year,
+        month,
+        day
+      );
+
+    if(
+      year ===
+      today.getFullYear() &&
+      month ===
+      today.getMonth() &&
+      day ===
+      today.getDate()
+    ){
+
+      button.classList.add(
+        'today'
+      );
+
+    }
+
+    if(
+      selectedCalendarDate ===
+      key
+    ){
+
+      button.classList.add(
+        'selected'
+      );
+
+    }
+
+    if(
+      events[key] &&
+      events[key].length
+    ){
+
+      button.classList.add(
+        'has-event'
+      );
+
+    }
+
+    button.innerText =
+      day;
+
+    button.onclick = () => {
+
+      selectedCalendarDate =
+        key;
+
+      renderCalendar();
+
+      showCalendarEvents(
+        key
+      );
+
+    };
+
+    days.appendChild(
+      button
+    );
+
+  }
+
+  if(selectedCalendarDate){
+
+    showCalendarEvents(
+      selectedCalendarDate
+    );
+
+  }else{
+
+    showCalendarEvents(
+      null
+    );
+
+  }
+
+}
+
+
+/* =========================
+   MEMBER EVENTS
+========================= */
+
+function showCalendarEvents(
+  date
+){
+
+  const container =
+    document.getElementById(
+      'calendarEvents'
+    );
+
+  if(!container) return;
+
+  container.innerHTML = '';
+
+  const events =
+    getCalendarEvents();
+
+  if(
+    date &&
+    events[date] &&
+    events[date].length
+  ){
+
+    events[date].forEach(
+      event => {
+
+        const card =
+          document.createElement(
+            'div'
+          );
+
+        card.className =
+          'calendar-event';
+
+        let html =
+          '<div class="calendar-event-date">' +
+          formatCalendarDate(date) +
+          '</div>' +
+
+          '<div class="calendar-event-name">' +
+          esc(event.name) +
+          '</div>';
+
+        if(event.time){
+
+          html +=
+            '<div class="calendar-event-time">' +
+            esc(event.time) +
+            '</div>';
+
+        }
+
+        if(event.link){
+
+          const safeLink =
+            getSafeActivityLink(
+              event.link
+            );
+
+          if(safeLink){
+
+            html +=
+              '<a class="album-link" href="' +
+              esc(safeLink) +
+              '" target="_blank">' +
+              'open activity ›' +
+              '</a>';
+
+          }
+
+        }
+
+        card.innerHTML =
+          html;
+
+        container.appendChild(
+          card
+        );
+
+      }
+    );
+
+  }
+
+  const add =
+    document.createElement(
+      'button'
+    );
+
+  add.className =
+    'calendar-add';
+
+  add.innerText =
+    '+ add schedule';
+
+  add.onclick =
+    () =>
+    addCalendarEvent(
+      date
+    );
+
+  container.appendChild(
+    add
+  );
+
+}
+
+
+/* =========================
+   FORMAT DATE
+========================= */
+
+function formatCalendarDate(
+  date
+){
+
+  const parts =
+    date.split('-');
+
+  const d =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
+
+  return new Intl.DateTimeFormat(
+    'en-US',
+    {
+      month:'long',
+      day:'numeric',
+      year:'numeric'
+    }
+  ).format(d);
+
+}
+
+
+/* =========================
+   SAFE LINK
+========================= */
+
+function getSafeActivityLink(
+  link
+){
+
+  try{
+
+    const url =
+      new URL(link);
+
+    if(
+      url.protocol === 'http:' ||
+      url.protocol === 'https:'
+    ){
+
+      return url.href;
+
+    }
+
+  }catch{}
+
+  return null;
+
+}
+
+
+/* =========================
+   ADD MEMBER SCHEDULE
+========================= */
+
+function addCalendarEvent(
+  date
+){
+
+  if(!date){
+
+    alert(
+      'select a day first.'
+    );
+
+    return;
+
+  }
+
+  const name =
+    prompt(
+      'what is the schedule?'
+    );
+
+  if(!name) return;
+
+  const time =
+    prompt(
+      'what time?'
+    ) || '';
+
+  const link =
+    prompt(
+      'activity link?'
+    ) || '';
+
+  if(
+    link &&
+    !getSafeActivityLink(link)
+  ){
+
+    alert(
+      'please enter a valid http or https link.'
+    );
+
+    return;
+
+  }
+
+  const events =
+    getCalendarEvents();
+
+  if(!events[date]){
+
+    events[date] = [];
+
+  }
+
+  events[date].push({
+
+    name:name,
+
+    time:time,
+
+    link:link
+
+  });
+
+  saveCalendarEvents(
+    events
+  );
+
+  renderCalendar();
+
+  renderSoloCalendar();
+
+  renderSoloActivityList();
+
+  renderActivityRanking();
+
+}
+
+
+/* =====================================================
+   SOLO ACTIVITIES TRACKER
+===================================================== */
+
+let soloCalendarDate =
+  new Date();
+
+let selectedSoloCalendarDate =
+  null;
+
+
+/* =========================
+   ADD SOLO ACTIVITY
+========================= */
+
+function addSoloActivity(){
+
+  const member =
+    document.getElementById(
+      'activityMember'
+    )?.value;
+
+  const name =
+    document.getElementById(
+      'activityName'
+    )?.value
+    .trim();
+
+  const date =
+    document.getElementById(
+      'activityDate'
+    )?.value;
+
+  const link =
+    document.getElementById(
+      'activityLink'
+    )?.value
+    .trim();
+
+  if(!member){
+
+    alert(
+      'select a member.'
+    );
+
+    return;
+
+  }
+
+  if(!name){
+
+    alert(
+      'enter the activity name.'
+    );
+
+    return;
+
+  }
+
+  if(!date){
+
+    alert(
+      'select a date.'
+    );
+
+    return;
+
+  }
+
+  if(!link){
+
+    alert(
+      'enter the activity link.'
+    );
+
+    return;
+
+  }
+
+  const safeLink =
+    getSafeActivityLink(link);
+
+  if(!safeLink){
+
+    alert(
+      'please enter a valid http or https link.'
+    );
+
+    return;
+
+  }
+
+  const events =
+    getMemberCalendarEvents(
+      member
+    );
+
+  if(!events[date]){
+
+    events[date] = [];
+
+  }
+
+  events[date].push({
+
+    name:name,
+
+    time:'',
+
+    link:safeLink
+
+  });
+
+  saveMemberCalendarEvents(
+    member,
+    events
+  );
+
+  document.getElementById(
+    'activityName'
+  ).value = '';
+
+  document.getElementById(
+    'activityDate'
+  ).value = '';
+
+  document.getElementById(
+    'activityLink'
+  ).value = '';
+
+  soloCalendarDate =
+    new Date(
+      date +
+      'T12:00:00'
+    );
+
+  selectedSoloCalendarDate =
+    date;
+
+  renderSoloCalendar();
+
+  renderSoloActivityList();
+
+  renderActivityRanking();
+
+}
+
+
+/* =========================
+   GET ALL SOLO ACTIVITIES
+========================= */
+
+function getAllSoloActivities(){
+
+  const activities = [];
+
+  memberOrder.forEach(
+    member => {
+
+      const events =
+        getMemberCalendarEvents(
+          member
+        );
+
+      Object.keys(events)
+        .forEach(
+          date => {
+
+            const dayEvents =
+              events[date];
+
+            if(
+              !Array.isArray(
+                dayEvents
+              )
+            ) return;
+
+            dayEvents.forEach(
+              event => {
+
+                activities.push({
+
+                  member:member,
+
+                  name:
+                    event.name ||
+                    'untitled',
+
+                  date:date,
+
+                  time:
+                    event.time ||
+                    '',
+
+                  link:
+                    event.link ||
+                    ''
+
+                });
+
+              }
+            );
+
+          }
+        );
+
+    }
+  );
+
+  return activities;
+
+}
+
+
+/* =========================
+   SOLO CALENDAR MONTH
+========================= */
+
+function changeSoloCalendarMonth(
+  amount
+){
+
+  soloCalendarDate.setMonth(
+    soloCalendarDate.getMonth() +
+    amount
+  );
+
+  selectedSoloCalendarDate =
+    null;
+
+  renderSoloCalendar();
+
+}
+
+
+/* =========================
+   RENDER SOLO CALENDAR
+========================= */
+
+function renderSoloCalendar(){
+
+  const days =
+    document.getElementById(
+      'soloCalendarDays'
+    );
+
+  const monthTitle =
+    document.getElementById(
+      'soloCalendarMonth'
+    );
+
+  const countElement =
+    document.getElementById(
+      'activityCalendarCount'
+    );
+
+  if(
+    !days ||
+    !monthTitle
+  ) return;
+
+  const year =
+    soloCalendarDate.getFullYear();
+
+  const month =
+    soloCalendarDate.getMonth();
+
+  monthTitle.innerText =
+    new Intl.DateTimeFormat(
+      'en-US',
+      {
+        month:'long',
+        year:'numeric'
+      }
+    ).format(
+      soloCalendarDate
+    );
+
+  const allActivities =
+    getAllSoloActivities();
+
+  if(countElement){
+
+    countElement.innerText =
+      allActivities.length +
+      (
+        allActivities.length === 1
+        ? ' activity'
+        : ' activities'
+      );
+
+  }
+
+  days.innerHTML = '';
+
+  const firstDay =
+    new Date(
+      year,
+      month,
+      1
+    ).getDay();
+
+  const daysInMonth =
+    new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+  const eventsByDate = {};
+
+  allActivities.forEach(
+    activity => {
+
+      if(
+        !eventsByDate[
+          activity.date
+        ]
+      ){
+
+        eventsByDate[
+          activity.date
+        ] = [];
+
+      }
+
+      eventsByDate[
+        activity.date
+      ].push(
+        activity
+
+         /* =========================
+   START
+========================= */
+
+renderTracks();
+
+updateTracker();
+
+
+/*
+   Update the displayed data
+   every 2 minutes.
+*/
+
+setInterval(
+() => {
+
+updateTracker();
+
+},
+2 * 60 * 1000
+);
+
+
+</script>
+
+</body>
+
+    </html>
    
 
 
