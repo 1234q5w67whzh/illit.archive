@@ -11,6 +11,73 @@
 
 <style>
 
+/* =========================
+   MEMBER GALLERY
+========================= */
+
+#memberPhotoFolders{
+  margin-top:16px;
+}
+
+#memberPhotoGallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+
+.photo-card{
+  background:var(--card);
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
+}
+
+.photo-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  cursor:pointer;
+}
+
+.photo-card-info{
+  padding:10px;
+}
+
+.photo-card-info .item-name{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:4px;
+}
+
+.photo-card-info a{
+  font-size:12px;
+  color:var(--pink);
+  text-decoration:none;
+}
+
+#memberPhotoFolder,
+#photoFolderName,
+#memberPhotoName,
+#memberPhotoUrl,
+#memberPhotoLink{
+  width:100%;
+  box-sizing:border-box;
+  margin-top:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--text);
+  font-size:14px;
+}
+
+#memberPhotoFolders .item{
+  cursor:pointer;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 *{
@@ -1865,11 +1932,11 @@ id="tour"
 
 <div class="page-heading">
 
-<h1>
+<h1 id="tourTitle">
 Tour
 </h1>
 
-<p>
+<p id="tourSubtitle">
 ILLIT PRESS START
 </p>
 
@@ -1882,14 +1949,48 @@ ILLIT PRESS START
 ILLIT
 </div>
 
-<h1>
+<h1 id="tourHeroTitle">
 PRESS<br>
 START
 </h1>
 
-<p>
+<p id="tourHeroDescription">
 tour archive · dates · venues · memories
 </p>
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+tour settings
+</div>
+
+<input
+type="text"
+id="tourNameInput"
+placeholder="tour name"
+>
+
+<input
+type="text"
+id="tourSubtitleInput"
+placeholder="tour subtitle"
+>
+
+<textarea
+id="tourDescriptionInput"
+placeholder="tour description"
+rows="3"
+></textarea>
+
+<button
+class="activity-add-button"
+onclick="saveTourSettings()"
+>
+save tour
+</button>
 
 </div>
 
@@ -1901,7 +2002,10 @@ tour archive
 </div>
 
 
-<div class="item">
+<div
+class="item"
+onclick="openTourSection('dates')"
+>
 
 <div class="item-icon">
 📅
@@ -1926,7 +2030,10 @@ tour schedule
 </div>
 
 
-<div class="item">
+<div
+class="item"
+onclick="openTourSection('venues')"
+>
 
 <div class="item-icon">
 📍
@@ -1951,7 +2058,10 @@ concert locations
 </div>
 
 
-<div class="item">
+<div
+class="item"
+onclick="openTourSection('tickets')"
+>
 
 <div class="item-icon">
 🎟
@@ -1976,7 +2086,10 @@ ticket information
 </div>
 
 
-<div class="item">
+<div
+class="item"
+onclick="openTourSection('setlist')"
+>
 
 <div class="item-icon">
 ♫
@@ -2000,6 +2113,355 @@ concert songs
 
 </div>
 
+
+</div>
+
+</section>
+
+
+<!-- TOUR DATES -->
+
+<section
+class="page"
+id="tourDates"
+>
+
+<button
+class="back"
+onclick="openPage('tour')"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1>
+Dates
+</h1>
+
+<p>
+tour schedule
+</p>
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+add date
+</div>
+
+
+<input
+type="date"
+id="tourDateInput"
+>
+
+<input
+type="text"
+id="tourDateCityInput"
+placeholder="city"
+>
+
+<input
+type="text"
+id="tourDateVenueInput"
+placeholder="venue"
+>
+
+<input
+type="text"
+id="tourDateAddressInput"
+placeholder="address"
+>
+
+<input
+type="url"
+id="tourDateLinkInput"
+placeholder="link"
+>
+
+<textarea
+id="tourDateNotesInput"
+placeholder="notes"
+rows="3"
+></textarea>
+
+
+<button
+class="activity-add-button"
+onclick="addTourDate()"
+>
++ add date
+</button>
+
+</div>
+
+
+<div
+class="list"
+id="tourDatesList"
+>
+
+<div class="list-title">
+dates
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOUR VENUES -->
+
+<section
+class="page"
+id="tourVenues"
+>
+
+<button
+class="back"
+onclick="openPage('tour')"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1>
+Cities & Venues
+</h1>
+
+<p>
+concert locations
+</p>
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+add location
+</div>
+
+
+<input
+type="text"
+id="tourVenueCityInput"
+placeholder="city"
+>
+
+<input
+type="text"
+id="tourVenueNameInput"
+placeholder="venue"
+>
+
+<input
+type="text"
+id="tourVenueAddressInput"
+placeholder="address"
+>
+
+<input
+type="url"
+id="tourVenueLinkInput"
+placeholder="link"
+>
+
+<input
+type="url"
+id="tourVenueImageInput"
+placeholder="photo URL"
+>
+
+<textarea
+id="tourVenueNotesInput"
+placeholder="notes"
+rows="3"
+></textarea>
+
+
+<button
+class="activity-add-button"
+onclick="addTourVenue()"
+>
++ add location
+</button>
+
+</div>
+
+
+<div
+class="list"
+id="tourVenuesList"
+>
+
+<div class="list-title">
+cities & venues
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOUR TICKETS -->
+
+<section
+class="page"
+id="tourTickets"
+>
+
+<button
+class="back"
+onclick="openPage('tour')"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1>
+Tickets
+</h1>
+
+<p>
+ticket information
+</p>
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+add ticket information
+</div>
+
+
+<input
+type="text"
+id="tourTicketTitleInput"
+placeholder="title"
+>
+
+<input
+type="url"
+id="tourTicketLinkInput"
+placeholder="ticket link"
+>
+
+<input
+type="url"
+id="tourTicketImageInput"
+placeholder="photo URL"
+>
+
+<textarea
+id="tourTicketTextInput"
+placeholder="write ticket information..."
+rows="5"
+></textarea>
+
+
+<button
+class="activity-add-button"
+onclick="addTourTicket()"
+>
++ add ticket information
+</button>
+
+</div>
+
+
+<div
+class="list"
+id="tourTicketsList"
+>
+
+<div class="list-title">
+ticket information
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOUR SETLIST -->
+
+<section
+class="page"
+id="tourSetlist"
+>
+
+<button
+class="back"
+onclick="openPage('tour')"
+>
+‹ back
+</button>
+
+<div class="page-heading">
+
+<h1>
+Setlist
+</h1>
+
+<p>
+concert songs
+</p>
+
+</div>
+
+
+<div class="widget">
+
+<div class="widget-title">
+add song
+</div>
+
+
+<input
+type="text"
+id="tourSetlistSongInput"
+placeholder="song title"
+>
+
+<input
+type="text"
+id="tourSetlistCategoryInput"
+placeholder="category / section"
+>
+
+<textarea
+id="tourSetlistNotesInput"
+placeholder="notes"
+rows="3"
+></textarea>
+
+
+<button
+class="activity-add-button"
+onclick="addTourSetlistSong()"
+>
++ add song
+</button>
+
+</div>
+
+
+<div
+class="list"
+id="tourSetlistList"
+>
+
+<div class="list-title">
+setlist
+</div>
 
 </div>
 
@@ -2220,6 +2682,7 @@ social updates
 </div>
 
 </section>
+
 
 <!-- SCHEDULE -->
 
@@ -2469,22 +2932,27 @@ ILLIT gallery
 </div>
 
 
+<!-- GALLERY TABS -->
+
 <div class="tabs">
 
 <button
 class="tab selected"
+onclick="openGalleryTab('library',this)"
 >
 LIBRARY
 </button>
 
 <button
 class="tab"
+onclick="openGalleryTab('albums',this)"
 >
 ALBUMS
 </button>
 
 <button
 class="tab"
+onclick="openGalleryTab('era',this)"
 >
 ERA
 </button>
@@ -2492,42 +2960,176 @@ ERA
 </div>
 
 
-<div class="photo-grid">
+<!-- LIBRARY -->
 
-<div class="photo">
-photo
+<div
+id="galleryLibrary"
+class="gallery-tab-content"
+>
+
+<div class="widget">
+
+<div class="list-title">
+gallery manager
 </div>
 
-<div class="photo">
-photo
+<p class="item-sub">
+add photos and organize your ILLIT archive.
+</p>
+
 </div>
 
-<div class="photo">
-photo
+
+<div class="widget">
+
+<div class="list-title">
+add photo
 </div>
 
-<div class="photo">
-photo
+
+<input
+id="mainGalleryPhotoName"
+type="text"
+placeholder="photo name"
+>
+
+
+<input
+id="mainGalleryPhotoUrl"
+type="url"
+placeholder="photo image URL"
+>
+
+
+<input
+id="mainGalleryPhotoFile"
+type="file"
+accept="image/*"
+>
+
+
+<input
+id="mainGalleryPhotoLink"
+type="url"
+placeholder="optional link"
+>
+
+
+<select
+id="mainGalleryFolder"
+>
+<option value="">
+select album
+</option>
+</select>
+
+
+<button
+class="activity-add-button"
+onclick="addMainGalleryPhoto()"
+>
++ add photo
+</button>
+
 </div>
 
-<div class="photo">
-photo
+
+<div
+id="mainGalleryPhotoGrid"
+class="photo-grid"
+>
 </div>
 
-<div class="photo">
-photo
 </div>
 
-<div class="photo">
-photo
+
+<!-- ALBUMS -->
+
+<div
+id="galleryAlbums"
+class="gallery-tab-content"
+style="display:none;"
+>
+
+<div class="widget">
+
+<div class="list-title">
+new album
 </div>
 
-<div class="photo">
-photo
+
+<input
+id="mainGalleryFolderName"
+type="text"
+placeholder="album name"
+>
+
+
+<button
+class="activity-add-button"
+onclick="addMainGalleryFolder()"
+>
++ add album
+</button>
+
 </div>
 
-<div class="photo">
-photo
+
+<div
+id="mainGalleryFolders"
+class="list"
+>
+
+<div class="list-title">
+albums
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ERA -->
+
+<div
+id="galleryEra"
+class="gallery-tab-content"
+style="display:none;"
+>
+
+<div class="widget">
+
+<div class="list-title">
+new era
+</div>
+
+
+<input
+id="mainGalleryEraName"
+type="text"
+placeholder="era name"
+>
+
+
+<button
+class="activity-add-button"
+onclick="addMainGalleryEra()"
+>
++ add era
+</button>
+
+</div>
+
+
+<div
+id="mainGalleryEras"
+class="list"
+>
+
+<div class="list-title">
+eras
+</div>
+
 </div>
 
 </div>
@@ -2869,6 +3471,111 @@ individual gallery
 </p>
 
 </div>
+
+
+<!-- GALLERY CONTROLS -->
+
+<div class="widget">
+
+<div class="list-title">
+gallery manager
+</div>
+
+
+<input
+id="photoFolderName"
+type="text"
+placeholder="folder / album name"
+>
+
+
+<button
+class="activity-add-button"
+onclick="addMemberPhotoFolder()"
+>
++ add folder
+</button>
+
+</div>
+
+
+<!-- FOLDERS -->
+
+<div
+id="memberPhotoFolders"
+class="list"
+>
+
+<div class="list-title">
+albums
+</div>
+
+</div>
+
+
+<!-- PHOTOS -->
+
+<div
+id="memberPhotoGallery"
+class="photo-grid"
+>
+
+</div>
+
+
+<!-- ADD PHOTO -->
+
+<div class="widget">
+
+<div class="list-title">
+add photo
+</div>
+
+
+<select
+id="memberPhotoFolder"
+>
+<option value="">
+select folder
+</option>
+</select>
+
+
+<input
+id="memberPhotoName"
+type="text"
+placeholder="photo name"
+>
+
+
+<input
+id="memberPhotoUrl"
+type="url"
+placeholder="photo image URL"
+>
+
+<input
+id="memberPhotoFile"
+type="file"
+accept="image/*"
+>
+
+<input
+id="memberPhotoLink"
+type="url"
+placeholder="optional link"
+>
+
+
+<button
+class="activity-add-button"
+onclick="addMemberPhoto()"
+>
++ add photo
+</button>
+
+</div>
+
 
 </section>
 
@@ -3333,6 +4040,24 @@ c => ({
 
 }
 
+loadTourSettings();
+
+renderTourDates();
+
+renderTourVenues();
+
+renderTourTickets();
+
+renderTourSetlist();
+
+renderTracks();
+updateTracker();
+renderCalendar();
+renderSoloCalendar();
+renderSoloActivityList();
+renderActivityRanking();
+
+setInterval(()=>updateTracker(),2*60*1000);
 
 function getStreamValue(
 data,
@@ -3522,12 +4247,6 @@ name.charAt(0);
 }
 
 
-/*
-   Não apagamos o conteúdo do
-   headerTitle para preservar a logo.
-*/
-
-
 window.scrollTo({
 top:0,
 behavior:'smooth'
@@ -3543,6 +4262,920 @@ previousPage
 );
 
 }
+
+
+/* =========================
+   MAIN GALLERY
+========================= */
+
+let mainGalleryData = {
+  folders: [],
+  eras: [],
+  photos: []
+};
+
+
+/* =========================
+   STORAGE
+========================= */
+
+function loadMainGallery(){
+
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem('illit-main-gallery')
+      );
+
+    if(saved){
+
+      mainGalleryData = {
+        folders: saved.folders || [],
+        eras: saved.eras || [],
+        photos: saved.photos || []
+      };
+
+    }
+
+  }catch(error){
+
+    mainGalleryData = {
+      folders: [],
+      eras: [],
+      photos: []
+    };
+
+  }
+
+}
+
+
+function saveMainGallery(){
+
+  localStorage.setItem(
+    'illit-main-gallery',
+    JSON.stringify(mainGalleryData)
+  );
+
+}
+
+
+/* =========================
+   GALLERY TABS
+========================= */
+
+function openGalleryTab(tab,button){
+
+  document
+    .querySelectorAll('.gallery-tab-content')
+    .forEach(section=>{
+      section.style.display='none';
+    });
+
+  const selected =
+    document.getElementById(
+      'gallery' +
+      tab.charAt(0).toUpperCase() +
+      tab.slice(1)
+    );
+
+  if(selected){
+    selected.style.display='block';
+  }
+
+  document
+    .querySelectorAll('#gallery .tab')
+    .forEach(tabButton=>{
+      tabButton.classList.remove('selected');
+    });
+
+  if(button){
+    button.classList.add('selected');
+  }
+
+}
+
+
+/* =========================
+   ALBUMS
+========================= */
+
+function addMainGalleryFolder(){
+
+  const input =
+    document.getElementById(
+      'mainGalleryFolderName'
+    );
+
+  const name =
+    input?.value.trim();
+
+  if(!name){
+    alert('enter an album name.');
+    return;
+  }
+
+  if(
+    mainGalleryData.folders
+      .some(folder =>
+        folder.name.toLowerCase() === name.toLowerCase()
+      )
+  ){
+
+    alert('this album already exists.');
+    return;
+
+  }
+
+  mainGalleryData.folders.push({
+
+    id:Date.now(),
+
+    name:name
+
+  });
+
+  saveMainGallery();
+
+  input.value='';
+
+  renderMainGalleryFolders();
+
+  updateMainGalleryFolderSelect();
+
+}
+
+
+/* =========================
+   RENDER ALBUMS
+========================= */
+
+function renderMainGalleryFolders(){
+
+  const container =
+    document.getElementById(
+      'mainGalleryFolders'
+    );
+
+  if(!container) return;
+
+  let html =
+    '<div class="list-title">albums</div>';
+
+  if(mainGalleryData.folders.length === 0){
+
+    html += `
+      <div class="item">
+        <div class="item-text">
+          <div class="item-name">
+            no albums yet
+          </div>
+          <div class="item-sub">
+            create an album above.
+          </div>
+        </div>
+      </div>
+    `;
+
+  }
+
+  mainGalleryData.folders.forEach(folder=>{
+
+    const count =
+      mainGalleryData.photos.filter(
+        photo => photo.folderId === folder.id
+      ).length;
+
+    html += `
+
+      <div class="item">
+
+        <div class="item-icon">
+          🗂️
+        </div>
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${esc(folder.name)}
+          </div>
+
+          <div class="item-sub">
+            ${count} photo${count === 1 ? '' : 's'}
+          </div>
+
+        </div>
+
+        <button
+          class="button"
+          onclick="renameMainGalleryFolder(${folder.id})"
+        >
+          edit
+        </button>
+
+        <button
+          class="button"
+          onclick="deleteMainGalleryFolder(${folder.id})"
+        >
+          delete
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  container.innerHTML=html;
+
+}
+
+
+/* =========================
+   ALBUM SELECT
+========================= */
+
+function updateMainGalleryFolderSelect(){
+
+  const select =
+    document.getElementById(
+      'mainGalleryFolder'
+    );
+
+  if(!select) return;
+
+  select.innerHTML =
+    '<option value="">select album</option>';
+
+  mainGalleryData.folders.forEach(folder=>{
+
+    const option =
+      document.createElement('option');
+
+    option.value =
+      folder.id;
+
+    option.textContent =
+      folder.name;
+
+    select.appendChild(option);
+
+  });
+
+}
+
+
+/* =========================
+   RENAME ALBUM
+========================= */
+
+function renameMainGalleryFolder(id){
+
+  const folder =
+    mainGalleryData.folders.find(
+      item => item.id === id
+    );
+
+  if(!folder) return;
+
+  const newName =
+    prompt(
+      'new album name:',
+      folder.name
+    );
+
+  if(newName === null) return;
+
+  const cleanName =
+    newName.trim();
+
+  if(!cleanName) return;
+
+  folder.name =
+    cleanName;
+
+  saveMainGallery();
+
+  renderMainGalleryFolders();
+
+  updateMainGalleryFolderSelect();
+
+  renderMainGalleryPhotos();
+
+}
+
+
+/* =========================
+   DELETE ALBUM
+========================= */
+
+function deleteMainGalleryFolder(id){
+
+  const folder =
+    mainGalleryData.folders.find(
+      item => item.id === id
+    );
+
+  if(!folder) return;
+
+  const confirmed =
+    confirm(
+      'delete this album and its photos?'
+    );
+
+  if(!confirmed) return;
+
+  mainGalleryData.folders =
+    mainGalleryData.folders.filter(
+      item => item.id !== id
+    );
+
+  mainGalleryData.photos =
+    mainGalleryData.photos.filter(
+      photo => photo.folderId !== id
+    );
+
+  saveMainGallery();
+
+  renderMainGalleryFolders();
+
+  updateMainGalleryFolderSelect();
+
+  renderMainGalleryPhotos();
+
+}
+
+
+/* =========================
+   ADD PHOTO
+========================= */
+
+function addMainGalleryPhoto(){
+
+  const name =
+    document
+      .getElementById(
+        'mainGalleryPhotoName'
+      )
+      ?.value.trim();
+
+  const url =
+    document
+      .getElementById(
+        'mainGalleryPhotoUrl'
+      )
+      ?.value.trim();
+
+  const fileInput =
+    document.getElementById(
+      'mainGalleryPhotoFile'
+    );
+
+  const link =
+    document
+      .getElementById(
+        'mainGalleryPhotoLink'
+      )
+      ?.value.trim();
+
+  const folderId =
+    document
+      .getElementById(
+        'mainGalleryFolder'
+      )
+      ?.value;
+
+  if(!name){
+
+    alert('enter a photo name.');
+
+    return;
+
+  }
+
+  if(!folderId){
+
+    alert('select an album.');
+
+    return;
+
+  }
+
+  let imageSource =
+    url;
+
+  /*
+    If a local image file is selected,
+    convert it to a data URL so it can
+    be saved in this browser.
+  */
+
+  if(
+    fileInput &&
+    fileInput.files &&
+    fileInput.files[0]
+  ){
+
+    const file =
+      fileInput.files[0];
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(event){
+
+        saveMainGalleryPhoto(
+          name,
+          event.target.result,
+          link,
+          folderId
+        );
+
+      };
+
+    reader.readAsDataURL(file);
+
+    return;
+
+  }
+
+  if(!imageSource){
+
+    alert(
+      'add an image URL or choose an image file.'
+    );
+
+    return;
+
+  }
+
+  saveMainGalleryPhoto(
+    name,
+    imageSource,
+    link,
+    folderId
+  );
+
+}
+
+
+/* =========================
+   SAVE PHOTO
+========================= */
+
+function saveMainGalleryPhoto(
+  name,
+  image,
+  link,
+  folderId
+){
+
+  mainGalleryData.photos.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    image:image,
+
+    link:link || '',
+
+    folderId:Number(folderId)
+
+  });
+
+  saveMainGallery();
+
+  document.getElementById(
+    'mainGalleryPhotoName'
+  ).value='';
+
+  document.getElementById(
+    'mainGalleryPhotoUrl'
+  ).value='';
+
+  document.getElementById(
+    'mainGalleryPhotoLink'
+  ).value='';
+
+  const fileInput =
+    document.getElementById(
+      'mainGalleryPhotoFile'
+    );
+
+  if(fileInput){
+    fileInput.value='';
+  }
+
+  renderMainGalleryPhotos();
+
+}
+
+
+/* =========================
+   RENDER PHOTOS
+========================= */
+
+function renderMainGalleryPhotos(){
+
+  const container =
+    document.getElementById(
+      'mainGalleryPhotoGrid'
+    );
+
+  if(!container) return;
+
+  if(mainGalleryData.photos.length === 0){
+
+    container.innerHTML=`
+
+      <div class="widget">
+
+        <div class="list-title">
+          library
+        </div>
+
+        <div class="item-sub">
+          no photos yet.
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML =
+    mainGalleryData.photos
+      .map(photo=>{
+
+        const folder =
+          mainGalleryData.folders.find(
+            item => item.id === photo.folderId
+          );
+
+        return `
+
+          <div
+            class="photo-card"
+          >
+
+            <img
+              src="${esc(photo.image)}"
+              alt="${esc(photo.name)}"
+              onclick="openMainGalleryPhoto(${photo.id})"
+            >
+
+            <div class="photo-card-info">
+
+              <div class="item-name">
+                ${esc(photo.name)}
+              </div>
+
+              <div class="item-sub">
+                ${folder ? esc(folder.name) : ''}
+              </div>
+
+              ${
+                photo.link
+                ?
+                `
+                <a
+                  href="${esc(photo.link)}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  open link
+                </a>
+                `
+                :
+                ''
+              }
+
+              <div
+                style="
+                  display:flex;
+                  gap:6px;
+                  margin-top:8px;
+                "
+              >
+
+                <button
+                  class="button"
+                  onclick="editMainGalleryPhoto(${photo.id})"
+                >
+                  edit
+                </button>
+
+                <button
+                  class="button"
+                  onclick="deleteMainGalleryPhoto(${photo.id})"
+                >
+                  delete
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join('');
+
+}
+
+
+/* =========================
+   OPEN PHOTO
+========================= */
+
+function openMainGalleryPhoto(id){
+
+  const photo =
+    mainGalleryData.photos.find(
+      item => item.id === id
+    );
+
+  if(!photo) return;
+
+  window.open(
+    photo.link || photo.image,
+    '_blank'
+  );
+
+}
+
+
+/* =========================
+   EDIT PHOTO
+========================= */
+
+function editMainGalleryPhoto(id){
+
+  const photo =
+    mainGalleryData.photos.find(
+      item => item.id === id
+    );
+
+  if(!photo) return;
+
+  const newName =
+    prompt(
+      'photo name:',
+      photo.name
+    );
+
+  if(newName === null) return;
+
+  const newLink =
+    prompt(
+      'photo link:',
+      photo.link || ''
+    );
+
+  if(newLink === null) return;
+
+  photo.name =
+    newName.trim() || photo.name;
+
+  photo.link =
+    newLink.trim();
+
+  saveMainGallery();
+
+  renderMainGalleryPhotos();
+
+}
+
+
+/* =========================
+   DELETE PHOTO
+========================= */
+
+function deleteMainGalleryPhoto(id){
+
+  const confirmed =
+    confirm(
+      'delete this photo?'
+    );
+
+  if(!confirmed) return;
+
+  mainGalleryData.photos =
+    mainGalleryData.photos.filter(
+      photo => photo.id !== id
+    );
+
+  saveMainGallery();
+
+  renderMainGalleryPhotos();
+
+}
+
+
+/* =========================
+   ERAS
+========================= */
+
+function addMainGalleryEra(){
+
+  const input =
+    document.getElementById(
+      'mainGalleryEraName'
+    );
+
+  const name =
+    input?.value.trim();
+
+  if(!name){
+
+    alert('enter an era name.');
+
+    return;
+
+  }
+
+  mainGalleryData.eras.push({
+
+    id:Date.now(),
+
+    name:name
+
+  });
+
+  saveMainGallery();
+
+  input.value='';
+
+  renderMainGalleryEras();
+
+}
+
+
+/* =========================
+   RENDER ERAS
+========================= */
+
+function renderMainGalleryEras(){
+
+  const container =
+    document.getElementById(
+      'mainGalleryEras'
+    );
+
+  if(!container) return;
+
+  let html =
+    '<div class="list-title">eras</div>';
+
+  if(mainGalleryData.eras.length === 0){
+
+    html += `
+
+      <div class="item">
+
+        <div class="item-text">
+
+          <div class="item-name">
+            no eras yet
+          </div>
+
+          <div class="item-sub">
+            create an era above.
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  mainGalleryData.eras.forEach(era=>{
+
+    html += `
+
+      <div class="item">
+
+        <div class="item-icon">
+          ✨
+        </div>
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${esc(era.name)}
+          </div>
+
+        </div>
+
+        <button
+          class="button"
+          onclick="renameMainGalleryEra(${era.id})"
+        >
+          edit
+        </button>
+
+        <button
+          class="button"
+          onclick="deleteMainGalleryEra(${era.id})"
+        >
+          delete
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  container.innerHTML=html;
+
+}
+
+
+/* =========================
+   RENAME ERA
+========================= */
+
+function renameMainGalleryEra(id){
+
+  const era =
+    mainGalleryData.eras.find(
+      item => item.id === id
+    );
+
+  if(!era) return;
+
+  const newName =
+    prompt(
+      'new era name:',
+      era.name
+    );
+
+  if(newName === null) return;
+
+  const cleanName =
+    newName.trim();
+
+  if(!cleanName) return;
+
+  era.name =
+    cleanName;
+
+  saveMainGallery();
+
+  renderMainGalleryEras();
+
+}
+
+
+/* =========================
+   DELETE ERA
+========================= */
+
+function deleteMainGalleryEra(id){
+
+  const confirmed =
+    confirm(
+      'delete this era?'
+    );
+
+  if(!confirmed) return;
+
+  mainGalleryData.eras =
+    mainGalleryData.eras.filter(
+      era => era.id !== id
+    );
+
+  saveMainGallery();
+
+  renderMainGalleryEras();
+
+}
+
+
+/* =========================
+   INITIALIZE MAIN GALLERY
+========================= */
+
+loadMainGallery();
+
+renderMainGalleryFolders();
+
+renderMainGalleryEras();
+
+updateMainGalleryFolderSelect();
+
+renderMainGalleryPhotos();
 
 
 /* =========================
@@ -4302,6 +5935,7 @@ document
     }
   );
 
+
 /* =========================
    MEMBER CALENDAR
 ========================= */
@@ -4418,7 +6052,14 @@ function saveCalendarEvents(
 
 
 /* =========================
-   MEMBER PHOTOS
+   MEMBER PHOTOS + GALLERY
+========================= */
+
+let currentPhotoFolder = '';
+
+
+/* =========================
+   OPEN MEMBER PHOTOS
 ========================= */
 
 function openMemberPhotos(){
@@ -4467,10 +6108,931 @@ function openMemberPhotos(){
   }
 
 
+  currentPhotoFolder = '';
+
+  renderMemberPhotoGallery();
+
+
   window.scrollTo({
     top:0,
     behavior:'smooth'
   });
+
+}
+
+
+/* =========================
+   GALLERY STORAGE
+========================= */
+
+function memberGalleryKey(member){
+
+  return (
+    'illit-gallery-' +
+    String(member || '').toLowerCase()
+  );
+
+}
+
+
+function getMemberGallery(member){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        memberGalleryKey(member)
+      )
+    ) || {
+      folders:{},
+      photos:[]
+    };
+
+  }catch{
+
+    return {
+      folders:{},
+      photos:[]
+    };
+
+  }
+
+}
+
+
+function saveMemberGallery(
+  member,
+  data
+){
+
+  localStorage.setItem(
+    memberGalleryKey(member),
+    JSON.stringify(data)
+  );
+
+}
+
+
+function getCurrentGalleryMember(){
+
+  return document
+    .getElementById(
+      'photosMemberName'
+    )
+    ?.innerText
+    .trim()
+    || '';
+
+}
+
+
+/* =========================
+   ADD FOLDER
+========================= */
+
+function addMemberPhotoFolder(){
+
+  const input =
+    document.getElementById(
+      'photoFolderName'
+    );
+
+  const name =
+    input?.value.trim();
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  if(!member){
+
+    alert('member not found');
+    return;
+
+  }
+
+
+  if(!name){
+
+    alert('enter a folder name');
+    return;
+
+  }
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  if(data.folders[name]){
+
+    alert(
+      'this folder already exists'
+    );
+
+    return;
+
+  }
+
+
+  data.folders[name] = [];
+
+
+  saveMemberGallery(
+    member,
+    data
+  );
+
+
+  input.value = '';
+
+  currentPhotoFolder = name;
+
+  renderMemberPhotoGallery();
+
+   }
+
+
+   /* =========================
+   SELECT FOLDER
+========================= */
+
+function selectMemberPhotoFolder(
+  folder
+){
+
+  currentPhotoFolder =
+    folder;
+
+  renderMemberPhotoGallery();
+
+}
+
+
+/* =========================
+   RENDER FOLDERS
+========================= */
+
+function renderMemberPhotoFolders(){
+
+  const container =
+    document.getElementById(
+      'memberPhotoFolders'
+    );
+
+  const select =
+    document.getElementById(
+      'memberPhotoFolder'
+    );
+
+
+  if(!container || !select)
+    return;
+
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  const folders =
+    Object.keys(
+      data.folders
+    );
+
+
+  container.innerHTML =
+    `<div class="list-title">
+      albums
+    </div>`;
+
+
+  select.innerHTML =
+    `<option value="">
+      select folder
+    </option>`;
+
+
+  folders.forEach(
+    folder => {
+
+      const item =
+        document.createElement(
+          'div'
+        );
+
+
+      item.className =
+        'item';
+
+
+      item.innerHTML = `
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${esc(folder)}
+          </div>
+
+          <div class="item-sub">
+            ${data.folders[folder].length}
+            photos
+          </div>
+
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:6px;
+          "
+        >
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              renameMemberPhotoFolder('${esc(folder)}')
+            "
+          >
+            edit
+          </button>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              deleteMemberPhotoFolder('${esc(folder)}')
+            "
+          >
+            delete
+          </button>
+
+        </div>
+
+      `;
+
+
+      item.onclick = () => {
+
+        selectMemberPhotoFolder(
+          folder
+        );
+
+      };
+
+
+      container.appendChild(
+        item
+      );
+
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+
+      option.value =
+        folder;
+
+
+      option.textContent =
+        folder;
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if(currentPhotoFolder){
+
+    select.value =
+      currentPhotoFolder;
+
+  }
+
+}
+
+
+/* =========================
+   RENDER PHOTOS
+========================= */
+
+function renderMemberPhotoGallery(){
+
+  renderMemberPhotoFolders();
+
+
+  const container =
+    document.getElementById(
+      'memberPhotoGallery'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  if(!currentPhotoFolder){
+
+    container.innerHTML = `
+
+      <div class="widget">
+
+        <div class="item-sub">
+          select an album to view photos
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const photos =
+    data.folders[
+      currentPhotoFolder
+    ] || [];
+
+
+  if(!photos.length){
+
+    container.innerHTML = `
+
+      <div class="widget">
+
+        <div class="item-sub">
+          no photos in this album yet
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = '';
+
+
+  photos.forEach(
+    (photo,index) => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+
+      card.className =
+        'photo-card';
+
+
+      card.innerHTML = `
+
+        <img
+          src="${esc(photo.url)}"
+          alt="${esc(photo.name)}"
+        >
+
+        <div
+          class="photo-card-info"
+        >
+
+          <div class="item-name">
+            ${esc(photo.name)}
+          </div>
+
+          ${
+            photo.link
+            ? `
+              <a
+                href="${esc(photo.link)}"
+                target="_blank"
+                rel="noopener"
+              >
+                open link
+              </a>
+            `
+            : ''
+          }
+
+
+          <div
+            style="
+              margin-top:8px;
+              display:flex;
+              gap:6px;
+            "
+          >
+
+            <button
+              type="button"
+              onclick="
+                editMemberPhoto(${index})
+              "
+            >
+              edit
+            </button>
+
+
+            <button
+              type="button"
+              onclick="
+                deleteMemberPhoto(${index})
+              "
+            >
+              delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      card
+        .querySelector('img')
+        .onclick = () => {
+
+          window.open(
+            photo.url,
+            '_blank'
+          );
+
+        };
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ADD PHOTO
+========================= */
+
+function addMemberPhoto(){
+
+  const folder =
+    document.getElementById(
+      'memberPhotoFolder'
+    )?.value;
+
+  const name =
+    document.getElementById(
+      'memberPhotoName'
+    )?.value.trim();
+
+  const urlInput =
+    document.getElementById(
+      'memberPhotoUrl'
+    );
+
+  const fileInput =
+    document.getElementById(
+      'memberPhotoFile'
+    );
+
+  const link =
+    document.getElementById(
+      'memberPhotoLink'
+    )?.value.trim();
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  if(!member){
+
+    alert('member not found');
+    return;
+
+  }
+
+
+  if(!folder){
+
+    alert('select a folder');
+    return;
+
+  }
+
+
+  if(!name){
+
+    alert('enter a photo name');
+    return;
+
+  }
+
+
+  const file =
+    fileInput?.files?.[0];
+
+
+  const url =
+    urlInput?.value.trim();
+
+
+  if(!file && !url){
+
+    alert(
+      'choose a photo or enter an image URL'
+    );
+
+    return;
+
+  }
+
+
+  const savePhoto = (imageUrl) => {
+
+    const data =
+      getMemberGallery(member);
+
+
+    if(!data.folders[folder]){
+
+      data.folders[folder] = [];
+
+    }
+
+
+    data.folders[folder].push({
+
+      name:name,
+
+      url:imageUrl,
+
+      link:link || ''
+
+    });
+
+
+    saveMemberGallery(
+      member,
+      data
+    );
+
+
+    document.getElementById(
+      'memberPhotoName'
+    ).value = '';
+
+
+    document.getElementById(
+      'memberPhotoUrl'
+    ).value = '';
+
+
+    document.getElementById(
+      'memberPhotoFile'
+    ).value = '';
+
+
+    document.getElementById(
+      'memberPhotoLink'
+    ).value = '';
+
+
+    currentPhotoFolder =
+      folder;
+
+
+    renderMemberPhotoGallery();
+
+  };
+
+
+  /* =========================
+     USE PHONE PHOTO
+  ========================= */
+
+  if(file){
+
+    if(!file.type.startsWith('image/')){
+
+      alert(
+        'please choose an image file'
+      );
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = function(){
+
+      savePhoto(
+        reader.result
+      );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+    return;
+
+  }
+
+
+  /* =========================
+     USE IMAGE URL
+  ========================= */
+
+  savePhoto(url);
+
+}
+
+
+/* =========================
+   RENAME FOLDER
+========================= */
+
+function renameMemberPhotoFolder(
+  oldName
+){
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  const newName =
+    prompt(
+      'new folder name',
+      oldName
+    );
+
+
+  if(newName === null)
+    return;
+
+
+  const name =
+    newName.trim();
+
+
+  if(!name)
+    return;
+
+
+  if(name === oldName)
+    return;
+
+
+  if(data.folders[name]){
+
+    alert(
+      'this folder already exists'
+    );
+
+    return;
+
+  }
+
+
+  data.folders[name] =
+    data.folders[oldName];
+
+
+  delete data.folders[
+    oldName
+  ];
+
+
+  saveMemberGallery(
+    member,
+    data
+  );
+
+
+  if(
+    currentPhotoFolder ===
+    oldName
+  ){
+
+    currentPhotoFolder =
+      name;
+
+  }
+
+
+  renderMemberPhotoGallery();
+
+}
+
+
+/* =========================
+   DELETE FOLDER
+========================= */
+
+function deleteMemberPhotoFolder(
+  folder
+){
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  const photos =
+    data.folders[folder]
+    ?.length || 0;
+
+
+  const message =
+    photos
+    ? `delete "${folder}" and its ${photos} photos?`
+    : `delete "${folder}"?`;
+
+
+  if(!confirm(message))
+    return;
+
+
+  delete data.folders[
+    folder
+  ];
+
+
+  saveMemberGallery(
+    member,
+    data
+  );
+
+
+  if(
+    currentPhotoFolder ===
+    folder
+  ){
+
+    currentPhotoFolder = '';
+
+  }
+
+
+  renderMemberPhotoGallery();
+
+}
+
+
+/* =========================
+   EDIT PHOTO
+========================= */
+
+function editMemberPhoto(index){
+
+  const member =
+    getCurrentGalleryMember();
+
+  const data =
+    getMemberGallery(member);
+
+  const photos =
+    data.folders[currentPhotoFolder];
+
+  if(!photos || !photos[index])
+    return;
+
+  const photo =
+    photos[index];
+
+  const newName =
+    prompt(
+      'photo name',
+      photo.name
+    );
+
+  if(newName === null)
+    return;
+
+  const newUrl =
+    prompt(
+      'photo image URL',
+      photo.url
+    );
+
+  if(newUrl === null)
+    return;
+
+  const newLink =
+    prompt(
+      'optional link',
+      photo.link || ''
+    );
+
+  if(newLink === null)
+    return;
+
+  photo.name =
+    newName.trim() || photo.name;
+
+  photo.url =
+    newUrl.trim() || photo.url;
+
+  photo.link =
+    newLink.trim();
+
+  saveMemberGallery(
+    member,
+    data
+  );
+
+  renderMemberPhotoGallery();
+
+}
+
+
+/* =========================
+   DELETE PHOTO
+========================= */
+
+function deleteMemberPhoto(
+  index
+){
+
+  const member =
+    getCurrentGalleryMember();
+
+
+  const data =
+    getMemberGallery(member);
+
+
+  const photos =
+    data.folders[
+      currentPhotoFolder
+    ];
+
+
+  if(
+    !photos ||
+    !photos[index]
+  )
+    return;
+
+
+  if(
+    !confirm(
+      'delete this photo?'
+    )
+  )
+    return;
+
+
+  photos.splice(
+    index,
+    1
+  );
+
+
+  saveMemberGallery(
+    member,
+    data
+  );
+
+
+  renderMemberPhotoGallery();
 
 }
 
@@ -6202,7 +8764,10 @@ function renderSoloActivityList(){
     }
   );
 
-   }/* =========================
+}
+
+
+/* =========================
    ACTIVITY RANKING
 ========================= */
 
@@ -6425,6 +8990,1851 @@ function renderActivityRanking(){
 
 
 /* =========================
+   TOUR / ILLIT PRESS START
+========================= */
+
+const tourStorageKey = 'illit-tour-data';
+
+function getTourData(){
+
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem(
+          tourStorageKey
+        )
+      );
+
+    return saved || {
+      settings:{
+        title:'Tour',
+        subtitle:'ILLIT PRESS START',
+        heroTitle:'PRESS START',
+        description:''
+      },
+      dates:[],
+      venues:[],
+      tickets:[],
+      setlist:[]
+    };
+
+  }catch{
+
+    return {
+      settings:{
+        title:'Tour',
+        subtitle:'ILLIT PRESS START',
+        heroTitle:'PRESS START',
+        description:''
+      },
+      dates:[],
+      venues:[],
+      tickets:[],
+      setlist:[]
+    };
+
+  }
+
+}
+
+
+function saveTourData(data){
+
+  localStorage.setItem(
+    tourStorageKey,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =========================
+   TOUR SETTINGS
+========================= */
+
+function loadTourSettings(){
+
+  const data =
+    getTourData();
+
+  const title =
+    document.getElementById(
+      'tourTitle'
+    );
+
+  const subtitle =
+    document.getElementById(
+      'tourSubtitle'
+    );
+
+  const heroTitle =
+    document.getElementById(
+      'tourHeroTitle'
+    );
+
+  const description =
+    document.getElementById(
+      'tourHeroDescription'
+    );
+
+
+  if(title)
+    title.innerText =
+      data.settings.title ||
+      'Tour';
+
+  if(subtitle)
+    subtitle.innerText =
+      data.settings.subtitle ||
+      'ILLIT PRESS START';
+
+  if(heroTitle)
+    heroTitle.innerText =
+      data.settings.heroTitle ||
+      'PRESS START';
+
+  if(description)
+    description.innerText =
+      data.settings.description ||
+      '';
+
+
+  const titleInput =
+    document.getElementById(
+      'tourNameInput'
+    );
+
+  const subtitleInput =
+    document.getElementById(
+      'tourSubtitleInput'
+    );
+
+  const descriptionInput =
+    document.getElementById(
+      'tourDescriptionInput'
+    );
+
+
+  if(titleInput)
+    titleInput.value =
+      data.settings.title || '';
+
+  if(subtitleInput)
+    subtitleInput.value =
+      data.settings.subtitle || '';
+
+  if(descriptionInput)
+    descriptionInput.value =
+      data.settings.description || '';
+
+}
+
+
+function saveTourSettings(){
+
+  const data =
+    getTourData();
+
+
+  data.settings.title =
+    document
+      .getElementById(
+        'tourNameInput'
+      )
+      ?.value
+      .trim() ||
+    'Tour';
+
+
+  data.settings.subtitle =
+    document
+      .getElementById(
+        'tourSubtitleInput'
+      )
+      ?.value
+      .trim() ||
+    'ILLIT PRESS START';
+
+
+  data.settings.description =
+    document
+      .getElementById(
+        'tourDescriptionInput'
+      )
+      ?.value
+      .trim() ||
+    '';
+
+
+  data.settings.heroTitle =
+    'PRESS START';
+
+
+  saveTourData(data);
+
+  loadTourSettings();
+
+  alert(
+    'Tour atualizado ♡'
+  );
+
+}
+
+
+/* =========================
+   TOUR NAVIGATION
+========================= */
+
+function openTourSection(section){
+
+  const pages = {
+
+    dates:
+      'tourDates',
+
+    venues:
+      'tourVenues',
+
+    tickets:
+      'tourTickets',
+
+    setlist:
+      'tourSetlist'
+
+  };
+
+
+  if(
+    pages[section]
+  ){
+
+    openPage(
+      pages[section]
+    );
+
+  }
+
+
+  if(
+    section === 'dates'
+  )
+    renderTourDates();
+
+
+  if(
+    section === 'venues'
+  )
+    renderTourVenues();
+
+
+  if(
+    section === 'tickets'
+  )
+    renderTourTickets();
+
+
+  if(
+    section === 'setlist'
+  )
+    renderTourSetlist();
+
+}
+
+
+/* =========================
+   SAFE URL
+========================= */
+
+
+function getSafeTourLink(url){
+
+  if(!url)
+    return '';
+
+
+  try{
+
+    const parsed =
+      new URL(url);
+
+
+    if(
+      parsed.protocol === 'http:' ||
+      parsed.protocol === 'https:'
+    ){
+
+      return parsed.href;
+
+    }
+
+  }catch{}
+
+
+  return '';
+
+}
+
+
+/* =========================
+   TOUR DATES
+========================= */
+
+function addTourDate(){
+
+  const date =
+    document
+      .getElementById(
+        'tourDateInput'
+      )
+      ?.value;
+
+
+  const city =
+    document
+      .getElementById(
+        'tourDateCity'
+      )
+      ?.value
+      .trim();
+
+
+  const venue =
+    document
+      .getElementById(
+        'tourDateVenue'
+      )
+      ?.value
+      .trim();
+
+
+  const address =
+    document
+      .getElementById(
+        'tourDateAddress'
+      )
+      ?.value
+      .trim();
+
+
+  const link =
+    document
+      .getElementById(
+        'tourDateLink'
+      )
+      ?.value
+      .trim();
+
+
+  const notes =
+    document
+      .getElementById(
+        'tourDateNotes'
+      )
+      ?.value
+      .trim();
+
+
+  if(
+    !date ||
+    !city ||
+    !venue
+  ){
+
+    alert(
+      'Preencha a data, cidade e venue.'
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    getTourData();
+
+
+  data.dates.push({
+
+    id:Date.now(),
+
+    date:date,
+
+    city:city,
+
+    venue:venue,
+
+    address:address,
+
+    link:
+      getSafeTourLink(
+        link
+      ),
+
+    notes:notes
+
+  });
+
+
+  saveTourData(data);
+
+
+  document
+    .getElementById(
+      'tourDateInput'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourDateCity'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourDateVenue'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourDateAddress'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourDateLink'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourDateNotes'
+    ).value='';
+
+
+  renderTourDates();
+
+}
+
+
+function renderTourDates(){
+
+  const container =
+    document.getElementById(
+      'tourDatesList'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  container.innerHTML='';
+
+
+  if(
+    !data.dates.length
+  ){
+
+    container.innerHTML =
+      '<div class="empty">No tour dates yet ♡</div>';
+
+    return;
+
+  }
+
+
+  [...data.dates]
+    .sort(
+      (a,b) =>
+        a.date.localeCompare(
+          b.date
+        )
+    )
+    .forEach(
+      item => {
+
+        const card =
+          document.createElement(
+            'div'
+          );
+
+
+        card.className =
+          'item';
+
+
+        card.innerHTML = `
+
+          <div class="item-text">
+
+            <div class="item-name">
+              ${escapeTourHTML(item.city)}
+            </div>
+
+            <div class="item-sub">
+              ${formatTourDate(item.date)}
+              ·
+              ${escapeTourHTML(item.venue)}
+            </div>
+
+            ${
+              item.address
+              ?
+              `<div class="item-sub">
+                ${escapeTourHTML(item.address)}
+              </div>`
+              :
+              ''
+            }
+
+            ${
+              item.notes
+              ?
+              `<div class="item-sub">
+                ${escapeTourHTML(item.notes)}
+              </div>`
+              :
+              ''
+            }
+
+            <div
+              style="
+                display:flex;
+                gap:8px;
+                margin-top:10px;
+                flex-wrap:wrap;
+              "
+            >
+
+              ${
+                item.link
+                ?
+                `<a
+                  class="activity-add-button"
+                  href="${item.link}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  open link
+                </a>`
+                :
+                ''
+              }
+
+              <button
+                class="activity-add-button"
+                onclick="editTourDate(${item.id})"
+              >
+                edit
+              </button>
+
+              <button
+                class="activity-add-button"
+                onclick="deleteTourDate(${item.id})"
+              >
+                delete
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        container.appendChild(
+          card
+        );
+
+      }
+    );
+
+}
+
+
+function editTourDate(id){
+
+  const data =
+    getTourData();
+
+
+  const item =
+    data.dates.find(
+      x => x.id === id
+    );
+
+
+  if(!item)
+    return;
+
+
+  const date =
+    prompt(
+      'Data:',
+      item.date
+    );
+
+  if(date === null)
+    return;
+
+
+  const city =
+    prompt(
+      'Cidade:',
+      item.city
+    );
+
+  if(city === null)
+    return;
+
+
+  const venue =
+    prompt(
+      'Venue:',
+      item.venue
+    );
+
+  if(venue === null)
+    return;
+
+
+  const address =
+    prompt(
+      'Endereço:',
+      item.address || ''
+    );
+
+  if(address === null)
+    return;
+
+
+  const link =
+    prompt(
+      'Link:',
+      item.link || ''
+    );
+
+  if(link === null)
+    return;
+
+
+  const notes =
+    prompt(
+      'Informações:',
+      item.notes || ''
+    );
+
+  if(notes === null)
+    return;
+
+
+  item.date =
+    date;
+
+  item.city =
+    city.trim();
+
+  item.venue =
+    venue.trim();
+
+  item.address =
+    address.trim();
+
+  item.link =
+    getSafeTourLink(
+      link.trim()
+    );
+
+  item.notes =
+    notes.trim();
+
+
+  saveTourData(data);
+
+  renderTourDates();
+
+}
+
+
+function deleteTourDate(id){
+
+  if(
+    !confirm(
+      'Excluir esta data?'
+    )
+  )
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  data.dates =
+    data.dates.filter(
+      x => x.id !== id
+    );
+
+
+  saveTourData(data);
+
+  renderTourDates();
+
+}
+
+
+/* =========================
+   TOUR VENUES
+========================= */
+
+function addTourVenue(){
+
+  const city =
+    document
+      .getElementById(
+        'tourVenueCity'
+      )
+      ?.value
+      .trim();
+
+
+  const venue =
+    document
+      .getElementById(
+        'tourVenueName'
+      )
+      ?.value
+      .trim();
+
+
+  const address =
+    document
+      .getElementById(
+        'tourVenueAddress'
+      )
+      ?.value
+      .trim();
+
+
+  const link =
+    document
+      .getElementById(
+        'tourVenueLink'
+      )
+      ?.value
+      .trim();
+
+
+  const photo =
+    document
+      .getElementById(
+        'tourVenuePhoto'
+      )
+      ?.value
+      .trim();
+
+
+  const notes =
+    document
+      .getElementById(
+        'tourVenueNotes'
+      )
+      ?.value
+      .trim();
+
+
+  if(
+    !city ||
+    !venue
+  ){
+
+    alert(
+      'Preencha a cidade e o venue.'
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    getTourData();
+
+
+  data.venues.push({
+
+    id:Date.now(),
+
+    city:city,
+
+    venue:venue,
+
+    address:address,
+
+    link:
+      getSafeTourLink(
+        link
+      ),
+
+    photo:
+      getSafeTourLink(
+        photo
+      ),
+
+    notes:notes
+
+  });
+
+
+  saveTourData(data);
+
+
+  document
+    .getElementById(
+      'tourVenueCity'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourVenueName'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourVenueAddress'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourVenueLink'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourVenuePhoto'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourVenueNotes'
+    ).value='';
+
+
+  renderTourVenues();
+
+}
+
+
+function renderTourVenues(){
+
+  const container =
+    document.getElementById(
+      'tourVenuesList'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  container.innerHTML='';
+
+
+  if(
+    !data.venues.length
+  ){
+
+    container.innerHTML =
+      '<div class="empty">No venues yet ♡</div>';
+
+    return;
+
+  }
+
+
+  data.venues.forEach(
+    item => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+
+      card.className =
+        'item';
+
+
+      card.innerHTML = `
+
+        ${
+          item.photo
+          ?
+          `<img
+            src="${item.photo}"
+            style="
+              width:100%;
+              border-radius:16px;
+              margin-bottom:12px;
+            "
+            alt=""
+          >`
+          :
+          ''
+        }
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${escapeTourHTML(item.venue)}
+          </div>
+
+          <div class="item-sub">
+            ${escapeTourHTML(item.city)}
+          </div>
+
+          ${
+            item.address
+            ?
+            `<div class="item-sub">
+              ${escapeTourHTML(item.address)}
+            </div>`
+            :
+            ''
+          }
+
+          ${
+            item.notes
+            ?
+            `<div class="item-sub">
+              ${escapeTourHTML(item.notes)}
+            </div>`
+            :
+            ''
+          }
+
+          <div
+            style="
+              display:flex;
+              gap:8px;
+              margin-top:10px;
+              flex-wrap:wrap;
+            "
+          >
+
+            ${
+              item.link
+              ?
+              `<a
+                class="activity-add-button"
+                href="${item.link}"
+                target="_blank"
+                rel="noopener"
+              >
+                open link
+              </a>`
+              :
+              ''
+            }
+
+            <button
+              class="activity-add-button"
+              onclick="editTourVenue(${item.id})"
+            >
+              edit
+            </button>
+
+            <button
+              class="activity-add-button"
+              onclick="deleteTourVenue(${item.id})"
+            >
+              delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+function editTourVenue(id){
+
+  const data =
+    getTourData();
+
+
+  const item =
+    data.venues.find(
+      x => x.id === id
+    );
+
+
+  if(!item)
+    return;
+
+
+  const city =
+    prompt(
+      'Cidade:',
+      item.city
+    );
+
+  if(city === null)
+    return;
+
+
+  const venue =
+    prompt(
+      'Venue:',
+      item.venue
+    );
+
+  if(venue === null)
+    return;
+
+
+  const address =
+    prompt(
+      'Endereço:',
+      item.address || ''
+    );
+
+  if(address === null)
+    return;
+
+
+  const link =
+    prompt(
+      'Link:',
+      item.link || ''
+    );
+
+  if(link === null)
+    return;
+
+
+  const photo =
+    prompt(
+      'URL da foto:',
+      item.photo || ''
+    );
+
+  if(photo === null)
+    return;
+
+
+  const notes =
+    prompt(
+      'Informações:',
+      item.notes || ''
+    );
+
+  if(notes === null)
+    return;
+
+
+  item.city =
+    city.trim();
+
+  item.venue =
+    venue.trim();
+
+  item.address =
+    address.trim();
+
+  item.link =
+    getSafeTourLink(
+      link.trim()
+    );
+
+  item.photo =
+    getSafeTourLink(
+      photo.trim()
+    );
+
+  item.notes =
+    notes.trim();
+
+
+  saveTourData(data);
+
+  renderTourVenues();
+
+}
+
+
+function deleteTourVenue(id){
+
+  if(
+    !confirm(
+      'Excluir este venue?'
+    )
+  )
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  data.venues =
+    data.venues.filter(
+      x => x.id !== id
+    );
+
+
+  saveTourData(data);
+
+  renderTourVenues();
+
+   }
+
+
+/* =========================
+   TOUR TICKETS
+========================= */
+
+function addTourTicket(){
+
+  const title =
+    document
+      .getElementById(
+        'tourTicketTitle'
+      )
+      ?.value
+      .trim();
+
+
+  const link =
+    document
+      .getElementById(
+        'tourTicketLink'
+      )
+      ?.value
+      .trim();
+
+
+  const photo =
+    document
+      .getElementById(
+        'tourTicketPhoto'
+      )
+      ?.value
+      .trim();
+
+
+  const text =
+    document
+      .getElementById(
+        'tourTicketText'
+      )
+      ?.value
+      .trim();
+
+
+  if(!title){
+
+    alert(
+      'Adicione um título para o ingresso.'
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    getTourData();
+
+
+  data.tickets.push({
+
+    id:Date.now(),
+
+    title:title,
+
+    link:
+      getSafeTourLink(
+        link
+      ),
+
+    photo:
+      getSafeTourLink(
+        photo
+      ),
+
+    text:text
+
+  });
+
+
+  saveTourData(data);
+
+
+  document
+    .getElementById(
+      'tourTicketTitle'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourTicketLink'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourTicketPhoto'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourTicketText'
+    ).value='';
+
+
+  renderTourTickets();
+
+}
+
+
+function renderTourTickets(){
+
+  const container =
+    document.getElementById(
+      'tourTicketsList'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  container.innerHTML='';
+
+
+  if(
+    !data.tickets.length
+  ){
+
+    container.innerHTML =
+      '<div class="empty">No tickets yet ♡</div>';
+
+    return;
+
+  }
+
+
+  data.tickets.forEach(
+    item => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+
+      card.className =
+        'item';
+
+
+      card.innerHTML = `
+
+        ${
+          item.photo
+          ?
+          `<img
+            src="${item.photo}"
+            style="
+              width:100%;
+              border-radius:16px;
+              margin-bottom:12px;
+            "
+            alt=""
+          >`
+          :
+          ''
+        }
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${escapeTourHTML(item.title)}
+          </div>
+
+          ${
+            item.text
+            ?
+            `<div class="item-sub">
+              ${escapeTourHTML(item.text)}
+            </div>`
+            :
+            ''
+          }
+
+          <div
+            style="
+              display:flex;
+              gap:8px;
+              margin-top:10px;
+              flex-wrap:wrap;
+            "
+          >
+
+            ${
+              item.link
+              ?
+              `<a
+                class="activity-add-button"
+                href="${item.link}"
+                target="_blank"
+                rel="noopener"
+              >
+                tickets
+              </a>`
+              :
+              ''
+            }
+
+            <button
+              class="activity-add-button"
+              onclick="editTourTicket(${item.id})"
+            >
+              edit
+            </button>
+
+            <button
+              class="activity-add-button"
+              onclick="deleteTourTicket(${item.id})"
+            >
+              delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+function editTourTicket(id){
+
+  const data =
+    getTourData();
+
+
+  const item =
+    data.tickets.find(
+      x => x.id === id
+    );
+
+
+  if(!item)
+    return;
+
+
+  const title =
+    prompt(
+      'Título:',
+      item.title
+    );
+
+  if(title === null)
+    return;
+
+
+  const link =
+    prompt(
+      'Link:',
+      item.link || ''
+    );
+
+  if(link === null)
+    return;
+
+
+  const photo =
+    prompt(
+      'URL da foto:',
+      item.photo || ''
+    );
+
+  if(photo === null)
+    return;
+
+
+  const text =
+    prompt(
+      'Texto:',
+      item.text || ''
+    );
+
+  if(text === null)
+    return;
+
+
+  item.title =
+    title.trim();
+
+  item.link =
+    getSafeTourLink(
+      link.trim()
+    );
+
+  item.photo =
+    getSafeTourLink(
+      photo.trim()
+    );
+
+  item.text =
+    text.trim();
+
+
+  saveTourData(data);
+
+  renderTourTickets();
+
+}
+
+
+function deleteTourTicket(id){
+
+  if(
+    !confirm(
+      'Excluir este ingresso?'
+    )
+  )
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  data.tickets =
+    data.tickets.filter(
+      x => x.id !== id
+    );
+
+
+  saveTourData(data);
+
+  renderTourTickets();
+
+   }
+
+
+/* =========================
+   TOUR SETLIST
+========================= */
+
+function addTourSetlistSong(){
+
+  const song =
+    document
+      .getElementById(
+        'tourSetlistSong'
+      )
+      ?.value
+      .trim();
+
+
+  const category =
+    document
+      .getElementById(
+        'tourSetlistCategory'
+      )
+      ?.value
+      .trim();
+
+
+  const notes =
+    document
+      .getElementById(
+        'tourSetlistNotes'
+      )
+      ?.value
+      .trim();
+
+
+  if(!song){
+
+    alert(
+      'Adicione o nome da música.'
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    getTourData();
+
+
+  data.setlist.push({
+
+    id:Date.now(),
+
+    song:song,
+
+    category:category,
+
+    notes:notes
+
+  });
+
+
+  saveTourData(data);
+
+
+  document
+    .getElementById(
+      'tourSetlistSong'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourSetlistCategory'
+    ).value='';
+
+
+  document
+    .getElementById(
+      'tourSetlistNotes'
+    ).value='';
+
+
+  renderTourSetlist();
+
+}
+
+
+function renderTourSetlist(){
+
+  const container =
+    document.getElementById(
+      'tourSetlistList'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  container.innerHTML='';
+
+
+  if(
+    !data.setlist.length
+  ){
+
+    container.innerHTML =
+      '<div class="empty">No songs yet ♡</div>';
+
+    return;
+
+  }
+
+
+  data.setlist.forEach(
+    (item,index) => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+
+      card.className =
+        'item';
+
+
+      card.innerHTML = `
+
+        <div class="item-text">
+
+          <div class="item-name">
+            ${index + 1}.
+            ${escapeTourHTML(item.song)}
+          </div>
+
+          ${
+            item.category
+            ?
+            `<div class="item-sub">
+              ${escapeTourHTML(item.category)}
+            </div>`
+            :
+            ''
+          }
+
+          ${
+            item.notes
+            ?
+            `<div class="item-sub">
+              ${escapeTourHTML(item.notes)}
+            </div>`
+            :
+            ''
+          }
+
+          <div
+            style="
+              display:flex;
+              gap:8px;
+              margin-top:10px;
+            "
+          >
+
+            <button
+              class="activity-add-button"
+              onclick="editTourSetlistSong(${item.id})"
+            >
+              edit
+            </button>
+
+            <button
+              class="activity-add-button"
+              onclick="deleteTourSetlistSong(${item.id})"
+            >
+              delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+function editTourSetlistSong(id){
+
+  const data =
+    getTourData();
+
+
+  const item =
+    data.setlist.find(
+      x => x.id === id
+    );
+
+
+  if(!item)
+    return;
+
+
+  const song =
+    prompt(
+      'Música:',
+      item.song
+    );
+
+  if(song === null)
+    return;
+
+
+  const category =
+    prompt(
+      'Categoria/seção:',
+      item.category || ''
+    );
+
+  if(category === null)
+    return;
+
+
+  const notes =
+    prompt(
+      'Notas:',
+      item.notes || ''
+    );
+
+  if(notes === null)
+    return;
+
+
+  item.song =
+    song.trim();
+
+  item.category =
+    category.trim();
+
+  item.notes =
+    notes.trim();
+
+
+  saveTourData(data);
+
+  renderTourSetlist();
+
+}
+
+
+function deleteTourSetlistSong(id){
+
+  if(
+    !confirm(
+      'Excluir esta música?'
+    )
+  )
+    return;
+
+
+  const data =
+    getTourData();
+
+
+  data.setlist =
+    data.setlist.filter(
+      x => x.id !== id
+    );
+
+
+  saveTourData(data);
+
+  renderTourSetlist();
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function formatTourDate(date){
+
+  if(!date)
+    return '';
+
+
+  const parts =
+    date.split('-');
+
+
+  if(
+    parts.length !== 3
+  )
+    return date;
+
+
+  return (
+    parts[2] +
+    '/' +
+    parts[1] +
+    '/' +
+    parts[0]
+  );
+
+}
+
+
+function escapeTourHTML(text){
+
+
+
+  return String(
+    text || ''
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#039;'
+  );
+
+}
+
+
+/* =========================
+   INITIAL TOUR LOAD
+========================= */
+
+loadTourSettings();
+
+renderTourDates();
+
+renderTourVenues();
+
+renderTourTickets();
+
+renderTourSetlist();
+
+
+/* =========================
    INITIAL RENDER
 ========================= */
 
@@ -6461,3 +10871,8 @@ setInterval(
 </body>
 
 </html>
+
+
+   
+
+   
