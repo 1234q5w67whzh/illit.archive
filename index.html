@@ -9,6 +9,78 @@
 
 <title>ILLIT Archive</title>
 
+/* iphone style — activity ranking */
+
+.activities-card{
+  background:rgba(255,255,255,.92);
+  border-radius:22px;
+  padding:18px;
+  margin:16px 0;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.04);
+}
+
+.activity-rank-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.activity-ranking{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.activity-rank{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.activity-rank-number{
+  width:24px;
+  font-size:13px;
+  font-weight:600;
+  color:#8e8e93;
+  text-align:center;
+}
+
+.activity-rank-info{
+  flex:1;
+  min-width:0;
+}
+
+.activity-rank-name{
+  font-size:14px;
+  font-weight:600;
+  color:#171717;
+  margin-bottom:6px;
+}
+
+.activity-rank-count{
+  float:right;
+  font-size:12px;
+  color:#8e8e93;
+  margin-top:-22px;
+}
+
+.activity-bar-area{
+  width:100%;
+  height:7px;
+  background:#f1f1f4;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.activity-bar{
+  height:100%;
+  min-width:3px;
+  border-radius:999px;
+  transition:width .4s ease, opacity .4s ease;
+}
+
 <style>
 
 /* =========================
@@ -3340,6 +3412,56 @@ Wonhee
 원희
 </p>
 
+<button
+class="activity-add-button"
+onclick="editMemberProfile()"
+>
+✎ edit profile
+</button>
+
+<div
+id="memberProfileEditor"
+class="widget"
+style="display:none;margin-top:15px;"
+>
+
+<div class="list-title">
+edit information
+</div>
+
+<input
+id="memberEditName"
+type="text"
+placeholder="member name"
+>
+
+<input
+id="memberEditKorean"
+type="text"
+placeholder="korean name"
+>
+
+<textarea
+id="memberEditBio"
+placeholder="member information"
+rows="5"
+></textarea>
+
+<input
+id="memberEditLink"
+type="url"
+placeholder="official link"
+>
+
+<button
+class="activity-add-button"
+onclick="saveMemberProfile()"
+>
+save changes
+</button>
+
+</div>
+
 </div>
 
 
@@ -4245,6 +4367,20 @@ previousPage
 
 }
 
+function editMemberProfile(){
+
+const name =
+document.getElementById('detailName').innerText;
+
+const korean =
+document.getElementById('detailKorean').innerText;
+
+document.getElementById('memberEditName').value = name;
+document.getElementById('memberEditKorean').value = korean;
+
+document.getElementById('memberProfileEditor').style.display = 'block';
+
+}
 
 /* =========================
    MAIN GALLERY
@@ -6165,7 +6301,7 @@ function getCurrentGalleryMember(){
     .trim()
     || '';
 
-}
+   }
 
 
 /* =========================
@@ -6232,10 +6368,10 @@ function addMemberPhotoFolder(){
 
   renderMemberPhotoGallery();
 
-   }
+}
 
 
-   /* =========================
+/* =========================
    SELECT FOLDER
 ========================= */
 
@@ -7986,7 +8122,7 @@ function addSoloActivity(){
 
   renderActivityRanking();
 
-}
+   }
 
 
 /* =========================
@@ -8756,217 +8892,125 @@ function renderSoloActivityList(){
 function renderActivityRanking(){
 
   const container =
-    document.getElementById(
-      'activityRanking'
-    );
+    document.getElementById('activityRanking');
 
-
-  if(!container)
-    return;
-
+  if(!container) return;
 
   const activities =
     getAllSoloActivities();
 
+  const counts = {};
 
-  const counts =
-    {};
+  memberOrder.forEach(member => {
+    counts[member] = 0;
+  });
 
+  activities.forEach(activity => {
 
-  memberOrder.forEach(
-    member => {
-
-      counts[member] =
-        0;
-
+    if(counts[activity.member] !== undefined){
+      counts[activity.member]++;
     }
-  );
 
+  });
 
-  activities.forEach(
-    activity => {
-
-      if(
-        counts[
-          activity.member
-        ] !== undefined
-      ){
-
-        counts[
-          activity.member
-        ]++;
-
-      }
-
-    }
-  );
-
-
-  const maxCount =
-    Math.max(
-      1,
-      ...Object.values(
-        counts
-      )
-    );
-
+  const total =
+    Object.values(counts)
+    .reduce((a,b) => a + b, 0);
 
   const ranked =
     [...memberOrder].sort(
-      (a,b) =>
-        counts[b] -
-        counts[a]
+      (a,b) => counts[b] - counts[a]
     );
 
+  container.innerHTML = '';
 
-  container.innerHTML =
-    '';
+  ranked.forEach((member,index) => {
 
+    const row =
+      document.createElement('div');
 
-  ranked.forEach(
-    (member,index) => {
+    row.className =
+      'activity-rank';
 
-      const row =
-        document.createElement(
-          'div'
-        );
+    const number =
+      document.createElement('div');
 
+    number.className =
+      'activity-rank-number';
 
-      row.className =
-        'activity-rank';
+    number.innerText =
+      index + 1;
 
+    const info =
+      document.createElement('div');
 
-      const number =
-        document.createElement(
-          'div'
-        );
+    info.className =
+      'activity-rank-info';
 
+    const name =
+      document.createElement('div');
 
-      number.className =
-        'activity-rank-number';
+    name.className =
+      'activity-rank-name';
 
+    name.innerText =
+      member;
 
-      number.innerText =
-        index + 1;
+    const percentage =
+      total > 0
+      ? Math.round(
+          counts[member] / total * 100
+        )
+      : 0;
 
+    const count =
+      document.createElement('div');
 
-      const info =
-        document.createElement(
-          'div'
-        );
+    count.className =
+      'activity-rank-count';
 
+    count.innerText =
+      percentage + '%';
 
-      info.className =
-        'activity-rank-info';
+    const barArea =
+      document.createElement('div');
 
+    barArea.className =
+      'activity-bar-area';
 
-      const name =
-        document.createElement(
-          'div'
-        );
+    const bar =
+      document.createElement('div');
 
+    bar.className =
+      'activity-bar';
 
-      name.className =
-        'activity-rank-name';
+    bar.style.width =
+      percentage + '%';
 
+    const intensity =
+  total > 0
+  ? 0.25 + (counts[member] / Math.max(...Object.values(counts))) * 0.75
+  : 0.25;
 
-      name.innerText =
-        member;
+bar.style.background =
+  memberColors[member] ||
+  '#ff8f9a';
 
+bar.style.opacity =
+  intensity;
 
-      const count =
-        document.createElement(
-          'div'
-        );
+    barArea.appendChild(bar);
 
+    info.appendChild(name);
+    info.appendChild(count);
+    info.appendChild(barArea);
 
-      count.className =
-        'activity-rank-count';
+    row.appendChild(number);
+    row.appendChild(info);
 
+    container.appendChild(row);
 
-      count.innerText =
-        counts[member] +
-        (
-          counts[member] === 1
-          ?
-          ' activity'
-          :
-          ' activities'
-        );
-
-
-      const barArea =
-        document.createElement(
-          'div'
-        );
-
-
-      barArea.className =
-        'activity-bar-area';
-
-
-      const bar =
-        document.createElement(
-          'div'
-        );
-
-
-      bar.className =
-        'activity-bar';
-
-
-      bar.style.width =
-        (
-          counts[member] /
-          maxCount *
-          100
-        ) +
-        '%';
-
-
-      bar.style.background =
-        memberColors[
-          member
-        ] ||
-        '#ff7f8a';
-
-
-      barArea.appendChild(
-        bar
-      );
-
-
-      info.appendChild(
-        name
-      );
-
-
-      info.appendChild(
-        count
-      );
-
-
-      info.appendChild(
-        barArea
-      );
-
-
-      row.appendChild(
-        number
-      );
-
-
-      row.appendChild(
-        info
-      );
-
-
-      container.appendChild(
-        row
-      );
-
-    }
-  );
+  });
 
 }
 
@@ -9227,7 +9271,6 @@ function openTourSection(section){
 /* =========================
    SAFE URL
 ========================= */
-
 
 function getSafeTourLink(url){
 
@@ -10097,7 +10140,7 @@ function deleteTourVenue(id){
 
   renderTourVenues();
 
-   }
+}
 
 
 /* =========================
@@ -10853,6 +10896,12 @@ setInterval(
 </body>
 
 </html>
+
+
+
+
+
+
 
 
    
