@@ -9,8 +9,83 @@
 
 <title>ILLIT Archive</title>
 
-
 <style>
+
+/* =========================
+   ACTIVITY RANKING
+========================= */
+
+.activities-card{
+  background:rgba(255,255,255,.92);
+  border-radius:22px;
+  padding:18px;
+  margin:16px 0;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.04);
+}
+
+.activity-rank-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.activity-ranking{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.activity-rank{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.activity-rank-number{
+  width:24px;
+  font-size:13px;
+  font-weight:600;
+  color:#8e8e93;
+  text-align:center;
+}
+
+.activity-rank-info{
+  flex:1;
+  min-width:0;
+}
+
+.activity-rank-name{
+  font-size:14px;
+  font-weight:600;
+  color:#171717;
+  margin-bottom:6px;
+}
+
+.activity-rank-count{
+  float:right;
+  font-size:12px;
+  color:#8e8e93;
+  margin-top:-22px;
+}
+
+.activity-bar-area{
+  width:100%;
+  height:7px;
+  background:#f1f1f4;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.activity-bar{
+  height:100%;
+  min-width:3px;
+  border-radius:999px;
+  transition:
+    width .4s ease,
+    opacity .4s ease;
+}
 
 /* =========================
    MEMBER GALLERY
@@ -2762,6 +2837,61 @@ individual members
 </div>
 
 
+<!-- MEMBER FILTERS -->
+
+<div class="activity-filters">
+
+<button
+class="activity-filter active"
+data-member="ALL"
+onclick="filterActivities('ALL',this)"
+>
+ALL
+</button>
+
+<button
+class="activity-filter"
+data-member="Yunah"
+onclick="filterActivities('Yunah',this)"
+>
+YUNAH
+</button>
+
+<button
+class="activity-filter"
+data-member="Minju"
+onclick="filterActivities('Minju',this)"
+>
+MINJU
+</button>
+
+<button
+class="activity-filter"
+data-member="Moka"
+onclick="filterActivities('Moka',this)"
+>
+MOKA
+</button>
+
+<button
+class="activity-filter"
+data-member="Wonhee"
+onclick="filterActivities('Wonhee',this)"
+>
+WONHEE
+</button>
+
+<button
+class="activity-filter"
+data-member="Iroha"
+onclick="filterActivities('Iroha',this)"
+>
+IROHA
+</button>
+
+</div>
+
+
 <!-- ADD ACTIVITY -->
 
 <div class="activities-card">
@@ -2770,10 +2900,15 @@ individual members
 add solo activity
 </div>
 
+<input
+type="hidden"
+id="activityEditId"
+>
 
-<div class="activity-form">
 
-<select id="activityMember">
+<select
+id="activityMember"
+>
 
 <option value="Yunah">
 Yunah
@@ -2802,27 +2937,54 @@ Iroha
 type="text"
 id="activityName"
 placeholder="activity name"
-/>
+>
 
 
 <input
 type="date"
 id="activityDate"
-/>
+>
+
+
+<input
+type="text"
+id="activityLocation"
+placeholder="location / address"
+>
+
+
+<input
+type="url"
+id="activityPhoto"
+placeholder="photo image URL"
+>
 
 
 <input
 type="url"
 id="activityLink"
 placeholder="activity link"
-/>
+>
 
+
+<div class="activity-form-buttons">
 
 <button
 class="activity-add-button"
+id="activitySaveButton"
 onclick="addSoloActivity()"
 >
 + add activity
+</button>
+
+
+<button
+class="activity-cancel-button"
+id="activityCancelButton"
+onclick="cancelActivityEdit()"
+style="display:none;"
+>
+cancel
 </button>
 
 </div>
@@ -2836,12 +2998,21 @@ onclick="addSoloActivity()"
 
 <div class="activity-rank-title">
 
+<div>
+
 <div
 class="activity-section-title"
 style="margin:0;"
 >
 solo activity ranking
 </div>
+
+<div class="activity-ranking-subtitle">
+most active members
+</div>
+
+</div>
+
 
 <div
 class="activity-calendar-count"
@@ -2856,7 +3027,38 @@ id="activityTotalCount"
 <div
 class="activity-ranking"
 id="activityRanking"
-></div>
+>
+</div>
+
+</div>
+
+
+<!-- ACTIVITY LIST -->
+
+<div class="activities-card">
+
+<div class="activity-list-header">
+
+<div>
+
+<div class="activity-section-title">
+activity archive
+</div>
+
+<div class="activity-ranking-subtitle">
+activities by month
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="activity-list"
+id="soloActivityList"
+>
+</div>
 
 </div>
 
@@ -2883,30 +3085,15 @@ id="activityMonthLabel"
 <div
 class="calendar-days"
 id="activityCalendarDays"
-></div>
+>
+</div>
 
 
 <div
 class="activity-calendar-events"
 id="activityCalendarEvents"
-></div>
-
+>
 </div>
-
-
-<!-- LIST -->
-
-<div class="activities-card">
-
-<div class="activity-section-title">
-all activities
-</div>
-
-
-<div
-class="activity-list"
-id="soloActivityList"
-></div>
 
 </div>
 
@@ -6230,7 +6417,7 @@ function getCurrentGalleryMember(){
     .trim()
     || '';
 
-   }
+}
 
 
 /* =========================
@@ -7081,7 +7268,8 @@ function deleteMemberPhoto(
 
   renderMemberPhotoGallery();
 
-}
+   }
+
 
 /* =========================
    CLOSE MEMBER PHOTOS
@@ -7873,42 +8061,36 @@ let selectedSoloCalendarDate =
 
 
 /* =========================
-   ADD SOLO ACTIVITY
+   ADD / EDIT SOLO ACTIVITY
 ========================= */
 
 function addSoloActivity(){
 
   const member =
-    document.getElementById(
-      'activityMember'
-    )?.value;
-
+    document.getElementById('activityMember')?.value;
 
   const name =
-    document.getElementById(
-      'activityName'
-    )?.value
-    .trim();
-
+    document.getElementById('activityName')?.value.trim();
 
   const date =
-    document.getElementById(
-      'activityDate'
-    )?.value;
+    document.getElementById('activityDate')?.value;
 
+  const location =
+    document.getElementById('activityLocation')?.value.trim();
+
+  const photo =
+    document.getElementById('activityPhoto')?.value.trim();
 
   const link =
-    document.getElementById(
-      'activityLink'
-    )?.value
-    .trim();
+    document.getElementById('activityLink')?.value.trim();
+
+  const editId =
+    document.getElementById('activityEditId')?.value;
 
 
   if(!member){
 
-    alert(
-      'select a member.'
-    );
+    alert('select a member.');
 
     return;
 
@@ -7917,9 +8099,7 @@ function addSoloActivity(){
 
   if(!name){
 
-    alert(
-      'enter the activity name.'
-    );
+    alert('enter the activity name.');
 
     return;
 
@@ -7928,18 +8108,25 @@ function addSoloActivity(){
 
   if(!date){
 
-    alert(
-      'select a date.'
-    );
+    alert('select a date.');
 
     return;
 
   }
 
 
-  /*
-     Link is optional.
-  */
+  if(
+    photo &&
+    !getSafeActivityLink(photo)
+  ){
+
+    alert(
+      'please enter a valid photo URL.'
+    );
+
+    return;
+
+  }
 
 
   if(
@@ -7957,24 +8144,37 @@ function addSoloActivity(){
 
 
   const events =
-    getMemberCalendarEvents(
-      member
-    );
+    getMemberCalendarEvents(member);
 
 
   if(!events[date]){
 
-    events[date] =
-      [];
+    events[date] = [];
 
   }
 
 
-  events[date].push({
+  const activityData = {
+
+    id:
+      editId ||
+      (
+        Date.now().toString() +
+        Math.random().toString(36).slice(2)
+      ),
 
     name:name,
 
     time:'',
+
+    location:location,
+
+    photo:
+      photo
+      ?
+      getSafeActivityLink(photo)
+      :
+      '',
 
     link:
       link
@@ -7983,13 +8183,238 @@ function addSoloActivity(){
       :
       ''
 
-  });
+  };
 
 
-  saveMemberCalendarEvents(
-    member,
-    events
+  /* EDIT */
+
+  if(editId){
+
+    let found = false;
+
+
+    Object.keys(events).forEach(
+      oldDate => {
+
+        events[oldDate] =
+          events[oldDate].filter(
+            activity => {
+
+              if(
+                activity.id === editId
+              ){
+
+                found = true;
+
+                return false;
+
+              }
+
+              return true;
+
+            }
+          );
+
+      }
+    );
+
+
+    if(!found){
+
+      alert(
+        'activity could not be found.'
+      );
+
+      return;
+
+    }
+
+
+    events[date].push(
+      activityData
+    );
+
+
+    saveMemberCalendarEvents(
+      member,
+      events
+    );
+
+
+    cancelActivityEdit();
+
+
+  }
+
+  /* ADD */
+
+  else{
+
+    events[date].push(
+      activityData
+    );
+
+
+    saveMemberCalendarEvents(
+      member,
+      events
+    );
+
+
+    clearActivityForm();
+
+  }
+
+
+  soloCalendarDate =
+    new Date(
+      date + 'T12:00:00'
+    );
+
+
+  selectedSoloCalendarDate =
+    date;
+
+
+  renderSoloCalendar();
+
+  renderSoloActivityList();
+
+  renderActivityRanking();
+
+}
+
+
+/* =========================
+   CLEAR ACTIVITY FORM
+========================= */
+
+function clearActivityForm(){
+
+  const fields = [
+
+    'activityName',
+    'activityDate',
+    'activityLocation',
+    'activityPhoto',
+    'activityLink'
+
+  ];
+
+
+  fields.forEach(
+    id => {
+
+      const input =
+        document.getElementById(id);
+
+
+      if(input){
+
+        input.value = '';
+
+      }
+
+    }
   );
+
+
+  const editId =
+    document.getElementById(
+      'activityEditId'
+    );
+
+
+  if(editId){
+
+    editId.value = '';
+
+  }
+
+
+  const button =
+    document.getElementById(
+      'activitySaveButton'
+    );
+
+
+  if(button){
+
+    button.innerText =
+      '+ add activity';
+
+  }
+
+
+  const cancel =
+    document.getElementById(
+      'activityCancelButton'
+    );
+
+
+  if(cancel){
+
+    cancel.style.display =
+      'none';
+
+  }
+
+}
+
+
+/* =========================
+   CANCEL ACTIVITY EDIT
+========================= */
+
+function cancelActivityEdit(){
+
+  clearActivityForm();
+
+}
+
+
+/* =========================
+   EDIT ACTIVITY
+========================= */
+
+function editActivity(
+  member,
+  date,
+  id
+){
+
+  const events =
+    getMemberCalendarEvents(
+      member
+    );
+
+
+  const activities =
+    events[date] || [];
+
+
+  const activity =
+    activities.find(
+      item =>
+        item.id === id
+    );
+
+
+  if(!activity){
+
+    alert(
+      'activity could not be found.'
+    );
+
+    return;
+
+  }
+
+
+  const memberInput =
+    document.getElementById(
+      'activityMember'
+    );
 
 
   const nameInput =
@@ -8004,45 +8429,154 @@ function addSoloActivity(){
     );
 
 
+  const locationInput =
+    document.getElementById(
+      'activityLocation'
+    );
+
+
+  const photoInput =
+    document.getElementById(
+      'activityPhoto'
+    );
+
+
   const linkInput =
     document.getElementById(
       'activityLink'
     );
 
 
-  if(nameInput){
-
-    nameInput.value =
-      '';
-
-  }
-
-
-  if(dateInput){
-
-    dateInput.value =
-      '';
-
-  }
-
-
-  if(linkInput){
-
-    linkInput.value =
-      '';
-
-  }
-
-
-  soloCalendarDate =
-    new Date(
-      date +
-      'T12:00:00'
+  const editIdInput =
+    document.getElementById(
+      'activityEditId'
     );
 
 
-  selectedSoloCalendarDate =
-    date;
+  if(memberInput)
+    memberInput.value =
+      member;
+
+
+  if(nameInput)
+    nameInput.value =
+      activity.name || '';
+
+
+  if(dateInput)
+    dateInput.value =
+      date;
+
+
+  if(locationInput)
+    locationInput.value =
+      activity.location || '';
+
+
+  if(photoInput)
+    photoInput.value =
+      activity.photo || '';
+
+
+  if(linkInput)
+    linkInput.value =
+      activity.link || '';
+
+
+  if(editIdInput)
+    editIdInput.value =
+      id;
+
+
+  const button =
+    document.getElementById(
+      'activitySaveButton'
+    );
+
+
+  if(button){
+
+    button.innerText =
+      'save changes';
+
+  }
+
+
+  const cancel =
+    document.getElementById(
+      'activityCancelButton'
+    );
+
+
+  if(cancel){
+
+    cancel.style.display =
+      'block';
+
+  }
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:'smooth'
+
+  });
+
+}
+
+
+/* =========================
+   DELETE ACTIVITY
+========================= */
+
+function deleteActivity(
+  member,
+  date,
+  id
+){
+
+  const confirmDelete =
+    confirm(
+      'delete this activity?'
+    );
+
+
+  if(!confirmDelete)
+    return;
+
+
+  const events =
+    getMemberCalendarEvents(
+      member
+    );
+
+
+  if(!events[date])
+    return;
+
+
+  events[date] =
+    events[date].filter(
+      activity =>
+        activity.id !== id
+    );
+
+
+  if(
+    events[date].length === 0
+  ){
+
+    delete events[date];
+
+  }
+
+
+  saveMemberCalendarEvents(
+    member,
+    events
+  );
 
 
   renderSoloCalendar();
@@ -8050,92 +8584,6 @@ function addSoloActivity(){
   renderSoloActivityList();
 
   renderActivityRanking();
-
-   }
-
-
-/* =========================
-   GET ALL SOLO ACTIVITIES
-========================= */
-
-function getAllSoloActivities(){
-
-  const activities =
-    [];
-
-
-  memberOrder.forEach(
-    member => {
-
-      const events =
-        getMemberCalendarEvents(
-          member
-        );
-
-
-      Object.keys(events)
-        .forEach(
-          date => {
-
-            const dayEvents =
-              events[date];
-
-
-            if(
-              !Array.isArray(
-                dayEvents
-              )
-            ){
-
-              return;
-
-            }
-
-
-            dayEvents.forEach(
-              event => {
-
-                activities.push({
-
-                  member:
-                    member,
-
-                  name:
-                    event.name ||
-                    'untitled',
-
-                  date:
-                    date,
-
-                  time:
-                    event.time ||
-                    '',
-
-                  link:
-                    event.link ||
-                    ''
-
-                });
-
-              }
-            );
-
-          }
-        );
-
-    }
-  );
-
-
-  activities.sort(
-    (a,b) =>
-      a.date.localeCompare(
-        b.date
-      )
-  );
-
-
-  return activities;
 
 }
 
@@ -8174,18 +8622,15 @@ function renderSoloCalendar(){
       'activityCalendarDays'
     );
 
-
   const monthTitle =
     document.getElementById(
       'activityMonthLabel'
     );
 
-
   const countElement =
     document.getElementById(
       'activityTotalCount'
     );
-
 
   if(!days)
     return;
@@ -8193,7 +8638,6 @@ function renderSoloCalendar(){
 
   const year =
     soloCalendarDate.getFullYear();
-
 
   const month =
     soloCalendarDate.getMonth();
@@ -8216,7 +8660,7 @@ function renderSoloCalendar(){
 
 
   const allActivities =
-    getAllSoloActivities();
+    getFilteredSoloActivities();
 
 
   if(countElement){
@@ -8295,10 +8739,8 @@ function renderSoloCalendar(){
         'div'
       );
 
-
     empty.className =
       'calendar-day empty';
-
 
     days.appendChild(
       empty
@@ -8321,7 +8763,6 @@ function renderSoloCalendar(){
       document.createElement(
         'button'
       );
-
 
     button.className =
       'calendar-day';
@@ -8432,6 +8873,184 @@ function renderSoloCalendar(){
 
 }
 
+/* =========================
+   FILTER SOLO ACTIVITIES
+========================= */
+
+let selectedActivityMember =
+  'ALL';
+
+
+function filterActivities(
+  member,
+  button
+){
+
+  selectedActivityMember =
+    member;
+
+
+  document
+    .querySelectorAll(
+      '.activity-filter'
+    )
+    .forEach(
+      item => {
+
+        item.classList.remove(
+          'active'
+        );
+
+      }
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      'active'
+    );
+
+  }
+
+
+  renderSoloCalendar();
+
+  renderSoloActivityList();
+
+}
+
+
+/* =========================
+   GET FILTERED ACTIVITIES
+========================= */
+
+function getFilteredSoloActivities(){
+
+  const activities =
+    getAllSoloActivities();
+
+
+  if(
+    selectedActivityMember ===
+    'ALL'
+  ){
+
+    return activities;
+
+  }
+
+
+  return activities.filter(
+    activity =>
+      activity.member ===
+      selectedActivityMember
+  );
+
+}
+
+/* =========================
+   GET ALL SOLO ACTIVITIES
+========================= */
+
+function getAllSoloActivities(){
+
+  const activities =
+    [];
+
+
+  memberOrder.forEach(
+    member => {
+
+      const events =
+        getMemberCalendarEvents(
+          member
+        );
+
+
+      Object.keys(events)
+        .forEach(
+          date => {
+
+            const dayEvents =
+              events[date];
+
+
+            if(
+              !Array.isArray(
+                dayEvents
+              )
+            ){
+
+              return;
+
+            }
+
+
+            dayEvents.forEach(
+              (event,index) => {
+
+                activities.push({
+
+                  id:
+                    event.id ||
+                    (
+                      member +
+                      '-' +
+                      date +
+                      '-' +
+                      index
+                    ),
+
+                  member:
+                    member,
+
+                  name:
+                    event.name ||
+                    'untitled',
+
+                  date:
+                    date,
+
+                  time:
+                    event.time ||
+                    '',
+
+                  location:
+                    event.location ||
+                    '',
+
+                  photo:
+                    event.photo ||
+                    '',
+
+                  link:
+                    event.link ||
+                    ''
+
+                });
+
+              }
+            );
+
+          }
+        );
+
+    }
+  );
+
+
+  activities.sort(
+    (a,b) =>
+      b.date.localeCompare(
+        a.date
+      )
+  );
+
+
+  return activities;
+
+}
 
 /* =========================
    SOLO CALENDAR EVENTS
@@ -8481,25 +9100,119 @@ function showSoloCalendarEvents(
           '#ff7f8a';
 
 
-        let html =
+        const title =
+          document.createElement(
+            'div'
+          );
 
-          '<div class="calendar-event-date">' +
-          formatCalendarDate(date) +
-          '</div>' +
 
-          '<div class="calendar-event-name">' +
-          esc(activity.name) +
-          '</div>' +
+        title.className =
+          'calendar-event-name';
 
-          '<div class="calendar-event-time">' +
+
+        title.innerText =
+          activity.name;
+
+
+        const member =
+          document.createElement(
+            'div'
+          );
+
+
+        member.className =
+          'calendar-event-time';
+
+
+        member.innerHTML =
           '<span style="color:' +
           color +
           ';">●</span> ' +
-          esc(activity.member) +
-          '</div>';
+          esc(activity.member);
 
 
-        if(activity.link){
+        card.appendChild(
+          title
+        );
+
+
+        card.appendChild(
+          member
+        );
+
+
+        if(
+          activity.location
+        ){
+
+          const location =
+            document.createElement(
+              'div'
+            );
+
+
+          location.className =
+            'calendar-event-location';
+
+
+          location.innerText =
+            '⌖ ' +
+            activity.location;
+
+
+          card.appendChild(
+            location
+          );
+
+        }
+
+
+        if(
+          activity.photo
+        ){
+
+          const photo =
+            document.createElement(
+              'img'
+            );
+
+
+          photo.className =
+            'calendar-event-photo';
+
+
+          photo.src =
+            activity.photo;
+
+
+          photo.alt =
+            activity.name;
+
+
+          photo.loading =
+            'lazy';
+
+
+          card.appendChild(
+            photo
+          );
+
+        }
+
+
+        const actions =
+          document.createElement(
+            'div'
+          );
+
+
+        actions.className =
+          'calendar-event-actions';
+
+
+        if(
+          activity.link
+        ){
 
           const safeLink =
             getSafeActivityLink(
@@ -8509,21 +9222,100 @@ function showSoloCalendarEvents(
 
           if(safeLink){
 
-            html +=
+            const link =
+              document.createElement(
+                'a'
+              );
 
-              '<a class="album-link" href="' +
-              esc(safeLink) +
-              '" target="_blank" rel="noopener noreferrer">' +
-              'open activity ›' +
-              '</a>';
+
+            link.className =
+              'album-link';
+
+
+            link.href =
+              safeLink;
+
+
+            link.target =
+              '_blank';
+
+
+            link.rel =
+              'noopener noreferrer';
+
+
+            link.innerText =
+              'open activity ›';
+
+
+            actions.appendChild(
+              link
+            );
 
           }
 
         }
 
 
-        card.innerHTML =
-          html;
+        const edit =
+          document.createElement(
+            'button'
+          );
+
+
+        edit.className =
+          'activity-edit-button';
+
+
+        edit.innerText =
+          'edit';
+
+
+        edit.onclick =
+          () =>
+          editActivity(
+            activity.member,
+            activity.date,
+            activity.id
+          );
+
+
+        actions.appendChild(
+          edit
+        );
+
+
+        const remove =
+          document.createElement(
+            'button'
+          );
+
+
+        remove.className =
+          'activity-delete-button';
+
+
+        remove.innerText =
+          'delete';
+
+
+        remove.onclick =
+          () =>
+          deleteActivity(
+            activity.member,
+            activity.date,
+            activity.id
+          );
+
+
+        actions.appendChild(
+          remove
+        );
+
+
+        card.appendChild(
+          actions
+        );
 
 
         container.appendChild(
@@ -8567,7 +9359,7 @@ function showSoloCalendarEvents(
 
   }
 
-}
+   }
 
 
 /* =========================
@@ -8617,7 +9409,7 @@ function renderSoloActivityList(){
 
 
   const activities =
-    getAllSoloActivities();
+    getFilteredSoloActivities();
 
 
   list.innerHTML =
@@ -8650,166 +9442,373 @@ function renderSoloActivityList(){
   }
 
 
-  activities.forEach(
-    activity => {
-
-      const item =
-        document.createElement(
-          'div'
-        );
+  const grouped = {};
 
 
-      item.className =
-        'activity-item';
+  activities
+    .slice()
+    .sort(
+      (a,b) =>
+        b.date.localeCompare(
+          a.date
+        )
+    )
+    .forEach(
+      activity => {
 
-
-      const dot =
-        document.createElement(
-          'div'
-        );
-
-
-      dot.className =
-        'activity-member-dot';
-
-
-      dot.style.background =
-        memberColors[
-          activity.member
-        ] ||
-        '#ff7f8a';
-
-
-      const info =
-        document.createElement(
-          'div'
-        );
-
-
-      info.className =
-        'activity-item-info';
-
-
-      const name =
-        document.createElement(
-          'div'
-        );
-
-
-      name.className =
-        'activity-item-name';
-
-
-      name.innerText =
-        activity.name;
-
-
-      const member =
-        document.createElement(
-          'div'
-        );
-
-
-      member.className =
-        'activity-item-member';
-
-
-      member.innerText =
-        activity.member;
-
-
-      const date =
-        document.createElement(
-          'div'
-        );
-
-
-      date.className =
-        'activity-item-date';
-
-
-      date.innerText =
-        formatCalendarDate(
-          activity.date
-        );
-
-
-      info.appendChild(
-        name
-      );
-
-
-      info.appendChild(
-        member
-      );
-
-
-      info.appendChild(
-        date
-      );
-
-
-      item.appendChild(
-        dot
-      );
-
-
-      item.appendChild(
-        info
-      );
-
-
-      if(activity.link){
-
-        const safeLink =
-          getSafeActivityLink(
-            activity.link
+        const monthKey =
+          activity.date.slice(
+            0,
+            7
           );
 
 
-        if(safeLink){
+        if(!grouped[monthKey]){
 
-          const link =
-            document.createElement(
-              'a'
-            );
-
-
-          link.className =
-            'activity-item-link';
-
-
-          link.href =
-            safeLink;
-
-
-          link.target =
-            '_blank';
-
-
-          link.rel =
-            'noopener noreferrer';
-
-
-          link.innerText =
-            'open ›';
-
-
-          item.appendChild(
-            link
-          );
+          grouped[monthKey] =
+            [];
 
         }
 
+
+        grouped[monthKey].push(
+          activity
+        );
+
       }
+    );
 
 
-      list.appendChild(
-        item
-      );
+  Object.keys(grouped)
+    .sort()
+    .reverse()
+    .forEach(
+      monthKey => {
 
-    }
-  );
+        const monthTitle =
+          document.createElement(
+            'div'
+          );
+
+
+        monthTitle.className =
+          'activity-month-title';
+
+
+        const monthDate =
+          new Date(
+            monthKey +
+            '-01T12:00:00'
+          );
+
+
+        monthTitle.innerText =
+          new Intl.DateTimeFormat(
+            'en-US',
+            {
+              month:'long',
+              year:'numeric'
+            }
+          ).format(
+            monthDate
+          );
+
+
+        list.appendChild(
+          monthTitle
+        );
+
+
+        grouped[monthKey].forEach(
+          activity => {
+
+            const item =
+              document.createElement(
+                'div'
+              );
+
+
+            item.className =
+              'activity-item';
+
+
+            const dot =
+              document.createElement(
+                'div'
+              );
+
+
+            dot.className =
+              'activity-member-dot';
+
+
+            dot.style.background =
+              memberColors[
+                activity.member
+              ] ||
+              '#ff7f8a';
+
+
+            const info =
+              document.createElement(
+                'div'
+              );
+
+
+            info.className =
+              'activity-item-info';
+
+
+            const name =
+              document.createElement(
+                'div'
+              );
+
+
+            name.className =
+              'activity-item-name';
+
+
+            name.innerText =
+              activity.name;
+
+
+            const member =
+              document.createElement(
+                'div'
+              );
+
+
+            member.className =
+              'activity-item-member';
+
+
+            member.innerText =
+              activity.member;
+
+
+            const date =
+              document.createElement(
+                'div'
+              );
+
+
+            date.className =
+              'activity-item-date';
+
+
+            date.innerText =
+              formatCalendarDate(
+                activity.date
+              );
+
+
+            info.appendChild(
+              name
+            );
+
+            info.appendChild(
+              member
+            );
+
+            info.appendChild(
+              date
+            );
+
+
+            if(
+              activity.location
+            ){
+
+              const location =
+                document.createElement(
+                  'div'
+                );
+
+
+              location.className =
+                'activity-item-location';
+
+
+              location.innerText =
+                '⌖ ' +
+                activity.location;
+
+
+              info.appendChild(
+                location
+              );
+
+            }
+
+
+            item.appendChild(
+              dot
+            );
+
+            item.appendChild(
+              info
+            );
+
+
+            if(
+              activity.photo
+            ){
+
+              const photo =
+                document.createElement(
+                  'img'
+                );
+
+
+              photo.className =
+                'activity-item-photo';
+
+
+              photo.src =
+                activity.photo;
+
+
+              photo.alt =
+                activity.name;
+
+
+              photo.loading =
+                'lazy';
+
+
+              item.appendChild(
+                photo
+              );
+
+            }
+
+
+            const actions =
+              document.createElement(
+                'div'
+              );
+
+
+            actions.className =
+              'activity-item-actions';
+
+
+            if(activity.link){
+
+              const safeLink =
+                getSafeActivityLink(
+                  activity.link
+                );
+
+
+              if(safeLink){
+
+                const link =
+                  document.createElement(
+                    'a'
+                  );
+
+
+                link.className =
+                  'activity-item-link';
+
+
+                link.href =
+                  safeLink;
+
+
+                link.target =
+                  '_blank';
+
+
+                link.rel =
+                  'noopener noreferrer';
+
+
+                link.innerText =
+                  'open ›';
+
+
+                actions.appendChild(
+                  link
+                );
+
+              }
+
+            }
+
+
+            const edit =
+              document.createElement(
+                'button'
+              );
+
+
+            edit.className =
+              'activity-edit-button';
+
+
+            edit.innerText =
+              'edit';
+
+
+            edit.onclick =
+              () =>
+              editActivity(
+                activity.member,
+                activity.date,
+                activity.id
+              );
+
+
+            actions.appendChild(
+              edit
+            );
+
+
+            const remove =
+              document.createElement(
+                'button'
+              );
+
+
+            remove.className =
+              'activity-delete-button';
+
+
+            remove.innerText =
+              'delete';
+
+
+            remove.onclick =
+              () =>
+              deleteActivity(
+                activity.member,
+                activity.date,
+                activity.id
+              );
+
+
+            actions.appendChild(
+              remove
+            );
+
+
+            item.appendChild(
+              actions
+            );
+
+
+            list.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+    );
 
 }
 
@@ -8821,125 +9820,356 @@ function renderSoloActivityList(){
 function renderActivityRanking(){
 
   const container =
-    document.getElementById('activityRanking');
+    document.getElementById(
+      'activityRanking'
+    );
 
-  if(!container) return;
+  if(!container)
+    return;
+
 
   const activities =
     getAllSoloActivities();
 
+
   const counts = {};
 
-  memberOrder.forEach(member => {
-    counts[member] = 0;
-  });
 
-  activities.forEach(activity => {
+  memberOrder.forEach(
+    member => {
 
-    if(counts[activity.member] !== undefined){
-      counts[activity.member]++;
+      counts[member] =
+        0;
+
     }
+  );
 
-  });
+
+  activities.forEach(
+    activity => {
+
+      if(
+        counts[activity.member]
+        !== undefined
+      ){
+
+        counts[activity.member]++;
+
+      }
+
+    }
+  );
+
 
   const total =
-    Object.values(counts)
-    .reduce((a,b) => a + b, 0);
+    activities.length;
+
+
+  const maxCount =
+    Math.max(
+      ...Object.values(counts),
+      0
+    );
+
 
   const ranked =
     [...memberOrder].sort(
-      (a,b) => counts[b] - counts[a]
+      (a,b) =>
+        counts[b] -
+        counts[a]
     );
 
-  container.innerHTML = '';
 
-  ranked.forEach((member,index) => {
+  container.innerHTML =
+    '';
 
-    const row =
-      document.createElement('div');
 
-    row.className =
-      'activity-rank';
+  ranked.forEach(
+    (member,index) => {
 
-    const number =
-      document.createElement('div');
+      const row =
+        document.createElement(
+          'div'
+        );
 
-    number.className =
-      'activity-rank-number';
 
-    number.innerText =
-      index + 1;
+      row.className =
+        'activity-rank';
 
-    const info =
-      document.createElement('div');
 
-    info.className =
-      'activity-rank-info';
+      const number =
+        document.createElement(
+          'div'
+        );
 
-    const name =
-      document.createElement('div');
 
-    name.className =
-      'activity-rank-name';
+      number.className =
+        'activity-rank-number';
 
-    name.innerText =
-      member;
 
-    const percentage =
-      total > 0
-      ? Math.round(
-          counts[member] / total * 100
+      number.innerText =
+        index + 1;
+
+
+      const info =
+        document.createElement(
+          'div'
+        );
+
+
+      info.className =
+        'activity-rank-info';
+
+
+      const name =
+        document.createElement(
+          'div'
+        );
+
+
+      name.className =
+        'activity-rank-name';
+
+
+      name.innerText =
+        member;
+
+
+      const percentage =
+        total > 0
+        ?
+        Math.round(
+          counts[member] /
+          total *
+          100
         )
-      : 0;
+        :
+        0;
 
-    const count =
-      document.createElement('div');
 
-    count.className =
-      'activity-rank-count';
+      const count =
+        document.createElement(
+          'div'
+        );
 
-    count.innerText =
-      percentage + '%';
 
-    const barArea =
-      document.createElement('div');
+      count.className =
+        'activity-rank-count';
 
-    barArea.className =
-      'activity-bar-area';
 
-    const bar =
-      document.createElement('div');
+      count.innerText =
+        counts[member] +
+        (
+          counts[member] === 1
+          ?
+          ' activity'
+          :
+          ' activities'
+        ) +
+        ' · ' +
+        percentage +
+        '%';
 
-    bar.className =
-      'activity-bar';
 
-    bar.style.width =
-      percentage + '%';
+      const barArea =
+        document.createElement(
+          'div'
+        );
 
-    const intensity =
-  total > 0
-  ? 0.25 + (counts[member] / Math.max(...Object.values(counts))) * 0.75
-  : 0.25;
 
-bar.style.background =
-  memberColors[member] ||
-  '#ff8f9a';
+      barArea.className =
+        'activity-bar-area';
 
-bar.style.opacity =
-  intensity;
 
-    barArea.appendChild(bar);
+      const bar =
+        document.createElement(
+          'div'
+        );
 
-    info.appendChild(name);
-    info.appendChild(count);
-    info.appendChild(barArea);
 
-    row.appendChild(number);
-    row.appendChild(info);
+      bar.className =
+        'activity-bar';
 
-    container.appendChild(row);
 
-  });
+      const barWidth =
+        maxCount > 0
+        ?
+        (
+          counts[member] /
+          maxCount *
+          100
+        )
+        :
+        0;
+
+
+      bar.style.width =
+        barWidth + '%';
+
+
+      const intensity =
+        maxCount > 0
+        ?
+        0.28 +
+        (
+          counts[member] /
+          maxCount
+        ) *
+        0.72
+        :
+        0.28;
+
+
+      bar.style.background =
+        memberColors[member] ||
+        '#ff8f9a';
+
+
+      bar.style.opacity =
+        intensity;
+
+
+      barArea.appendChild(
+        bar
+      );
+
+
+      const activePeriod =
+        getMostActivePeriod(
+          activities,
+          member
+        );
+
+
+      const period =
+        document.createElement(
+          'div'
+        );
+
+
+      period.className =
+        'activity-rank-period';
+
+
+      period.innerText =
+        activePeriod
+        ?
+        'most active: ' +
+        activePeriod
+        :
+        'no activities yet';
+
+
+      info.appendChild(
+        name
+      );
+
+
+      info.appendChild(
+        count
+      );
+
+
+      info.appendChild(
+        barArea
+      );
+
+
+      info.appendChild(
+        period
+      );
+
+
+      row.appendChild(
+        number
+      );
+
+
+      row.appendChild(
+        info
+      );
+
+
+      container.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   MOST ACTIVE PERIOD
+========================= */
+
+function getMostActivePeriod(
+  activities,
+  member
+){
+
+  const periods = {};
+
+
+  activities.forEach(
+    activity => {
+
+      if(
+        activity.member !==
+        member
+      )
+        return;
+
+
+      const key =
+        activity.date.slice(
+          0,
+          7
+        );
+
+
+      periods[key] =
+        (
+          periods[key] ||
+          0
+        ) + 1;
+
+    }
+  );
+
+
+  const keys =
+    Object.keys(periods);
+
+
+  if(!keys.length)
+    return '';
+
+
+  keys.sort(
+    (a,b) =>
+      periods[b] -
+      periods[a]
+  );
+
+
+  const date =
+    new Date(
+      keys[0] +
+      '-01T12:00:00'
+    );
+
+
+  return new Intl.DateTimeFormat(
+    'en-US',
+    {
+      month:'long',
+      year:'numeric'
+    }
+  ).format(
+    date
+  );
 
 }
 
@@ -10419,7 +11649,7 @@ function deleteTourTicket(id){
 
   renderTourTickets();
 
-   }
+}
 
 
 /* =========================
@@ -10825,14 +12055,3 @@ setInterval(
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-   
-
-   
