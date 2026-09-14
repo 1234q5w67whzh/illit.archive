@@ -1249,3 +1249,877 @@ document.addEventListener(
 );
 
 </script>
+
+
+
+<!-- ================================
+     PROFILE — CSS
+================================ -->
+
+<style>
+
+.member-cards-grid {
+  display: grid;
+  gap: 18px;
+  padding-bottom: 20px;
+}
+
+.member-card {
+  width: 100%;
+  height: 470px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.member-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.member-card.flipped .member-card-inner {
+  transform: rotateY(180deg);
+}
+
+.member-card-front,
+.member-card-back {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 27px;
+
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.09);
+}
+
+/* ================================
+   FRONT
+================================ */
+
+.member-card-front {
+  background: #ffffff;
+}
+
+.member-photo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4f4f6,
+      #e8e8ec
+    );
+}
+
+.member-front-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 24px;
+
+  background:
+    linear-gradient(
+      transparent 40%,
+      rgba(0,0,0,.58)
+    );
+}
+
+.member-front-name {
+  font-size: 32px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: #ffffff;
+
+  letter-spacing: -1px;
+}
+
+.member-front-role {
+  margin-top: 7px;
+
+  font-size: 13px;
+
+  color: rgba(255,255,255,.86);
+}
+
+.member-front-star {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  font-size: 25px;
+
+  text-shadow:
+    0 3px 12px rgba(0,0,0,.2);
+}
+
+/* ================================
+   BACK
+================================ */
+
+.member-card-back {
+  transform: rotateY(180deg);
+
+  background: #ffffff;
+
+  padding: 23px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.member-back-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 17px;
+}
+
+.member-back-name {
+  font-size: 25px;
+  font-weight: 800;
+
+  letter-spacing: -.7px;
+}
+
+.member-back-star {
+  font-size: 21px;
+}
+
+.profile-facts {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding-right: 2px;
+}
+
+.profile-fact {
+  padding: 10px 11px;
+
+  border-radius: 13px;
+
+  background: #f6f6f8;
+}
+
+.profile-fact-label {
+  font-size: 10px;
+
+  color: #92929a;
+
+  font-weight: 650;
+
+  text-transform: uppercase;
+
+  letter-spacing: .3px;
+}
+
+.profile-fact-value {
+  margin-top: 2px;
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  color: #252529;
+}
+
+.open-profile-button {
+  width: 100%;
+
+  min-height: 44px;
+
+  margin-top: 14px;
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.member-card-hint {
+  position: absolute;
+
+  left: 50%;
+  bottom: 19px;
+
+  transform: translateX(-50%);
+
+  padding: 7px 12px;
+
+  border-radius: 99px;
+
+  background: rgba(255,255,255,.86);
+
+  backdrop-filter: blur(10px);
+
+  font-size: 10px;
+
+  color: #55555c;
+
+  white-space: nowrap;
+}
+
+</style>
+
+
+<script>
+
+/* =================================
+   MEMBER DATA
+================================= */
+
+const DEFAULT_MEMBERS = [
+
+  {
+    id: "yuna",
+    stageName: "YUNAH",
+    birthName: "Roh Yunah",
+    koreanName: "노윤아",
+    japaneseName: "",
+    chineseName: "",
+    nationality: "South Korean",
+    birthplace: "",
+    height: "",
+    zodiacSign: "Capricorn",
+    representativeAnimal: "🐆",
+    summerMoonCharacter: "",
+    occupation: "Singer",
+    photo: "",
+    color: "#ff5a67"
+  },
+
+  {
+    id: "minju",
+    stageName: "MINJU",
+    birthName: "Park Minju",
+    koreanName: "박민주",
+    japaneseName: "",
+    chineseName: "",
+    nationality: "South Korean",
+    birthplace: "",
+    height: "",
+    zodiacSign: "Taurus",
+    representativeAnimal: "🐰",
+    summerMoonCharacter: "",
+    occupation: "Singer",
+    photo: "",
+    color: "#ffd84d"
+  },
+
+  {
+    id: "moka",
+    stageName: "MOKA",
+    birthName: "Sakurai Moka",
+    koreanName: "모카",
+    japaneseName: "さくらい もか",
+    chineseName: "",
+    nationality: "Japanese",
+    birthplace: "",
+    height: "",
+    zodiacSign: "Libra",
+    representativeAnimal: "☕️",
+    summerMoonCharacter: "",
+    occupation: "Singer",
+    photo: "",
+    color: "#b99bea"
+  },
+
+  {
+    id: "wonhee",
+    stageName: "WONHEE",
+    birthName: "Wonhee",
+    koreanName: "원희",
+    japaneseName: "",
+    chineseName: "",
+    nationality: "South Korean",
+    birthplace: "",
+    height: "",
+    zodiacSign: "Cancer",
+    representativeAnimal: "🐿️",
+    summerMoonCharacter: "",
+    occupation: "Singer",
+    photo: "",
+    color: "#ff9bc5"
+  },
+
+  {
+    id: "iroha",
+    stageName: "IROHA",
+    birthName: "Hokazono Iroha",
+    koreanName: "이로하",
+    japaneseName: "外園いろは",
+    chineseName: "",
+    nationality: "Japanese",
+    birthplace: "",
+    height: "",
+    zodiacSign: "Aquarius",
+    representativeAnimal: "🐢",
+    summerMoonCharacter: "",
+    occupation: "Singer",
+    photo: "",
+    color: "#8ddcf5"
+  }
+
+];
+
+
+const MEMBER_STORAGE =
+  "illit_archive_members";
+
+
+/* =================================
+   GET MEMBERS
+================================= */
+
+function getMembers() {
+
+  const saved =
+    localStorage.getItem(
+      MEMBER_STORAGE
+    );
+
+  if (!saved) {
+
+    localStorage.setItem(
+      MEMBER_STORAGE,
+      JSON.stringify(DEFAULT_MEMBERS)
+    );
+
+    return DEFAULT_MEMBERS;
+
+  }
+
+  try {
+
+    const parsed =
+      JSON.parse(saved);
+
+    if (
+      Array.isArray(parsed) &&
+      parsed.length === 5
+    ) {
+
+      return parsed;
+
+    }
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+  return DEFAULT_MEMBERS;
+
+}
+
+
+/* =================================
+   SAVE MEMBERS
+================================= */
+
+function saveMembers(members) {
+
+  localStorage.setItem(
+    MEMBER_STORAGE,
+    JSON.stringify(members)
+  );
+
+}
+
+
+/* =================================
+   ESCAPE HTML
+================================= */
+
+function escapeHTML(value) {
+
+  if (value === undefined ||
+      value === null) {
+
+    return "";
+
+  }
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =================================
+   MEMBER NAME CLASS
+================================= */
+
+function getMemberNameClass(
+  stageName
+) {
+
+  const map = {
+
+    YUNAH: "name-yunah",
+
+    MINJU: "name-minju",
+
+    MOKA: "name-moka",
+
+    WONHEE: "name-wonhee",
+
+    IROHA: "name-iroha"
+
+  };
+
+  return map[stageName] || "";
+
+}
+
+
+/* =================================
+   PHOTO
+================================= */
+
+function memberPhotoHTML(member) {
+
+  if (member.photo) {
+
+    return `
+      <img
+        class="member-photo"
+        src="${member.photo}"
+        alt="${escapeHTML(member.stageName)}"
+      >
+    `;
+
+  }
+
+  return `
+    <div
+      class="member-photo"
+      style="
+        background:
+          linear-gradient(
+            145deg,
+            ${member.color}55,
+            #ffffff
+          );
+      "
+    ></div>
+  `;
+
+}
+
+
+/* =================================
+   PROFILE FACT
+================================= */
+
+function profileFact(
+  label,
+  value
+) {
+
+  return `
+    <div class="profile-fact">
+
+      <div class="profile-fact-label">
+        ${escapeHTML(label)}
+      </div>
+
+      <div class="profile-fact-value">
+        ${escapeHTML(value || "—")}
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* =================================
+   CREATE CARD
+================================= */
+
+function createMemberCard(member) {
+
+  const nameClass =
+    getMemberNameClass(
+      member.stageName
+    );
+
+  return `
+
+    <article
+      class="member-card"
+      data-member-id="${escapeHTML(member.id)}"
+      onclick="flipMemberCard(this)"
+    >
+
+      <div class="member-card-inner">
+
+        <!-- FRONT -->
+
+        <div class="member-card-front">
+
+          ${memberPhotoHTML(member)}
+
+          <div
+            class="member-front-star"
+            style="color:${member.color}"
+          >
+            ★
+          </div>
+
+          <div class="member-front-overlay">
+
+            <div
+              class="member-front-name ${nameClass}"
+            >
+              ${escapeHTML(member.stageName)}
+            </div>
+
+            <div class="member-front-role">
+              ILLIT
+            </div>
+
+            <div class="member-card-hint">
+              tap to flip
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="member-card-back">
+
+          <div class="member-back-top">
+
+            <div
+              class="member-back-name ${nameClass}"
+            >
+              ${escapeHTML(member.stageName)}
+            </div>
+
+            <div
+              class="member-back-star"
+              style="color:${member.color}"
+            >
+              ★
+            </div>
+
+          </div>
+
+
+          <div class="profile-facts">
+
+            ${profileFact(
+              "Birth Name",
+              member.birthName
+            )}
+
+            ${profileFact(
+              "Stage Name",
+              member.stageName
+            )}
+
+            ${profileFact(
+              "Korean Name",
+              member.koreanName
+            )}
+
+            ${profileFact(
+              "Japanese Name",
+              member.japaneseName
+            )}
+
+            ${profileFact(
+              "Chinese Name",
+              member.chineseName
+            )}
+
+            ${profileFact(
+              "Nationality",
+              member.nationality
+            )}
+
+            ${profileFact(
+              "Birthplace",
+              member.birthplace
+            )}
+
+            ${profileFact(
+              "Height",
+              member.height
+            )}
+
+            ${profileFact(
+              "Zodiac Sign",
+              member.zodiacSign
+            )}
+
+            ${profileFact(
+              "Representative Animal",
+              member.representativeAnimal
+            )}
+
+            ${profileFact(
+              "Summer Moon Character",
+              member.summerMoonCharacter
+            )}
+
+            ${profileFact(
+              "Occupation",
+              member.occupation
+            )}
+
+          </div>
+
+
+          <button
+            class="open-profile-button"
+            style="background:${member.color}"
+            onclick="
+              event.stopPropagation();
+              openMemberProfile('${member.id}');
+            "
+          >
+            Open Full Profile
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =================================
+   RENDER PROFILE
+================================= */
+
+function renderProfileCards() {
+
+  const container =
+    document.getElementById(
+      "memberCardsGrid"
+    );
+
+  if (!container) return;
+
+  const members =
+    getMembers();
+
+  container.innerHTML =
+    members
+      .map(createMemberCard)
+      .join("");
+
+}
+
+
+/* =================================
+   FLIP CARD
+================================= */
+
+function flipMemberCard(card) {
+
+  card.classList.toggle(
+    "flipped"
+  );
+
+}
+
+
+/* =================================
+   OPEN FULL PROFILE
+================================= */
+
+function openMemberProfile(
+  memberId
+) {
+
+  const member =
+    getMembers().find(
+      item =>
+        item.id === memberId
+    );
+
+  if (!member) return;
+
+
+  openModal(`
+
+    <div class="modal-handle"></div>
+
+    <div class="modal-title">
+      ${escapeHTML(member.stageName)}
+    </div>
+
+    <div
+      style="
+        text-align:center;
+        margin-bottom:20px;
+      "
+    >
+
+      ${
+        member.photo
+
+        ? `
+          <img
+            src="${member.photo}"
+            alt="${escapeHTML(member.stageName)}"
+            style="
+              width:150px;
+              height:190px;
+              object-fit:cover;
+              border-radius:20px;
+              margin:auto;
+            "
+          >
+        `
+
+        : `
+          <div
+            style="
+              width:150px;
+              height:190px;
+              border-radius:20px;
+              margin:auto;
+              background:${member.color}44;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:45px;
+            "
+          >
+            ${member.representativeAnimal || "☆"}
+          </div>
+        `
+      }
+
+    </div>
+
+
+    <div class="profile-facts">
+
+      ${profileFact(
+        "Birth Name",
+        member.birthName
+      )}
+
+      ${profileFact(
+        "Stage Name",
+        member.stageName
+      )}
+
+      ${profileFact(
+        "Korean Name",
+        member.koreanName
+      )}
+
+      ${profileFact(
+        "Japanese Name",
+        member.japaneseName
+      )}
+
+      ${profileFact(
+        "Chinese Name",
+        member.chineseName
+      )}
+
+      ${profileFact(
+        "Nationality",
+        member.nationality
+      )}
+
+      ${profileFact(
+        "Birthplace",
+        member.birthplace
+      )}
+
+      ${profileFact(
+        "Height",
+        member.height
+      )}
+
+      ${profileFact(
+        "Zodiac Sign",
+        member.zodiacSign
+      )}
+
+      ${profileFact(
+        "Representative Animal",
+        member.representativeAnimal
+      )}
+
+      ${profileFact(
+        "Summer Moon Character",
+        member.summerMoonCharacter
+      )}
+
+      ${profileFact(
+        "Occupation",
+        member.occupation
+      )}
+
+    </div>
+
+  `);
+
+}
+
+
+/* =================================
+   LOAD
+================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderProfileCards();
+
+  }
+);
+
+   </script>
