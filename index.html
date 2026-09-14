@@ -2123,3 +2123,732 @@ document.addEventListener(
 );
 
    </script>
+
+
+   <!-- ================================
+     PROFILE EDITOR — CSS
+================================ -->
+
+<style>
+
+.profile-editor-photo {
+  width: 150px;
+  height: 190px;
+
+  margin: 0 auto 16px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background: #eeeeF2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.profile-editor-photo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.profile-photo-placeholder {
+  font-size: 42px;
+  opacity: .45;
+}
+
+.photo-upload-button {
+  width: 100%;
+
+  min-height: 44px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e1e6;
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  margin-bottom: 18px;
+}
+
+.photo-upload-button:active {
+  transform: scale(.98);
+}
+
+.profile-editor-section {
+  margin-top: 22px;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.profile-editor-note {
+  font-size: 11px;
+  color: #92929a;
+
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.edit-profile-button {
+  width: 100%;
+
+  min-height: 44px;
+
+  margin-top: 10px;
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.remove-photo-button {
+  width: 100%;
+
+  min-height: 40px;
+
+  margin-top: 8px;
+
+  border-radius: 13px;
+
+  background: #eeeeF2;
+
+  color: #55555c;
+
+  font-size: 12px;
+
+  font-weight: 650;
+}
+
+</style>
+
+
+<script>
+
+/* =================================
+   CURRENT PROFILE EDITOR
+================================= */
+
+let editingMemberId = null;
+
+let editingPhotoData = "";
+
+
+/* =================================
+   OPEN EDITOR
+================================= */
+
+function openProfileEditor(memberId) {
+
+  const member =
+    getMembers().find(
+      item => item.id === memberId
+    );
+
+  if (!member) return;
+
+
+  editingMemberId = memberId;
+
+  editingPhotoData =
+    member.photo || "";
+
+
+  openModal(`
+
+    <div class="modal-handle"></div>
+
+    <div class="modal-title">
+      Edit ${escapeHTML(member.stageName)}
+    </div>
+
+
+    <!-- PHOTO -->
+
+    <div class="profile-editor-photo">
+
+      ${
+        member.photo
+
+        ? `
+          <img
+            id="profileEditorPreview"
+            src="${member.photo}"
+            alt="${escapeHTML(member.stageName)}"
+          >
+        `
+
+        : `
+          <div
+            id="profileEditorPreview"
+            class="profile-photo-placeholder"
+          >
+            ☆
+          </div>
+        `
+      }
+
+    </div>
+
+
+    <input
+      type="file"
+      id="profilePhotoInput"
+      accept="image/*"
+      hidden
+      onchange="handleProfilePhoto(event)"
+    >
+
+
+    <button
+      class="photo-upload-button"
+      onclick="
+        document
+          .getElementById('profilePhotoInput')
+          .click()
+      "
+    >
+      Change Photo
+    </button>
+
+
+    ${
+      member.photo
+      ? `
+        <button
+          class="remove-photo-button"
+          onclick="removeProfilePhoto()"
+        >
+          Remove Photo
+        </button>
+      `
+      : ""
+    }
+
+
+    <!-- PROFILE INFORMATION -->
+
+    <div class="profile-editor-section">
+      Profile Information
+    </div>
+
+    <div class="profile-editor-note">
+      All profile information is displayed in English.
+    </div>
+
+
+    ${editorInput(
+      "Birth Name",
+      "editBirthName",
+      member.birthName
+    )}
+
+    ${editorInput(
+      "Stage Name",
+      "editStageName",
+      member.stageName
+    )}
+
+    ${editorInput(
+      "Korean Name",
+      "editKoreanName",
+      member.koreanName
+    )}
+
+    ${editorInput(
+      "Japanese Name",
+      "editJapaneseName",
+      member.japaneseName
+    )}
+
+    ${editorInput(
+      "Chinese Name",
+      "editChineseName",
+      member.chineseName
+    )}
+
+    ${editorInput(
+      "Nationality",
+      "editNationality",
+      member.nationality
+    )}
+
+    ${editorInput(
+      "Birthplace",
+      "editBirthplace",
+      member.birthplace
+    )}
+
+    ${editorInput(
+      "Height",
+      "editHeight",
+      member.height
+    )}
+
+    ${editorInput(
+      "Zodiac Sign",
+      "editZodiacSign",
+      member.zodiacSign
+    )}
+
+    ${editorInput(
+      "Representative Animal",
+      "editRepresentativeAnimal",
+      member.representativeAnimal
+    )}
+
+    ${editorInput(
+      "Summer Moon Character",
+      "editSummerMoonCharacter",
+      member.summerMoonCharacter
+    )}
+
+    ${editorInput(
+      "Occupation",
+      "editOccupation",
+      member.occupation
+    )}
+
+
+    <!-- ACTIONS -->
+
+    <div class="modal-actions">
+
+      <button
+        class="button button-secondary"
+        onclick="closeModal()"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="button button-primary"
+        onclick="saveProfileEditor()"
+      >
+        Save
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =================================
+   EDITOR INPUT
+================================= */
+
+function editorInput(
+  label,
+  id,
+  value
+) {
+
+  return `
+
+    <div class="form-group">
+
+      <label
+        class="form-label"
+        for="${id}"
+      >
+        ${escapeHTML(label)}
+      </label>
+
+      <input
+        class="form-input"
+        id="${id}"
+        type="text"
+        value="${escapeHTML(value || "")}"
+      >
+
+    </div>
+
+  `;
+
+}
+
+
+/* =================================
+   PHOTO UPLOAD
+================================= */
+
+function handleProfilePhoto(event) {
+
+  const file =
+    event.target.files[0];
+
+  if (!file) return;
+
+
+  if (!file.type.startsWith("image/")) {
+
+    showToast(
+      "Please select an image."
+    );
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(e) {
+
+    editingPhotoData =
+      e.target.result;
+
+
+    const preview =
+      document.getElementById(
+        "profileEditorPreview"
+      );
+
+
+    if (!preview) return;
+
+
+    if (preview.tagName === "IMG") {
+
+      preview.src =
+        editingPhotoData;
+
+    } else {
+
+      preview.outerHTML = `
+
+        <img
+          id="profileEditorPreview"
+          src="${editingPhotoData}"
+          alt="Profile photo"
+        >
+
+      `;
+
+    }
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =================================
+   REMOVE PHOTO
+================================= */
+
+function removeProfilePhoto() {
+
+  editingPhotoData = "";
+
+
+  const preview =
+    document.getElementById(
+      "profileEditorPreview"
+    );
+
+
+  if (preview) {
+
+    preview.outerHTML = `
+
+      <div
+        id="profileEditorPreview"
+        class="profile-photo-placeholder"
+      >
+        ☆
+      </div>
+
+    `;
+
+  }
+
+
+  showToast(
+    "Photo removed."
+  );
+
+}
+
+
+/* =================================
+   SAVE PROFILE
+================================= */
+
+function saveProfileEditor() {
+
+  if (!editingMemberId) return;
+
+
+  const members =
+    getMembers();
+
+
+  const index =
+    members.findIndex(
+      member =>
+        member.id === editingMemberId
+    );
+
+
+  if (index === -1) return;
+
+
+  const member =
+    members[index];
+
+
+  member.birthName =
+    getInputValue(
+      "editBirthName"
+    );
+
+  member.stageName =
+    getInputValue(
+      "editStageName"
+    );
+
+  member.koreanName =
+    getInputValue(
+      "editKoreanName"
+    );
+
+  member.japaneseName =
+    getInputValue(
+      "editJapaneseName"
+    );
+
+  member.chineseName =
+    getInputValue(
+      "editChineseName"
+    );
+
+  member.nationality =
+    getInputValue(
+      "editNationality"
+    );
+
+  member.birthplace =
+    getInputValue(
+      "editBirthplace"
+    );
+
+  member.height =
+    getInputValue(
+      "editHeight"
+    );
+
+  member.zodiacSign =
+    getInputValue(
+      "editZodiacSign"
+    );
+
+  member.representativeAnimal =
+    getInputValue(
+      "editRepresentativeAnimal"
+    );
+
+  member.summerMoonCharacter =
+    getInputValue(
+      "editSummerMoonCharacter"
+    );
+
+  member.occupation =
+    getInputValue(
+      "editOccupation"
+    );
+
+
+  member.photo =
+    editingPhotoData;
+
+
+  saveMembers(members);
+
+
+  renderProfileCards();
+
+
+  closeModal();
+
+
+  showToast(
+    "Profile saved."
+  );
+
+
+  editingMemberId = null;
+
+  editingPhotoData = "";
+
+}
+
+
+/* =================================
+   GET INPUT
+================================= */
+
+function getInputValue(id) {
+
+  const input =
+    document.getElementById(id);
+
+
+  if (!input) return "";
+
+
+  return input.value.trim();
+
+}
+
+
+/* =================================
+   ADD EDIT BUTTON TO CARD
+================================= */
+
+function addProfileEditButtons() {
+
+  const cards =
+    document.querySelectorAll(
+      ".member-card"
+    );
+
+
+  cards.forEach(card => {
+
+    const memberId =
+      card.dataset.memberId;
+
+
+    const back =
+      card.querySelector(
+        ".member-card-back"
+      );
+
+
+    if (!back) return;
+
+
+    if (
+      back.querySelector(
+        ".edit-profile-button"
+      )
+    ) return;
+
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "edit-profile-button";
+
+
+    const member =
+      getMembers().find(
+        item =>
+          item.id === memberId
+      );
+
+
+    button.style.background =
+      member
+        ? member.color
+        : "#17171a";
+
+
+    button.textContent =
+      "Edit Profile";
+
+
+    button.onclick =
+      function(event) {
+
+        event.stopPropagation();
+
+        openProfileEditor(
+          memberId
+        );
+
+      };
+
+
+    const openButton =
+      back.querySelector(
+        ".open-profile-button"
+      );
+
+
+    if (openButton) {
+
+      openButton.insertAdjacentElement(
+        "afterend",
+        button
+      );
+
+    } else {
+
+      back.appendChild(button);
+
+    }
+
+  });
+
+}
+
+
+/* =================================
+   PROFILE RENDER UPDATE
+================================= */
+
+const originalRenderProfileCards =
+  renderProfileCards;
+
+
+renderProfileCards =
+  function() {
+
+    originalRenderProfileCards();
+
+    setTimeout(
+      addProfileEditButtons,
+      0
+    );
+
+  };
+
+
+/* =================================
+   INITIAL RENDER
+================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderProfileCards();
+
+  }
+);
+
+</script>
