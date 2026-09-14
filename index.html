@@ -1175,6 +1175,7 @@ letter-spacing:-.4px;
 }
 
 .calendar-arrow{
+
 width:32px;
 height:32px;
 border:none;
@@ -1299,6 +1300,972 @@ padding:18px;
 text-align:center;
 font-size:11px;
 color:var(--gray);
+}
+
+/* =========================
+   ACTIVITIES
+========================= */
+
+
+/* MAIN ACTIVITIES TABS */
+
+
+.activities-main-tabs{
+
+  display:flex;
+
+  gap:6px;
+
+  padding:4px;
+
+  margin:0 0 16px;
+
+  background:#f1f1f4;
+
+  border-radius:16px;
+
+}
+
+
+.activities-main-tab{
+
+  flex:1;
+
+  border:0;
+
+  background:transparent;
+
+  padding:10px 12px;
+
+  border-radius:12px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  letter-spacing:.4px;
+
+  color:#8e8e93;
+
+  cursor:pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    box-shadow .2s ease;
+
+}
+
+
+.activities-main-tab.active{
+
+  background:#ffffff;
+
+  color:#171717;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.08);
+
+}
+
+
+/* MEMBER FILTERS */
+
+
+.activity-filters{
+
+  display:flex;
+
+  gap:7px;
+
+  overflow-x:auto;
+
+  padding:2px 1px 6px;
+
+  margin-bottom:14px;
+
+  scrollbar-width:none;
+
+}
+
+
+.activity-filters::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+
+.activity-filter{
+
+  flex:0 0 auto;
+
+  border:1px solid #eeeeef;
+
+  background:#ffffff;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  letter-spacing:.4px;
+
+  color:#8e8e93;
+
+  cursor:pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+
+}
+
+
+.activity-filter.active{
+
+  background:#171717;
+
+  color:#ffffff;
+
+  border-color:#171717;
+
+}
+
+
+/* GENERAL ACTIVITY CARD */
+
+
+.activities-card{
+
+  background:rgba(255,255,255,.94);
+
+  border-radius:22px;
+
+  padding:18px;
+
+  margin:16px 0;
+
+  box-shadow:
+    0 4px 18px rgba(0,0,0,.06);
+
+  border:1px solid rgba(0,0,0,.04);
+
+}
+
+
+/* SECTION TITLES */
+
+
+.activity-section-title{
+
+  font-size:14px;
+
+  font-weight:700;
+
+  color:#171717;
+
+  line-height:18px;
+
+}
+
+
+.activity-ranking-subtitle{
+
+  margin-top:3px;
+
+  font-size:10px;
+
+  color:#8e8e93;
+
+  line-height:14px;
+
+}
+
+
+/* ACTIVITY FORM */
+
+
+.activities-card input,
+.activities-card select{
+
+  width:100%;
+
+  box-sizing:border-box;
+
+  margin-top:9px;
+
+  padding:12px 13px;
+
+  border:1px solid #e5e5e7;
+
+  border-radius:14px;
+
+  background:#fafafa;
+
+  color:#171717;
+
+  font-family:inherit;
+
+  font-size:12px;
+
+  outline:none;
+
+}
+
+
+.activities-card input:focus,
+.activities-card select:focus{
+
+  border-color:#cfcfd4;
+
+  background:#ffffff;
+
+}
+
+
+.activity-form-buttons{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:10px;
+
+}
+
+
+.activity-add-button{
+
+  border:0;
+
+  background:#171717;
+
+  color:#ffffff;
+
+  padding:10px 14px;
+
+  border-radius:13px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:
+    transform .15s ease,
+    opacity .15s ease;
+
+}
+
+
+.activity-add-button:active{
+
+  transform:scale(.97);
+
+}
+
+
+.activity-cancel-button{
+
+  border:0;
+
+  background:#f1f1f4;
+
+  color:#8e8e93;
+
+  padding:10px 14px;
+
+  border-radius:13px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+
+/* RANKING */
+
+
+.activity-rank-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:18px;
+
+}
+
+
+.activity-ranking{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+}
+
+
+.activity-rank{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+
+.activity-rank-number{
+
+  width:24px;
+
+  min-width:24px;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  color:#8e8e93;
+
+  text-align:center;
+
+}
+
+
+.activity-rank-info{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.activity-rank-name{
+
+  font-size:14px;
+
+  font-weight:600;
+
+  color:#171717;
+
+  margin-bottom:6px;
+
+}
+
+
+.activity-rank-count{
+
+  float:right;
+
+  font-size:12px;
+
+  color:#8e8e93;
+
+  margin-top:-22px;
+
+}
+
+
+.activity-bar-area{
+
+  width:100%;
+
+  height:7px;
+
+  background:#f1f1f4;
+
+  border-radius:999px;
+
+  overflow:hidden;
+
+}
+
+
+.activity-bar{
+
+  height:100%;
+
+  min-width:3px;
+
+  border-radius:999px;
+
+  transition:
+    width .4s ease,
+    opacity .4s ease;
+
+}
+
+
+/* CALENDAR COUNT */
+
+
+.activity-calendar-count{
+
+  font-size:11px;
+
+  font-weight:600;
+
+  color:#8e8e93;
+
+}
+
+
+/* LIST HEADERS */
+
+
+.activity-list-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:14px;
+
+}
+
+
+/* UPCOMING */
+
+
+.activity-upcoming{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+
+}
+
+
+.upcoming-activity{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px;
+
+  background:#fafafa;
+
+  border:1px solid #eeeeef;
+
+  border-radius:18px;
+
+}
+
+
+.upcoming-date{
+
+  width:48px;
+
+  min-width:48px;
+
+  text-align:center;
+
+  padding:8px 4px;
+
+  border-radius:14px;
+
+  background:#f1f1f4;
+
+}
+
+
+.upcoming-date strong{
+
+  display:block;
+
+  font-size:20px;
+
+  line-height:20px;
+
+  color:#171717;
+
+}
+
+
+.upcoming-date span{
+
+  display:block;
+
+  margin-top:3px;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  color:#8e8e93;
+
+  letter-spacing:.5px;
+
+}
+
+
+.upcoming-info{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.upcoming-member{
+
+  font-size:10px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:.5px;
+
+  color:#8e8e93;
+
+  margin-bottom:3px;
+
+}
+
+
+.upcoming-name{
+
+  font-size:14px;
+
+  font-weight:600;
+
+  color:#171717;
+
+  line-height:18px;
+
+}
+
+
+.upcoming-location{
+
+  margin-top:4px;
+
+  font-size:11px;
+
+  color:#8e8e93;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+
+.upcoming-photo{
+
+  width:58px;
+
+  height:58px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+  margin-top:9px;
+
+}
+
+
+.upcoming-actions{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  gap:5px;
+
+}
+
+
+/* ARCHIVE */
+
+
+.activity-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+
+.activity-month-title{
+
+  margin-top:10px;
+
+  padding:8px 2px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  color:#8e8e93;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+
+}
+
+
+.activity-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:12px;
+
+  background:#fafafa;
+
+  border:1px solid #eeeeef;
+
+  border-radius:16px;
+
+}
+
+
+.activity-member-dot{
+
+  width:8px;
+
+  height:8px;
+
+  min-width:8px;
+
+  border-radius:50%;
+
+}
+
+
+.activity-item-info{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.activity-item-name{
+
+  font-size:13px;
+
+  font-weight:600;
+
+  color:#171717;
+
+  line-height:17px;
+
+}
+
+
+.activity-item-member{
+
+  margin-top:2px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  color:#8e8e93;
+
+  text-transform:uppercase;
+
+  letter-spacing:.4px;
+
+}
+
+
+.activity-item-date{
+
+  margin-top:3px;
+
+  font-size:10px;
+
+  color:#8e8e93;
+
+}
+
+
+.activity-item-location{
+
+  margin-top:4px;
+
+  font-size:10px;
+
+  color:#8e8e93;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+
+.activity-item-photo{
+
+  width:52px;
+
+  height:52px;
+
+  object-fit:cover;
+
+  border-radius:12px;
+
+}
+
+
+.activity-item-actions{
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:flex-end;
+
+  gap:4px;
+
+}
+
+
+.activity-item-link,
+.activity-edit-button,
+.activity-delete-button{
+
+  border:0;
+
+  background:none;
+
+  padding:2px 0;
+
+  font-size:10px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+}
+
+
+.activity-item-link{
+
+  color:#007aff;
+
+  text-decoration:none;
+
+}
+
+
+.activity-edit-button{
+
+  color:#8e8e93;
+
+}
+
+
+.activity-delete-button{
+
+  color:#ff5f57;
+
+}
+
+
+.activity-empty{
+
+  padding:20px 10px;
+
+  text-align:center;
+
+  font-size:12px;
+
+  color:#8e8e93;
+
+}
+
+
+/* ACTIVITY CALENDAR */
+
+
+.activity-calendar-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:14px;
+
+}
+
+
+.activity-calendar-events{
+
+  margin-top:12px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+
+/* GROUP */
+
+
+.group-category-filters{
+
+  display:flex;
+
+  gap:7px;
+
+  overflow-x:auto;
+
+  padding:2px 1px 7px;
+
+  margin-bottom:14px;
+
+  scrollbar-width:none;
+
+}
+
+
+.group-category-filters::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+
+.group-category{
+
+  flex:0 0 auto;
+
+  border:1px solid #eeeeef;
+
+  background:#ffffff;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  letter-spacing:.4px;
+
+  color:#8e8e93;
+
+  cursor:pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+
+}
+
+
+.group-category.active{
+
+  background:#171717;
+
+  color:#ffffff;
+
+  border-color:#171717;
+
+}
+
+
+/* GROUP CALENDAR */
+
+
+#groupActivitiesPanel
+.activity-calendar-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+
+/* MOBILE TOUCH */
+
+
+@media (max-width:430px){
+
+  .activities-card{
+
+    padding:16px;
+
+    border-radius:20px;
+
+  }
+
+
+  .activity-main-tabs{
+
+    margin-bottom:14px;
+
+  }
+
+
+  .activity-filter,
+  .group-category{
+
+    padding:8px 11px;
+
+  }
+
+
+  .upcoming-activity{
+
+    padding:12px;
+
+  }
+
 }
 
 </style>
@@ -3027,27 +3994,71 @@ schedule will appear here
 
 <!-- ACTIVITIES -->
 
+
 <section
 class="page"
 id="activities"
 >
 
+
 <div class="page-heading">
+
 
 <h1>
 Activities
 </h1>
 
+
 <p>
-individual members
+solo & group activities
 </p>
+
 
 </div>
 
 
+<!-- MAIN ACTIVITIES TABS -->
+
+
+<div
+class="activities-main-tabs"
+>
+
+
+<button
+class="activities-main-tab active"
+onclick="switchActivitiesMode('solo',this)"
+>
+SOLO
+</button>
+
+
+<button
+class="activities-main-tab"
+onclick="switchActivitiesMode('group',this)"
+>
+GROUP
+</button>
+
+
+</div>
+
+
+<!-- SOLO -->
+
+
+<div
+id="soloActivitiesPanel"
+>
+
+
 <!-- MEMBER FILTERS -->
 
-<div class="activity-filters">
+
+<div
+class="activity-filters"
+>
+
 
 <button
 class="activity-filter active"
@@ -3057,6 +4068,7 @@ onclick="filterActivities('ALL',this)"
 ALL
 </button>
 
+
 <button
 class="activity-filter"
 data-member="Yunah"
@@ -3064,6 +4076,7 @@ onclick="filterActivities('Yunah',this)"
 >
 YUNAH
 </button>
+
 
 <button
 class="activity-filter"
@@ -3073,6 +4086,7 @@ onclick="filterActivities('Minju',this)"
 MINJU
 </button>
 
+
 <button
 class="activity-filter"
 data-member="Moka"
@@ -3080,6 +4094,7 @@ onclick="filterActivities('Moka',this)"
 >
 MOKA
 </button>
+
 
 <button
 class="activity-filter"
@@ -3089,6 +4104,7 @@ onclick="filterActivities('Wonhee',this)"
 WONHEE
 </button>
 
+
 <button
 class="activity-filter"
 data-member="Iroha"
@@ -3097,16 +4113,24 @@ onclick="filterActivities('Iroha',this)"
 IROHA
 </button>
 
+
 </div>
 
 
-<!-- ADD ACTIVITY -->
+<!-- ADD SOLO ACTIVITY -->
 
-<div class="activities-card">
 
-<div class="activity-section-title">
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-section-title"
+>
 add solo activity
 </div>
+
 
 <input
 type="hidden"
@@ -3118,25 +4142,41 @@ id="activityEditId"
 id="activityMember"
 >
 
-<option value="Yunah">
+
+<option
+value="Yunah"
+>
 Yunah
 </option>
 
-<option value="Minju">
+
+<option
+value="Minju"
+>
 Minju
 </option>
 
-<option value="Moka">
+
+<option
+value="Moka"
+>
 Moka
 </option>
 
-<option value="Wonhee">
+
+<option
+value="Wonhee"
+>
 Wonhee
 </option>
 
-<option value="Iroha">
+
+<option
+value="Iroha"
+>
 Iroha
 </option>
+
 
 </select>
 
@@ -3175,7 +4215,10 @@ placeholder="activity link"
 >
 
 
-<div class="activity-form-buttons">
+<div
+class="activity-form-buttons"
+>
+
 
 <button
 class="activity-add-button"
@@ -3195,18 +4238,28 @@ style="display:none;"
 cancel
 </button>
 
-</div>
 
 </div>
 
 
-<!-- RANKING -->
+</div>
 
-<div class="activities-card">
 
-<div class="activity-rank-title">
+<!-- SOLO RANKING -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-rank-title"
+>
+
 
 <div>
+
 
 <div
 class="activity-section-title"
@@ -3215,9 +4268,13 @@ style="margin:0;"
 solo activity ranking
 </div>
 
-<div class="activity-ranking-subtitle">
+
+<div
+class="activity-ranking-subtitle"
+>
 most active members
 </div>
+
 
 </div>
 
@@ -3229,6 +4286,7 @@ id="activityTotalCount"
 0 activities
 </div>
 
+
 </div>
 
 
@@ -3238,26 +4296,42 @@ id="activityRanking"
 >
 </div>
 
+
 </div>
 
 
 <!-- UPCOMING EVENTS -->
 
-<div class="activities-card">
 
-<div class="activity-list-header">
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-list-header"
+>
+
 
 <div>
 
-<div class="activity-section-title">
+
+<div
+class="activity-section-title"
+>
 upcoming events
 </div>
 
-<div class="activity-ranking-subtitle">
+
+<div
+class="activity-ranking-subtitle"
+>
 latest individual activities
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -3268,26 +4342,42 @@ id="activityUpcoming"
 >
 </div>
 
+
 </div>
 
 
 <!-- ARCHIVE -->
 
-<div class="activities-card">
 
-<div class="activity-list-header">
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-list-header"
+>
+
 
 <div>
 
-<div class="activity-section-title">
+
+<div
+class="activity-section-title"
+>
 archive
 </div>
 
-<div class="activity-ranking-subtitle">
+
+<div
+class="activity-ranking-subtitle"
+>
 activities by month
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -3298,24 +4388,34 @@ id="soloActivityList"
 >
 </div>
 
+
 </div>
 
 
 <!-- CALENDAR -->
 
-<div class="activities-card">
 
-<div class="activity-calendar-title">
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-calendar-title"
+>
+
 
 <strong>
 calendar
 </strong>
+
 
 <span
 class="activity-calendar-count"
 id="activityMonthLabel"
 >
 </span>
+
 
 </div>
 
@@ -3333,12 +4433,401 @@ id="activityCalendarEvents"
 >
 </div>
 
+
 </div>
+
+
+</div>
+
+
+<!-- GROUP -->
+
+
+<div
+id="groupActivitiesPanel"
+style="display:none;"
+>
+
+
+<!-- GROUP HEADER -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-section-title"
+>
+ILLIT group schedule
+</div>
+
+
+<div
+class="activity-ranking-subtitle"
+>
+official group activities & events
+</div>
+
+
+</div>
+
+
+<!-- GROUP CATEGORIES -->
+
+
+<div
+class="group-category-filters"
+>
+
+
+<button
+class="group-category active"
+data-category="ALL"
+onclick="filterGroupActivities('ALL',this)"
+>
+ALL
+</button>
+
+
+<button
+class="group-category"
+data-category="Concerts"
+onclick="filterGroupActivities('Concerts',this)"
+>
+CONCERTS
+</button>
+
+
+<button
+class="group-category"
+data-category="Fanmeetings"
+onclick="filterGroupActivities('Fanmeetings',this)"
+>
+FANMEETINGS
+</button>
+
+
+<button
+class="group-category"
+data-category="Festivals"
+onclick="filterGroupActivities('Festivals',this)"
+>
+FESTIVALS
+</button>
+
+
+<button
+class="group-category"
+data-category="TV & Radio"
+onclick="filterGroupActivities('TV & Radio',this)"
+>
+TV & RADIO
+</button>
+
+
+<button
+class="group-category"
+data-category="Awards"
+onclick="filterGroupActivities('Awards',this)"
+>
+AWARDS
+</button>
+
+
+<button
+class="group-category"
+data-category="Other"
+onclick="filterGroupActivities('Other',this)"
+>
+OTHER
+</button>
+
+
+</div>
+
+
+<!-- ADD GROUP ACTIVITY -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-section-title"
+>
+add group activity
+</div>
+
+
+<input
+type="hidden"
+id="groupActivityEditId"
+>
+
+
+<select
+id="groupActivityCategory"
+>
+
+
+<option
+value="Concerts"
+>
+Concerts
+</option>
+
+
+<option
+value="Fanmeetings"
+>
+Fanmeetings
+</option>
+
+
+<option
+value="Festivals"
+>
+Festivals
+</option>
+
+
+<option
+value="TV & Radio"
+>
+TV & Radio
+</option>
+
+
+<option
+value="Awards"
+>
+Awards
+</option>
+
+
+<option
+value="Other"
+>
+Other
+</option>
+
+
+</select>
+
+
+<input
+type="text"
+id="groupActivityName"
+placeholder="activity name"
+>
+
+
+<input
+type="date"
+id="groupActivityDate"
+>
+
+
+<input
+type="text"
+id="groupActivityLocation"
+placeholder="location / address"
+>
+
+
+<input
+type="url"
+id="groupActivityPhoto"
+placeholder="photo image URL"
+>
+
+
+<input
+type="url"
+id="groupActivityLink"
+placeholder="activity link"
+>
+
+
+<div
+class="activity-form-buttons"
+>
+
+
+<button
+class="activity-add-button"
+id="groupActivitySaveButton"
+onclick="addGroupActivity()"
+>
++ add activity
+</button>
+
+
+<button
+class="activity-cancel-button"
+id="groupActivityCancelButton"
+onclick="cancelGroupActivityEdit()"
+style="display:none;"
+>
+cancel
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- GROUP UPCOMING -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-list-header"
+>
+
+
+<div>
+
+
+<div
+class="activity-section-title"
+>
+upcoming events
+</div>
+
+
+<div
+class="activity-ranking-subtitle"
+>
+ILLIT group activities
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div
+class="activity-upcoming"
+id="groupActivityUpcoming"
+>
+</div>
+
+
+</div>
+
+
+<!-- GROUP ARCHIVE -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-list-header"
+>
+
+
+<div>
+
+
+<div
+class="activity-section-title"
+>
+event archive
+</div>
+
+
+<div
+class="activity-ranking-subtitle"
+>
+group activities by month
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div
+class="activity-list"
+id="groupActivityList"
+>
+</div>
+
+
+</div>
+
+
+<!-- GROUP CALENDAR -->
+
+
+<div
+class="activities-card"
+>
+
+
+<div
+class="activity-calendar-title"
+>
+
+
+<strong>
+calendar
+</strong>
+
+
+<span
+class="activity-calendar-count"
+id="groupActivityMonthLabel"
+>
+</span>
+
+
+</div>
+
+
+<div
+class="calendar-days"
+id="groupActivityCalendarDays"
+>
+</div>
+
+
+<div
+class="activity-calendar-events"
+id="groupActivityCalendarEvents"
+>
+</div>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
 
 <!-- GALLERY -->
+
 
 <section
 class="page"
@@ -5190,7 +6679,7 @@ function addMainGalleryPhoto(){
     folderId
   );
 
-}
+   }
 
 
 /* =========================
@@ -6655,7 +8144,7 @@ function getCurrentGalleryMember(){
     .trim()
     || '';
 
-}
+         }
 
 
 /* =========================
@@ -9769,6 +11258,142 @@ function renderSoloActivityList(){
               );
 
 
+/* =========================
+   SOLO ACTIVITY LIST
+========================= */
+
+function renderSoloActivityList(){
+
+  const list =
+    document.getElementById(
+      'soloActivityList'
+    );
+
+
+  if(!list)
+    return;
+
+
+  const activities =
+    getFilteredSoloActivities();
+
+
+  list.innerHTML =
+    '';
+
+
+  if(!activities.length){
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'activity-empty';
+
+
+    empty.innerText =
+      'no activities yet.';
+
+
+    list.appendChild(
+      empty
+    );
+
+
+    return;
+
+  }
+
+
+  const grouped = {};
+
+
+  activities
+    .slice()
+    .sort(
+      (a,b) =>
+        b.date.localeCompare(
+          a.date
+        )
+    )
+    .forEach(
+      activity => {
+
+        const monthKey =
+          activity.date.slice(
+            0,
+            7
+          );
+
+
+        if(!grouped[monthKey]){
+
+          grouped[monthKey] =
+            [];
+
+        }
+
+
+        grouped[monthKey].push(
+          activity
+        );
+
+      }
+    );
+
+
+  Object.keys(grouped)
+    .sort()
+    .reverse()
+    .forEach(
+      monthKey => {
+
+        const monthTitle =
+          document.createElement(
+            'div'
+          );
+
+
+        monthTitle.className =
+          'activity-month-title';
+
+
+        const monthDate =
+          new Date(
+            monthKey +
+            '-01T12:00:00'
+          );
+
+
+        monthTitle.innerText =
+          new Intl.DateTimeFormat(
+            'en-US',
+            {
+              month:'long',
+              year:'numeric'
+            }
+          ).format(
+            monthDate
+          );
+
+
+        list.appendChild(
+          monthTitle
+        );
+
+
+        grouped[monthKey].forEach(
+          activity => {
+
+            const item =
+              document.createElement(
+                'div'
+              );
+
+
             item.className =
               'activity-item';
 
@@ -12659,6 +14284,1961 @@ renderTourTickets();
 
 renderTourSetlist();
 
+/* =========================
+   GROUP ACTIVITIES
+========================= */
+
+
+/* GROUP STATE */
+
+
+let selectedActivitiesMode =
+  'solo';
+
+
+let selectedGroupActivityCategory =
+  'ALL';
+
+
+let groupActivityDate =
+  new Date();
+
+
+let selectedGroupActivityDate =
+  null;
+
+
+/* GROUP STORAGE */
+
+
+function getGroupActivities(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        'illit-group-activities'
+      )
+    ) || {};
+
+  }catch{
+
+    return {};
+
+  }
+
+}
+
+
+function saveGroupActivities(
+  activities
+){
+
+  localStorage.setItem(
+    'illit-group-activities',
+    JSON.stringify(
+      activities
+    )
+  );
+
+}
+
+
+/* SWITCH SOLO / GROUP */
+
+
+function switchActivitiesMode(
+  mode,
+  button
+){
+
+  selectedActivitiesMode =
+    mode;
+
+
+  document
+    .querySelectorAll(
+      '.activities-main-tab'
+    )
+    .forEach(
+      tab => {
+
+        tab.classList.remove(
+          'active'
+        );
+
+      }
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      'active'
+    );
+
+  }
+
+
+  const solo =
+    document.getElementById(
+      'soloActivitiesPanel'
+    );
+
+
+  const group =
+    document.getElementById(
+      'groupActivitiesPanel'
+    );
+
+
+  if(solo){
+
+    solo.style.display =
+      mode === 'solo'
+        ? ''
+        : 'none';
+
+  }
+
+
+  if(group){
+
+    group.style.display =
+      mode === 'group'
+        ? ''
+        : 'none';
+
+  }
+
+
+  if(mode === 'group'){
+
+    renderGroupActivityList();
+
+    renderGroupUpcomingActivities();
+
+    renderGroupCalendar();
+
+  }
+
+}
+
+
+/* GET ALL GROUP ACTIVITIES */
+
+
+function getAllGroupActivities(){
+
+  const stored =
+    getGroupActivities();
+
+
+  const activities =
+    [];
+
+
+  Object.keys(stored)
+    .forEach(
+      date => {
+
+        const dayEvents =
+          stored[date];
+
+
+        if(
+          !Array.isArray(
+            dayEvents
+          )
+        ){
+
+          return;
+
+        }
+
+
+        dayEvents.forEach(
+          (event,index) => {
+
+            activities.push({
+
+              id:
+                event.id ||
+                (
+                  'group-' +
+                  date +
+                  '-' +
+                  index
+                ),
+
+              category:
+                event.category ||
+                'Other',
+
+              name:
+                event.name ||
+                'untitled',
+
+              date:
+                date,
+
+              time:
+                event.time ||
+                '',
+
+              location:
+                event.location ||
+                '',
+
+              photo:
+                event.photo ||
+                '',
+
+              link:
+                event.link ||
+                ''
+
+            });
+
+          }
+        );
+
+      }
+    );
+
+
+  activities.sort(
+    (a,b) =>
+      b.date.localeCompare(
+        a.date
+      )
+  );
+
+
+  return activities;
+
+}
+
+
+/* FILTER GROUP ACTIVITIES */
+
+
+function getFilteredGroupActivities(){
+
+  const activities =
+    getAllGroupActivities();
+
+
+  if(
+    selectedGroupActivityCategory ===
+    'ALL'
+  ){
+
+    return activities;
+
+  }
+
+
+  return activities.filter(
+    activity =>
+      activity.category ===
+      selectedGroupActivityCategory
+  );
+
+}
+
+
+/* GROUP CATEGORY FILTER */
+
+
+function filterGroupActivities(
+  category,
+  button
+){
+
+  selectedGroupActivityCategory =
+    category;
+
+
+  document
+    .querySelectorAll(
+      '.group-category'
+    )
+    .forEach(
+      item => {
+
+        item.classList.remove(
+          'active'
+        );
+
+      }
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      'active'
+    );
+
+  }
+
+
+  renderGroupActivityList();
+
+  renderGroupUpcomingActivities();
+
+  selectedGroupActivityDate =
+    null;
+
+  renderGroupCalendar();
+
+}
+
+
+/* ADD / EDIT GROUP ACTIVITY */
+
+
+function addGroupActivity(){
+
+  const category =
+    document.getElementById(
+      'groupActivityCategory'
+    ).value;
+
+
+  const name =
+    document.getElementById(
+      'groupActivityName'
+    ).value.trim();
+
+
+  const date =
+    document.getElementById(
+      'groupActivityDate'
+    ).value;
+
+
+  const location =
+    document.getElementById(
+      'groupActivityLocation'
+    ).value.trim();
+
+
+  const photo =
+    document.getElementById(
+      'groupActivityPhoto'
+    ).value.trim();
+
+
+  const link =
+    document.getElementById(
+      'groupActivityLink'
+    ).value.trim();
+
+
+  const editId =
+    document.getElementById(
+      'groupActivityEditId'
+    ).value;
+
+
+  if(
+    !name ||
+    !date
+  ){
+
+    alert(
+      'please add an activity name and date.'
+    );
+
+    return;
+
+  }
+
+
+  const activities =
+    getGroupActivities();
+
+
+  if(
+    !Array.isArray(
+      activities[date]
+    )
+  ){
+
+    activities[date] =
+      [];
+
+  }
+
+
+  if(editId){
+
+    let found =
+      false;
+
+
+    Object.keys(
+      activities
+    ).forEach(
+      oldDate => {
+
+        if(
+          !Array.isArray(
+            activities[oldDate]
+          )
+        ){
+
+          return;
+
+        }
+
+
+        const index =
+          activities[oldDate]
+            .findIndex(
+              event =>
+                event.id ===
+                editId
+            );
+
+
+        if(index !== -1){
+
+          const oldEvent =
+            activities[oldDate][
+              index
+            ];
+
+
+          activities[oldDate].splice(
+            index,
+            1
+          );
+
+
+          if(
+            activities[oldDate]
+              .length === 0
+          ){
+
+            delete activities[
+              oldDate
+            ];
+
+          }
+
+
+          const updated =
+            {
+
+              id:
+                editId,
+
+              category:
+                category,
+
+              name:
+                name,
+
+              time:
+                oldEvent.time ||
+                '',
+
+              location:
+                location,
+
+              photo:
+                photo,
+
+              link:
+                link
+
+            };
+
+
+          if(
+            !Array.isArray(
+              activities[date]
+            )
+          ){
+
+            activities[date] =
+              [];
+
+          }
+
+
+          activities[date].push(
+            updated
+          );
+
+
+          found =
+            true;
+
+        }
+
+      }
+    );
+
+
+    if(!found){
+
+      activities[date].push({
+
+        id:
+          editId,
+
+        category:
+          category,
+
+        name:
+          name,
+
+        time:
+          '',
+
+        location:
+          location,
+
+        photo:
+          photo,
+
+        link:
+          link
+
+      });
+
+    }
+
+  }else{
+
+    activities[date].push({
+
+      id:
+        'group-' +
+        Date.now(),
+
+      category:
+        category,
+
+      name:
+        name,
+
+      time:
+        '',
+
+      location:
+        location,
+
+      photo:
+        photo,
+
+      link:
+        link
+
+    });
+
+  }
+
+
+  saveGroupActivities(
+    activities
+  );
+
+
+  clearGroupActivityForm();
+
+
+  renderGroupActivityList();
+
+  renderGroupUpcomingActivities();
+
+  renderGroupCalendar();
+
+}
+
+
+/* CLEAR GROUP FORM */
+
+
+function clearGroupActivityForm(){
+
+  const fields = [
+
+    'groupActivityName',
+
+    'groupActivityDate',
+
+    'groupActivityLocation',
+
+    'groupActivityPhoto',
+
+    'groupActivityLink'
+
+  ];
+
+
+  fields.forEach(
+    id => {
+
+      const input =
+        document.getElementById(
+          id
+        );
+
+
+      if(input){
+
+        input.value =
+          '';
+
+      }
+
+    }
+  );
+
+
+  const editId =
+    document.getElementById(
+      'groupActivityEditId'
+    );
+
+
+  if(editId){
+
+    editId.value =
+      '';
+
+  }
+
+
+  const button =
+    document.getElementById(
+      'groupActivitySaveButton'
+    );
+
+
+  if(button){
+
+    button.innerText =
+      '+ add activity';
+
+  }
+
+
+  const cancel =
+    document.getElementById(
+      'groupActivityCancelButton'
+    );
+
+
+  if(cancel){
+
+    cancel.style.display =
+      'none';
+
+  }
+
+}
+
+
+/* CANCEL GROUP EDIT */
+
+
+function cancelGroupActivityEdit(){
+
+  clearGroupActivityForm();
+
+}
+
+
+/* EDIT GROUP ACTIVITY */
+
+
+function editGroupActivity(
+  date,
+  id
+){
+
+  const activities =
+    getGroupActivities();
+
+
+  const events =
+    activities[date];
+
+
+  if(
+    !Array.isArray(events)
+  ){
+
+    return;
+
+  }
+
+
+  const activity =
+    events.find(
+      event =>
+        event.id ===
+        id
+    );
+
+
+  if(!activity){
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    'groupActivityEditId'
+  ).value =
+    activity.id;
+
+
+  document.getElementById(
+    'groupActivityCategory'
+  ).value =
+    activity.category;
+
+
+  document.getElementById(
+    'groupActivityName'
+  ).value =
+    activity.name;
+
+
+  document.getElementById(
+    'groupActivityDate'
+  ).value =
+    date;
+
+
+  document.getElementById(
+    'groupActivityLocation'
+  ).value =
+    activity.location ||
+    '';
+
+
+  document.getElementById(
+    'groupActivityPhoto'
+  ).value =
+    activity.photo ||
+    '';
+
+
+  document.getElementById(
+    'groupActivityLink'
+  ).value =
+    activity.link ||
+    '';
+
+
+  const button =
+    document.getElementById(
+      'groupActivitySaveButton'
+    );
+
+
+  if(button){
+
+    button.innerText =
+      'save changes';
+
+  }
+
+
+  const cancel =
+    document.getElementById(
+      'groupActivityCancelButton'
+    );
+
+
+  if(cancel){
+
+    cancel.style.display =
+      '';
+
+  }
+
+
+  document
+    .getElementById(
+      'groupActivitiesPanel'
+    )
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
+}
+
+
+/* DELETE GROUP ACTIVITY */
+
+
+function deleteGroupActivity(
+  date,
+  id
+){
+
+  if(
+    !confirm(
+      'delete this activity?'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const activities =
+    getGroupActivities();
+
+
+  if(
+    !Array.isArray(
+      activities[date]
+    )
+  ){
+
+    return;
+
+  }
+
+
+  activities[date] =
+    activities[date].filter(
+      event =>
+        event.id !==
+        id
+    );
+
+
+  if(
+    activities[date].length ===
+    0
+  ){
+
+    delete activities[
+      date
+    ];
+
+  }
+
+
+  saveGroupActivities(
+    activities
+  );
+
+
+  renderGroupActivityList();
+
+  renderGroupUpcomingActivities();
+
+  renderGroupCalendar();
+
+}
+
+
+/* GROUP ARCHIVE */
+
+
+function renderGroupActivityList(){
+
+  const list =
+    document.getElementById(
+      'groupActivityList'
+    );
+
+
+  if(!list)
+    return;
+
+
+  const activities =
+    getFilteredGroupActivities();
+
+
+  list.innerHTML =
+    '';
+
+
+  if(!activities.length){
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'activity-empty';
+
+
+    empty.innerText =
+      'no group activities yet.';
+
+
+    list.appendChild(
+      empty
+    );
+
+
+    return;
+
+  }
+
+
+  const grouped =
+    {};
+
+
+  activities
+    .slice()
+    .sort(
+      (a,b) =>
+        b.date.localeCompare(
+          a.date
+        )
+    )
+    .forEach(
+      activity => {
+
+        const monthKey =
+          activity.date.slice(
+            0,
+            7
+          );
+
+
+        if(
+          !grouped[monthKey]
+        ){
+
+          grouped[monthKey] =
+            [];
+
+        }
+
+
+        grouped[monthKey].push(
+          activity
+        );
+
+      }
+    );
+
+
+  Object.keys(grouped)
+    .sort()
+    .reverse()
+    .forEach(
+      monthKey => {
+
+        const monthTitle =
+          document.createElement(
+            'div'
+          );
+
+
+        monthTitle.className =
+          'activity-month-title';
+
+
+        const monthDate =
+          new Date(
+            monthKey +
+            '-01T12:00:00'
+          );
+
+
+        monthTitle.innerText =
+          new Intl.DateTimeFormat(
+            'en-US',
+            {
+              month:'long',
+              year:'numeric'
+            }
+          ).format(
+            monthDate
+          );
+
+
+        list.appendChild(
+          monthTitle
+        );
+
+
+        grouped[
+          monthKey
+        ].forEach(
+          activity => {
+
+            const item =
+              document.createElement(
+                'div'
+              );
+
+
+            item.className =
+              'activity-item';
+
+
+            const dot =
+              document.createElement(
+                'div'
+              );
+
+
+            dot.className =
+              'activity-member-dot';
+
+
+            dot.style.background =
+              '#b794d6';
+
+
+            const info =
+              document.createElement(
+                'div'
+              );
+
+
+            info.className =
+              'activity-item-info';
+
+
+            const name =
+              document.createElement(
+                'div'
+              );
+
+
+            name.className =
+              'activity-item-name';
+
+
+            name.innerText =
+              activity.name;
+
+
+            const category =
+              document.createElement(
+                'div'
+              );
+
+
+            category.className =
+              'activity-item-member';
+
+
+            category.innerText =
+              activity.category;
+
+
+            const date =
+              document.createElement(
+                'div'
+              );
+
+
+            date.className =
+              'activity-item-date';
+
+
+            date.innerText =
+              formatCalendarDate(
+                activity.date
+              );
+
+
+            info.appendChild(
+              name
+            );
+
+            info.appendChild(
+              category
+            );
+
+            info.appendChild(
+              date
+            );
+
+
+            if(
+              activity.location
+            ){
+
+              const location =
+                document.createElement(
+                  'div'
+                );
+
+
+              location.className =
+                'activity-item-location';
+
+
+              location.innerText =
+                '⌖ ' +
+                activity.location;
+
+
+              info.appendChild(
+                location
+              );
+
+            }
+
+
+            item.appendChild(
+              dot
+            );
+
+
+            item.appendChild(
+              info
+            );
+
+
+            if(
+              activity.photo
+            ){
+
+              const photo =
+                document.createElement(
+                  'img'
+                );
+
+
+              photo.className =
+                'activity-item-photo';
+
+
+              photo.src =
+                activity.photo;
+
+
+              photo.alt =
+                activity.name;
+
+
+              photo.loading =
+                'lazy';
+
+
+              item.appendChild(
+                photo
+              );
+
+            }
+
+
+            const actions =
+              document.createElement(
+                'div'
+              );
+
+
+            actions.className =
+              'activity-item-actions';
+
+
+            if(activity.link){
+
+              const safeLink =
+                getSafeActivityLink(
+                  activity.link
+                );
+
+
+              if(safeLink){
+
+                const link =
+                  document.createElement(
+                    'a'
+                  );
+
+
+                link.className =
+                  'activity-item-link';
+
+
+                link.href =
+                  safeLink;
+
+
+                link.target =
+                  '_blank';
+
+
+                link.rel =
+                  'noopener noreferrer';
+
+
+                link.innerText =
+                  'open ›';
+
+
+                actions.appendChild(
+                  link
+                );
+
+              }
+
+            }
+
+
+            const edit =
+              document.createElement(
+                'button'
+              );
+
+
+            edit.className =
+              'activity-edit-button';
+
+
+            edit.innerText =
+              'edit';
+
+
+            edit.onclick =
+              () =>
+              editGroupActivity(
+                activity.date,
+                activity.id
+              );
+
+
+            actions.appendChild(
+              edit
+            );
+
+
+            const remove =
+              document.createElement(
+                'button'
+              );
+
+
+            remove.className =
+              'activity-delete-button';
+
+
+            remove.innerText =
+              'delete';
+
+
+            remove.onclick =
+              () =>
+              deleteGroupActivity(
+                activity.date,
+                activity.id
+              );
+
+
+            actions.appendChild(
+              remove
+            );
+
+
+            item.appendChild(
+              actions
+            );
+
+
+            list.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* GROUP UPCOMING */
+
+
+function renderGroupUpcomingActivities(){
+
+  const container =
+    document.getElementById(
+      'groupActivityUpcoming'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const today =
+    new Date();
+
+
+  const todayString =
+    today.getFullYear() +
+    '-' +
+    String(
+      today.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
+    ) +
+    '-' +
+    String(
+      today.getDate()
+    ).padStart(
+      2,
+      '0'
+    );
+
+
+  const activities =
+    getFilteredGroupActivities()
+      .filter(
+        activity =>
+          activity.date >=
+          todayString
+      )
+      .sort(
+        (a,b) =>
+          a.date.localeCompare(
+            b.date
+          )
+      );
+
+
+  container.innerHTML =
+    '';
+
+
+  if(!activities.length){
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'activity-empty';
+
+
+    empty.innerText =
+      'no upcoming group activities.';
+
+
+    container.appendChild(
+      empty
+    );
+
+
+    return;
+
+  }
+
+
+  activities
+    .forEach(
+      activity => {
+
+        const card =
+          document.createElement(
+            'div'
+          );
+
+
+        card.className =
+          'upcoming-activity';
+
+
+        const dateBox =
+          document.createElement(
+            'div'
+          );
+
+
+        dateBox.className =
+          'upcoming-date';
+
+
+        const dateObj =
+          new Date(
+            activity.date +
+            'T12:00:00'
+          );
+
+
+        const day =
+          document.createElement(
+            'strong'
+          );
+
+
+        day.innerText =
+          dateObj.getDate();
+
+
+        const month =
+          document.createElement(
+            'span'
+          );
+
+
+        month.innerText =
+          new Intl.DateTimeFormat(
+            'en-US',
+            {
+              month:'short'
+            }
+          ).format(
+            dateObj
+          ).toUpperCase();
+
+
+        dateBox.appendChild(
+          day
+        );
+
+
+        dateBox.appendChild(
+          month
+        );
+
+
+        const info =
+          document.createElement(
+            'div'
+          );
+
+
+        info.className =
+          'upcoming-info';
+
+
+        const category =
+          document.createElement(
+            'div'
+          );
+
+
+        category.className =
+          'upcoming-member';
+
+
+        category.innerText =
+          activity.category;
+
+
+        const name =
+          document.createElement(
+            'div'
+          );
+
+
+        name.className =
+          'upcoming-name';
+
+
+        name.innerText =
+          activity.name;
+
+
+        info.appendChild(
+          category
+        );
+
+
+        info.appendChild(
+          name
+        );
+
+
+        if(
+          activity.location
+        ){
+
+          const location =
+            document.createElement(
+              'div'
+            );
+
+
+          location.className =
+            'upcoming-location';
+
+
+          location.innerText =
+            '⌖ ' +
+            activity.location;
+
+
+          info.appendChild(
+            location
+          );
+
+        }
+
+
+        card.appendChild(
+          dateBox
+        );
+
+
+        card.appendChild(
+          info
+        );
+
+
+        if(
+          activity.photo
+        ){
+
+          const photo =
+            document.createElement(
+              'img'
+            );
+
+
+          photo.className =
+            'upcoming-photo';
+
+
+          photo.src =
+            activity.photo;
+
+
+          photo.alt =
+            activity.name;
+
+
+          photo.loading =
+            'lazy';
+
+
+          card.appendChild(
+            photo
+          );
+
+        }
+
+
+        container.appendChild(
+          card
+        );
+
+      }
+    );
+
+}
+
+
+/* GROUP CALENDAR */
+
+
+function renderGroupCalendar(){
+
+  const days =
+    document.getElementById(
+      'groupActivityCalendarDays'
+    );
+
+
+  const eventsContainer =
+    document.getElementById(
+      'groupActivityCalendarEvents'
+    );
+
+
+  const label =
+    document.getElementById(
+      'groupActivityMonthLabel'
+    );
+
+
+  if(
+    !days ||
+    !eventsContainer
+  ){
+
+    return;
+
+  }
+
+
+  const year =
+    groupActivityDate.getFullYear();
+
+
+  const month =
+    groupActivityDate.getMonth();
+
+
+  if(label){
+
+    label.innerText =
+      new Intl.DateTimeFormat(
+        'en-US',
+        {
+          month:'long',
+          year:'numeric'
+        }
+      ).format(
+        groupActivityDate
+      );
+
+  }
+
+
+  days.innerHTML =
+    '';
+
+
+  eventsContainer.innerHTML =
+    '';
+
+
+  const firstDay =
+    new Date(
+      year,
+      month,
+      1
+    );
+
+
+  const lastDay =
+    new Date(
+      year,
+      month + 1,
+      0
+    );
+
+
+  const startDay =
+    firstDay.getDay();
+
+
+  const totalDays =
+    lastDay.getDate();
+
+
+  const activities =
+    getFilteredGroupActivities();
+
+
+  for(
+    let i = 0;
+    i < startDay;
+    i++
+  ){
+
+    const blank =
+      document.createElement(
+        'div'
+      );
+
+
+    blank.className =
+      'calendar-day empty';
+
+
+    days.appendChild(
+      blank
+    );
+
+  }
+
+
+  for(
+    let dayNumber = 1;
+    dayNumber <= totalDays;
+    dayNumber++
+  ){
+
+    const day =
+      document.createElement(
+        'button'
+      );
+
+
+    day.className =
+      'calendar-day';
+
+
+    day.type =
+      'button';
+
+
+    day.innerText =
+      dayNumber;
+
+
+    const dateString =
+      year +
+      '-' +
+      String(
+        month + 1
+      ).padStart(
+        2,
+        '0'
+      ) +
+      '-' +
+      String(
+        dayNumber
+      ).padStart(
+        2,
+        '0'
+      );
+
+
+    const hasEvent =
+      activities.some(
+        activity =>
+          activity.date ===
+          dateString
+      );
+
+
+    if(hasEvent){
+
+      day.classList.add(
+        'has-event'
+      );
+
+    }
+
+
+    if(
+      selectedGroupActivityDate ===
+      dateString
+    ){
+
+      day.classList.add(
+        'selected'
+      );
+
+    }
+
+
+    day.onclick =
+      () => {
+
+        selectedGroupActivityDate =
+          dateString;
+
+
+        renderGroupCalendar();
+
+        showGroupCalendarEvents(
+          dateString
+        );
+
+      };
+
+
+    days.appendChild(
+      day
+    );
+
+  }
+
+
+  if(
+    selectedGroupActivityDate
+  ){
+
+    showGroupCalendarEvents(
+      selectedGroupActivityDate
+    );
+
+  }
+
+}
+
+
+/* GROUP CALENDAR EVENTS */
+
+
+function showGroupCalendarEvents(
+  date
+){
+
+  const container =
+    document.getElementById(
+      'groupActivityCalendarEvents'
+    );
+
+
+  if(!container)
+    return;
+
+
+  const activities =
+    getFilteredGroupActivities()
+      .filter(
+        activity =>
+          activity.date ===
+          date
+      );
+
+
+  container.innerHTML =
+    '';
+
+
+  if(!activities.length){
+
+    return;
+
+  }
+
+
+  activities.forEach(
+    activity => {
+
+      const item =
+        document.createElement(
+          'div'
+        );
+
+
+      item.className =
+        'activity-item';
+
+
+      const dot =
+        document.createElement(
+          'div'
+        );
+
+
+      dot.className =
+        'activity-member-dot';
+
+
+      dot.style.background =
+        '#b794d6';
+
+
+      const info =
+        document.createElement(
+          'div'
+        );
+
+
+      info.className =
+        'activity-item-info';
+
+
+      const name =
+        document.createElement(
+          'div'
+        );
+
+
+      name.className =
+        'activity-item-name';
+
+
+      name.innerText =
+        activity.name;
+
+
+      const category =
+        document.createElement(
+          'div'
+        );
+
+
+      category.className =
+        'activity-item-member';
+
+
+      category.innerText =
+        activity.category;
+
+
+      info.appendChild(
+        name
+      );
+
+
+      info.appendChild(
+        category
+      );
+
+
+      item.appendChild(
+        dot
+      );
+
+
+      item.appendChild(
+        info
+      );
+
+
+      item.onclick =
+        () =>
+        editGroupActivity(
+          activity.date,
+          activity.id
+        );
+
+
+      container.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* GROUP CALENDAR MONTH */
+
+
+function changeGroupCalendarMonth(
+  amount
+){
+
+  groupActivityDate.setMonth(
+    groupActivityDate.getMonth() +
+    amount
+  );
+
+
+  selectedGroupActivityDate =
+    null;
+
+
+  renderGroupCalendar();
+
+}
+
+
+/* GROUP INITIAL RENDER */
+
+
+renderGroupActivityList();
+
+renderGroupUpcomingActivities();
+
+renderGroupCalendar();
 
 /* =========================
    INITIAL RENDER
@@ -12677,6 +16257,12 @@ renderSoloActivityList();
 renderActivityRanking();
 
 renderUpcomingActivities();
+
+renderGroupActivityList();
+
+renderGroupUpcomingActivities();
+
+renderGroupCalendar();
 
 
 /*
@@ -12699,9 +16285,3 @@ setInterval(
 </body>
 
 </html>
-
-
-
-
-
-   
