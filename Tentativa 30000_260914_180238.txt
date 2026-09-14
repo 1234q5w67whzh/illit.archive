@@ -64,7 +64,7 @@ a {
    APP
 ================================ */
 
-.app {
+6.app {
   width: 100%;
   max-width: 430px;
   min-height: 100vh;
@@ -15806,7 +15806,6 @@ window.addEventListener(
 
 </script>
 
-</script>
-
 </body>
 </html>
+
