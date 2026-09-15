@@ -1,0 +1,2840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f2f7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>ILLIT Archive</title>
+
+  <style>
+    /* ==========================================
+       RESET + BASE iOS
+    ========================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      /* Cores iOS System */
+      --ios-blue: #007aff;
+      --ios-green: #34c759;
+      --ios-red: #ff3b30;
+      --ios-orange: #ff9500;
+      --ios-yellow: #ffcc00;
+      --ios-pink: #ff2d55;
+      --ios-purple: #af52de;
+      --ios-teal: #5ac8fa;
+      --ios-indigo: #5856d6;
+
+      /* Fundos iOS */
+      --bg-system: #f2f2f7;
+      --bg-grouped: #f2f2f7;
+      --bg-card: rgba(255, 255, 255, 0.72);
+      --bg-card-solid: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.65);
+      --bg-nav: rgba(249, 249, 249, 0.82);
+      --bg-input: rgba(120, 120, 128, 0.12);
+
+      /* Texto iOS */
+      --text-primary: #000000;
+      --text-secondary: rgba(60, 60, 67, 0.6);
+      --text-tertiary: rgba(60, 60, 67, 0.3);
+      --text-label: rgba(60, 60, 67, 0.6);
+
+      /* Separadores */
+      --separator: rgba(60, 60, 67, 0.13);
+      --separator-opaque: #c6c6c8;
+
+      /* Sombras iOS */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+      /* Cores das Membros */
+      --yunah: #ff6676;
+      --minju: #f7d34d;
+      --moka: #b69be8;
+      --wonhee: #f58fba;
+      --iroha: #68cce5;
+
+      /* Radii iOS */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 26px;
+      --radius-3xl: 32px;
+      --radius-pill: 999px;
+
+      /* Navegação */
+      --nav-height: 82px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
+
+    body.dark {
+      --bg-system: #000000;
+      --bg-grouped: #000000;
+      --bg-card: rgba(28, 28, 30, 0.72);
+      --bg-card-solid: #1c1c1e;
+      --bg-glass: rgba(28, 28, 30, 0.65);
+      --bg-nav: rgba(28, 28, 30, 0.82);
+      --bg-input: rgba(120, 120, 128, 0.24);
+
+      --text-primary: #ffffff;
+      --text-secondary: rgba(235, 235, 245, 0.6);
+      --text-tertiary: rgba(235, 235, 245, 0.3);
+      --text-label: rgba(235, 235, 245, 0.6);
+
+      --separator: rgba(84, 84, 88, 0.65);
+      --separator-opaque: #38383a;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: var(--bg-system);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.4;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 20px);
+      transition: background 0.3s ease, color 0.3s ease;
+      overscroll-behavior-y: none;
+    }
+
+    button {
+      font: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      transition: transform 0.1s ease;
+    }
+
+    input,
+    textarea,
+    select {
+      font: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    a {
+      color: var(--ios-blue);
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== APP WRAPPER ===== */
+
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ===== TOPBAR iOS ===== */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding-top: calc(var(--safe-top) + 8px);
+      padding-bottom: 10px;
+      margin: 0 -16px 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      background: var(--bg-nav);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid var(--separator);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      background: linear-gradient(135deg, #ffffff 0%, #e8e8ed 100%);
+      box-shadow: var(--shadow-sm);
+    }
+
+    body.dark .brand-icon {
+      background: linear-gradient(135deg, #3a3a3c 0%, #2c2c2e 100%);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-text strong {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-input);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      color: var(--text-primary);
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .icon-btn:active {
+      background: rgba(120, 120, 128, 0.2);
+    }
+
+    /* ===== SECTIONS ===== */
+
+    .section {
+      display: none;
+      animation: sectionIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes sectionIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== TÍTULOS iOS ===== */
+
+    .section-title {
+      margin: 22px 4px 10px;
+    }
+
+    .section-title h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .section-title p {
+      margin: 4px 0 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+/* ===== LISTAS AGRUPADAS iOS (Settings style) ===== */
+
+.group {
+  background: var(--bg-card-solid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 16px 8px;
+}
+
+.group-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  min-height: 44px;
+  border-bottom: 0.5px solid var(--separator);
+  background: var(--bg-card-solid);
+  transition: background 0.15s ease;
+}
+
+.group-row:last-child {
+  border-bottom: 0;
+}
+
+.group-row:active {
+  background: rgba(120, 120, 128, 0.08);
+}
+
+.group-row-icon {
+  width: 29px;
+  height: 29px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  flex: 0 0 29px;
+}
+
+.group-row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.group-row-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.group-row-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+.group-row-value {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.group-row-chevron {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ===== CARDS iOS ===== */
+
+.card {
+  background: var(--bg-card-solid);
+  border-radius: var(--radius-2xl);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.card.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 0.5px solid var(--separator);
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.card-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.card-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ===== HERO iOS ===== */
+
+.hero {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: var(--radius-3xl);
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f8 100%);
+  border: 0.5px solid var(--separator);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+body.dark .hero {
+  background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 102, 118, 0.18) 0%, transparent 70%);
+  right: -60px;
+  top: -80px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(104, 204, 229, 0.15) 0%, transparent 70%);
+  left: -50px;
+  bottom: -70px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-input);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 8vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 480px;
+  margin: 12px 0 0;
+}
+
+/* ===== GRID ===== */
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ===== SEGMENTED CONTROL iOS ===== */
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--bg-input);
+  border-radius: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 16px;
+}
+
+.segmented::-webkit-scrollbar {
+  display: none;
+}
+
+.segment {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  min-width: 44px;
+  text-align: center;
+}
+
+.segment.active {
+  background: var(--bg-card-solid);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.03);
+}
+
+body.dark .segment.active {
+  background: #48484a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== PROGRESS BAR iOS ===== */
+
+.progress-bar {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(120, 120, 128, 0.15);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== GRÁFICO iOS ===== */
+
+.graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 200px;
+  padding: 20px 12px 12px;
+  border-radius: var(--radius-xl);
+  background: rgba(120, 120, 128, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.graph::-webkit-scrollbar {
+  display: none;
+}
+
+.graph-column {
+  min-width: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-bar {
+  width: 22px;
+  min-height: 4px;
+  border-radius: 10px 10px 4px 4px;
+  transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.graph-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.graph-number {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ===== EMPTY STATE iOS ===== */
+
+.empty {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.empty-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 500px) {
+  .app { padding: 0 12px; }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-title h1 { font-size: 30px; }
+  .hero { padding: 24px 20px; }
+}
+
+@media (max-width: 380px) {
+  .grid-2,
+  .grid-3 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+    /* ===== BOTTOM NAV iOS (Tab Bar) ===== */
+
+    .nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      padding: 8px 12px calc(8px + var(--safe-bottom));
+      background: var(--bg-nav);
+      backdrop-filter: saturate(180%) blur(30px);
+      -webkit-backdrop-filter: saturate(180%) blur(30px);
+      border-top: 0.5px solid var(--separator);
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 6px 4px;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-secondary);
+      font-size: 10px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+      min-width: 0;
+    }
+
+    .nav-btn span:first-child {
+      font-size: 22px;
+      line-height: 1;
+      filter: saturate(0.3);
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+
+    .nav-btn.active {
+      color: var(--ios-blue);
+      font-weight: 600;
+    }
+
+    .nav-btn.active span:first-child {
+      filter: saturate(1);
+      transform: scale(1.05);
+    }
+
+    .nav-btn:active span:first-child {
+      transform: scale(0.9);
+    }
+
+    /* ===== MODAL iOS (Bottom Sheet) ===== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 640px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--bg-card-solid);
+      border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
+      padding: 8px 0 calc(20px + var(--safe-bottom));
+      animation: sheetUp 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overscroll-behavior: contain;
+    }
+
+    @keyframes sheetUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-grabber {
+      width: 36px;
+      height: 5px;
+      border-radius: var(--radius-pill);
+      background: rgba(120, 120, 128, 0.3);
+      margin: 0 auto 10px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 20px 12px;
+      border-bottom: 0.5px solid var(--separator);
+      position: sticky;
+      top: 0;
+      background: var(--bg-card-solid);
+      z-index: 2;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-input);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+    }
+
+    .modal-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(120, 120, 128, 0.08);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .modal-row span:first-child {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .modal-row strong {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* ===== TOAST iOS ===== */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--nav-height) + var(--safe-bottom) + 12px);
+      transform: translate(-50%, 30px);
+      z-index: 9999;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      background: rgba(30, 30, 32, 0.94);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-lg);
+      max-width: calc(100% - 40px);
+      text-align: center;
+    }
+
+    body.dark .toast {
+      background: rgba(240, 240, 245, 0.94);
+      color: #000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ===== GRÁFICO APPLE HEALTH ===== */
+
+    .health-graph-wrap {
+      padding: 20px;
+      background: var(--bg-card-solid);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .health-filters {
+      display: flex;
+      gap: 4px;
+      padding: 3px;
+      background: var(--bg-input);
+      border-radius: 10px;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    .health-filter {
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .health-filter.active {
+      background: var(--bg-card-solid);
+      color: var(--text-primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark .health-filter.active {
+      background: #48484a;
+    }
+
+    .health-chart {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      padding: 0 2px;
+    }
+
+    .health-bar {
+      flex: 1;
+      min-width: 6px;
+      border-radius: 4px 4px 2px 2px;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+      min-height: 4px;
+    }
+
+    .health-bar:hover {
+      filter: brightness(1.15);
+      transform: scaleY(1.03);
+      transform-origin: bottom;
+    }
+
+    .health-labels {
+      display: flex;
+      gap: 3px;
+      margin-top: 10px;
+      padding: 0 2px;
+    }
+
+    .health-label {
+      flex: 1;
+      min-width: 6px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .health-member-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 0.5px solid var(--separator);
+    }
+
+    .health-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(120, 120, 128, 0.08);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .health-legend-item.off {
+      opacity: 0.35;
+    }
+
+    .health-legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .health-total {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .health-total-value {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .health-total-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <strong>ILLIT Archive</strong>
+          <span>Fan Archive</span>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Tema">☀️</button>
+    </header>
+
+    <!-- ===== PERFIS (TELA INICIAL) ===== -->
+    <section id="profileSection" class="section active">
+
+      <div class="section-title">
+        <h1>🃏 Perfis</h1>
+        <p>Conheça as integrantes do ILLIT.</p>
+      </div>
+
+      <!-- Card ILLIT (grupo) -->
+      <section class="card glass" style="margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <div style="width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; font-size: 28px; background: linear-gradient(135deg, #ff6676, #b69be8);">
+            ✨
+          </div>
+          <div>
+            <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.03em;">ILLIT</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">BELIFT LAB · HYBE</div>
+          </div>
+        </div>
+
+        <div class="modal-row"><span>Debut</span><strong>25 de Março de 2024</strong></div>
+        <div class="modal-row"><span>Members</span><strong>5</strong></div>
+        <div class="modal-row"><span>Fandom</span><strong>GLLIT</strong></div>
+        <div class="modal-row"><span>Pronounced</span><strong>"Glit"</strong></div>
+
+        <div style="margin-top: 14px; padding: 12px 14px; background: rgba(120,120,128,0.08); border-radius: var(--radius-md); font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+          <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">Sobre o GLLIT:</strong>
+          Inspired by the word "glitter," which means to sparkle and shine. It means in ILLIT's eyes, the fans shine the brightest and they also make ILLIT sparkle.
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 14px;">
+          <div style="padding: 12px; background: rgba(120,120,128,0.06); border-radius: var(--radius-md);">
+            <div class="card-label" style="margin-bottom: 4px;">DEBUT</div>
+            <div id="illitDebutCounter" style="font-size: 15px; font-weight: 700;">—</div>
+            <div id="illitDebutDays" style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">—</div>
+          </div>
+          <div style="padding: 12px; background: rgba(120,120,128,0.06); border-radius: var(--radius-md);">
+            <div class="card-label" style="margin-bottom: 4px;">GLLIT</div>
+            <div id="illitFandomCounter" style="font-size: 15px; font-weight: 700;">—</div>
+            <div id="illitFandomDays" style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards das Membros -->
+      <div id="profileCards" class="grid grid-2"></div>
+
+      <!-- Summer Moon — Personagens -->
+      <div class="section-title" style="margin-top: 30px;">
+        <h2>🌙 Summer Moon — Personagens</h2>
+        <p>Personagens do webtoon inspiradas nas membros.</p>
+      </div>
+
+      <div id="summerMoonCharacters" class="grid grid-2" style="margin-bottom: 12px;"></div>
+
+      <button class="card glass" style="width: 100%; text-align: left;" onclick="showSection('summerMoonSection')">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">🌙 Sobre o Webtoon</div>
+            <div style="color: var(--text-secondary); font-size: 13px; margin-top: 2px;">The Quprids e The VACANCE</div>
+          </div>
+          <div class="group-row-chevron">›</div>
+        </div>
+      </button>
+
+      <!-- Botão Admin -->
+      <button class="card glass" style="width: 100%; text-align: left; margin-top: 12px;" onclick="showSection('adminSection')">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">⚙️ Admin</div>
+            <div style="color: var(--text-secondary); font-size: 13px; margin-top: 2px;">Gerenciar arquivo</div>
+          </div>
+          <div class="group-row-chevron">›</div>
+        </div>
+      </button>
+
+    </section>
+
+    <!-- ===== HOME (INÍCIO) ===== -->
+    <main id="homeSection" class="section">
+
+      <div class="section-title">
+        <h1>Início</h1>
+        <p>Tudo sobre ILLIT em um só lugar.</p>
+      </div>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-label">✨ ILLIT</div>
+          <h1>Bem-vindo ao<br>ILLIT Archive.</h1>
+          <p>Um arquivo limpo e organizado para ILLIT: YUNAH, MINJU, MOKA, WONHEE e IROHA.</p>
+        </div>
+      </section>
+
+      <!-- Break Even — Contador Principal -->
+      <section class="card glass" id="breakEvenCard" style="margin-bottom: 12px;">
+        <div class="card-label">💿 PRÓXIMO LANÇAMENTO</div>
+        <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px;">
+          BREAK EVEN
+        </div>
+        <div class="card-subtitle">26 OUT 2026 · 18:00 KST</div>
+        <div class="card-subtitle">🇧🇷 26 OUT 2026 · 06:00 BRT</div>
+        <div id="breakEvenCountdown" style="margin-top: 14px; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">
+          ⏳ — dias · — h · — min · — s
+        </div>
+      </section>
+
+      <!-- Grid: Next Activity + Total -->
+      <div class="grid grid-2" style="margin-bottom: 12px;">
+
+        <section class="card" id="nextActivityCard">
+          <div class="card-label">📅 NEXT ACTIVITY</div>
+          <div class="card-value" style="font-size: 18px;" id="nextActivityTitle">—</div>
+          <div class="card-subtitle" id="nextActivityMeta">—</div>
+          <div class="card-subtitle" id="nextActivityCountdown" style="font-weight: 600; color: var(--ios-blue);">—</div>
+        </section>
+
+        <section class="card">
+          <div class="card-label">📊 TOTAL ATIVIDADES</div>
+          <div class="card-value" id="totalActivities">0</div>
+          <div class="card-subtitle">Arquivadas</div>
+        </section>
+
+      </div>
+
+      <!-- Grid: Contadores KR/JP -->
+      <div class="grid grid-2" style="margin-bottom: 12px;">
+        <section class="card">
+          <div class="card-label">🇰🇷 ÚLTIMO LANÇAMENTO KR</div>
+          <div class="card-value" id="koreanCounter" style="font-size: 22px;">—</div>
+          <div class="card-subtitle" id="koreanBase">Mamihlapinatapai · 30/04/2026</div>
+        </section>
+
+        <section class="card">
+          <div class="card-label">🇯🇵 ÚLTIMO LANÇAMENTO JP</div>
+          <div class="card-value" id="japaneseCounter" style="font-size: 22px;">—</div>
+          <div class="card-subtitle" id="japaneseBase">I Got Your Back · 26/07/2026</div>
+        </section>
+      </div>
+
+      <!-- Próximo Aniversário -->
+      <div class="section-title">
+        <h2>🎂 Próximo Aniversário</h2>
+      </div>
+
+      <section class="card" id="nextBirthdayCard" style="margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div id="nextBirthdayAvatar" style="width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; background: rgba(120,120,128,0.1);">
+            🎂
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="card-value" id="nextBirthdayName" style="font-size: 18px;">—</div>
+            <div class="card-subtitle" id="nextBirthdayDate">—</div>
+          </div>
+        </div>
+        <div id="nextBirthdayCountdown" style="margin-top: 14px; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;">
+          ⏳ — dias · — h · — min · — s
+        </div>
+      </section>
+
+    </main>
+
+  <!-- ===== CALENDÁRIO ===== -->
+  <section id="calendarSection" class="section">
+
+    <div class="section-title">
+      <h1>📅 Agenda</h1>
+      <p>Atividades e eventos do ILLIT.</p>
+    </div>
+
+    <div class="segmented" id="calendarFilters"></div>
+    <div id="calendarList"></div>
+
+  </section>
+
+  <!-- ===== ALBUMS ===== -->
+  <section id="albumsSection" class="section">
+
+    <div class="section-title">
+      <h1>💿 Albums</h1>
+      <p>Discografia completa do ILLIT.</p>
+    </div>
+
+    <div class="grid grid-2" style="margin-bottom: 20px;">
+      <section class="card">
+        <div class="card-label">🇰🇷 ÚLTIMO KR</div>
+        <div class="card-value" id="koreanAlbumCounter" style="font-size: 20px;">—</div>
+        <div class="card-subtitle" id="koreanAlbumBase">Mamihlapinatapai</div>
+      </section>
+      <section class="card">
+        <div class="card-label">🇯🇵 ÚLTIMO JP</div>
+        <div class="card-value" id="japaneseAlbumCounter" style="font-size: 20px;">—</div>
+        <div class="card-subtitle" id="japaneseAlbumBase">I Got Your Back</div>
+      </section>
+    </div>
+
+    <div class="section-title"><h2>🇰🇷 Korean</h2></div>
+    <div id="koreanAlbums" class="grid" style="margin-bottom: 20px;"></div>
+
+    <div class="section-title"><h2>🇯🇵 Japanese</h2></div>
+    <div id="japaneseAlbums" class="grid"></div>
+
+  </section>
+
+  <!-- ===== SUMMER MOON ===== -->
+  <section id="summerMoonSection" class="section">
+
+    <div class="section-title">
+      <h1>🌙 Summer Moon</h1>
+      <p>Webtoon original da HYBE em colaboração com ILLIT.</p>
+    </div>
+
+    <section class="card glass" style="margin-bottom: 16px;">
+      <div class="card-label">EM ANDAMENTO</div>
+      <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px;">
+        Summer Moon: The Quprids
+      </div>
+      <div class="card-subtitle">썸머문: 더 큐프리즈</div>
+      <div class="card-subtitle">Atualização: <strong>toda terça-feira</strong></div>
+
+      <div style="margin-top: 16px; padding: 14px; background: rgba(120,120,128,0.06); border-radius: var(--radius-md); font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 6px;">📖 Sinopse:</strong>
+        Yeoreum (Han Yeoreum), uma estudante comum do ensino médio determinada a conquistar um namorado até o Festival Summer Moon, encontra um <em>constellation shard</em> e se transforma em uma das <strong>Quprids</strong> — guerreiras com poderes mágicos. Ela precisa equilibrar sua vida escolar, o romance com Gowon e a proteção da galáxia, enquanto seu amigo de infância Doyun parece saber mais sobre os fragmentos do que deveria.
+      </div>
+
+      <div style="margin-top: 14px; font-size: 12px; color: var(--text-secondary);">
+        ✨ Gênero: Romance · Fantasia · Escola · Mahou Shoujo
+      </div>
+    </section>
+
+    <section class="card glass" style="margin-bottom: 16px;">
+      <div class="card-label">EM ANDAMENTO</div>
+      <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px;">
+        Summer Moon: The VACANCE
+      </div>
+      <div class="card-subtitle">Atualização: <strong>toda segunda-feira</strong></div>
+
+      <div style="margin-top: 16px; padding: 14px; background: rgba(120,120,128,0.06); border-radius: var(--radius-md); font-size: 13px; color: var(--text-secondary);">
+        Continuação do universo Summer Moon. Mais informações em breve.
+      </div>
+    </section>
+
+    <div class="section-title"><h2>✨ Elementos</h2></div>
+
+    <div class="grid grid-2" style="margin-bottom: 20px;">
+      <div class="card">
+        <div style="font-size: 22px; margin-bottom: 6px;">⚔️</div>
+        <div style="font-weight: 700; font-size: 14px;">Quprids</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Guerreiras mágicas com poderes de constelação.</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 22px; margin-bottom: 6px;">💎</div>
+        <div style="font-weight: 700; font-size: 14px;">Constellation Shards</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Fragmentos que transformam humanos em Quprids.</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 22px; margin-bottom: 6px;">🌳</div>
+        <div style="font-weight: 700; font-size: 14px;">Tree of Eternal Love</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Árvore na Wolha High School. Lenda: casais que confessam sob ela ficam unidos.</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 22px; margin-bottom: 6px;">💗</div>
+        <div style="font-weight: 700; font-size: 14px;">Sentimentos e Magia</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">A magia está nas emoções. Amor, amizade e autoaceitação.</div>
+      </div>
+    </div>
+
+    <div class="section-title"><h2>💕 Personagens Secundários</h2></div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div style="font-weight: 700; font-size: 15px;">Lee Doyun</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">이도윤</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">Amigo de infância. Sabe mais sobre os shards do que deveria.</div>
+      </div>
+      <div class="card">
+        <div style="font-weight: 700; font-size: 15px;">Gwon Gowon</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">권고원</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">Garoto mais popular da escola. Interesse romântico.</div>
+      </div>
+    </div>
+
+    <button class="card glass" style="width: 100%; text-align: left; margin-top: 20px;" onclick="showSection('profileSection')">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">‹ Voltar aos Perfis</div>
+        </div>
+      </div>
+    </button>
+
+  </section>
+
+  <!-- ===== ESTATÍSTICAS ===== -->
+  <section id="statsSection" class="section">
+
+    <div class="section-title">
+      <h1>📊 Estatísticas</h1>
+      <p>Dados reais do arquivo.</p>
+    </div>
+
+    <!-- Gráfico Apple Health -->
+    <div class="health-graph-wrap">
+
+      <div class="health-total">
+        <div class="health-total-value" id="healthTotal">0</div>
+        <div class="health-total-label">atividades</div>
+      </div>
+
+      <div class="health-filters">
+        <button class="health-filter active" data-range="week" onclick="setHealthRange('week')">SEMANA</button>
+        <button class="health-filter" data-range="month" onclick="setHealthRange('month')">MÊS</button>
+        <button class="health-filter" data-range="year" onclick="setHealthRange('year')">ANO</button>
+      </div>
+
+      <div class="health-chart" id="healthChart"></div>
+      <div class="health-labels" id="healthLabels"></div>
+
+      <div class="health-member-legend" id="healthLegend"></div>
+    </div>
+
+    <div class="section-title"><h2>Por Membro</h2></div>
+    <div id="statsList" style="margin-bottom: 20px;"></div>
+
+    <div class="section-title"><h2>Gráfico por Mês</h2></div>
+    <section class="card">
+      <div class="graph" id="statsGraph"></div>
+    </section>
+
+  </section>
+
+  <!-- ===== ADMIN ===== -->
+  <section id="adminSection" class="section">
+
+    <div class="section-title">
+      <h1>⚙️ Admin</h1>
+      <p>Gerencie o arquivo do ILLIT.</p>
+    </div>
+
+    <div id="adminRoot"></div>
+
+  </section>
+
+</div>
+
+<!-- ===== BOTTOM NAV iOS ===== -->
+<nav class="nav">
+  <button class="nav-btn active" data-s="profileSection" onclick="showSection('profileSection')">
+    <span>🃏</span><span>Perfis</span>
+  </button>
+  <button class="nav-btn" data-s="homeSection" onclick="showSection('homeSection')">
+    <span>🏠</span><span>Início</span>
+  </button>
+  <button class="nav-btn" data-s="calendarSection" onclick="showSection('calendarSection')">
+    <span>📅</span><span>Agenda</span>
+  </button>
+  <button class="nav-btn" data-s="albumsSection" onclick="showSection('albumsSection')">
+    <span>💿</span><span>Albums</span>
+  </button>
+  <button class="nav-btn" data-s="statsSection" onclick="showSection('statsSection')">
+    <span>📊</span><span>Stats</span>
+  </button>
+</nav>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <div class="modal-sheet" id="modalSheet" onclick="event.stopPropagation()">
+    <div class="modal-grabber"></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ==========================================
+     DADOS DAS MEMBROS
+  ========================================== */
+
+  const MEMBERS = [
+    {
+      id: "YUNAH",
+      name: "Yunah",
+      hangul: "윤아",
+      emoji: "🐆",
+      accent: "❤️",
+      bg: "linear-gradient(135deg, #ff8a94, #ff6676)",
+      color: "#ff6676",
+      birthday: "2004-01-15",
+      birthdayLabel: "15 de Janeiro de 2004",
+      zodiac: "Capricórnio ♑",
+      mbti: "ENFP",
+      height: "168 cm (5'6\")",
+      nationality: "Coreana 🇰🇷",
+      birthplace: "Chungju, Chungcheongbuk-do, Coreia do Sul",
+      fullName: "Roh Yun-ah (노윤아)",
+      englishName: "Annie Roh",
+      chineseName: "卢玧我",
+      japaneseName: "ユナ",
+      summerMoon: "Ayeong Gu / Gu Ayeong (구아영)"
+    },
+    {
+      id: "MINJU",
+      name: "Minju",
+      hangul: "민주",
+      emoji: "🐰",
+      accent: "💛",
+      bg: "linear-gradient(135deg, #ffeb8c, #f7d34d)",
+      color: "#f7d34d",
+      birthday: "2004-05-11",
+      birthdayLabel: "11 de Maio de 2004",
+      zodiac: "Touro ♉",
+      mbti: "ISTP / ISTJ",
+      height: "163 cm (5'4\")",
+      nationality: "Coreana 🇰🇷",
+      birthplace: "Namyangju-si, Gyeonggi-do, Coreia do Sul",
+      fullName: "Park Min-ju (박민주)",
+      englishName: "",
+      chineseName: "朴敏珠",
+      japaneseName: "ミンジュ",
+      summerMoon: "Ryu Miso (류미소)"
+    },
+    {
+      id: "MOKA",
+      name: "Moka",
+      hangul: "모카",
+      emoji: "☕️",
+      accent: "💜",
+      bg: "linear-gradient(135deg, #d4bef4, #b69be8)",
+      color: "#b69be8",
+      birthday: "2004-10-08",
+      birthdayLabel: "8 de Outubro de 2004",
+      zodiac: "Libra ♎",
+      mbti: "ISFP",
+      height: "162 cm (5'4\")",
+      nationality: "Japonesa 🇯🇵",
+      birthplace: "Fukuoka, Japão",
+      fullName: "Sakai Moka (さかい もか / 사카이 모카)",
+      englishName: "",
+      chineseName: "境萌花",
+      japaneseName: "モカ",
+      summerMoon: "Maeng Gayun (맹가윤)"
+    },
+    {
+      id: "WONHEE",
+      name: "Wonhee",
+      hangul: "원희",
+      emoji: "🐿",
+      accent: "🩷",
+      bg: "linear-gradient(135deg, #ffc4d8, #f58fba)",
+      color: "#f58fba",
+      birthday: "2007-06-26",
+      birthdayLabel: "26 de Junho de 2007",
+      zodiac: "Câncer ♋",
+      mbti: "ISFP",
+      height: "162 cm (5'4\")",
+      nationality: "Coreana 🇰🇷",
+      birthplace: "Busan → Changwon, Coreia do Sul",
+      fullName: "Lee Won-hee (이원희)",
+      englishName: "",
+      chineseName: "李沅禧",
+      japaneseName: "ウォンヒ",
+      summerMoon: "Han Yeoreum (한여름) — Alias: Hazel Lee (이 헤이즐)"
+    },
+    {
+      id: "IROHA",
+      name: "Iroha",
+      hangul: "이로하",
+      emoji: "🐢",
+      accent: "🩵",
+      bg: "linear-gradient(135deg, #9fdef0, #68cce5)",
+      color: "#68cce5",
+      birthday: "2008-02-04",
+      birthdayLabel: "4 de Fevereiro de 2008",
+      zodiac: "Aquário ♒",
+      mbti: "INFJ",
+      height: "158 cm (5'2\")",
+      nationality: "Japonesa 🇯🇵",
+      birthplace: "Tóquio, Japão",
+      fullName: "Hokazono Iroha (外園彩羽 / 호카조노 이로하)",
+      englishName: "",
+      chineseName: "外园彩羽",
+      japaneseName: "イロハ",
+      summerMoon: "Cheong Unha (청운하)"
+    }
+  ];
+
+  /* ==========================================
+     INFO DO GRUPO
+  ========================================== */
+
+  const ILLIT_INFO = {
+    name: "ILLIT",
+    label: "BELIFT LAB · HYBE",
+    debut: "2024-03-25",
+    fandom: "GLLIT",
+    fandomDate: "2024-09-01",
+    members: 5,
+    pronunciation: "Glit",
+    fandomDesc: "Inspired by the word \"glitter,\" which means to sparkle and shine. It means in ILLIT's eyes, the fans shine the brightest and they also make ILLIT sparkle."
+  };
+
+  /* ==========================================
+     ÁLBUNS
+  ========================================== */
+
+  const ALBUMS_KOREAN = [
+    { id: "k1", name: "Super Real Me", date: "2024-03-25", type: "Mini Album" },
+    { id: "k2", name: "I'll Like You", date: "2024-10-21", type: "Mini Album" },
+    { id: "k3", name: "Bomb", date: "2025-06-16", type: "Single" },
+    { id: "k4", name: "Not Cute Anymore", date: "2025-11-24", type: "Mini Album" },
+    { id: "k5", name: "Mamihlapinatapai", date: "2026-04-30", type: "Full Album" },
+    { id: "k6", name: "BREAK EVEN", date: "2026-10-26", type: "Mini Album" }
+  ];
+
+  const ALBUMS_JAPANESE = [
+    { id: "j1", name: "Toki Yo Tomare", date: "2025-09-01", type: "Single" },
+    { id: "j2", name: "I Got Your Back", date: "2026-07-26", type: "Single" }
+  ];
+
+  /* ==========================================
+     BREAK EVEN
+  ========================================== */
+
+  const BREAK_EVEN_DATE = new Date("2026-10-26T18:00:00+09:00");
+
+  /* ==========================================
+     EVENTOS PADRÃO
+  ========================================== */
+
+  const DEFAULT_ACTIVITIES = [
+    { id: 1, date: "2026-08-15", title: "KCON LA 2026", location: "Los Angeles", country: "🇺🇸", type: "Grupo", participants: ["ILLIT"], time: "" },
+    { id: 2, date: "2026-08-22", title: 'ILLIT LIVE "PRESS START"', location: "Hong Kong", country: "🇭🇰", type: "Concerto", participants: ["ILLIT"], time: "" },
+    { id: 3, date: "2026-08-24", title: "Hong Kong Fansign", location: "Hong Kong", country: "🇭🇰", type: "Fansign", participants: ["ILLIT"], time: "" },
+    { id: 4, date: "2026-08-27", title: "2026 K-World Dream Awards", location: "Coreia do Sul", country: "🇰🇷", type: "Prêmio", participants: ["ILLIT"], time: "" },
+    { id: 5, date: "2026-09-19", title: "The Fact Music Awards", location: "Busan", country: "🇰🇷", type: "Prêmio", participants: ["ILLIT"], time: "" },
+    { id: 6, date: "2026-10-08", title: "Aniversário da Moka 🎂", location: "—", country: "🇯🇵", type: "Aniversário", participants: ["MOKA"], time: "" },
+    { id: 7, date: "2026-10-17", title: '"PRESS START" ENCORE', location: "INSPIRE Arena", country: "🇰🇷", type: "Concerto", participants: ["ILLIT"], time: "" },
+    { id: 8, date: "2026-12-23", title: '"PRESS START" ENCORE', location: "Tóquio", country: "🇯🇵", type: "Concerto", participants: ["ILLIT"], time: "" }
+  ];
+
+  /* ==========================================
+     ESTADO GLOBAL
+  ========================================== */
+
+  let ACTIVITIES = [];
+  let FAVORITES = [];
+  let adminLogged = false;
+  let currentCalendarFilter = "ALL";
+  let healthRange = "week";
+  let healthHidden = [];
+  let countdownIntervals = [];
+
+  const ADMIN_PASSWORD = "luckymia";
+
+  /* ==========================================
+     STORAGE
+  ========================================== */
+
+  function saveAll() {
+    try {
+      localStorage.setItem("illitActivities", JSON.stringify(ACTIVITIES));
+      localStorage.setItem("illitFavorites", JSON.stringify(FAVORITES));
+    } catch (e) {
+      console.warn("Save error:", e);
+    }
+  }
+
+  function loadAll() {
+    try {
+      const a = localStorage.getItem("illitActivities");
+      const f = localStorage.getItem("illitFavorites");
+      ACTIVITIES = a ? JSON.parse(a) : [...DEFAULT_ACTIVITIES];
+      FAVORITES = f ? JSON.parse(f) : [];
+    } catch (e) {
+      console.warn("Load error:", e);
+      ACTIVITIES = [...DEFAULT_ACTIVITIES];
+      FAVORITES = [];
+    }
+  }
+
+  /* ==========================================
+     TEMA
+  ========================================== */
+
+  function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const dark = document.body.classList.contains("dark");
+  localStorage.setItem("illitTheme", dark ? "dark" : "light");
+  const btn = document.getElementById("themeBtn");
+  if (btn) btn.textContent = dark ? "🌙" : "☀️";
+}
+
+  function loadTheme() {
+    if (localStorage.getItem("illitTheme") === "dark") {
+      document.body.classList.add("dark");
+      document.getElementById("themeBtn").textContent = "🌙";
+    }
+  }
+
+  /* ==========================================
+     NAVEGAÇÃO
+  ========================================== */
+
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    const target = document.getElementById(id);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    const btn = document.querySelector(`.nav-btn[data-s="${id}"]`);
+    if (btn) btn.classList.add("active");
+
+    if (id === "profileSection")      renderProfiles();
+    if (id === "homeSection")         renderHome();
+    if (id === "calendarSection")     renderCalendar();
+    if (id === "albumsSection")       renderAlbums();
+    if (id === "statsSection")        renderStats();
+    if (id === "summerMoonSection")   renderSummerMoon();
+    if (id === "adminSection")        renderAdmin();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ==========================================
+     TOAST
+  ========================================== */
+
+  let toastTimer;
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  /* ==========================================
+     MODAL
+  ========================================== */
+
+  function openModal(html) {
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("modalContent");
+    if (!modal || !content) return;
+    content.innerHTML = html;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(event) {
+    if (event && event.target !== document.getElementById("modal")) return;
+    const modal = document.getElementById("modal");
+    if (modal) modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  /* ==========================================
+     HELPERS DE DATA
+  ========================================== */
+
+  function daysBetween(a, b) {
+    const ms = Math.abs(b - a);
+    return Math.floor(ms / (1000 * 60 * 60 * 24));
+  }
+
+  function formatDiff(target, now) {
+    const diff = target - now;
+    if (diff <= 0) return null;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    return { days, hours, minutes, seconds };
+  }
+
+  function formatCountdown(target, now) {
+    const d = formatDiff(target, now);
+    if (!d) return "🎉 RELEASED";
+    return `⏳ ${d.days}d · ${String(d.hours).padStart(2, "0")}h · ${String(d.minutes).padStart(2, "0")}min · ${String(d.seconds).padStart(2, "0")}s`;
+  }
+
+  function formatDateLong(dateStr) {
+    const d = new Date(dateStr + "T00:00:00");
+    return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
+  }
+
+  function formatDateShort(dateStr) {
+    const d = new Date(dateStr + "T00:00:00");
+    return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+  }
+</script>
+
+<script>
+  /* ==========================================
+     PERFIS (TELA INICIAL)
+  ========================================== */
+
+  function renderProfiles() {
+    renderIllitCounters();
+    renderProfileCards();
+    renderSummerMoonCharacters();
+  }
+
+  function renderIllitCounters() {
+    const now = new Date();
+
+    /* Debut: 25/03/2024 */
+    const debut = new Date(ILLIT_INFO.debut + "T00:00:00");
+    const debutDays = daysBetween(debut, now);
+    const debutYears = Math.floor(debutDays / 365);
+    const debutMonths = Math.floor((debutDays % 365) / 30);
+    const debutDaysLeft = debutDays % 30;
+
+    const dEl = document.getElementById("illitDebutCounter");
+    const dDays = document.getElementById("illitDebutDays");
+    if (dEl) dEl.textContent = `${debutYears}a · ${debutMonths}m · ${debutDaysLeft}d`;
+    if (dDays) dDays.textContent = `${debutDays} dias desde o debut`;
+
+    /* Fandom GLLIT: 01/09/2024 */
+    const fandom = new Date(ILLIT_INFO.fandomDate + "T00:00:00");
+    const fandomDays = daysBetween(fandom, now);
+    const fYears = Math.floor(fandomDays / 365);
+    const fMonths = Math.floor((fandomDays % 365) / 30);
+    const fDaysLeft = fandomDays % 30;
+
+    const fEl = document.getElementById("illitFandomCounter");
+    const fDays = document.getElementById("illitFandomDays");
+    if (fEl) fEl.textContent = `${fYears}a · ${fMonths}m · ${fDaysLeft}d`;
+    if (fDays) fDays.textContent = `${fandomDays} dias desde o nome GLLIT`;
+  }
+
+  function renderProfileCards() {
+    const grid = document.getElementById("profileCards");
+    if (!grid) return;
+
+    grid.innerHTML = MEMBERS.map(m => {
+      const count = ACTIVITIES.filter(a =>
+        a.participants && a.participants.includes(m.id)
+      ).length;
+
+      return `
+        <button class="card" style="text-align: left; padding: 16px;" onclick="openMemberModal('${m.id}')">
+          <div style="width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; background: ${m.bg}; margin-bottom: 12px;">
+            ${m.emoji}
+          </div>
+          <div style="font-weight: 800; font-size: 15px; letter-spacing: -0.02em;">
+            ${m.name} ${m.accent}
+          </div>
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 3px;">
+            ${m.hangul} · ${count} atividades
+          </div>
+        </button>
+      `;
+    }).join("");
+  }
+
+  function openMemberModal(memberId) {
+    const m = MEMBERS.find(x => x.id === memberId);
+    if (!m) return;
+
+    const count = ACTIVITIES.filter(a =>
+      a.participants && a.participants.includes(m.id)
+    ).length;
+
+    openModal(`
+      <div class="modal-header">
+        <div class="modal-title">${m.name} ${m.accent}</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div style="text-align: center; margin-bottom: 18px;">
+          <div style="width: 90px; height: 90px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; font-size: 42px; background: ${m.bg};">
+            ${m.emoji}
+          </div>
+          <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.03em;">
+            ${m.name} ${m.accent}
+          </div>
+          <div style="color: var(--text-secondary); font-size: 14px; margin-top: 4px;">
+            ${m.hangul} · ${m.nationality}
+          </div>
+        </div>
+
+        <div class="modal-row"><span>Nome completo</span><strong>${m.fullName}</strong></div>
+        ${m.englishName ? `<div class="modal-row"><span>Nome inglês</span><strong>${m.englishName}</strong></div>` : ""}
+        <div class="modal-row"><span>Aniversário</span><strong>${m.birthdayLabel}</strong></div>
+        <div class="modal-row"><span>Signo</span><strong>${m.zodiac}</strong></div>
+        <div class="modal-row"><span>Altura</span><strong>${m.height}</strong></div>
+        <div class="modal-row"><span>MBTI</span><strong>${m.mbti}</strong></div>
+        <div class="modal-row"><span>Nacionalidade</span><strong>${m.nationality}</strong></div>
+        <div class="modal-row"><span>Naturalidade</span><strong>${m.birthplace}</strong></div>
+        ${m.chineseName ? `<div class="modal-row"><span>Nome chinês</span><strong>${m.chineseName}</strong></div>` : ""}
+        ${m.japaneseName ? `<div class="modal-row"><span>Nome japonês</span><strong>${m.japaneseName}</strong></div>` : ""}
+
+        <div style="margin-top: 18px; padding: 14px; border-radius: var(--radius-md); background: rgba(120,120,128,0.08);">
+          <div class="card-label">🌙 SUMMER MOON</div>
+          <div style="font-weight: 600; font-size: 15px; margin-top: 4px;">${m.summerMoon}</div>
+        </div>
+
+        <div style="margin-top: 14px; text-align: center; padding: 12px; background: rgba(120,120,128,0.06); border-radius: var(--radius-md);">
+          <div style="font-size: 24px; font-weight: 800;">${count}</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">Atividades no arquivo</div>
+        </div>
+
+      </div>
+    `);
+  }
+
+  function renderSummerMoonCharacters() {
+    const grid = document.getElementById("summerMoonCharacters");
+    if (!grid) return;
+
+    grid.innerHTML = MEMBERS.map(m => {
+      const charName = m.summerMoon.split(" (")[0];
+      const hangul = m.summerMoon.includes("(")
+        ? m.summerMoon.split("(")[1].replace(")", "").split(" — ")[0]
+        : "";
+
+      return `
+        <div class="card" style="padding: 14px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <div style="width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 16px; background: ${m.bg};">
+              ${m.emoji}
+            </div>
+            <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600;">
+              ${m.name}
+            </div>
+          </div>
+          <div style="font-weight: 700; font-size: 14px; letter-spacing: -0.02em;">
+            ${charName}
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+            ${hangul}
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  /* ==========================================
+     HOME
+  ========================================== */
+
+  function renderHome() {
+    renderBreakEven();
+    renderNextActivity();
+    renderHomeCounters();
+    renderNextBirthday();
+
+    const totalEl = document.getElementById("totalActivities");
+    if (totalEl) totalEl.textContent = ACTIVITIES.length;
+  }
+
+  function renderBreakEven() {
+    const el = document.getElementById("breakEvenCountdown");
+    if (!el) return;
+
+    function update() {
+      const now = new Date();
+      const text = formatCountdown(BREAK_EVEN_DATE, now);
+
+      if (BREAK_EVEN_DATE - now <= 0) {
+        el.innerHTML = "🎉 <strong>RELEASED</strong>";
+        el.style.color = "var(--ios-green)";
+      } else {
+        el.textContent = text;
+      }
+    }
+
+    update();
+    const i = setInterval(update, 1000);
+    countdownIntervals.push(i);
+  }
+
+  function renderNextActivity() {
+    const titleEl = document.getElementById("nextActivityTitle");
+    const metaEl = document.getElementById("nextActivityMeta");
+    const countEl = document.getElementById("nextActivityCountdown");
+    if (!titleEl || !metaEl || !countEl) return;
+
+    const now = new Date();
+    const upcoming = ACTIVITIES
+      .map(a => ({ ...a, d: new Date(a.date + "T00:00:00") }))
+      .filter(a => a.d > now)
+      .sort((a, b) => a.d - b.d)[0];
+
+    if (!upcoming) {
+      titleEl.textContent = "Sem eventos";
+      metaEl.textContent = "—";
+      countEl.textContent = "";
+      return;
+    }
+
+    titleEl.textContent = upcoming.title;
+    metaEl.textContent = `${formatDateShort(upcoming.date)} · ${upcoming.country} ${upcoming.location}`;
+
+    function update() {
+      const n = new Date();
+      if (upcoming.d - n <= 0) {
+        countEl.textContent = "🔴 HAPPENING NOW";
+        countEl.style.color = "var(--ios-red)";
+      } else {
+        countEl.textContent = formatCountdown(upcoming.d, n);
+      }
+    }
+
+    update();
+    const i = setInterval(update, 1000);
+    countdownIntervals.push(i);
+  }
+
+  function renderHomeCounters() {
+    const now = new Date();
+
+    /* Korean — base: Mamihlapinatapai 30/04/2026 */
+    const kBase = new Date("2026-04-30T00:00:00");
+    const kEl = document.getElementById("koreanCounter");
+    if (kEl) kEl.textContent = `${daysBetween(kBase, now)} dias`;
+
+    /* Japanese — base: I Got Your Back 26/07/2026 */
+    const jBase = new Date("2026-07-26T00:00:00");
+    const jEl = document.getElementById("japaneseCounter");
+    if (jEl) jEl.textContent = `${daysBetween(jBase, now)} dias`;
+  }
+
+  function renderNextBirthday() {
+    const now = new Date();
+
+    const birthdays = MEMBERS.map(m => {
+      const parts = m.birthday.split("-");
+      const month = parseInt(parts[1]) - 1;
+      const day = parseInt(parts[2]);
+      const thisYear = new Date(now.getFullYear(), month, day);
+      const next = thisYear < now ? new Date(now.getFullYear() + 1, month, day) : thisYear;
+      return { member: m, date: next };
+    }).sort((a, b) => a.date - b.date);
+
+    const first = birthdays[0];
+    if (!first) return;
+
+    const avatarEl = document.getElementById("nextBirthdayAvatar");
+    const nameEl = document.getElementById("nextBirthdayName");
+    const dateEl = document.getElementById("nextBirthdayDate");
+    const countEl = document.getElementById("nextBirthdayCountdown");
+
+    if (avatarEl) {
+      avatarEl.textContent = first.member.emoji;
+      avatarEl.style.background = first.member.bg;
+    }
+    if (nameEl) nameEl.textContent = `${first.member.name} ${first.member.accent}`;
+    if (dateEl) dateEl.textContent = first.member.birthdayLabel;
+
+    function update() {
+      const n = new Date();
+      if (countEl) countEl.textContent = formatCountdown(first.date, n);
+    }
+
+    update();
+    const i = setInterval(update, 1000);
+    countdownIntervals.push(i);
+  }
+</script>
+
+<script>
+  /* ==========================================
+     CALENDÁRIO
+  ========================================== */
+
+  function renderCalendarFilters() {
+    const el = document.getElementById("calendarFilters");
+    if (!el) return;
+
+    const filters = [
+      { id: "ALL", label: "Tudo" },
+      { id: "ILLIT", label: "✨ Grupo" },
+      ...MEMBERS.map(m => ({ id: m.id, label: `${m.emoji} ${m.name}` }))
+    ];
+
+    el.innerHTML = filters.map(f => `
+      <button class="segment ${currentCalendarFilter === f.id ? "active" : ""}"
+              onclick="setCalendarFilter('${f.id}')">
+        ${f.label}
+      </button>
+    `).join("");
+  }
+
+  function setCalendarFilter(id) {
+    currentCalendarFilter = id;
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    renderCalendarFilters();
+
+    const list = document.getElementById("calendarList");
+    if (!list) return;
+
+    let filtered = ACTIVITIES;
+    if (currentCalendarFilter !== "ALL") {
+      filtered = ACTIVITIES.filter(a =>
+        a.participants && a.participants.includes(currentCalendarFilter)
+      );
+    }
+
+    if (!filtered.length) {
+      list.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">📅</div>
+          <div class="empty-title">Nenhum evento</div>
+          <div class="empty-text">Nada por aqui ainda.</div>
+        </div>
+      `;
+      return;
+    }
+
+    const sorted = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    list.innerHTML = sorted.map(a => {
+      const d = new Date(a.date + "T00:00:00");
+      const day = d.getDate();
+      const month = d.toLocaleDateString("pt-BR", { month: "short" }).toUpperCase();
+
+      /* Cor do membro principal */
+      let accentColor = "var(--ios-blue)";
+      if (a.participants && a.participants.length === 1) {
+        const m = MEMBERS.find(x => x.id === a.participants[0]);
+        if (m) accentColor = m.color;
+      }
+
+      return `
+        <button class="card" style="width: 100%; display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; text-align: left; margin-bottom: 10px; padding: 14px; border-left: 4px solid ${accentColor};"
+                onclick="openEventModal('${a.id}')">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(120,120,128,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="font-size: 20px; font-weight: 800; line-height: 1;">${day}</div>
+            <div style="font-size: 9px; font-weight: 700; color: var(--text-secondary); margin-top: 2px;">${month}</div>
+          </div>
+          <div style="min-width: 0;">
+            <div style="font-weight: 700; font-size: 14px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${a.title}</div>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 3px;">${a.country} ${a.location}</div>
+            <div style="display: inline-block; margin-top: 5px; padding: 2px 7px; border-radius: 6px; background: rgba(120,120,128,0.1); font-size: 10px; font-weight: 700; color: var(--text-secondary);">${a.type}</div>
+          </div>
+          <div class="group-row-chevron">›</div>
+        </button>
+      `;
+    }).join("");
+  }
+
+  function openEventModal(id) {
+    const a = ACTIVITIES.find(x => String(x.id) === String(id));
+    if (!a) return;
+
+    let accentColor = "var(--ios-blue)";
+    if (a.participants && a.participants.length === 1) {
+      const m = MEMBERS.find(x => x.id === a.participants[0]);
+      if (m) accentColor = m.color;
+    }
+
+    openModal(`
+      <div class="modal-header">
+        <div class="modal-title" style="color: ${accentColor};">${a.type}</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <h2 style="margin: 0 0 14px; font-size: 22px; letter-spacing: -0.02em;">${a.title}</h2>
+
+        <div class="modal-row"><span>Data</span><strong>${formatDateLong(a.date)}</strong></div>
+        ${a.time ? `<div class="modal-row"><span>Horário</span><strong>${a.time}</strong></div>` : ""}
+        <div class="modal-row"><span>Local</span><strong>${a.country} ${a.location}</strong></div>
+        <div class="modal-row"><span>Tipo</span><strong>${a.type}</strong></div>
+        <div class="modal-row"><span>Participantes</span><strong>${(a.participants || []).join(", ")}</strong></div>
+      </div>
+    `);
+  }
+
+  /* ==========================================
+     ALBUMS
+  ========================================== */
+
+  function renderAlbums() {
+    renderAlbumCounters();
+    renderAlbumList("koreanAlbums", ALBUMS_KOREAN);
+    renderAlbumList("japaneseAlbums", ALBUMS_JAPANESE);
+  }
+
+  function renderAlbumCounters() {
+    const now = new Date();
+
+    const breakEven = new Date("2026-10-26T00:00:00");
+    const kBase = now >= breakEven ? breakEven : new Date("2026-04-30T00:00:00");
+
+    const kEl = document.getElementById("koreanAlbumCounter");
+    const kBaseEl = document.getElementById("koreanAlbumBase");
+    if (kEl) kEl.textContent = `${daysBetween(kBase, now)} dias`;
+    if (kBaseEl) {
+      kBaseEl.textContent = now >= breakEven
+        ? "BREAK EVEN · 26/10/2026"
+        : "Mamihlapinatapai · 30/04/2026";
+    }
+
+    const jBase = new Date("2026-07-26T00:00:00");
+    const jEl = document.getElementById("japaneseAlbumCounter");
+    if (jEl) jEl.textContent = `${daysBetween(jBase, now)} dias`;
+  }
+
+  function renderAlbumList(containerId, albums) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+
+    if (!albums.length) {
+      el.innerHTML = `<div class="empty"><div class="empty-text">Nenhum álbum.</div></div>`;
+      return;
+    }
+
+    el.innerHTML = albums.map(a => {
+      const released = new Date(a.date) <= new Date();
+      const status = released ? "" : " · EM BREVE";
+
+      return `
+        <div class="card" style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(120,120,128,0.1); display: grid; place-items: center; font-size: 22px;">
+            💿
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-weight: 700; font-size: 15px; letter-spacing: -0.02em;">${a.name}</div>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
+              ${formatDateLong(a.date)} · ${a.type}${status}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  /* ==========================================
+     ESTATÍSTICAS
+  ========================================== */
+
+  function renderStats() {
+    const totalEl = document.getElementById("statsTotal");
+    if (totalEl) totalEl.textContent = ACTIVITIES.length;
+
+    renderStatsList();
+    renderStatsGraph();
+    renderHealthGraph();
+  }
+
+  function renderStatsList() {
+    const list = document.getElementById("statsList");
+    if (!list) return;
+
+    const counts = MEMBERS.map(m => ({
+      ...m,
+      count: ACTIVITIES.filter(a =>
+        a.participants && a.participants.includes(m.id)
+      ).length
+    }));
+
+    const max = Math.max(...counts.map(c => c.count), 1);
+
+    list.innerHTML = counts.map(m => {
+      const pct = (m.count / max) * 100;
+      return `
+        <div class="card" style="margin-bottom: 10px; padding: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">${m.emoji}</span>
+              <strong style="font-size: 14px;">${m.name} ${m.accent}</strong>
+            </div>
+            <span style="font-weight: 800; font-size: 16px;">${m.count}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${pct}%; background: ${m.color};"></div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function renderStatsGraph() {
+    const el = document.getElementById("statsGraph");
+    if (!el) return;
+
+    const monthCounts = {};
+
+    ACTIVITIES.forEach(a => {
+      const d = new Date(a.date + "T00:00:00");
+      const key = d.toLocaleDateString("pt-BR", { month: "short" });
+      monthCounts[key] = (monthCounts[key] || 0) + 1;
+    });
+
+    const entries = Object.entries(monthCounts);
+
+    if (!entries.length) {
+      el.innerHTML = `<div style="width: 100%; text-align: center; color: var(--text-secondary); font-size: 13px;">Sem dados ainda</div>`;
+      return;
+    }
+
+    const max = Math.max(...entries.map(e => e[1]), 1);
+
+    el.innerHTML = entries.map(([month, count]) => {
+      const h = Math.max(8, (count / max) * 130);
+      return `
+        <div class="graph-column">
+          <div class="graph-number">${count}</div>
+          <div class="graph-bar" style="height: ${h}px; background: var(--ios-blue);"></div>
+          <div class="graph-label">${month}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  /* ==========================================
+     GRÁFICO APPLE HEALTH
+  ========================================== */
+
+  function setHealthRange(range) {
+    healthRange = range;
+
+    document.querySelectorAll(".health-filter").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.range === range);
+    });
+
+    renderHealthGraph();
+  }
+
+  function toggleHealthMember(memberId) {
+    const idx = healthHidden.indexOf(memberId);
+    if (idx >= 0) {
+      healthHidden.splice(idx, 1);
+    } else {
+      healthHidden.push(memberId);
+    }
+    renderHealthGraph();
+  }
+
+  function renderHealthGraph() {
+    const chart = document.getElementById("healthChart");
+    const labels = document.getElementById("healthLabels");
+    const legend = document.getElementById("healthLegend");
+    const totalEl = document.getElementById("healthTotal");
+    if (!chart) return;
+
+    const now = new Date();
+    let buckets = [];
+
+    if (healthRange === "week") {
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        buckets.push({
+          date: d,
+          key: d.toISOString().slice(0, 10),
+          label: d.toLocaleDateString("pt-BR", { weekday: "short" }).slice(0, 3),
+          count: 0
+        });
+      }
+    } else if (healthRange === "month") {
+      for (let i = 29; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        buckets.push({
+          date: d,
+          key: d.toISOString().slice(0, 10),
+          label: d.getDate(),
+          count: 0
+        });
+      }
+    } else {
+      for (let i = 11; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        buckets.push({
+          date: d,
+          key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`,
+          label: d.toLocaleDateString("pt-BR", { month: "short" }).slice(0, 3),
+          count: 0
+        });
+      }
+    }
+
+    const visibleMembers = MEMBERS.filter(m => !healthHidden.includes(m.id));
+    let total = 0;
+
+    ACTIVITIES.forEach(a => {
+      const hasVisible = a.participants && a.participants.some(p => {
+        if (p === "ILLIT") return visibleMembers.length === MEMBERS.length;
+        return visibleMembers.some(m => m.id === p);
+      });
+      if (!hasVisible) return;
+
+      const d = new Date(a.date + "T00:00:00");
+
+      if (healthRange === "week" || healthRange === "month") {
+        const key = d.toISOString().slice(0, 10);
+        const bucket = buckets.find(b => b.key === key);
+        if (bucket) { bucket.count++; total++; }
+      } else {
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+        const bucket = buckets.find(b => b.key === key);
+        if (bucket) { bucket.count++; total++; }
+      }
+    });
+
+    const max = Math.max(...buckets.map(b => b.count), 1);
+    if (totalEl) totalEl.textContent = total;
+
+    chart.innerHTML = buckets.map(b => {
+      const h = b.count === 0 ? 4 : Math.max(8, (b.count / max) * 190);
+
+      let color = "var(--ios-blue)";
+      if (visibleMembers.length === 1) {
+        color = visibleMembers[0].color;
+      }
+
+      return `
+        <div class="health-bar"
+             style="height: ${h}px; background: ${color}; opacity: ${b.count === 0 ? 0.25 : 1};"
+             onclick="showHealthPoint('${b.key}', ${b.count})">
+        </div>
+      `;
+    }).join("");
+
+    if (labels) {
+      const step2 = healthRange === "month" ? 5 : 1;
+      labels.innerHTML = buckets.map((b, i) => {
+        const show = i % step2 === 0 || i === buckets.length - 1;
+        return `<div class="health-label">${show ? b.label : ""}</div>`;
+      }).join("");
+    }
+
+    if (legend) {
+      legend.innerHTML = MEMBERS.map(m => {
+        const off = healthHidden.includes(m.id);
+        return `
+          <button class="health-legend-item ${off ? "off" : ""}" onclick="toggleHealthMember('${m.id}')">
+            <span class="health-legend-dot" style="background: ${m.color};"></span>
+            ${m.name}
+          </button>
+        `;
+      }).join("");
+    }
+  }
+
+  function showHealthPoint(key, count) {
+    showToast(`📊 ${count} atividade${count === 1 ? "" : "s"} em ${key}`);
+  }
+
+  /* ==========================================
+     SUMMER MOON
+  ========================================== */
+
+  function renderSummerMoon() {
+    /* Conteúdo é estático no HTML */
+  }
+</script>
+
+<script>
+  /* ==========================================
+     ADMIN
+  ========================================== */
+
+  let currentAdminTab = "activities";
+
+  function renderAdmin() {
+    const root = document.getElementById("adminRoot");
+    if (!root) return;
+
+    /* ---------- LOGIN ---------- */
+    if (!adminLogged) {
+      root.innerHTML = `
+        <div class="card glass" style="text-align: center; padding: 34px 22px;">
+          <div style="font-size: 48px; margin-bottom: 12px;">🔐</div>
+          <h2 style="margin: 0 0 6px; font-size: 20px; letter-spacing: -0.02em;">Acesso Admin</h2>
+          <p style="color: var(--text-secondary); font-size: 14px; margin: 0 0 20px;">
+            Digite a senha para gerenciar o arquivo.
+          </p>
+
+          <input
+            type="password"
+            id="adminPass"
+            placeholder="Senha"
+            autocomplete="off"
+            style="width: 100%; padding: 14px 16px; border-radius: var(--radius-md); background: var(--bg-input); border: 0; color: inherit; font-size: 16px; outline: none; margin-bottom: 12px; text-align: center;"
+            onkeydown="if(event.key==='Enter') tryLogin()">
+
+          <button onclick="tryLogin()"
+            style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--ios-blue); color: #fff; font-weight: 700; font-size: 15px;">
+            Entrar
+          </button>
+
+          <div id="adminError" style="color: var(--ios-red); font-size: 13px; margin-top: 12px; min-height: 18px;"></div>
+
+          <button onclick="showSection('profileSection')"
+            style="margin-top: 18px; padding: 8px 14px; border-radius: var(--radius-md); background: var(--bg-input); font-size: 13px; font-weight: 600;">
+            ← Voltar
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    /* ---------- PAINEL ---------- */
+    const tabs = [
+      { id: "activities", label: "📅 Atividades" },
+      { id: "data", label: "💾 Dados" }
+    ];
+
+    root.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--ios-green); box-shadow: 0 0 8px var(--ios-green);"></div>
+          Admin ativo
+        </div>
+        <button onclick="logoutAdmin()"
+          style="padding: 8px 14px; border-radius: var(--radius-md); background: var(--bg-input); font-size: 13px; font-weight: 600;">
+          Sair
+        </button>
+      </div>
+
+      <div class="segmented" style="margin-bottom: 16px;">
+        ${tabs.map(t => `
+          <button class="segment ${currentAdminTab === t.id ? "active" : ""}"
+            onclick="setAdminTab('${t.id}')">${t.label}</button>
+        `).join("")}
+      </div>
+
+      <div id="adminTabContent"></div>
+
+      <button onclick="showSection('profileSection')"
+        style="margin-top: 24px; width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--bg-input); font-size: 14px; font-weight: 600;">
+        ← Voltar aos Perfis
+      </button>
+    `;
+
+    renderAdminTabContent();
+  }
+
+  function setAdminTab(tab) {
+    currentAdminTab = tab;
+    renderAdmin();
+  }
+
+  function renderAdminTabContent() {
+    const content = document.getElementById("adminTabContent");
+    if (!content) return;
+
+    if (currentAdminTab === "activities") renderAdminActivities(content);
+    if (currentAdminTab === "data")       renderAdminData(content);
+  }
+
+  /* ---------- ADMIN: ATIVIDADES ---------- */
+
+  function renderAdminActivities(content) {
+    content.innerHTML = `
+      <button onclick="addActivity()"
+        style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--ios-blue); color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 16px;">
+        ＋ Nova Atividade
+      </button>
+
+      <div class="group-title">TODAS AS ATIVIDADES (${ACTIVITIES.length})</div>
+      <div class="group">
+        ${ACTIVITIES.length
+          ? ACTIVITIES.map((a, i) => `
+            <div class="group-row">
+              <div class="group-row-content">
+                <div class="group-row-title">${a.title}</div>
+                <div class="group-row-subtitle">${formatDateLong(a.date)} · ${a.type} · ${(a.participants || []).join(", ")}</div>
+              </div>
+              <button onclick="deleteActivity(${i})"
+                style="width: 34px; height: 34px; border-radius: 10px; background: rgba(255,59,48,0.12); color: var(--ios-red); display: grid; place-items: center; font-size: 14px; flex: 0 0 34px;">
+                🗑️
+              </button>
+            </div>
+          `).join("")
+          : `<div class="group-row"><div class="group-row-content"><div class="group-row-subtitle" style="text-align:center; padding: 12px;">Nenhuma atividade.</div></div></div>`
+        }
+      </div>
+
+      <button onclick="resetData()"
+        style="width: 100%; margin-top: 16px; padding: 14px; border-radius: var(--radius-md); background: rgba(255,59,48,0.12); color: var(--ios-red); font-weight: 700; font-size: 14px;">
+        🔄 Resetar para o padrão
+      </button>
+    `;
+  }
+
+  function addActivity() {
+    const title = prompt("Título da atividade:");
+    if (!title) return;
+
+    const date = prompt("Data (AAAA-MM-DD):", "2026-01-01");
+    if (!date) return;
+
+    const time = prompt("Horário (ex: 18:00):", "") || "";
+    const location = prompt("Local:", "") || "—";
+    const country = prompt("País (emoji):", "🇰🇷") || "🇰🇷";
+    const type = prompt("Tipo (Grupo/Concerto/Prêmio/Fansign/Aniversário):", "Grupo") || "Grupo";
+    const participantsRaw = prompt("Participantes (ILLIT, YUNAH, MINJU, MOKA, WONHEE, IROHA — separados por vírgula):", "ILLIT") || "ILLIT";
+    const participants = participantsRaw.split(",").map(p => p.trim().toUpperCase()).filter(Boolean);
+
+    ACTIVITIES.push({
+      id: Date.now(),
+      date,
+      time,
+      title,
+      location,
+      country,
+      type,
+      participants
+    });
+
+    saveAll();
+    renderAdmin();
+    showToast("✅ Atividade adicionada");
+  }
+
+  function deleteActivity(index) {
+    if (!confirm("Excluir esta atividade?")) return;
+    ACTIVITIES.splice(index, 1);
+    saveAll();
+    renderAdmin();
+    showToast("🗑️ Removida");
+  }
+
+  /* ---------- ADMIN: DADOS ---------- */
+
+  function renderAdminData(content) {
+    content.innerHTML = `
+      <div class="group-title">DADOS</div>
+      <div class="group">
+        <div class="group-row">
+          <div class="group-row-content">
+            <div class="group-row-title">Exportar</div>
+            <div class="group-row-subtitle">Baixar dados em JSON</div>
+          </div>
+          <button onclick="exportData()"
+            style="padding: 8px 14px; border-radius: var(--radius-md); background: rgba(0,122,255,0.12); color: var(--ios-blue); font-size: 12px; font-weight: 700;">
+            Exportar
+          </button>
+        </div>
+        <div class="group-row">
+          <div class="group-row-content">
+            <div class="group-row-title">Importar</div>
+            <div class="group-row-subtitle">Carregar de um arquivo JSON</div>
+          </div>
+          <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+          <button onclick="document.getElementById('importFile').click()"
+            style="padding: 8px 14px; border-radius: var(--radius-md); background: rgba(0,122,255,0.12); color: var(--ios-blue); font-size: 12px; font-weight: 700;">
+            Importar
+          </button>
+        </div>
+      </div>
+
+      <div class="group-title">SOBRE</div>
+      <div class="group">
+        <div class="group-row">
+          <div class="group-row-content">
+            <div class="group-row-title">💾 Dados locais</div>
+            <div class="group-row-subtitle">Salvos no navegador, apenas neste dispositivo.</div>
+          </div>
+        </div>
+        <div class="group-row">
+          <div class="group-row-content">
+            <div class="group-row-title">🔒 Senha</div>
+            <div class="group-row-subtitle">Protegido por senha local</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function exportData() {
+    const data = { activities: ACTIVITIES, favorites: FAVORITES };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `illit-archive-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast("📥 Exportado");
+  }
+
+  function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (data.activities) ACTIVITIES = data.activities;
+        if (data.favorites) FAVORITES = data.favorites;
+        saveAll();
+        renderAdmin();
+        showToast("📤 Importado");
+      } catch (err) {
+        showToast("❌ Erro ao importar");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  /* ---------- LOGIN / LOGOUT ---------- */
+
+  function tryLogin() {
+    const input = document.getElementById("adminPass");
+    const error = document.getElementById("adminError");
+    if (!input) return;
+
+    if (input.value === ADMIN_PASSWORD) {
+      adminLogged = true;
+      renderAdmin();
+      showToast("✅ Bem-vinda!");
+    } else {
+      if (error) error.textContent = "Senha incorreta.";
+      input.value = "";
+      input.focus();
+    }
+  }
+
+  function logoutAdmin() {
+    adminLogged = false;
+    renderAdmin();
+    showToast("👋 Logout");
+  }
+
+  /* ==========================================
+     RESET
+  ========================================== */
+
+  function resetData() {
+    if (!confirm("Resetar todas as atividades para o padrão?")) return;
+    localStorage.removeItem("illitActivities");
+    localStorage.removeItem("illitFavorites");
+    ACTIVITIES = [...DEFAULT_ACTIVITIES];
+    FAVORITES = [];
+    saveAll();
+    renderAdmin();
+    showToast("🔄 Resetado");
+  }
+</script>
+
+<script>
+  /* ==========================================
+     INICIALIZAÇÃO
+  ========================================== */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadTheme();
+    loadAll();
+
+    /* Tela inicial: Perfis */
+    showSection("profileSection");
+
+    /* Atualiza contadores da Home a cada minuto */
+    setInterval(() => {
+      const home = document.getElementById("homeSection");
+      if (home && home.classList.contains("active")) {
+        renderHome();
+      }
+    }, 60000);
+
+    /* Atualiza contadores dos Perfis a cada hora */
+    setInterval(() => {
+      const profile = document.getElementById("profileSection");
+      if (profile && profile.classList.contains("active")) {
+        renderIllitCounters();
+      }
+    }, 3600000);
+
+    console.log("✨ ILLIT Archive carregado!");
+  });
+
+  /* ==========================================
+     LIMPA INTERVALOS AO TROCAR DE SEÇÃO
+  ========================================== */
+
+  /* ==========================================
+     ATALHOS DE TECLADO
+  ========================================== */
+
+  document.addEventListener("keydown", (e) => {
+    /* ESC fecha modal */
+    if (e.key === "Escape") {
+      closeModal();
+    }
+
+    /* Ctrl+K / Cmd+K = Perfis */
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      showSection("profileSection");
+    }
+
+    /* Ctrl+H / Cmd+H = Home */
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "h") {
+      e.preventDefault();
+      showSection("homeSection");
+    }
+  });
+
+  /* ==========================================
+     PREVINE ZOOM DUPLO TOQUE
+  ========================================== */
+
+  let lastTap = 0;
+  document.addEventListener("touchend", (e) => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      if (e.target.closest("button")) {
+        e.preventDefault();
+      }
+    }
+    lastTap = now;
+  }, { passive: false });
+
+</script>
+
+<script>
+  /* ==========================================
+     AUTO-INICIALIZAÇÃO DO GRÁFICO HEALTH
+  ========================================== */
+
+  /* Garante que o gráfico aparece quando a seção abre */
+
+  /* ==========================================
+     ANO ATUALIZA AUTOMATICAMENTE
+  ========================================== */
+
+  /* Atualiza contadores de KR/JP quando a Home abre *
+
+  /* ==========================================
+     FORMATAÇÃO DO CONTADOR (tabular nums)
+  ========================================== */
+
+  /* Adiciona fonte monoespaçada nos contadores */
+  const style = document.createElement("style");
+  style.textContent = `
+    #breakEvenCountdown,
+    #nextActivityCountdown,
+    #nextBirthdayCountdown {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* ==========================================
+     TRATAMENTO DE ERROS GLOBAL
+  ========================================== */
+
+  window.addEventListener("error", (e) => {
+    console.warn("Erro capturado:", e.message);
+  });
+
+  /* ==========================================
+     SERVICE WORKER (OFFLINE - OPCIONAL)
+  ========================================== */
+
+  /* Não ativa por padrão, só pra ficar pronto */
+  if ("serviceWorker" in navigator) {
+    /* navigator.serviceWorker.register("sw.js"); */
+  }
+
+  /* ==========================================
+     DEBUG
+  ========================================== */
+
+  console.log("🚀 ILLIT Archive — Pronto para uso!");
+  console.log("📌 Senha do Admin: luckymia");
+  console.log("📌 Atalhos: Ctrl+K (Perfis) · Ctrl+H (Home) · ESC (Fechar modal)");
+
+<script>
+  /* ==========================================
+     WRAPPER ÚNICO DO showSection
+  ========================================== */
+
+  const _originalShowSection = showSection;
+  window.showSection = function(id) {
+    countdownIntervals.forEach(i => clearInterval(i));
+    countdownIntervals = [];
+
+    _originalShowSection(id);
+
+    if (id === "statsSection") {
+      setTimeout(() => {
+        try {
+          renderHealthGraph();
+          renderStatsList();
+          renderStatsGraph();
+        } catch (e) {}
+      }, 100);
+    }
+
+    if (id === "homeSection") {
+      setTimeout(() => {
+        try {
+          renderHomeCounters();
+          renderNextBirthday();
+          renderNextActivity();
+          renderBreakEven();
+        } catch (e) {}
+      }, 100);
+    }
+
+    if (id === "profileSection") {
+      setTimeout(() => {
+        try {
+          renderIllitCounters();
+          renderProfileCards();
+          renderSummerMoonCharacters();
+        } catch (e) {}
+      }, 100);
+    }
+
+    if (id === "calendarSection") {
+      setTimeout(renderCalendar, 50);
+    }
+
+    if (id === "albumsSection") {
+      setTimeout(renderAlbums, 50);
+    }
+  };
+</script>
+
+</body>
+</html>
