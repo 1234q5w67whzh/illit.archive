@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>ILLIT Archive</title>
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #777;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+
+      --yunah: #ff6676;
+      --minju: #f7d34d;
+      --moka: #b69be8;
+      --wonhee: #f58fba;
+      --iroha: #68cce5;
+    }
+
+    body.dark {
+      --bg: #0f0f11;
+      --card: #1c1c1e;
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 110px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      background: none;
+      color: inherit;
+    }
+
+    /* ===== APP WRAPPER ===== */
+    .app {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fff, #e9e9ef);
+      font-size: 18px;
+    }
+
+    body.dark .brand-icon {
+      background: linear-gradient(135deg, #2a2a2e, #3a3a3e);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(120, 120, 128, 0.12);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      display: none;
+      animation: fade 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== TITLES ===== */
+    .title {
+      margin: 24px 3px 14px;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .title h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 26px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 248, 0.7));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark .hero {
+      background: linear-gradient(135deg, rgba(38, 38, 42, 0.9), rgba(25, 25, 28, 0.8));
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      right: -45px;
+      top: -60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 6px 11px;
+      border-radius: 20px;
+      background: rgba(120, 120, 128, 0.12);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 7vw, 52px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin: 0;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 480px;
+      margin: 14px 0 0;
+    }
+
+    /* ===== GRIDS ===== */
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-value {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .card-subtitle {
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ===== QUICK CARDS ===== */
+    .quick-card {
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      transition: transform 0.2s;
+    }
+
+    .quick-card:active {
+      transform: scale(0.97);
+    }
+
+    .quick-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: 20px;
+      background: rgba(120, 120, 128, 0.1);
+    }
+
+    .quick-card strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .quick-card span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* ===== MEMBER MINI ===== */
+    .member-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(120, 120, 128, 0.07);
+      margin-bottom: 8px;
+    }
+
+    .member-dot {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .member-info strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .member-info span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* ===== PASTEL BACKGROUNDS ===== */
+    .bg-yunah  { background: rgba(255, 102, 118, 0.18); }
+    .bg-minju  { background: rgba(247, 211, 77, 0.22);  }
+    .bg-moka   { background: rgba(182, 155, 232, 0.2);  }
+    .bg-wonhee { background: rgba(245, 143, 186, 0.2);  }
+    .bg-iroha  { background: rgba(104, 204, 229, 0.2);  }
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex: 0 0 auto;
+  padding: 9px 14px;
+  border-radius: 16px;
+  background: rgba(120, 120, 128, 0.1);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.tab.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.tab:active {
+  transform: scale(0.95);
+}
+
+/* ===== EVENT CARDS ===== */
+.event {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.event:active {
+  transform: scale(0.98);
+}
+
+.event-date {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(120, 120, 128, 0.1);
+}
+
+.event-date-day {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.event-date-month {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.event-info h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.event-info p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.event-type {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: rgba(120, 120, 128, 0.1);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* ===== PROFILE CARDS ===== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.profile-card {
+  padding: 20px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+}
+
+.profile-card h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.profile-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.profile-info {
+  margin-top: 14px;
+  display: grid;
+  gap: 6px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(120, 120, 128, 0.07);
+  font-size: 11px;
+}
+
+.profile-row span:first-child {
+  color: var(--muted);
+}
+
+/* ===== STATS BARS ===== */
+.stat-bar {
+  margin-top: 10px;
+  height: 8px;
+  border-radius: 20px;
+  background: rgba(120, 120, 128, 0.12);
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
+
+/* ===== GRAPH ===== */
+.graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 200px;
+  padding: 18px 10px 10px;
+  border-radius: 20px;
+  background: rgba(120, 120, 128, 0.06);
+  overflow-x: auto;
+}
+
+.graph-column {
+  min-width: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-bar {
+  width: 24px;
+  min-height: 4px;
+  border-radius: 10px 10px 4px 4px;
+  transition: height 0.6s ease;
+}
+
+.graph-label {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.graph-number {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+  columns: 2 180px;
+  column-gap: 10px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(120, 120, 128, 0.08);
+  cursor: pointer;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.025);
+}
+
+.gallery-caption {
+  padding: 11px 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===== SEARCH ===== */
+.search-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(120, 120, 128, 0.1);
+  border: 0;
+  color: inherit;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 14px;
+}
+
+.search-input:focus {
+  background: rgba(120, 120, 128, 0.15);
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 18px;
+  background: rgba(120, 120, 128, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.search-result:active {
+  transform: scale(0.98);
+}
+
+.search-result-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: rgba(120, 120, 128, 0.12);
+  overflow: hidden;
+}
+
+.search-result-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.search-result-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ===== FAVORITES ===== */
+.fav-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background: rgba(120, 120, 128, 0.08);
+}
+
+.fav-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.fav-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fav-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ===== MAGAZINE / AMBASSADOR CARDS ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.info-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.info-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: rgba(120, 120, 128, 0.1);
+  display: grid;
+  place-items: center;
+  font-size: 50px;
+}
+
+.info-content {
+  padding: 16px;
+}
+
+.info-title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.info-subtitle {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.info-desc {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.info-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(120, 120, 128, 0.12);
+  color: inherit;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+    /* ===== ADMIN ===== */
+    .admin-input {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: rgba(120, 120, 128, 0.1);
+      border: 0;
+      color: inherit;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    .admin-input:focus {
+      background: rgba(120, 120, 128, 0.15);
+    }
+
+    .admin-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 14px;
+      background: var(--text);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .admin-btn:active {
+      transform: scale(0.98);
+    }
+
+    .admin-btn.ghost {
+      background: rgba(120, 120, 128, 0.12);
+      color: var(--text);
+    }
+
+    .admin-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(120, 120, 128, 0.07);
+      margin-bottom: 8px;
+    }
+
+    .admin-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .admin-item-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .admin-item-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .admin-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(120, 120, 128, 0.12);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+    }
+
+    .admin-icon.danger {
+      background: rgba(255, 59, 48, 0.12);
+      color: #ff3b30;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .admin-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .admin-tab {
+      flex: 0 0 auto;
+      padding: 9px 14px;
+      border-radius: 14px;
+      background: rgba(120, 120, 128, 0.1);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: 0.2s;
+    }
+
+    .admin-tab.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .empty-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* ===== BOTTOM NAV ===== */
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      z-index: 100;
+      width: calc(100% - 20px);
+      max-width: 560px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      padding: 7px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-btn {
+      padding: 8px 4px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav-btn span:first-child {
+      font-size: 19px;
+    }
+
+    .nav-btn.active {
+      color: var(--text);
+      background: rgba(120, 120, 128, 0.12);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 28px 28px 0 0;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+      animation: sheetUp 0.3s ease;
+    }
+
+    @keyframes sheetUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      padding: 22px;
+    }
+
+    .modal-close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(120, 120, 128, 0.12);
+      color: inherit;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(120, 120, 128, 0.08);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .modal-row span:first-child {
+      color: var(--muted);
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 90px;
+      transform: translate(-50%, 20px);
+      z-index: 9999;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(35, 35, 40, 0.92);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ===== FAVORITE BUTTON ===== */
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(120, 120, 128, 0.1);
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .fav-btn.active {
+      background: rgba(255, 204, 0, 0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app {
+        padding: 12px;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .title h1 {
+        font-size: 26px;
+      }
+
+      .profile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 400px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <strong>ILLIT Archive</strong>
+          <span>Fan Archive</span>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
+    </header>
+
+    <!-- ===== HOME ===== -->
+    <main id="homeSection" class="section active">
+      <div class="title">
+        <h1>Home</h1>
+        <p>Tudo sobre ILLIT em um só lugar.</p>
+      </div>
+
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-label">✨ ILLIT</div>
+          <h1>Bem-vindo ao<br>ILLIT Archive.</h1>
+          <p>Um arquivo limpo e organizado para ILLIT: YUNAH, MINJU, MOKA, WONHEE e IROHA.</p>
+        </div>
+      </section>
+
+      <div class="grid grid-2" style="margin-top: 14px;">
+        <section class="card">
+          <div class="card-label">⏱️ Próximo Evento</div>
+          <div class="card-value" id="nextEventDays">—</div>
+          <div class="card-subtitle" id="nextEventTitle">Carregando...</div>
+          <div class="card-subtitle" id="nextEventLocation"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-label">📅 Total de Atividades</div>
+          <div class="card-value" id="totalActivities">0</div>
+          <div class="card-subtitle">Arquivadas</div>
+        </section>
+      </div>
+
+      <div class="title">
+        <h2>Explorar</h2>
+        <p>Acesso rápido ao arquivo.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <button class="card quick-card" onclick="showSection('profileSection')">
+          <div class="quick-icon bg-wonhee">👤</div>
+          <div><strong>Perfis</strong><span>Conheça as membros</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('calendarSection')">
+          <div class="quick-icon bg-iroha">📅</div>
+          <div><strong>Calendário</strong><span>Atividades e eventos</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('statsSection')">
+          <div class="quick-icon bg-yunah">📊</div>
+          <div><strong>Estatísticas</strong><span>Dados do arquivo</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('gallerySection')">
+          <div class="quick-icon bg-moka">🖼️</div>
+          <div><strong>Galeria</strong><span>Fotos e memórias</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('searchSection')">
+          <div class="quick-icon bg-minju">🔎</div>
+          <div><strong>Busca</strong><span>Procurar no arquivo</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('favoritesSection')">
+          <div class="quick-icon">⭐</div>
+          <div><strong>Favoritos</strong><span>Salvos por você</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('magazinesSection')">
+          <div class="quick-icon bg-minju">📰</div>
+          <div><strong>Magazines</strong><span>Capas e editoriais</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('ambassadorsSection')">
+          <div class="quick-icon bg-moka">🤝</div>
+          <div><strong>Ambassadors</strong><span>Marcas e parcerias</span></div>
+        </button>
+
+        <button class="card quick-card" onclick="showSection('adminSection')">
+          <div class="quick-icon">⚙️</div>
+          <div><strong>Admin</strong><span>Gerenciar arquivo</span></div>
+        </button>
+      </div>
+
+      <div class="title">
+        <h2>Membros</h2>
+        <p>As cinco integrantes do ILLIT.</p>
+      </div>
+
+      <section class="card">
+        <div class="member-mini">
+          <div class="member-dot bg-yunah">🐆</div>
+          <div class="member-info"><strong>YUNAH</strong><span>❤️ Coral</span></div>
+        </div>
+        <div class="member-mini">
+          <div class="member-dot bg-minju">🐰</div>
+          <div class="member-info"><strong>MINJU</strong><span>💛 Amarelo</span></div>
+        </div>
+        <div class="member-mini">
+          <div class="member-dot bg-moka">☕️</div>
+          <div class="member-info"><strong>MOKA</strong><span>💜 Lilás</span></div>
+        </div>
+        <div class="member-mini">
+          <div class="member-dot bg-wonhee">🐿️</div>
+          <div class="member-info"><strong>WONHEE</strong><span>🩷 Rosa</span></div>
+        </div>
+        <div class="member-mini">
+          <div class="member-dot bg-iroha">🐢</div>
+          <div class="member-info"><strong>IROHA</strong><span>🩵 Azul</span></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== CALENDÁRIO ===== -->
+    <section id="calendarSection" class="section">
+      <div class="title">
+        <h1>Calendário</h1>
+        <p>Atividades e eventos do ILLIT.</p>
+      </div>
+
+      <div class="tabs" id="calTabs"></div>
+      <div id="calendarList"></div>
+    </section>
+
+    <!-- ===== PERFIS ===== -->
+    <section id="profileSection" class="section">
+      <div class="title">
+        <h1>Perfis</h1>
+        <p>Conheça as integrantes do ILLIT.</p>
+      </div>
+      <div class="profile-grid" id="profileGrid"></div>
+    </section>
+
+    <!-- ===== ESTATÍSTICAS ===== -->
+    <section id="statsSection" class="section">
+      <div class="title">
+        <h1>Estatísticas</h1>
+        <p>Dados de atividades do arquivo.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Total de Atividades</div>
+        <div class="card-value" id="statsTotal">0</div>
+      </div>
+
+      <div class="title"><h2>Por Membro</h2></div>
+      <div id="statsList"></div>
+
+      <div class="title"><h2>Gráfico por Mês</h2></div>
+      <div class="card">
+        <div class="graph" id="statsGraph"></div>
+      </div>
+    </section>
+
+    <!-- ===== GALERIA ===== -->
+    <section id="gallerySection" class="section">
+      <div class="title">
+        <h1>Galeria</h1>
+        <p>Fotos e memórias do arquivo.</p>
+      </div>
+      <div class="tabs" id="galleryTabs"></div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- ===== BUSCA ===== -->
+    <section id="searchSection" class="section">
+      <div class="title">
+        <h1>Busca</h1>
+        <p>Procure em todo o arquivo.</p>
+      </div>
+      <input type="search" class="search-input" id="searchInput" placeholder="Digite para buscar...">
+      <div id="searchResults"></div>
+    </section>
+
+    <!-- ===== FAVORITOS ===== -->
+    <section id="favoritesSection" class="section">
+      <div class="title">
+        <h1>Favoritos</h1>
+        <p>Seus itens salvos.</p>
+      </div>
+      <div id="favoritesList"></div>
+    </section>
+
+    <!-- ===== MAGAZINES ===== -->
+    <section id="magazinesSection" class="section">
+      <div class="title">
+        <h1>📰 Magazines</h1>
+        <p>Capas, edições e editoriais.</p>
+      </div>
+      <div class="tabs" id="magazineTabs"></div>
+      <div class="info-grid" id="magazineList"></div>
+    </section>
+
+    <!-- ===== AMBASSADORS ===== -->
+    <section id="ambassadorsSection" class="section">
+      <div class="title">
+        <h1>🤝 Ambassadors</h1>
+        <p>Marcas, campanhas e parcerias.</p>
+      </div>
+      <div class="tabs" id="ambassadorTabs"></div>
+      <div class="info-grid" id="ambassadorList"></div>
+    </section>
+
+    <!-- ===== ADMIN ===== -->
+    <section id="adminSection" class="section">
+      <div class="title">
+        <h1>⚙️ Admin</h1>
+        <p>Gerencie o arquivo do ILLIT.</p>
+      </div>
+      <div id="adminRoot"></div>
+    </section>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="nav">
+    <button class="nav-btn active" data-s="homeSection" onclick="showSection('homeSection')">
+      <span>🏠</span><span>Home</span>
+    </button>
+    <button class="nav-btn" data-s="calendarSection" onclick="showSection('calendarSection')">
+      <span>📅</span><span>Agenda</span>
+    </button>
+    <button class="nav-btn" data-s="profileSection" onclick="showSection('profileSection')">
+      <span>👥</span><span>Perfis</span>
+    </button>
+    <button class="nav-btn" data-s="gallerySection" onclick="showSection('gallerySection')">
+      <span>🖼️</span><span>Galeria</span>
+    </button>
+    <button class="nav-btn" data-s="searchSection" onclick="showSection('searchSection')">
+      <span>🔎</span><span>Busca</span>
+    </button>
+  </nav>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal" id="modal" onclick="closeModal(event)">
+    <div class="modal-sheet" id="modalSheet" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast"></div>
+
+<script>
+  /* ==========================================
+     DADOS
+  ========================================== */
+
+  const MEMBERS = [
+    { id: "YUNAH",  emoji: "🐆", accent: "❤️",  bg: "bg-yunah",  color: "var(--yunah)",  birthday: "15/01/2004" },
+    { id: "MINJU",  emoji: "🐰", accent: "💛",  bg: "bg-minju",  color: "var(--minju)",  birthday: "11/05/2004" },
+    { id: "MOKA",   emoji: "☕️", accent: "💜",  bg: "bg-moka",   color: "var(--moka)",   birthday: "08/10/2004" },
+    { id: "WONHEE", emoji: "🐿️", accent: "🩷",  bg: "bg-wonhee", color: "var(--wonhee)", birthday: "26/06/2007" },
+    { id: "IROHA",  emoji: "🐢", accent: "🩵",  bg: "bg-iroha",  color: "var(--iroha)",  birthday: "04/02/2008" }
+  ];
+
+  const DEFAULT_ACTIVITIES = [
+    { id: 1, date: "2026-08-15", title: "KCON LA 2026",                  location: "Los Angeles",   country: "🇺🇸", type: "Grupo",       participants: ["ILLIT"] },
+    { id: 2, date: "2026-08-22", title: 'ILLIT LIVE "PRESS START"',      location: "Hong Kong",     country: "🇭🇰", type: "Concerto",    participants: ["ILLIT"] },
+    { id: 3, date: "2026-08-24", title: "Hong Kong Fansign",             location: "Hong Kong",     country: "🇭🇰", type: "Fansign",     participants: ["ILLIT"] },
+    { id: 4, date: "2026-08-27", title: "2026 K-World Dream Awards",     location: "Coreia do Sul", country: "🇰🇷", type: "Prêmio",      participants: ["ILLIT"] },
+    { id: 5, date: "2026-09-19", title: "The Fact Music Awards",         location: "Busan",         country: "🇰🇷", type: "Prêmio",      participants: ["ILLIT"] },
+    { id: 6, date: "2026-10-08", title: "Aniversário da MOKA",           location: "—",             country: "🇯🇵", type: "Aniversário", participants: ["MOKA"] },
+    { id: 7, date: "2026-10-17", title: '"PRESS START" ENCORE',          location: "INSPIRE Arena", country: "🇰🇷", type: "Concerto",    participants: ["ILLIT"] },
+    { id: 8, date: "2026-12-23", title: '"PRESS START" ENCORE',          location: "Tóquio",        country: "🇯🇵", type: "Concerto",    participants: ["ILLIT"] }
+  ];
+
+  const ADMIN_PASSWORD = "luckymia";
+
+  /* ==========================================
+     ESTADO
+  ========================================== */
+
+  let ACTIVITIES = [];
+  let GALLERY = [];
+  let MAGAZINES = [];
+  let AMBASSADORS = [];
+  let FAVORITES = [];
+  let adminLogged = false;
+  let currentFilter = "ALL";
+  let currentGalleryFilter = "ALL";
+  let currentMagazineFilter = "ILLIT";
+  let currentAmbassadorFilter = "ILLIT";
+
+  /* ==========================================
+     STORAGE
+  ========================================== */
+
+  function saveAll() {
+    try {
+      localStorage.setItem("illitActivities",   JSON.stringify(ACTIVITIES));
+      localStorage.setItem("illitGallery",      JSON.stringify(GALLERY));
+      localStorage.setItem("illitMagazines",    JSON.stringify(MAGAZINES));
+      localStorage.setItem("illitAmbassadors",  JSON.stringify(AMBASSADORS));
+      localStorage.setItem("illitFavorites",    JSON.stringify(FAVORITES));
+    } catch (e) {
+      console.warn("Erro ao salvar:", e);
+      showToast("Erro ao salvar dados");
+    }
+  }
+
+  function loadAll() {
+    try {
+      const a = localStorage.getItem("illitActivities");
+      const g = localStorage.getItem("illitGallery");
+      const m = localStorage.getItem("illitMagazines");
+      const am = localStorage.getItem("illitAmbassadors");
+      const f = localStorage.getItem("illitFavorites");
+
+      ACTIVITIES  = a  ? JSON.parse(a)  : [...DEFAULT_ACTIVITIES];
+      GALLERY     = g  ? JSON.parse(g)  : [];
+      MAGAZINES   = m  ? JSON.parse(m)  : [];
+      AMBASSADORS = am ? JSON.parse(am) : [];
+      FAVORITES   = f  ? JSON.parse(f)  : [];
+    } catch (e) {
+      console.warn("Erro ao carregar:", e);
+      ACTIVITIES = [...DEFAULT_ACTIVITIES];
+      GALLERY = [];
+      MAGAZINES = [];
+      AMBASSADORS = [];
+      FAVORITES = [];
+    }
+  }
+
+  /* ==========================================
+     TEMA
+  ========================================== */
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    const dark = document.body.classList.contains("dark");
+    localStorage.setItem("illitTheme", dark ? "dark" : "light");
+    document.getElementById("themeBtn").textContent = dark ? "🌙" : "☀️";
+  }
+
+  function loadTheme() {
+    if (localStorage.getItem("illitTheme") === "dark") {
+      document.body.classList.add("dark");
+      document.getElementById("themeBtn").textContent = "🌙";
+    }
+  }
+
+  /* ==========================================
+     NAVEGAÇÃO
+  ========================================== */
+
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    const target = document.getElementById(id);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    const btn = document.querySelector(`.nav-btn[data-s="${id}"]`);
+    if (btn) btn.classList.add("active");
+
+    if (id === "homeSection")       renderHome();
+    if (id === "calendarSection")   renderCalendar();
+    if (id === "profileSection")    renderProfiles();
+    if (id === "statsSection")      renderStats();
+    if (id === "gallerySection")    renderGallery();
+    if (id === "searchSection")     renderSearch();
+    if (id === "favoritesSection")  renderFavorites();
+    if (id === "magazinesSection")  renderMagazines();
+    if (id === "ambassadorsSection") renderAmbassadors();
+    if (id === "adminSection")      renderAdmin();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ==========================================
+     TOAST
+  ========================================== */
+
+  let toastTimer;
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
+  }
+
+  /* ==========================================
+     MODAL
+  ========================================== */
+
+  function openModal(html) {
+    const modal = document.getElementById("modal");
+    const sheet = document.getElementById("modalSheet");
+    if (!modal || !sheet) return;
+    sheet.innerHTML = html;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(event) {
+    if (event && event.target !== document.getElementById("modal")) return;
+    const modal = document.getElementById("modal");
+    if (modal) modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  /* ==========================================
+     HOME
+  ========================================== */
+
+  function renderHome() {
+    const totalEl = document.getElementById("totalActivities");
+    if (totalEl) totalEl.textContent = ACTIVITIES.length;
+
+    const now = new Date();
+    const upcoming = ACTIVITIES
+      .map(a => ({ ...a, d: new Date(a.date + "T00:00:00") }))
+      .filter(a => a.d > now)
+      .sort((a, b) => a.d - b.d)[0];
+
+    const daysEl  = document.getElementById("nextEventDays");
+    const titleEl = document.getElementById("nextEventTitle");
+    const locEl   = document.getElementById("nextEventLocation");
+    if (!daysEl || !titleEl || !locEl) return;
+
+    if (!upcoming) {
+      daysEl.textContent = "—";
+      titleEl.textContent = "Sem eventos futuros";
+      locEl.textContent = "";
+      return;
+    }
+
+    const days = Math.ceil((upcoming.d - now) / (1000 * 60 * 60 * 24));
+    daysEl.textContent  = days === 1 ? "1 dia" : `${days} dias`;
+    titleEl.textContent = upcoming.title;
+    locEl.textContent   = `${upcoming.country} ${upcoming.location}`;
+  }
+</script>
+
+<script>
+  /* ==========================================
+     CALENDÁRIO
+  ========================================== */
+
+  function renderCalendarTabs() {
+    const tabs = document.getElementById("calTabs");
+    if (!tabs) return;
+
+    const all = [
+      { id: "ALL", label: "✨ ILLIT" },
+      ...MEMBERS.map(m => ({ id: m.id, label: `${m.emoji} ${m.id} ${m.accent}` }))
+    ];
+
+    tabs.innerHTML = all.map(t => `
+      <button class="tab ${currentFilter === t.id ? "active" : ""}"
+              onclick="selectFilter('${t.id}')">
+        ${t.label}
+      </button>
+    `).join("");
+  }
+
+  function selectFilter(id) {
+    currentFilter = id;
+    renderCalendar();
+  }
+
+  function renderCalendar() {
+    renderCalendarTabs();
+
+    const list = document.getElementById("calendarList");
+    if (!list) return;
+
+    let filtered = ACTIVITIES;
+    if (currentFilter !== "ALL") {
+      filtered = ACTIVITIES.filter(a => a.participants && a.participants.includes(currentFilter));
+    }
+
+    if (!filtered.length) {
+      list.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">📅</div>
+          Nenhuma atividade encontrada.
+        </div>
+      `;
+      return;
+    }
+
+    const sorted = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    list.innerHTML = sorted.map(a => {
+      const d = new Date(a.date + "T00:00:00");
+      const day = d.getDate();
+      const month = d.toLocaleDateString("pt-BR", { month: "short" });
+
+      return `
+        <div class="event" onclick="openEventDetail('${a.id}')">
+          <div class="event-date">
+            <div class="event-date-day">${day}</div>
+            <div class="event-date-month">${month}</div>
+          </div>
+          <div class="event-info">
+            <h3>${a.title}</h3>
+            <p>${a.country} ${a.location}</p>
+            <span class="event-type">${a.type}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function openEventDetail(id) {
+    const a = ACTIVITIES.find(x => String(x.id) === String(id));
+    if (!a) return;
+
+    const isFav = FAVORITES.some(f => f.type === "activity" && String(f.id) === String(id));
+
+    openModal(`
+      <div class="modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+          <div>
+            <div class="card-label">${a.type}</div>
+            <h2 style="margin: 5px 0 0; font-size: 22px; letter-spacing: -0.5px;">${a.title}</h2>
+          </div>
+          <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <div class="modal-row"><span>Data</span><strong>${a.date}</strong></div>
+          <div class="modal-row"><span>Local</span><strong>${a.country} ${a.location}</strong></div>
+          <div class="modal-row"><span>Tipo</span><strong>${a.type}</strong></div>
+          <div class="modal-row"><span>Participantes</span><strong>${(a.participants || []).join(", ")}</strong></div>
+        </div>
+
+        <button class="fav-btn ${isFav ? "active" : ""}" style="margin-top: 14px; width: 100%; justify-content: center;"
+                onclick="toggleFavorite('activity', '${a.id}', '${a.title.replace(/'/g, "\\'")}', '${a.date}', ''); closeModal();">
+          ${isFav ? "★ Salvo" : "☆ Salvar em favoritos"}
+        </button>
+      </div>
+    `);
+  }
+
+  /* ==========================================
+     PERFIS
+  ========================================== */
+
+  function renderProfiles() {
+    const grid = document.getElementById("profileGrid");
+    if (!grid) return;
+
+    grid.innerHTML = MEMBERS.map(m => {
+      const count = ACTIVITIES.filter(a => a.participants && a.participants.includes(m.id)).length;
+
+      return `
+        <div class="profile-card">
+          <div class="profile-avatar ${m.bg}">${m.emoji}</div>
+          <h3>${m.id} ${m.accent}</h3>
+          <p>Membro do ILLIT</p>
+          <div class="profile-info">
+            <div class="profile-row">
+              <span>Aniversário</span>
+              <strong>${m.birthday}</strong>
+            </div>
+            <div class="profile-row">
+              <span>Atividades</span>
+              <strong>${count}</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  /* ==========================================
+     ESTATÍSTICAS
+  ========================================== */
+
+  function renderStats() {
+    const totalEl = document.getElementById("statsTotal");
+    const listEl  = document.getElementById("statsList");
+    const graphEl = document.getElementById("statsGraph");
+
+    if (totalEl) totalEl.textContent = ACTIVITIES.length;
+
+    /* Barras por membro */
+    if (listEl) {
+      const counts = MEMBERS.map(m => ({
+        ...m,
+        count: ACTIVITIES.filter(a => a.participants && a.participants.includes(m.id)).length
+      }));
+
+      const max = Math.max(...counts.map(c => c.count), 1);
+
+      listEl.innerHTML = counts.map(m => {
+        const pct = (m.count / max) * 100;
+        return `
+          <div class="card" style="margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>${m.emoji} ${m.id} ${m.accent}</strong>
+              <span style="font-weight: 700;">${m.count}</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: ${pct}%; background: ${m.color};"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    /* Gráfico por mês */
+    if (graphEl) {
+      const monthCounts = {};
+
+      ACTIVITIES.forEach(a => {
+        const d = new Date(a.date + "T00:00:00");
+        const key = d.toLocaleDateString("pt-BR", { month: "short" });
+        monthCounts[key] = (monthCounts[key] || 0) + 1;
+      });
+
+      const entries = Object.entries(monthCounts);
+
+      if (!entries.length) {
+        graphEl.innerHTML = `<div style="width: 100%; text-align: center; color: var(--muted); font-size: 12px;">Sem dados</div>`;
+      } else {
+        const max = Math.max(...entries.map(e => e[1]), 1);
+
+        graphEl.innerHTML = entries.map(([month, count]) => {
+          const height = Math.max(8, (count / max) * 130);
+          return `
+            <div class="graph-column">
+              <div class="graph-number">${count}</div>
+              <div class="graph-bar" style="height: ${height}px; background: var(--text);"></div>
+              <div class="graph-label">${month}</div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+  }
+</script>
+
+<script>
+  /* ==========================================
+     GALERIA
+  ========================================== */
+
+  function renderGalleryTabs() {
+    const tabs = document.getElementById("galleryTabs");
+    if (!tabs) return;
+
+    const all = [
+      { id: "ALL", label: "✨ Tudo" },
+      ...MEMBERS.map(m => ({ id: m.id, label: `${m.emoji} ${m.id}` }))
+    ];
+
+    tabs.innerHTML = all.map(t => `
+      <button class="tab ${currentGalleryFilter === t.id ? "active" : ""}"
+              onclick="selectGalleryFilter('${t.id}')">
+        ${t.label}
+      </button>
+    `).join("");
+  }
+
+  function selectGalleryFilter(id) {
+    currentGalleryFilter = id;
+    renderGallery();
+  }
+
+  function renderGallery() {
+    renderGalleryTabs();
+
+    const grid = document.getElementById("galleryGrid");
+    if (!grid) return;
+
+    let filtered = GALLERY;
+    if (currentGalleryFilter !== "ALL") {
+      filtered = GALLERY.filter(g => g.member === currentGalleryFilter);
+    }
+
+    if (!filtered.length) {
+      grid.innerHTML = `
+        <div class="empty" style="column-span: all;">
+          <div class="empty-icon">📸</div>
+          Nenhuma foto ainda.<br>
+          <small>Adicione fotos pelo Admin.</small>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = filtered.map((g, i) => `
+      <div class="gallery-item" onclick="openGalleryItem('${g.id}')">
+        <img src="${g.image}" alt="${g.title}" loading="lazy"
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:40px;text-align:center;font-size:32px;&quot;>🖼️</div>';">
+        <div class="gallery-caption">${g.title || "Foto"}</div>
+      </div>
+    `).join("");
+  }
+
+  function openGalleryItem(id) {
+    const g = GALLERY.find(x => String(x.id) === String(id));
+    if (!g) return;
+
+    openModal(`
+      <img src="${g.image}" alt="${g.title}" style="width: 100%; max-height: 70vh; object-fit: contain; background: #000; border-radius: 28px 28px 0 0; display: block;">
+      <div class="modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+          <div>
+            <h2 style="margin: 0; font-size: 18px;">${g.title || "Foto"}</h2>
+            <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">${g.member || "ILLIT"}</div>
+          </div>
+          <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+      </div>
+    `);
+  }
+
+  /* ==========================================
+     BUSCA
+  ========================================== */
+
+  function renderSearch() {
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
+    if (!input || !results) return;
+
+    /* Remove listener antigo clonando */
+    const newInput = input.cloneNode(true);
+    input.parentNode.replaceChild(newInput, input);
+
+    newInput.addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+
+      if (!q) {
+        results.innerHTML = `
+          <div class="empty">
+            <div class="empty-icon">🔎</div>
+            Digite para buscar.
+          </div>
+        `;
+        return;
+      }
+
+      const items = [];
+
+      /* Atividades */
+      ACTIVITIES.forEach(a => {
+        items.push({
+          type: "activity",
+          id: a.id,
+          title: a.title,
+          meta: `${a.date} · ${a.type}`,
+          emoji: "📅"
+        });
+      });
+
+      /* Membros */
+      MEMBERS.forEach(m => {
+        items.push({
+          type: "member",
+          id: m.id,
+          title: `${m.id} ${m.accent}`,
+          meta: `Membro · ${m.birthday}`,
+          emoji: m.emoji
+        });
+      });
+
+      /* Magazines */
+      MAGAZINES.forEach(m => {
+        items.push({
+          type: "magazine",
+          id: m.id,
+          title: m.name,
+          meta: `Magazine · ${m.member}`,
+          emoji: "📰"
+        });
+      });
+
+      /* Ambassadors */
+      AMBASSADORS.forEach(a => {
+        items.push({
+          type: "ambassador",
+          id: a.id,
+          title: a.brand,
+          meta: `Ambassador · ${a.member}`,
+          emoji: "🤝"
+        });
+      });
+
+      const matches = items.filter(i =>
+        (i.title + " " + i.meta).toLowerCase().includes(q)
+      );
+
+      if (!matches.length) {
+        results.innerHTML = `
+          <div class="empty">
+            <div class="empty-icon">🫧</div>
+            Nada encontrado.
+          </div>
+        `;
+        return;
+      }
+
+      results.innerHTML = matches.map(m => `
+        <div class="search-result" onclick="gotoSearchResult('${m.type}', '${m.id}')">
+          <div class="search-result-icon">${m.emoji}</div>
+          <div class="search-result-info">
+            <div class="search-result-title">${m.title}</div>
+            <div class="search-result-meta">${m.meta}</div>
+          </div>
+        </div>
+      `).join("");
+    });
+
+    newInput.value = "";
+    newInput.dispatchEvent(new Event("input"));
+  }
+
+  function gotoSearchResult(type, id) {
+    if (type === "activity") {
+      showSection("calendarSection");
+      setTimeout(() => openEventDetail(id), 300);
+    } else if (type === "member") {
+      showSection("profileSection");
+    } else if (type === "magazine") {
+      showSection("magazinesSection");
+    } else if (type === "ambassador") {
+      showSection("ambassadorsSection");
+    }
+  }
+
+  /* ==========================================
+     FAVORITOS
+  ========================================== */
+
+  function toggleFavorite(type, id, title, meta, image) {
+    const idx = FAVORITES.findIndex(f => f.type === type && String(f.id) === String(id));
+
+    if (idx >= 0) {
+      FAVORITES.splice(idx, 1);
+      showToast("Removido dos favoritos");
+    } else {
+      FAVORITES.push({ type, id, title, meta, image });
+      showToast("⭐ Adicionado aos favoritos");
+    }
+
+    saveAll();
+    renderFavorites();
+
+    /* Atualiza modal se estiver aberto */
+    const modalActive = document.getElementById("modal")?.classList.contains("active");
+    if (modalActive && type === "activity") {
+      setTimeout(() => openEventDetail(id), 100);
+    }
+  }
+
+  function renderFavorites() {
+    const list = document.getElementById("favoritesList");
+    if (!list) return;
+
+    if (!FAVORITES.length) {
+      list.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">⭐</div>
+          Você ainda não salvou nada.<br>
+          <small>Toque em ☆ nas atividades para salvar.</small>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = FAVORITES.map(f => {
+      const emoji = f.type === "activity" ? "📅"
+                  : f.type === "member"   ? "👤"
+                  : f.type === "magazine" ? "📰"
+                  : "🤝";
+
+      return `
+        <div class="fav-card">
+          <div class="search-result-icon">${emoji}</div>
+          <div class="fav-info">
+            <div class="fav-title">${f.title}</div>
+            <div class="fav-meta">${f.meta || f.type}</div>
+          </div>
+          <button class="admin-icon danger" onclick="toggleFavorite('${f.type}', '${f.id}')">🗑️</button>
+        </div>
+      `;
+    }).join("");
+  }
+</script>
+
+<script>
+  /* ==========================================
+     MAGAZINES
+  ========================================== */
+
+  function renderMagazineTabs() {
+    const tabs = document.getElementById("magazineTabs");
+    if (!tabs) return;
+
+    const all = [
+      { id: "ILLIT", label: "✨ ILLIT" },
+      ...MEMBERS.map(m => ({ id: m.id, label: `${m.emoji} ${m.id}` }))
+    ];
+
+    tabs.innerHTML = all.map(t => `
+      <button class="tab ${currentMagazineFilter === t.id ? "active" : ""}"
+              onclick="selectMagazineFilter('${t.id}')">
+        ${t.label}
+      </button>
+    `).join("");
+  }
+
+  function selectMagazineFilter(id) {
+    currentMagazineFilter = id;
+    renderMagazines();
+  }
+
+  function renderMagazines() {
+    renderMagazineTabs();
+
+    const list = document.getElementById("magazineList");
+    if (!list) return;
+
+    const filtered = MAGAZINES.filter(m => m.member === currentMagazineFilter);
+
+    if (!filtered.length) {
+      list.innerHTML = `
+        <div class="empty" style="grid-column: 1/-1;">
+          <div class="empty-icon">📰</div>
+          Nenhuma magazine ainda.<br>
+          <small>Adicione pelo Admin.</small>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = filtered.map(m => `
+      <div class="info-card">
+        ${m.cover
+          ? `<img class="info-image" src="${m.cover}" alt="${m.name}"
+                  onerror="this.outerHTML='<div class=&quot;info-image&quot;>📰</div>';">`
+          : `<div class="info-image">📰</div>`}
+        <div class="info-content">
+          <div class="info-title">${m.name}</div>
+          <div class="info-subtitle">${m.issue || ""} ${m.releaseDate ? "· " + m.releaseDate : ""}</div>
+          ${m.description ? `<div class="info-desc">${m.description}</div>` : ""}
+          ${m.link ? `<a class="info-link" href="${m.link}" target="_blank" rel="noopener">🔗 Ver mais</a>` : ""}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  /* ==========================================
+     AMBASSADORS
+  ========================================== */
+
+  function renderAmbassadorTabs() {
+    const tabs = document.getElementById("ambassadorTabs");
+    if (!tabs) return;
+
+    const all = [
+      { id: "ILLIT", label: "✨ ILLIT" },
+      ...MEMBERS.map(m => ({ id: m.id, label: `${m.emoji} ${m.id}` }))
+    ];
+
+    tabs.innerHTML = all.map(t => `
+      <button class="tab ${currentAmbassadorFilter === t.id ? "active" : ""}"
+              onclick="selectAmbassadorFilter('${t.id}')">
+        ${t.label}
+      </button>
+    `).join("");
+  }
+
+  function selectAmbassadorFilter(id) {
+    currentAmbassadorFilter = id;
+    renderAmbassadors();
+  }
+
+  function renderAmbassadors() {
+    renderAmbassadorTabs();
+
+    const list = document.getElementById("ambassadorList");
+    if (!list) return;
+
+    const filtered = AMBASSADORS.filter(a => a.member === currentAmbassadorFilter);
+
+    if (!filtered.length) {
+      list.innerHTML = `
+        <div class="empty" style="grid-column: 1/-1;">
+          <div class="empty-icon">🤝</div>
+          Nenhum ambassador ainda.<br>
+          <small>Adicione pelo Admin.</small>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = filtered.map(a => `
+      <div class="info-card">
+        ${a.image
+          ? `<img class="info-image" src="${a.image}" alt="${a.brand}"
+                  onerror="this.outerHTML='<div class=&quot;info-image&quot;>🤝</div>';">`
+          : `<div class="info-image">🤝</div>`}
+        <div class="info-content">
+          <div class="info-title">${a.brand}</div>
+          <div class="info-subtitle">${a.title || "Ambassador"}</div>
+          ${a.startDate ? `<div class="info-desc">Desde ${a.startDate}</div>` : ""}
+          ${a.description ? `<div class="info-desc">${a.description}</div>` : ""}
+          ${a.link ? `<a class="info-link" href="${a.link}" target="_blank" rel="noopener">🔗 Ver mais</a>` : ""}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  /* ==========================================
+     ADMIN
+  ========================================== */
+
+  let currentAdminTab = "activities";
+
+  function renderAdmin() {
+    const root = document.getElementById("adminRoot");
+    if (!root) return;
+
+    if (!adminLogged) {
+      root.innerHTML = `
+        <div class="card" style="text-align: center; padding: 30px;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🔐</div>
+          <h2 style="margin: 0 0 8px;">Acesso Admin</h2>
+          <p style="color: var(--muted); font-size: 13px; margin: 0 0 18px;">
+            Digite a senha para gerenciar o arquivo.
+          </p>
+          <input type="password" id="adminPass" class="admin-input" placeholder="Senha"
+                 onkeydown="if(event.key==='Enter') tryLogin()">
+          <button class="admin-btn" onclick="tryLogin()">Entrar</button>
+          <div id="adminError" style="color: #ff3b30; font-size: 13px; margin-top: 10px; min-height: 18px;"></div>
+        </div>
+      `;
+      return;
+    }
+
+    const tabs = [
+      { id: "activities",  label: "📅 Atividades" },
+      { id: "gallery",     label: "🖼️ Galeria" },
+      { id: "magazines",   label: "📰 Magazines" },
+      { id: "ambassadors", label: "🤝 Ambassadors" }
+    ];
+
+    root.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div style="font-size: 13px; font-weight: 600;">✅ Admin ativo</div>
+        <button class="admin-btn ghost" style="width: auto; padding: 8px 14px;" onclick="logoutAdmin()">Sair</button>
+      </div>
+
+      <div class="admin-tabs">
+        ${tabs.map(t => `
+          <button class="admin-tab ${currentAdminTab === t.id ? "active" : ""}"
+                  onclick="selectAdminTab('${t.id}')">${t.label}</button>
+        `).join("")}
+      </div>
+
+      <div id="adminTabContent"></div>
+    `;
+
+    renderAdminTabContent();
+  }
+
+  function selectAdminTab(tab) {
+    currentAdminTab = tab;
+    renderAdmin();
+  }
+
+  function renderAdminTabContent() {
+    const content = document.getElementById("adminTabContent");
+    if (!content) return;
+
+    if (currentAdminTab === "activities")  renderAdminActivities(content);
+    if (currentAdminTab === "gallery")     renderAdminGallery(content);
+    if (currentAdminTab === "magazines")   renderAdminMagazines(content);
+    if (currentAdminTab === "ambassadors") renderAdminAmbassadors(content);
+  }
+
+  /* ---------- ADMIN: ATIVIDADES ---------- */
+
+  function renderAdminActivities(content) {
+    content.innerHTML = `
+      <button class="admin-btn" style="margin-bottom: 14px;" onclick="addActivity()">＋ Nova Atividade</button>
+      <div>
+        ${ACTIVITIES.map((a, i) => `
+          <div class="admin-item">
+            <div class="admin-item-info">
+              <div class="admin-item-title">${a.title}</div>
+              <div class="admin-item-meta">${a.date} · ${a.type} · ${(a.participants || []).join(", ")}</div>
+            </div>
+            <button class="admin-icon danger" onclick="deleteActivity(${i})">🗑️</button>
+          </div>
+        `).join("") || `<div class="empty">Nenhuma atividade.</div>`}
+      </div>
+    `;
+  }
+
+  function addActivity() {
+    const title = prompt("Título da atividade:");
+    if (!title) return;
+
+    const date = prompt("Data (AAAA-MM-DD):", "2026-01-01");
+    if (!date) return;
+
+    const location = prompt("Local:", "") || "—";
+    const country = prompt("País (emoji):", "🇰🇷") || "🇰🇷";
+    const type = prompt("Tipo:", "Grupo") || "Grupo";
+    const participantsRaw = prompt("Participantes (separados por vírgula):", "ILLIT") || "ILLIT";
+    const participants = participantsRaw.split(",").map(p => p.trim()).filter(Boolean);
+
+    ACTIVITIES.push({ id: Date.now(), date, title, location, country, type, participants });
+
+    saveAll();
+    renderAdmin();
+    showToast("✅ Atividade adicionada");
+  }
+
+  function deleteActivity(index) {
+    if (!confirm("Excluir esta atividade?")) return;
+    ACTIVITIES.splice(index, 1);
+    saveAll();
+    renderAdmin();
+    showToast("🗑️ Removida");
+  }
+
+  /* ---------- ADMIN: GALERIA ---------- */
+
+  function renderAdminGallery(content) {
+    content.innerHTML = `
+      <button class="admin-btn" style="margin-bottom: 14px;" onclick="addGalleryItem()">＋ Nova Foto (URL)</button>
+      <div>
+        ${GALLERY.map((g, i) => `
+          <div class="admin-item">
+            <div style="width: 50px; height: 50px; border-radius: 12px; overflow: hidden; background: rgba(120,120,128,.1); display: grid; place-items: center;">
+              ${g.image ? `<img src="${g.image}" style="width:100%;height:100%;object-fit:cover;">` : "🖼️"}
+            </div>
+            <div class="admin-item-info">
+              <div class="admin-item-title">${g.title || "Foto"}</div>
+              <div class="admin-item-meta">${g.member || "ILLIT"}</div>
+            </div>
+            <button class="admin-icon danger" onclick="deleteGalleryItem(${i})">🗑️</button>
+          </div>
+        `).join("") || `<div class="empty">Nenhuma foto.</div>`}
+      </div>
+    `;
+  }
+
+  function addGalleryItem() {
+    const title = prompt("Título da foto:");
+    if (!title) return;
+
+    const image = prompt("URL da imagem:");
+    if (!image) return;
+
+    const memberOptions = ["ILLIT", ...MEMBERS.map(m => m.id)].join(", ");
+    const member = prompt(`Membro (${memberOptions}):`, "ILLIT") || "ILLIT";
+
+    GALLERY.push({ id: Date.now(), title, image, member });
+
+    saveAll();
+    renderAdmin();
+    showToast("✅ Foto adicionada");
+  }
+
+  function deleteGalleryItem(index) {
+    if (!confirm("Excluir esta foto?")) return;
+    GALLERY.splice(index, 1);
+    saveAll();
+    renderAdmin();
+    showToast("🗑️ Removida");
+  }
+
+  /* ---------- ADMIN: MAGAZINES ---------- */
+
+  function renderAdminMagazines(content) {
+    content.innerHTML = `
+      <button class="admin-btn" style="margin-bottom: 14px;" onclick="addMagazine()">＋ Nova Magazine</button>
+      <div>
+        ${MAGAZINES.map((m, i) => `
+          <div class="admin-item">
+            <div class="admin-item-info">
+              <div class="admin-item-title">${m.name}</div>
+              <div class="admin-item-meta">${m.member} · ${m.issue || "—"}</div>
+            </div>
+            <button class="admin-icon danger" onclick="deleteMagazine(${i})">🗑️</button>
+          </div>
+        `).join("") || `<div class="empty">Nenhuma magazine.</div>`}
+      </div>
+    `;
+  }
+
+  function addMagazine() {
+    const name = prompt("Nome da magazine:");
+    if (!name) return;
+
+    const member = prompt("Membro (ILLIT/YUNAH/MINJU/MOKA/WONHEE/IROHA):", "ILLIT") || "ILLIT";
+    const issue = prompt("Edição:", "") || "";
+    const releaseDate = prompt("Data de lançamento:", "") || "";
+    const description = prompt("Descrição:", "") || "";
+    const cover = prompt("URL da capa:", "") || "";
+    const link = prompt("Link oficial:", "") || "";
+
+    MAGAZINES.push({ id: Date.now(), name, member, issue, releaseDate, description, cover, link });
+
+    saveAll();
+    renderAdmin();
+    showToast("✅ Magazine adicionada");
+  }
+
+  function deleteMagazine(index) {
+    if (!confirm("Excluir esta magazine?")) return;
+    MAGAZINES.splice(index, 1);
+    saveAll();
+    renderAdmin();
+    showToast("🗑️ Removida");
+  }
+
+  /* ---------- ADMIN: AMBASSADORS ---------- */
+
+  function renderAdminAmbassadors(content) {
+    content.innerHTML = `
+      <button class="admin-btn" style="margin-bottom: 14px;" onclick="addAmbassador()">＋ Novo Ambassador</button>
+      <div>
+        ${AMBASSADORS.map((a, i) => `
+          <div class="admin-item">
+            <div class="admin-item-info">
+              <div class="admin-item-title">${a.brand}</div>
+              <div class="admin-item-meta">${a.member} · ${a.title || "Ambassador"}</div>
+            </div>
+            <button class="admin-icon danger" onclick="deleteAmbassador(${i})">🗑️</button>
+          </div>
+        `).join("") || `<div class="empty">Nenhum ambassador.</div>`}
+      </div>
+    `;
+  }
+
+  function addAmbassador() {
+    const brand = prompt("Nome da marca:");
+    if (!brand) return;
+
+    const member = prompt("Membro (ILLIT/YUNAH/MINJU/MOKA/WONHEE/IROHA):", "ILLIT") || "ILLIT";
+    const title = prompt("Cargo/Título:", "Ambassador") || "Ambassador";
+    const startDate = prompt("Data de início:", "") || "";
+    const description = prompt("Descrição:", "") || "";
+    const image = prompt("URL da imagem:", "") || "";
+    const link = prompt("Link oficial:", "") || "";
+
+    AMBASSADORS.push({ id: Date.now(), brand, member, title, startDate, description, image, link });
+
+    saveAll();
+    renderAdmin();
+    showToast("✅ Ambassador adicionado");
+  }
+
+  function deleteAmbassador(index) {
+    if (!confirm("Excluir este ambassador?")) return;
+    AMBASSADORS.splice(index, 1);
+    saveAll();
+    renderAdmin();
+    showToast("🗑️ Removido");
+  }
+
+  /* ---------- LOGIN / LOGOUT ---------- */
+
+  function tryLogin() {
+    const input = document.getElementById("adminPass");
+    const error = document.getElementById("adminError");
+    if (!input) return;
+
+    if (input.value === ADMIN_PASSWORD) {
+      adminLogged = true;
+      renderAdmin();
+      showToast("✅ Bem-vinda, admin!");
+    } else {
+      if (error) error.textContent = "Senha incorreta.";
+      input.value = "";
+      input.focus();
+    }
+  }
+
+  function logoutAdmin() {
+    adminLogged = false;
+    renderAdmin();
+    showToast("👋 Logout feito");
+  }
+</script>
+
+  <script>
+    /* ==========================================
+       INICIALIZAÇÃO
+    ========================================== */
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTheme();
+      loadAll();
+
+      renderHome();
+      renderCalendar();
+      renderProfiles();
+      renderStats();
+      renderGallery();
+      renderSearch();
+      renderFavorites();
+      renderMagazines();
+      renderAmbassadors();
+      renderAdmin();
+
+      /* Atualiza home a cada minuto */
+      setInterval(() => {
+        const home = document.getElementById("homeSection");
+        if (home && home.classList.contains("active")) {
+          renderHome();
+        }
+      }, 60000);
+
+      console.log("✨ ILLIT Archive carregado com sucesso!");
+    });
+
+    /* ==========================================
+       ATALHOS DE TECLADO
+    ========================================== */
+
+    document.addEventListener("keydown", (e) => {
+      /* ESC fecha modal */
+      if (e.key === "Escape") {
+        closeModal();
+      }
+
+      /* Ctrl+K abre busca */
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        showSection("searchSection");
+        setTimeout(() => {
+          const input = document.getElementById("searchInput");
+          if (input) input.focus();
+        }, 200);
+      }
+    });
+
+    /* ==========================================
+       FIM DO SCRIPT
+    ========================================== */
+  </script>
+
+</body>
+</html>
